@@ -65,12 +65,10 @@ SO I CAN ....
   * 
 
 ### INSTALLING + EXECUTING
-
-* just copy and paste the link (LINK) into the address bar or click on the link in DEPLOYMENT.
+Instructions for installing / executing the app
 
 ###  DEPLOYMENT
-
-You access this link: LINK
+You access the app via this link: LINK
 
 ### BRANCHES
 
