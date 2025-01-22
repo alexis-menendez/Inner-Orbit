@@ -213,11 +213,11 @@ Our team tracked progress and assigned roles using GitHub Projects & a shared go
 ## DOCUMENTATION & ACKNOWLEDGMENTS
 
 ### DOCUMENTATION
-* Repository: LINK TO REPOSITORY GOES HERE
+* Repository:  https://github.com/alexis-menendez/Project-2
 * Application: LINK TO DEPLOYED APPLICATION GOES HERE
-* Project: LINK TO GITHUB PROJECT GOES HERE
-* Google Doc: LINK TO DOC GOES HERE
-* Google Slide: LINK TO PRESENTATION GOES HERE
+* Project: https://github.com/users/alexis-menendez/projects/2
+* Google Doc:  https://docs.google.com/document/d/1HNvy3lHiIHXEny79mlHp0oVrlVPByJjLMp8hHAXYkpk/edit?usp=sharing
+* Google Slide:  https://docs.google.com/presentation/d/1DA-3YI06jHrjdN81OcRCXf6O-5sNFAqaSlBWkoW6StY/edit?usp=sharing
 
 ### ACKNOWLEDGMENTS
 
