@@ -5,6 +5,7 @@ INSERT IMAGE OF PROJECT 2 HERE
 
 
 ##ABOUT
+SENTENCE ABOUT PROJECT 2
 
 ### CONCEPT
 SENTENCE ABOUT PROJECT 2
@@ -138,14 +139,15 @@ You access this link: LINK
 ## DOCUMENTATION & ACKNOWLEDGMENTS
 
 ### DOCUMENTATION
-* Project: https://github.com/users/alexis-menendez/projects/1   
-* Google Doc: https://docs.google.com/document/d/1QtiH2ZgR8AllXiB0O9cGerI2rGmHVrGf1GernTTggUw/edit?usp=sharing
-* Repository: https://github.com/alexis-menendez/Meal-Muse
-* Application: https://alexis-menendez.github.io/Meal-Muse/
+* Repository: LINK TO REPOSITORY GOES HERE
+* Application: LINK TO DEPLOYED APPLICATION GOES HERE
+* Project: LINK TO GITHUB PROJECT GOES HERE
+* Google Doc: LINK TO DOC GOES HERE
+* Google Slide: LINK TO PRESENTATION GOES HERE
 
 ### ACKNOWLEDGMENTS
 
 A huge thanks to:
 * Our TAs and Tutors
 * Copilot + Github
-* All the websites who helped build out code.
+* All the websites that helped build out our code
