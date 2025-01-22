@@ -115,8 +115,8 @@ Our team tracked progress and assigned roles using GitHub Projects & a shared go
 
 ### TASK BREAKDOWN
 1. Planning & Design:
-  * Finalize the app name (Meal Muse).
-  * Design wireframes for key pages (home, recipe creation, calendar, inventory).
+  * Finalize the app name.
+  * Design wireframes for key pages.
   * Set up GitHub Projects to track tasks and progress.
   * Define user stories and acceptance criteria in GitHub Issues.
   * Create a shared Google Doc to track ideas and meeting notes.
