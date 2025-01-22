@@ -55,28 +55,9 @@ SO I CAN ....
 
 
 
-## PROCESS
+## PROJECT OVERVIEW & SETUP GUIDE
 
-### PLANNING & DESIGN
-We started by defining the user needs and features, creating wireframes, and writing user stories.
-
-### COLLABORATION
-Our team tracked progress and assigned roles using GitHub Projects & a shared google doc
-
-### ROLES
-  * Alexis: ROLE
-  * MEMBER 2: ROLE
-  * MEMBER 3: ROLE
-  * MEMBER 4: ROLE
-  * MEMBER 5: ROLE
-
-### TECHNOLOGIES USED
-  * CSS
-  * JavaScript
-  * HTML
-  * GitHub
-
-### PREREQUISITES (Thins needed to use the app)
+### PREREQUISITES (Things needed to use the app)
   * 
   * 
   * 
@@ -117,6 +98,40 @@ You access this link: LINK
 #### Cleaning Up + Final Touches
  * Branches were utilized to apply final refinements and optimize code for clarity and efficiency before submission.
 
+
+
+## PROCESS
+
+### PLANNING & DESIGN
+We started by defining the user needs and features, creating wireframes, and writing user stories.
+
+### COLLABORATION
+Our team tracked progress and assigned roles using GitHub Projects & a shared google doc
+
+### ROLES
+  * Alexis: ROLE
+  * MEMBER 2: ROLE
+  * MEMBER 3: ROLE
+  * MEMBER 4: ROLE
+  * MEMBER 5: ROLE
+
+### TECHNOLOGIES USED
+  * CSS
+  * JavaScript
+  * HTML
+  * GitHub
+
+### CHALLENGES
+  * 
+  * 
+  * 
+  * 
+
+### SUCCESSES
+  * 
+  * 
+  * 
+  * 
 
 
 ## FUTURE DEVELOPMENT
