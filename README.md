@@ -113,6 +113,68 @@ Our team tracked progress and assigned roles using GitHub Projects & a shared go
   * MEMBER 4: ROLE
   * MEMBER 5: ROLE
 
+### TASK BREAKDOWN
+1. Planning & Design:
+  * Finalize the app name (Meal Muse).
+  * Design wireframes for key pages (home, recipe creation, calendar, inventory).
+  * Set up GitHub Projects to track tasks and progress.
+  * Define user stories and acceptance criteria in GitHub Issues.
+  * Create a shared Google Doc to track ideas and meeting notes.
+
+2. Setup and Repository Configuration:
+  * Create and initialize the GitHub repository with a README file.
+  * Set up the project folder structure (index.html, style.css, script.js).
+  * Add stylesheet for styling and responsiveness.
+  * Deploy the app to GitHub Pages for live access.
+  * Assign team roles and responsibilities using GitHub Projects.
+
+3. Feature Implementation:
+  * 
+  * 
+  * 
+
+4. Potential Add-Ons (Optional):
+  * 
+  * 
+  * 
+
+5. Styling and Polishing:
+  * Customize the UI with override CSS for a consistent look.
+  * Ensure the design is responsive across all devices.
+  * Add visual appeal with animations and hover effects.
+  * Optimize page load performance and accessibility.
+
+6. Testing and Debugging:
+  * Conduct end-to-end testing of each feature (recipe creation, calendar, library).
+  * Debug issues related to local storage functionality.
+  * Ensure compatibility across different browsers and devices.
+  * Perform usability testing to identify potential improvements.
+
+7. Deployment:
+  * Deploy the latest stable version to GitHub Pages.
+  * Test live deployment for any broken links or UI issues.
+  * Update the README with the deployed URL and instructions.
+
+8. Documentation:
+  * Add detailed project documentation, including:
+      * Features overview
+      * Technologies used
+      * Setup instructions
+      * Screenshots  / gif of the application
+  * Ensure documentation is clear and easy to follow for new users.
+
+9. Presentation Preparation:
+  * Prepare the slide deck with the following sections:
+      * Slide 1: Agenda
+      * Slide 2: Elevator Pitch
+      * Slide 3: Concept & User Story
+      * Slide 4: Development Process
+      * Slide 5: Demo GIF of the app
+      * Slide 6: Future Plans for Meal Muse
+      * Slide 7: Links to deployed app and GitHub repo
+  * Assign speaking roles for the presentation 
+  * Rehearse to ensure a smooth and engaging delivery.
+
 ### TECHNOLOGIES USED
   * CSS
   * JavaScript
