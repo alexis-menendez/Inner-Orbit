@@ -20,3 +20,18 @@ This folder contains all back-end code for the application, built with Node.js, 
 
 ### Entry Point:
 - `index.js`: Sets up the Express server, connects to MongoDB, applies middleware, and initializes Apollo Server
+
+### File Structure:
+├── server/ ........................... *# Node.js + Express + GraphQL backend*    
+│     ├── config/ ..................... *# DB config, JWT secret, environment setup*    
+│     ├── controllers/ ................ *# Logic for handling GraphQL resolvers*    
+│     ├── graphql/ .................... *# Schema and resolvers*    
+│     │     ├── resolvers/ ............ *# Mutation & query resolver logic*    
+│     │     └── typeDefs/ ............. *# GraphQL type definitions*   
+│     |    
+│     ├── middleware/ ................. *# Auth middleware, error handling*    
+│     ├── models/ ..................... *# Mongoose models*    
+│     ├── utils/ ...................... *# Helper functions (e.g., auth, validators)*   
+│     |    
+│     ├── index.js .................... *# Entry point (Express app + Apollo server)*    
+│     └── package.json ................ *# Backend dependencies*
