@@ -8,6 +8,11 @@ This folder contains all back-end code for the application, built with Node.js, 
 - MongoDB with Mongoose
 - JWT Authentication
 
+### Basic Structure:
+- `src/`: All source code (see `server-src.md` for details)
+- `index.js`: Application entry point (imports from `src/`)
+- `package.json`: Backend dependencies and scripts
+
 ### Key Subfolders:
 - `config/`: Database and environment configuration
 - `controllers/`: Business logic for GraphQL operations
