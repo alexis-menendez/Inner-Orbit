@@ -16,7 +16,7 @@ Project-3/
 │     │     ├── App.jsx               *# Main app component*    
 │     │     ├── main.jsx              *# Entry point (or index.jsx)*    
 │     │     └── router.jsx            *# React Router setup*    
-│     |  
+│     │  
 │     ├── package.json                *# Frontend dependencies*    
 │     ├── package-lock.json           *# Exact versions of installed frontend packages (auto-generated)*    
 │     ├── postcss.config.js           *# Configuration file for PostCSS (used by Tailwind to transform CSS)*    
