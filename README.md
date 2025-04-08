@@ -6,11 +6,11 @@
 
 Users can:
 
-- [Insert key user abilities or features]
+- [Insert key user abilities or features] **(DO NOT FORGET TO UPDATE THIS!)**
 - Interact with real-time data via GraphQL queries and mutations
 - Securely register, log in, and manage personal accounts
 - Experience seamless navigation across the single-page interface
-- [Other standout features here]=
+- [Other standout features here] **(DO NOT FORGET TO UPDATE THIS!)**
 
 Deployed via Render with a focus on accessibility and mobile responsiveness, this application is the culmination of six months of development training and collaboration.
 
@@ -23,7 +23,7 @@ Deployed via Render with a focus on accessibility and mobile responsiveness, thi
 | Secure user authentication with JWT               | **Authentication:** JWT                                               |
 | Protected routes and user sessions                | **Security:** bcrypt, dotenv                                          |
 | GitHub Actions for CI/CD                          | **CI/CD:** GitHub Actions                                             |
-| Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  |
+| Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  | **(DO NOT FORGET TO UPDATE THIS!)**  
 | Deployed on Render                                | **Deployment:** Render                                                |
 
 
