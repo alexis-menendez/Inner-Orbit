@@ -32,6 +32,7 @@ your-project/
 ├── .github/                    # GitHub Actions CI/CD
 │   └── workflows/              # e.g., deploy.yml
 │
+├── package.json                # Root-level package.json (the one with "dev" script hat calls the client and server)
 ├── .env                        # Environment variables (ignored by git)
 ├── .gitignore                 
 ├── README.md                  

@@ -1,227 +1,202 @@
-## PROJECT 3
+# PROJECT 3 TITLE
 
-INSERT IMAGE OF PROJECT 2 HERE
+## **Description**
 
+**PROJECT 3 TITLE** is a full-stack, responsive, and interactive single-page application built using the MERN stack with GraphQL and JWT authentication. This application solves a real-world problem using real data and is designed with a smooth user experience and polished, professional UI in mind.
 
+Users can:
 
-## ABOUT
+- [Insert key user abilities or features]
+- Interact with real-time data via GraphQL queries and mutations
+- Securely register, log in, and manage personal accounts
+- Experience seamless navigation across the single-page interface
+- [Other standout features here]=
 
-### CONCEPT
-SENTENCE ABOUT PROJECT 2
+Deployed via Render with a focus on accessibility and mobile responsiveness, this application is the culmination of six months of development training and collaboration.
 
-### MOTIVATION
-SENTENCE ABOUT MOTIVATION FOR PROJECT 2
-
-
-
-## USER STORY & ACCEPTANCE CRITERIA
-
-### USER STORY:
-
-AS A USER ...,
-I WANT ...,
-SO I CAN ....
-
-### ACCEPTANCE CRITERIA:
-
-1. TEXT:
-  * GIVEN I ...,
-  * WHEN I ...,
-  * THEN ...,
-  * AND ....
-
-2.  TEXT:
-  * GIVEN I ...,
-  * WHEN I ...,
-  * THEN ...,
-  * AND ....
-
-3.  TEXT:
-  * GIVEN I ...,
-  * WHEN I ...,
-  * THEN ...,
-  * AND ....
-
-4.  TEXT:
-  * GIVEN I ...,
-  * WHEN I ...,
-  * THEN ...,
-  * AND ....
-
-5. Responsive Design:
-  * GIVEN I access the app from different devices (desktop, tablet, mobile),
-  * WHEN I view my recipe inventory or meal planner,
-  * THEN the layout adjusts for an optimal user experience.
+| **Key Features**                                  | **Technology Stack**                                                  |
+| ------------------------------------------------- | --------------------------------------------------------------------- |
+| Mobile-first, responsive design                   | **Languages:** JavaScript                                             |
+| Component-based architecture                      | **Front-End:** React, Apollo Client, React Router                     |
+| GraphQL for client-server communication           | **Back-End:** Node.js, Express.js, Apollo Server, GraphQL             |
+| MongoDB integration with Mongoose ODM             | **Database:** MongoDB                                                 |
+| Secure user authentication with JWT               | **Authentication:** JWT                                               |
+| Protected routes and user sessions                | **Security:** bcrypt, dotenv                                          |
+| GitHub Actions for CI/CD                          | **CI/CD:** GitHub Actions                                             |
+| Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  |
+| Deployed on Render                                | **Deployment:** Render                                                |
 
 
+## Table of Contents
 
-## PROJECT OVERVIEW & SETUP GUIDE
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Walkthrough Video](#walkthrough-video)
+- [Live Demo](#live-demo)
+- [Database Schema](#database-schema) **(DO NOT FORGET TO UPDATE THIS! DELETE THIS SECTION IF NOT USING DATABASES)**
+- [Future Development](#future-development)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Documentation](#documentation)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
-### PREREQUISITES (Things needed to use the app)
-  * 
-  * 
-  * 
-  * 
-  * 
+## Installation 
 
-### INSTALLING + EXECUTING
-Instructions for installing / executing the app
+This app is deployed on Render and can be [accessed here.](https://URL-GOES-HERE.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**
+To run the app locally:
+     
+**1. Clone the Repository**
 
-###  DEPLOYMENT
-You access the app via this link: LINK
+   - bash:
+     >  git clone https://github.com/alexis-menendez/YOUR-PROJECT-URL.git   **(DO NOT FORGET TO UPDATE THIS!)**
+     >  cd project-name  
 
-### BRANCHES
+**2. Install Client Dependencies**
 
-#### Main Branch
- * The main branch of the repository serves as the central hub for the project's stable, production-ready code, integrating finalized features and updates from various development branches.
+   - **Open an Integrated terminal in /client:**
+   - bash:
+     >  cd how-not-to-die/client  
+     >  npm install  
 
-#### BRANCH 1 NAME
- * SENTENCE ABOUT BRANCH
-
-#### BRANCH 2 NAME
- * SENTENCE ABOUT BRANCH
-
-#### BRANCH 3 NAME
- * SENTENCE ABOUT BRANCH
-
-#### BRANCH 4 NAME
- * SENTENCE ABOUT BRANCH
-
-#### BRANCH 5 NAME
- * SENTENCE ABOUT BRANCH
-
-#### Testing
- * Used for debugging the entire repository and thoroughly testing features to ensure functionality, performance, and a seamless user experience.
-
-#### Cleaning Up + Final Touches
- * Branches were utilized to apply final refinements and optimize code for clarity and efficiency before submission.
+**3. Install Server Dependencies**
+   - **Open an Integrated terminal in /server:**
+   - bash:
+     >  cd ../server  
+     >  npm install  
 
 
+**4. Create a .env file in the root directory with the following:**
 
-## PROCESS
+   - **.env:**
+     >  DB_NAME=your_db             (DELETE IF NOT USING DATABASES!)
+     >  DB_USER=your_user           (DELETE IF NOT USING DATABASES!)
+     >  DB_PASSWORD=your_password   (DELETE IF NOT USING DATABASES!)
+     >  MONGODB_URI=your_mongo_connection_string 
+     >  JWT_SECRET=your_secret  
+     >  API_KEY_1=xxxx  
 
-### PLANNING & DESIGN
-We started by defining the user needs and features, creating wireframes, and writing user stories.
+**5. Ensure PostgreSQL is running. Then create your database and apply any migrations/seeds:**  **(DO NOT FORGET TO UPDATE THIS! DELETE THIS STEP IF NOT USING POSTGRESSQL!)**
 
-### COLLABORATION
-Our team tracked progress and assigned roles using GitHub Projects & a shared google doc
-
-### ROLES
-  * Alexis: ROLE
-  * MEMBER 2: ROLE
-  * MEMBER 3: ROLE
-  * MEMBER 4: ROLE
-  * MEMBER 5: ROLE
-
-### TASK BREAKDOWN
-1. Planning & Design:
-  * Finalize the app name.
-  * Design wireframes for key pages.
-  * Set up GitHub Projects to track tasks and progress.
-  * Define user stories and acceptance criteria in GitHub Issues.
-  * Create a shared Google Doc to track ideas and meeting notes.
-
-2. Setup and Repository Configuration:
-  * Create and initialize the GitHub repository with a README file.
-  * Set up the project folder structure (index.html, style.css, script.js).
-  * Add stylesheet for styling and responsiveness.
-  * Deploy the app to GitHub Pages for live access.
-  * Assign team roles and responsibilities using GitHub Projects.
-
-3. Feature Implementation:
-  * 
-  * 
-  * 
-
-4. Potential Add-Ons (Optional):
-  * 
-  * 
-  * 
-
-5. Styling and Polishing:
-  * Customize the UI with override CSS for a consistent look.
-  * Ensure the design is responsive across all devices.
-  * Add visual appeal with animations and hover effects.
-  * Optimize page load performance and accessibility.
-
-6. Testing and Debugging:
-  * Conduct end-to-end testing of each feature (recipe creation, calendar, library).
-  * Debug issues related to local storage functionality.
-  * Ensure compatibility across different browsers and devices.
-  * Perform usability testing to identify potential improvements.
-
-7. Deployment:
-  * Deploy the latest stable version to GitHub Pages.
-  * Test live deployment for any broken links or UI issues.
-  * Update the README with the deployed URL and instructions.
-
-8. Documentation:
-  * Add detailed project documentation, including:
-      * Features overview
-      * Technologies used
-      * Setup instructions
-      * Screenshots  / gif of the application
-  * Ensure documentation is clear and easy to follow for new users.
-
-9. Presentation Preparation:
-  * Prepare the slide deck with the following sections:
-      * Slide 1: Agenda
-      * Slide 2: Elevator Pitch
-      * Slide 3: Concept & User Story
-      * Slide 4: Development Process
-      * Slide 5: Demo GIF of the app
-      * Slide 6: Future Plans for Meal Muse
-      * Slide 7: Links to deployed app and GitHub repo
-  * Assign speaking roles for the presentation 
-  * Rehearse to ensure a smooth and engaging delivery.
-
-### TECHNOLOGIES USED
-  * CSS
-  * JavaScript
-  * HTML
-  * GitHub
-
-### CHALLENGES
-  * 
-  * 
-  * 
-  * 
-
-### SUCCESSES
-  * 
-  * 
-  * 
-  * 
+   - **Open an Integrated terminal in /server:**
+   - bash:
+     >  npx sequelize-cli db:create  
+     >  npx sequelize-cli db:migrate  
+     >  npx sequelize-cli db:seed:all  
 
 
-## FUTURE DEVELOPMENT
+**6. Install concurrently in the root directory**
+   - **Open an Integrated terminal in your projects root:**
+   - bash:
+     >  npm install concurrently --save-dev   
 
-### GOALS & IDEAS
-* NAME OF IDEA 1; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 2; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 3; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 4; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 5; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 6; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 7; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 8; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 9; BRIEF EXPLANATION OF IDEA
-* NAME OF IDEA 10; BRIEF EXPLANATION OF IDEA
+**7. Start the Client**
+   - **Open an Integrated terminal in your projects root:**
+   - bash:
+     >  npm run dev  
 
 
+## Usage
 
-## DOCUMENTATION & ACKNOWLEDGMENTS
+Once the server and client are both running:
 
-### DOCUMENTATION
-* Repository:  https://github.com/alexis-menendez/Project-2
-* Application: LINK TO DEPLOYED APPLICATION GOES HERE
-* Project: https://github.com/users/alexis-menendez/projects/2
-* Google Doc:  https://docs.google.com/document/d/1HNvy3lHiIHXEny79mlHp0oVrlVPByJjLMp8hHAXYkpk/edit?usp=sharing
-* Google Slide:  https://docs.google.com/presentation/d/1DA-3YI06jHrjdN81OcRCXf6O-5sNFAqaSlBWkoW6StY/edit?usp=sharing
+1. Navigate to http://localhost:5173 (or the port shown in your terminal)
+2. Register or log in
+3. Begin interacting with the full suite of app features including:
+   - Secure account management
+   - Data submission and editing
+   - Navigation between protected routes
+   - [Any other unique usage info]
 
-### ACKNOWLEDGMENTS
 
-A huge thanks to:
-* Our TAs and Tutors
-* Copilot + Github
-* All the websites that helped build out our code
+## Screenshots
+
+![projectscreenshot](LINK-GOES-HERE!)  **(DO NOT FORGET TO UPDATE THIS!)**
+
+## Walkthrough Video
+
+- currently unavailable
+
+## Live Demo
+
+- [NAME-OF-PROJECT](https://NAME-OF-PROJECT.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**
+
+## Database Schema **(DO NOT FORGET TO UPDATE THIS!)**
+Field     |  Type      |  Required  |  Description              |
+| ------- | ---------- | ---------- | ------------------------- |
+_id       |  ObjectId  |  Yes       |  Auto-generated unique ID |
+username  |  String    |  Yes       |  User's display name      |
+email     |  String	   |  Yes       |  Must be unique           |
+password  |  String    |  Yes       |  Hashed password          |
+logs      |  [Log]     |  No        |  Reference to user's logs |
+
+
+## Future Development
+
+ - Expand data model and relationships
+ - Integrate additional APIs
+ - Add user dashboard with analytics
+ - Implement automated testing
+ - Enhance accessibility and internationalization
+
+## Contributing
+
+We welcome contributions! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix: git checkout -b feature-name
+3. Make your changes and commit them with descriptive messages: git commit -m "Description"
+4. Push your changes and create a pull request: git push origin feature-name
+
+## Tests
+
+There are currently no automated tests for this project
+
+## Documentation
+
+> **Note:** INSERT ANY NOTES ABOUT DOCUMENTATION HERE, DELETE IF THERE ARE NONE!
+
+- [Repository](https://github.com/YOUR-REPO-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
+- [Google Slides](https://docs.google.com/presentation/YOUR-SLIDES-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
+- [Google Doc](https://docs.google.com/document/YOUR-GOOGLE-DOC-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
+
+## Acknowledgements
+
+1. (ANY OUTSIDE AID) **(DO NOT FORGET TO UPDATE THIS!)**
+2. (ANY INSPIRATIONS OR RESOURCES) **(DO NOT FORGET TO UPDATE THIS!)**
+
+## Contact
+
+If you have any questions, feel free to contact the team:
+
+NAME OF PROJECT LEAD, Project Lead **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
+NAME OF FRONTEND LEAD, Frontend Lead **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
+NAME OF BACKEND LEAD, Backend Lead **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+
+- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
+- **Email**: EMAIL@EMAIL.com
+
