@@ -24,7 +24,7 @@ Project-3/
 │     └── vite.config.js              *# Vite configuration for dev server, plugins, aliases, etc.*    
 │  
 ├── server/                           *# Node.js + Express + GraphQL backend*  
-│     └──src/
+│     └──src/  
 │     │   ├── config/                 *# DB config, JWT secret, environment setup*    
 │     │   ├── controllers/            *# Logic for handling GraphQL resolvers*    
 │     │   ├── graphql/                *# Schema and resolvers*    
