@@ -31,9 +31,13 @@ your-project/
 │
 ├── .github/                    # GitHub Actions CI/CD
 │   └── workflows/              # e.g., deploy.yml
+|
+├── scripts                     # Scripts for deployment and other tasks
+│   └── render-build.sh         # Script to build app when deploying on render
 │
 ├── package.json                # Root-level package.json (the one with "dev" script hat calls the client and server)
 ├── .env                        # Environment variables (ignored by git)
+├── .gitattributes   
 ├── .gitignore                 
 ├── README.md                  
 └── LICENSE                     # (Optional) License file
