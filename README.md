@@ -23,7 +23,7 @@ Deployed via Render with a focus on accessibility and mobile responsiveness, thi
 | Secure user authentication with JWT               | **Authentication:** JWT                                               |
 | Protected routes and user sessions                | **Security:** bcrypt, dotenv                                          |
 | GitHub Actions for CI/CD                          | **CI/CD:** GitHub Actions                                             |
-| Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  | **(DO NOT FORGET TO UPDATE THIS!)**  
+| Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  |   
 | Deployed on Render                                | **Deployment:** Render                                                |
 
 
