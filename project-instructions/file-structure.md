@@ -40,7 +40,7 @@ Project-3/
 │  
 ├── .github/                          *# GitHub Actions CI/CD*    
 │     └── workflows/                  *# e.g., deploy.yml*    
-|  
+│  
 ├── scripts                           *# Scripts for deployment and other tasks*    
 │     └── render-build.sh             *# Script to build app when deploying on render*    
 │  
