@@ -44,13 +44,13 @@ Deployed via Render with a focus on accessibility and mobile responsiveness, thi
 
 ## Installation 
 
-This app is deployed on Render and can be [accessed here.](https://URL-GOES-HERE.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**
+This app is deployed on Render and can be [accessed here.](https://URL-GOES-HERE.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**  
 To run the app locally:
      
 **1. Clone the Repository**
 
    - bash:
-     >  git clone https://github.com/alexis-menendez/YOUR-PROJECT-URL.git   **(DO NOT FORGET TO UPDATE THIS!)**
+     >  git clone https://github.com/alexis-menendez/YOUR-PROJECT-URL.git   **(DO NOT FORGET TO UPDATE THIS!)**  
      >  cd project-name  
 
 **2. Install Client Dependencies**
@@ -77,7 +77,7 @@ To run the app locally:
      >  JWT_SECRET=your_secret  
      >  API_KEY_1=xxxx  
 
-**5. Ensure PostgreSQL is running. Then create your database and apply any migrations/seeds:**  **(DO NOT FORGET TO UPDATE THIS! DELETE THIS STEP IF NOT USING POSTGRESSQL!)**
+**5. Ensure PostgreSQL is running. Then create your database and apply any migrations/seeds:**  **(DO NOT FORGET TO UPDATE THIS! DELETE THIS STEP IF NOT USING POSTGRESSQL!)**  
 
    - **Open an Integrated terminal in /server:**
    - bash:
@@ -112,7 +112,7 @@ Once the server and client are both running:
 
 ## Screenshots
 
-![projectscreenshot](LINK-GOES-HERE!)  **(DO NOT FORGET TO UPDATE THIS!)**
+![projectscreenshot](LINK-GOES-HERE!)  **(DO NOT FORGET TO UPDATE THIS!)**  
 
 ## Walkthrough Video
 
@@ -120,9 +120,9 @@ Once the server and client are both running:
 
 ## Live Demo
 
-- [NAME-OF-PROJECT](https://NAME-OF-PROJECT.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**
+- [NAME-OF-PROJECT](https://NAME-OF-PROJECT.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**  
 
-## Database Schema **(DO NOT FORGET TO UPDATE THIS!)**
+## Database Schema **(DO NOT FORGET TO UPDATE THIS!)**  
 Field     |  Type      |  Required  |  Description              |
 | ------- | ---------- | ---------- | ------------------------- |
 _id       |  ObjectId  |  Yes       |  Auto-generated unique ID |
@@ -157,45 +157,45 @@ There are currently no automated tests for this project
 
 > **Note:** INSERT ANY NOTES ABOUT DOCUMENTATION HERE, DELETE IF THERE ARE NONE!
 
-- [Repository](https://github.com/YOUR-REPO-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
-- [Google Slides](https://docs.google.com/presentation/YOUR-SLIDES-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
-- [Google Doc](https://docs.google.com/document/YOUR-GOOGLE-DOC-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**
+- [Repository](https://github.com/YOUR-REPO-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**  
+- [Google Slides](https://docs.google.com/presentation/YOUR-SLIDES-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**  
+- [Google Doc](https://docs.google.com/document/YOUR-GOOGLE-DOC-URL-GOES-HERE) **(DO NOT FORGET TO UPDATE THIS!)**  
 
 ## Acknowledgements
 
-1. (ANY OUTSIDE AID) **(DO NOT FORGET TO UPDATE THIS!)**
-2. (ANY INSPIRATIONS OR RESOURCES) **(DO NOT FORGET TO UPDATE THIS!)**
+1. (ANY OUTSIDE AID) **(DO NOT FORGET TO UPDATE THIS!)**  
+2. (ANY INSPIRATIONS OR RESOURCES) **(DO NOT FORGET TO UPDATE THIS!)**  
 
 ## Contact
 
 If you have any questions, feel free to contact the team:
 
-NAME OF PROJECT LEAD, Project Lead **(DO NOT FORGET TO UPDATE THIS!)**
+NAME OF PROJECT LEAD, Project Lead **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
 
-NAME OF FRONTEND LEAD, Frontend Lead **(DO NOT FORGET TO UPDATE THIS!)**
+NAME OF FRONTEND LEAD, Frontend Lead **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
 
-NAME OF BACKEND LEAD, Backend Lead **(DO NOT FORGET TO UPDATE THIS!)**
+NAME OF BACKEND LEAD, Backend Lead **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
 
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
 
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
 
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**
+TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
 
 - **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
 - **Email**: EMAIL@EMAIL.com
