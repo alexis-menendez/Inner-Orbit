@@ -42,6 +42,6 @@ Project-3/
 │     │   └── utils/ ................. *# Helper functions (e.g., auth, validators)*   
 │     │    
 │     ├── index.js ................... *# Entry point (Express app + Apollo server)*    
-│     └── package.json ............... *# Backend dependencies* 
+│     └── package.json ............... *# Backend dependencies*   
 │  
 └── The rest of the files/folders in this project
