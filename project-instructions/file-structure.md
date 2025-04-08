@@ -1,7 +1,7 @@
 BASIC FILE STRUCTURE
 
-your-project/
-│
+your-project/  
+│  
 ├── client/                     # React front-end  
 │   ├── public/                 # Static files (index.html, favicon, etc.)
 │   │   └── assets/             # Static assets (images, icons) 
