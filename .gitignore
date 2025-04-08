@@ -1,0 +1,87 @@
+# Logs
+logs/
+*.log
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency Directories
+node_modules/
+client/node_modules/
+server/node_modules/
+bower_components
+
+# Dependency Lockfiles        
+# Only if you're not using Yarn: yarn.lock  
+# Only if you're not using pnpm: pnpm-lock.yaml   
+
+# Build Output
+build/
+client/build/
+server/build/
+dist
+dist/
+dist-ssr
+*.local
+
+# Testing & Coverage Reports
+coverage/
+coverage
+
+# Environment Files
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+client/.env*
+server/.env*
+
+# Render Deployment
+scripts/render-build.sh
+
+# Editor Settings
+.vscode/
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.iml
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary and Cache
+tmp/
+.cache/
+*.tmp
+*.bak
+*.sw*
+*.swp
+*.swo
+*.sw?
+
+# MongoDB
+dump/
+
+# Workflows
+
+# Other
+lib-cov
+*.seed
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+pids
+results/

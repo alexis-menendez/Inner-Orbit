@@ -27,14 +27,14 @@ Deployed via Render with a focus on accessibility and mobile responsiveness, thi
 | Deployed on Render                                | **Deployment:** Render                                                |
 
 
-## Table of Contents
+## Table of Contents  **(DO NOT FORGET TO UPDATE THIS AND DELETE ANY SECTIONS YOU ARE NOT USING!)**
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Walkthrough Video](#walkthrough-video)
 - [Live Demo](#live-demo)
-- [Database Schema](#database-schema) **(DO NOT FORGET TO UPDATE THIS! DELETE THIS SECTION IF NOT USING DATABASES)**
+- [Database Schema](#database-schema) 
 - [Future Development](#future-development)
 - [Contributing](#contributing)
 - [Tests](#tests)
