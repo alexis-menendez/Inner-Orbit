@@ -14,6 +14,6 @@ This is the root directory of the project. It contains high-level configuration 
 - `server/`: Contains all back-end code (Node.js, Express, GraphQL)
 - `scripts/`: Contains deployment and utility scripts such as `render-build.sh`
 - `.github/workflows/`: GitHub Actions for continuous integration and deployment
-- `.instructions/`: instructions and guides (such as `file-structure.md`) to aid in project development
+- `project-instructions/`: instructions and guides (such as `file-structure.md`) to aid in project development
 
 This root serves as the base for running full-stack development commands and managing project-wide configuration.
