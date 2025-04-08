@@ -1,0 +1,32 @@
+{
+    "name": "client",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "description": "Frontend for the project three MERN + GraphQL project",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview",
+      "lint": "eslint src --ext .jsx,.js,.ts,.tsx",
+      "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+      "lfs:install": "git lfs install && git lfs pull"
+    },
+    "dependencies": {
+      "@apollo/client": "^3.13.6",
+      "@chakra-ui/react": "^3.15.1",
+      "@emotion/react": "^11.14.0",
+      "@emotion/styled": "^11.14.0",
+      "framer-motion": "^12.6.3",
+      "graphql": "^16.10.0",
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0",
+      "react-router-dom": "^7.5.0"
+    },
+    "devDependencies": {
+      "eslint": "^9.24.0",
+      "prettier": "^3.5.3",
+      "vite": "^6.2.5"
+    }
+  }
+  

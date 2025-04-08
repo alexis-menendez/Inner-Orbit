@@ -41,9 +41,6 @@ coverage
 client/.env*
 server/.env*
 
-# Render Deployment
-scripts/render-build.sh
-
 # Editor Settings
 .vscode/
 .vscode/*
