@@ -26,23 +26,23 @@ This folder contains all front-end code for the application, built using React a
 - `router.jsx`: Route declarations using React Router
 
 ### File Structure:  
-client/                           # React front-end    
-  ├── public/                     # Static files (index.html, favicon, etc.)    
-  │     └── assets/               # Static assets (images, icons)    
-  ├── src/                        # Source code    
-  │     ├── assets/               # Static assets (fonts)    
-  │     ├── components/           # Reusable UI components    
-  │     ├── context/              # React Context for global state/auth    
-  │     ├── graphql/              # Apollo client queries/mutations    
-  │     ├── hooks/                # Custom React hooks    
-  │     ├── pages/                # Route-based page components    
-  │     ├── styles/               # Global or component-level styles    
-  │     ├── App.jsx               # Main app component    
-  │     ├── main.jsx              # Entry point (or index.jsx)    
-  │     └── router.jsx            # React Router setup    
+client/ ........................... *# React front-end*    
+  ├── public/ ..................... *# Static files (index.html, favicon, etc.)*    
+  │     └── assets/ ............... *# Static assets (images, icons)*    
+  ├── src/ ........................ *# Source code*    
+  │     ├── assets/ ............... *# Static assets (fonts)*    
+  │     ├── components/ ........... *# Reusable UI components*    
+  │     ├── context/ .............. *# React Context for global state/auth*    
+  │     ├── graphql/ .............. *# Apollo client queries/mutations*    
+  │     ├── hooks/ ................ *# Custom React hooks*    
+  │     ├── pages/ ................ *# Route-based page components*    
+  │     ├── styles/ ............... *# Global or component-level styles*    
+  │     ├── App.jsx ............... *# Main app component*    
+  │     ├── main.jsx .............. *# Entry point (or index.jsx)*    
+  │     └── router.jsx ............ *# React Router setup*    
   |  
-  ├── package.json                # Frontend dependencies    
-  ├── package-lock.json           # Exact versions of installed frontend packages (auto-generated)    
-  ├── postcss.config.js           # Configuration file for PostCSS (used by Tailwind to transform CSS)    
-  ├── tailwind.config.js          # Tailwind CSS custom configuration (e.g., theme, breakpoints)   
-  └── vite.config.js              # Vite configuration for dev server, plugins, aliases, etc.  
+  ├── package.json ................ *# Frontend dependencies*    
+  ├── package-lock.json ........... *# Exact versions of installed frontend packages (auto-generated)*    
+  ├── postcss.config.js ........... *# Configuration file for PostCSS (used by Tailwind to transform CSS)*    
+  ├── tailwind.config.js .......... *# Tailwind CSS custom configuration (e.g., theme, breakpoints)*   
+  └── vite.config.js .............. *# Vite configuration for dev server, plugins, aliases, etc.*  
