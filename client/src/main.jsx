@@ -1,20 +1,21 @@
 import './index.css';
+import './styles/index.css'; // Tailwind base styles
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import App from './App';
-import './styles/index.css'; // Tailwind base styles
+
 import client from './graphql/client'; // Apollo client setup
-import AuthProvider from './context/AuthProvider'; // Your custom context
+import router from './router'; //  custom router config
+import AuthProvider from './context/AuthProvider'; // Auth context
+// import App from './App'; //  not needed because router wraps it
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <AuthProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </AuthProvider>
     </ApolloProvider>
   </React.StrictMode>
