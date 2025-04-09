@@ -2,7 +2,13 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Resolve path to .env in the project root
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../../.env') }); // Explicit root .env load
 
 import { typeDefs, resolvers } from './graphql/index.js';
 import { authMiddleware } from './middleware/auth.js';
@@ -11,28 +17,23 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 
-// Initialize Apollo Server with context (auth) and Playground enabled
+// 🚀 Apollo Server setup
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  introspection: true, // enables schema introspection
-  playground: true     // enables GraphQL Playground
+  introspection: true,
+  playground: true,
 });
 
 async function startServer() {
-  await server.start();                        // Start the Apollo Server
-  server.applyMiddleware({ app });             // Apply it as middleware to Express
+  await server.start();
+  server.applyMiddleware({ app });
 
-  // Connect to MongoDB
   try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/yourdbname', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log('🛸 MongoDB connected');
 
-    // Start the Express server
     app.listen(PORT, () => {
       console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
     });
@@ -42,4 +43,3 @@ async function startServer() {
 }
 
 startServer();
-
