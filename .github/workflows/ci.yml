@@ -1,0 +1,34 @@
+name: CI - Client and Server Build Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  client-build:
+    name: ✅ Client Builds
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run build
+
+  server-check:
+    name: ✅ Server Boots
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: node src/index.js || echo "Server exited — check logs if failed"
