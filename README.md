@@ -26,7 +26,6 @@ Deployed via Render with a focus on accessibility and mobile responsiveness, thi
 | Styled with [chosen approach]                     | **Styling:** [styled-components / Chakra UI / Ant Design / Pure CSS]  |   
 | Deployed on Render                                | **Deployment:** Render                                                |
 
-THIS IS A TEST PR TO SEE IF BRANCH PROTECTION WORKS!
 
 ## Table of Contents  **(DO NOT FORGET TO UPDATE THIS AND DELETE ANY SECTIONS YOU ARE NOT USING!)**
 
