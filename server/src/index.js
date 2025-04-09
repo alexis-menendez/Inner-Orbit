@@ -1,15 +1,15 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const mongoose = require('mongoose');
-const { typeDefs, resolvers } = require('./graphql');
-const { authMiddleware } = require('./middleware/auth');
-require('dotenv').config();
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { typeDefs, resolvers } from './graphql/index.js';
+import { authMiddleware } from './middleware/auth.js';
 
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
-
-import { authMiddleware } from './middleware/auth.js'; // import middleware
 
 // Initialize Apollo Server with context (auth) and Playground enabled
 const server = new ApolloServer({

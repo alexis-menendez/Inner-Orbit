@@ -9,6 +9,9 @@ const App = () => {
       <Navbar />
       <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
         <Outlet /> {/* This renders the current route's component */}
+        <div className="text-3xl text-pink-500 font-bold text-center mt-10">
+        Tailwind is working!
+        </div>
       </main>
       <Footer />
     </>
