@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 
-// 🚀 Apollo Server setup
+// Apollo Server setup
 const server = new ApolloServer({
   typeDefs,
   resolvers,
