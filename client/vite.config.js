@@ -1,3 +1,5 @@
+// file path: client/vite.config.js
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -10,6 +12,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173, // or your preferred dev port
+    port: 5173, // or whatever preferred dev port
+    historyApiFallback: true, // support client-side routing
   },
 });
+
