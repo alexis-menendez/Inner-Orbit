@@ -1,3 +1,5 @@
+// file path: client/src/main.jsx
+
 import './index.css';
 import './styles/index.css'; // Tailwind base styles
 
