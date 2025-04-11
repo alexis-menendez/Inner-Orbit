@@ -1,10 +1,39 @@
+// File Path: client/tailwind.config.js
+
 // tailwind.config.js
+import aspectRatio from '@tailwindcss/aspect-ratio'
+import lineClamp from '@tailwindcss/line-clamp'
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      // Custom breakpoints
+      xs: '375px',  // iPhone SE / small devices
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    spacing: {
+      // Custom Spacing Scale
+      4.5: '1.125rem',
+      18: '4.5rem',
+      22: '5.5rem',
+    },
+    fontSize: {
+      // Mobile-friendly font sizes
+      'xs': ['0.75rem', { lineHeight: '1rem' }],
+      'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+      'base': ['1rem', { lineHeight: '1.5rem' }],
+      'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+      'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+      '2xl': ['1.5rem', { lineHeight: '2rem' }],
+    },
     extend: {
       colors: {
         pinks: {
@@ -96,8 +125,20 @@ export default {
         barlow: ['Barlow Condensed', 'sans-serif'],   // for "Orbit"
         work: ['Work Sans', 'sans-serif'],            // site body option
         mulish: ['Mulish', 'sans-serif'],             // site body option
-      }
-    }
+      },
+      boxShadow: {
+        'glow-cyan': '0 0 12px 2px rgba(58, 187, 209, 0.5)',      // cyans-100
+        'glow-purple': '0 0 14px 2px rgba(175, 113, 220, 0.45)',  // purples-600
+        'glow-pink': '0 0 10px 2px rgba(232, 190, 206, 0.4)',     // pinks-100
+        'glow-blue': '0 0 10px 2px rgba(141, 221, 231, 0.45)',    // blues-100
+        'depth-soft': '0 8px 16px rgba(0, 0, 0, 0.25)',           // for subtle elevation
+        'nebula': '0 0 35px 5px rgba(212, 117, 226, 0.25)',       // magentas-100 / dreamy effect
+        'orbit-ring': '0 0 20px 3px rgba(52, 145, 183, 0.3)',     // blues-200 for rings/glows
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    aspectRatio, // Enables utilities like aspect-w-16 aspect-h-9 for responsive media
+    lineClamp,   // Allows text truncation with utilities like line-clamp-3 to control max lines
+  ],
 }
