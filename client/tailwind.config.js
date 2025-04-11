@@ -1,5 +1,3 @@
-// file path: client/tailwind.config.js
-
 // tailwind.config.js
 export default {
   content: [
@@ -66,6 +64,12 @@ export default {
           900: '#714790', // Royal Purple (darker)
           950: '#5F3C78', // Eminence
         }
+      },
+      fontFamily: {
+        ephesis: ['Ephesis', 'cursive'],              // for "inner"
+        barlow: ['Barlow Condensed', 'sans-serif'],   // for "Orbit"
+        work: ['Work Sans', 'sans-serif'],            // site body option
+        mulish: ['Mulish', 'sans-serif'],             // site body option
       }
     }
   },
