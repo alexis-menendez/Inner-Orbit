@@ -65,6 +65,32 @@ export default {
           950: '#5F3C78', // Eminence
         }
       },
+      backgroundColor: {
+        // Dark Space (Backgrounds & Canvas)
+        'bg-space': '#182A4C',     // blues-950 - Space Cadet
+        'bg-deep': '#20355D',      // blues-900 - Delft Blue
+        'bg-shadow': '#2A4576',    // blues-800 - Marian Blue (darker)
+        // Dreamy Pinks (Clouds, Inner Spirals, Focus Areas)
+        'pink-soft': '#E8BECE',    // pinks-100 - Fairy Tale Pink
+        'pink-mid': '#CE9EB1',     // pinks-300 - Puce (lightest)
+        'pink-dark': '#C4849C',    // pinks-500 - Puce (darker)
+      },
+      textColor: {
+        // Electric Nebulas (Magnetic Accents)
+        'pulse-magenta': '#D475E2', // magentas-100 - French Mauve (lighter)
+        'pulse-red': '#CC3E4C',     // reds-100 - Rusty Red
+        'pulse-glow': '#D49FB3',    // pinks-200 - Amaranth Pink
+        // Depth + Gravity (Moods, Foreground Overlays)
+        'depth-purple': '#714790',  // purples-900 - Royal Purple (darker)
+        'depth-magenta': '#7E4287', // magentas-500 - Plum
+        'depth-cyan': '#237071',    // cyans-400 - Caribbean Current
+      },
+      borderColor: {
+        // Glow Accents (Highlight Rings, Hovers, Borders)
+        'glow-cyan': '#3ABBD1',     // cyans-100 - Moonstone
+        'glow-blue': '#8DDDE7',     // blues-100 - Non Photo Blue
+        'glow-purple': '#AF71DC',   // purples-600 - Floral Lavender
+      },
       fontFamily: {
         ephesis: ['Ephesis', 'cursive'],              // for "inner"
         barlow: ['Barlow Condensed', 'sans-serif'],   // for "Orbit"
