@@ -170,33 +170,24 @@ There are currently no automated tests for this project
 
 If you have any questions, feel free to contact the team:
 
-NAME OF PROJECT LEAD, Project Lead **(DO NOT FORGET TO UPDATE THIS!)**  
+Project Lead: [**Alex Menendez**](https://alex-menendez.onrender.com/) – Junior Developer, Junior Project Manager, Junior UI/UX Designer
 
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
+- [**Portfolio**](https://alex-menendez.onrender.com/)
+- **LinkedIn**: [in/alex-d-menendez](https://www.linkedin.com/in/alex-d-menendez/)
+- **GitHub**: [alexis-menendez](https://github.com/alexis-menendez)
+- **Email**: [alexis.menendez@austincc.edu](https://alex-menendez.onrender.com/contact)
 
-NAME OF FRONTEND LEAD, Frontend Lead **(DO NOT FORGET TO UPDATE THIS!)**  
+Frontend Lead: [**FRONTEND-LEAD-NAME**](https://FRONTEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
 
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
+- [**Portfolio**](https://FRONTEND-LEAD-NAME.onrender.com/)
+- **LinkedIn**: [in/FRONTEND-LEAD-NAME](https://www.linkedin.com/in/FRONTEND-LEAD-NAME/)
+- **GitHub**: [FRONTEND-LEAD-USERNAME](https://github.com/alexis-menendez)
+- **Email**: [FRONTEND-LEAD-NAME@email.com](https://FRONTEND-LEAD-NAME.onrender.com/contact)
 
-NAME OF BACKEND LEAD, Backend Lead **(DO NOT FORGET TO UPDATE THIS!)**  
+Backend Lead: [**BACKEND-LEAD-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
 
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
-
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
-
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
-
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
-
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
-
-TEAM MEMBER NAME, TITLE **(DO NOT FORGET TO UPDATE THIS!)**  
-
-- **GitHub**: [GITHUB-USERNAME](https://github.com/GITHUB-USERNAME)
-- **Email**: EMAIL@EMAIL.com
+- [**Portfolio**](https://BACKEND-LEAD-NAME.onrender.com/)
+- **LinkedIn**: [in/FRONTEND-LEAD-NAME](https://www.linkedin.com/in/FRONTEND-LEAD-NAME/)
+- **GitHub**: [FRONTEND-LEAD-USERNAME](https://github.com/alexis-menendez)
+- **Email**: [FRONTEND-LEAD-NAME@email.com](https://FRONTEND-LEAD-NAME.onrender.com/contact)
 
