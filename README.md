@@ -1,18 +1,36 @@
-# PROJECT 3 TITLE
+# InnerOrbit: *Mood Journal, Mood Tracker, & Reflective Social Space*
 
 ## **Description**
 
-**PROJECT 3 TITLE** is a full-stack, responsive, and interactive single-page application built using the MERN stack with GraphQL and JWT authentication. This application solves a real-world problem using real data and is designed with a smooth user experience and polished, professional UI in mind.
+**InnerOrbit** is a full-stack, responsive, and interactive single-page application built using the MERN stack with GraphQL and JWT authentication. This application solves a real-world problem using real data and is designed with a smooth user experience and polished, professional UI in mind. 
 
-Users can:
+**Problem Solved:** People struggle to understand emotional patterns and maintain consistent emotional routines. Traditional journals often lack visual feedback, encouragement, or the option to connect meaningfully with others without oversharing or losing privacy.
 
-- [Insert key user abilities or features] **(DO NOT FORGET TO UPDATE THIS!)**
-- Interact with real-time data via GraphQL queries and mutations
-- Securely register, log in, and manage personal accounts
-- Experience seamless navigation across the single-page interface
-- [Other standout features here] **(DO NOT FORGET TO UPDATE THIS!)**
+**Concept:** InnerOrbit is a social ritual app — a place where users occasionally share glimpses of their mood or thoughts into a public “galaxy” while still maintaining control, anonymity, and consent.
 
-Deployed via Render with a focus on accessibility and mobile responsiveness, this application is the culmination of six months of development training and collaboration.
+* **Mood Journal Dashboard:**
+  Protected dashboard where users log their daily mood (emoji + optional journal entry). Past entries are visualized as stars in a user’s personal orbit.
+
+* **Mood Nebulas (Public Mood Feed):**
+  Users can opt to anonymously share a mood + short message to a public cloud. Others can view and click “🌠 Resonate” if the entry speaks to them.
+
+* **Constellation Cards (Prompted Reflections):**
+  Weekly prompts (e.g., “a small thing that brought you peace”) appear as themed constellations. Entries remain anonymous and grouped by prompt.
+
+* **Orbit Circles (Private Pods):**
+  Small invite-only groups (2–5 people) for mutual mood tracking, shared badge streaks, and non-verbal encouragement like “⭐ send a star.”
+
+* **Cosmic Visualization:**
+  Interactive galaxy-style UI where each mood log becomes a twinkling star. The longer your streak, the more constellations appear.
+
+* **Secure Auth & Privacy:**
+  JWT-protected routes, all entries private by default, no saved mental health data beyond mood logs. No comments, no messaging — just quiet connection.
+
+* **Responsive & Polished UI:**
+  Styled with Tailwind, featuring soft animations, low-sensory visuals, and mobile-first design.
+
+* **Render Deployment & CI/CD:**
+  Fully deployed on Render with GitHub Actions for build and deploy automation.
 
 | **Key Features**                                  | **Technology Stack**                                                  |
 | ------------------------------------------------- | --------------------------------------------------------------------- |
