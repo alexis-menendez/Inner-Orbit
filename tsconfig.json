@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+      /* Language and Environment */
+      "target": "ES2020",
+      "lib": ["ES2020", "DOM"],
+  
+      /* Modules */
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "moduleDetection": "force", 
+      "skipLibCheck": true,
+  
+      /* JavaScript Support */
+      "allowJs": true,
+      "checkJs": false,
+  
+      /* Interop Constraints */
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+  
+      /* Type Checking */
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitReturns": true,
+      "noImplicitOverride": true,
+      "useUnknownInCatchVariables": true,
+  
+      /* Emit */
+      "incremental": true, 
+      "outDir": "./server/dist",
+      "rootDir": "./server/src"
+    },
+  
+    "include": ["server/src"],
+    "exclude": ["node_modules", "server/dist", "client"]
+  }
+  

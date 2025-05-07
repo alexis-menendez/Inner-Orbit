@@ -25,9 +25,6 @@ dist
 client/dist
 server/dist
 dist-ssr
-generated/
-client/generated/
-server/generated/
 *.local
 tsconfig.tsbuildinfo
 
@@ -72,9 +69,6 @@ tmp/
 
 # MongoDB
 dump/
-
-# Apollo & GraphQL Tooling
-.apollo/
 
 # Monorepo tooling
 .turbo/

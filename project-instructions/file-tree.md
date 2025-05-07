@@ -8,8 +8,11 @@ InnerOrbit/
 │  
 ├── client/                       # *Frontend (React)*  
 │   ├── public/  
-│   │   └── images/  
-│   │       └── *image assets...*
+│   │   └── assets/  
+│   │       ├── animations/
+│   │       ├── audio/
+│   │       ├── images/
+│   │       └── video/
 │   │   
 │   ├── dist/  
 │   │   └── ...  
@@ -30,10 +33,10 @@ InnerOrbit/
 │   │   │       │   └── *Global reusable styles like button styles, loading spinners, modals, etc...*
 │   │   │       │   
 │   │   │       ├── layout/                
-│   │   │       │   └── *CSS for page or container-level layout components (grid / flexbox page layouts, responsive wrappers, Navbars, etc...)* 
+│   │   │       │   └── *CSS for page or container-level layout components (grid/flexbox layouts, responsive wrappers, Navbars)* 
 │   │   │       │   
 │   │   │       └── effects/  
-│   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc...*
+│   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc..*
 │   │   │  
 │   │   ├── components/  
 │   │   │   ├── auth/  
@@ -70,14 +73,17 @@ InnerOrbit/
 │   │   │   ├── mutations.ts  
 │   │   │   └── client.ts  
 │   │   │
+│   │   ├── hooks/  
+│   │   │   └── ...
+│   │   │
 │   │   ├── interfaces/  
-│   │   │   ├── Auth.ts            # Token data, login/signup responses
-│   │   │   ├── User.ts            # User profile data, friend lists, groups
-│   │   │   ├── Mood.ts            # Mood log (emoji, timestamp, optional note)
-│   │   │   ├── JournalEntry.ts    # Full journal entries
-│   │   │   ├── Post.ts            # Post content, author, privacy level
-│   │   │   ├── Group.ts           # Friend group metadata (name, members, activity)
-│   │   │   └── LibraryItem.ts     # Music or meditation items (title, url, tags) 
+│   │   │   ├── Auth.ts            # *Token data, login/signup responses*
+│   │   │   ├── User.ts            # *User profile data, friend lists, groups*
+│   │   │   ├── Mood.ts            # *Mood log (emoji, timestamp, optional note)*
+│   │   │   ├── JournalEntry.ts    # *Full journal entries*
+│   │   │   ├── Post.ts            # *Post content, author, privacy level*
+│   │   │   ├── Group.ts           # *Friend group metadata (name, members, activity)*
+│   │   │   └── LibraryItem.ts     # *Music or meditation items (title, url, tags)* 
 │   │   │
 │   │   ├── pages/  
 │   │   │   ├── Home.tsx  
@@ -196,7 +202,8 @@ InnerOrbit/
 ├── node_modules/   
 │    └── ...    
 │      
-├── .env  
+├── .env 
+├── .gitattributes 
 ├── .gitignore  
 ├── README.md  
 ├── package.json                  # Root-level for install-all, build-all, etc.  
