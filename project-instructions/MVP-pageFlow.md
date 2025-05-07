@@ -1,63 +1,55 @@
-                        ┌──────────────────────┐  
-                        │ Landing Page         │  
-                        │  ("/")               │   
-                        │ * App overview       │  
-                        │ * Login/Register     │  
-                        └──────────────────────┘  
-                                 │  
-              ┌──────────────────┴─────────────────────┐  
-              ▼                                        ▼  
-┌────────────────────────────┐         ┌──────────────────────────┐  
-│      Register Page         │         │      Login Page          │  
-│  ("/register")             │         │  ("/login")              │  
-│  * Create account          │         │  * Authenticate user     │  
-└────────────┬───────────────┘         └────────────┬─────────────┘  
-             │                                      │  
-             ▼                                      ▼  
-     ┌─────────────────────────────────────────────────────────┐  
-     │                  Authenticated Main App View            │  
-     │               (JWT-protected routes below)              │  
-     └────────────┬────────────────────────────────────────────┘  
-                  ▼  
-        ┌───────────────────────────┐  
-        │     Mood Dashboard        │  
-        │  ("/dashboard")           │  
-        │  * Log today’s mood       │  
-        │  * View past entries      │  
-        │  * Star visualization     │  
-        └─────┬─────────────┬───────┘  
-              │             │  
-              ▼             ▼  
-┌──────────────────────┐ ┌──────────────────────────────┐  
-│ New Mood Log Page    │ │  Mood Entry Detail Modal     │  
-│ ("/new")             │ │  (Triggered via star click)  │  
-│ * Emoji + journal    │ │  * Mood, text, timestamp     │  
-│ * Optional: Share    │ │  * “Resonate” toggle         │  
-└──────────────────────┘ └──────────────────────────────┘  
-              │  
-              ▼  
-┌────────────────────────────┐  
-│     Public Nebula Feed     │  
-│    ("/nebula")             │  
-│ * Anonymous shared moods   │  
-│ * “Resonate” feature       │  
-└────────────────────────────┘  
-              │  
-              ▼  
-┌────────────────────────────┐  
-│  Prompt Reflection View    │  
-│ ("/prompts")               │  
-│ * Weekly themes            │  
-│ * User can submit entry    │  
-│ * Stars shown by theme     │  
-└────────────────────────────┘  
-              │  
-              ▼  
-┌─────────────────────────────┐  
-│   Orbit Circle Page         │  
-│ ("/orbit")                  │  
-│ * Private mood group view   │  
-│ * See other members' moods  │  
-│ * Send reactions            │  
-└─────────────────────────────┘  
-  
+
+
+***UP TO DATE AS OF 5/7/25 /ALEXIS
+
+┌──────────────────────┐  
+│ Landing (Home) Page  │  
+│  ("/")               │   
+│ * Login              │  
+│ * Register           │  
+└──────────────────────┘  
+           │  
+┌──────────┴─────────┐  
+▼                    ▼  
+┌─────────────────┐  ┌────────────────────┐  
+│Register Page    │  │Login Page          │  
+│ ("/register")   │  │ ("/login")         │  
+│ * Create account│  │ * Authenticate user│  
+└────────┬────────┘  └──────────┬─────────┘  
+         │                      │  
+         ▼                      ▼  
+┌─────────────────────────────────────┐  
+│All Authenticated JWT-protected pages│  
+└────────────────┬────────────────────┘ 
+                 │ 
+                 ▼  
+┌──────────────────────────────┐  
+│Dashboard                     │
+│ ("/dashboard")               │  
+│ * Mood Tracker               │  
+│ * Journal                    │  
+│ * *(future additional pages)*│  
+└──────────────────────────────┘  
+               │  
+┌──────────────┴───────────────────────────────────────────┬───────────────────────────┐                                                                                     
+▼                                                          ▼                           ▼ 
+┌─────────────────────────┐                                ┌─────────────────────┐     ┌─────────────────┐    
+│Mood Tracker             │                                │Journal              │     │*future pages...*│  
+│ ("/tracker")            │                                │ ("/journal")        │     └─────────────────┘  
+│ * view/edit past entries│                                │ * view constellation│     
+│ * create new entry      │                                │ * create new entry  │     
+└─────────────────────────┘                                └─────────────────────┘     
+             │                                                       │  
+┌────────────┴────────────────┐                            ┌─────────┴─────────────────────┐    
+▼                             ▼                            ▼                               ▼  
+┌──────────────────────────┐  ┌──────────────────────┐     ┌────────────────────────────┐  ┌──────────────────────┐  
+│View past entry           │  │Create New Enty       │     │View Constellation          │  │Create New Entry      │ 
+│ ("/history ")            │  │  ("/newmood")        │     │ ("/constellation")         │  │  ("/newjournal")     │  
+│ * click on individual day│  │  * create entry modal│     │ * click on individual entry│  │  * create entry modal│ 
+│     │                    │  └──────────────────────┘     │     │                      │  └──────────────────────┘
+│     ▼                    │                               │     ▼                      │
+│ * view that days entry   │                               │ * view that entry          │ 
+│     │                    │                               │     │                      │
+│     ▼                    │                               │     ▼                      │
+│ * edit that days entry   │                               │ * edit that entry          │                                               
+└──────────────────────────┘                               └────────────────────────────┘                    
