@@ -1,3 +1,7 @@
+
+
+NOT UP TO DATE SINCE THE REPO RESTRUCTURE, DO NOT USE UNTIL UPDATES /ALEXIS
+
                         ┌──────────────────────┐  
                         │ Landing Page         │  
                         │  ("/")               │   
@@ -20,7 +24,7 @@
      └────────────┬────────────────────────────────────────────┘  
                   ▼  
         ┌───────────────────────────┐  
-        │     Mood Dashboard        │  
+        │     Dashboard             │
         │  ("/dashboard")           │  
         │  * Log today’s mood       │  
         │  * View past entries      │  
