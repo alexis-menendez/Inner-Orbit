@@ -16,9 +16,9 @@
 * Orbits: Invite-only pods for sharing progress and encouragement with close friends.
 * Self-Care Companion: Digital pet that reflects your real-world wellness habits.
 * Privacy & Auth: Secure JWT authentication with private-first, consent-based sharing.
-* Design & Deployment: Mobile-first calm UI, Tailwind CSS, and CI/CD deployment on Render.
-
-
+* Design & Deployment: Mobile-first calm UI, Tailwind CSS, and CI/CD deployment on Render.  
+  
+  
 | **Key Features**                                  | **Technology Stack**                                                  |
 | ------------------------------------------------- | --------------------------------------------------------------------- |
 | Mobile-first, responsive design                   | **Languages:** JavaScript                                             |
