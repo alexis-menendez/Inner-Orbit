@@ -8,7 +8,7 @@
 
 **Concept:** InnerOrbit is a social ritual app — a place where users occasionally share glimpses of their mood or thoughts into a public “galaxy” while still maintaining control, anonymity, and consent.
 
-
+**App Overview**
 * Mood Tracker: Calendar-based mood logging with color coding and editable daily entries.
 * Mood Journal: Private journal visualized as constellations of stars, each representing an entry.
 * Mood Nebulas: Optional public feed for anonymous, tagged reflections with light interaction.
