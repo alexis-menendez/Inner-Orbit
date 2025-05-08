@@ -8,29 +8,16 @@
 
 **Concept:** InnerOrbit is a social ritual app — a place where users occasionally share glimpses of their mood or thoughts into a public “galaxy” while still maintaining control, anonymity, and consent.
 
-* **Mood Journal Dashboard:**
-  Protected dashboard where users log their daily mood (emoji + optional journal entry). Past entries are visualized as stars in a user’s personal orbit.
 
-* **Mood Nebulas (Public Mood Feed):**
-  Users can opt to anonymously share a mood + short message to a public cloud. Others can view and click “🌠 Resonate” if the entry speaks to them.
+* Mood Tracker: Calendar-based mood logging with color coding and editable daily entries.
+* Mood Journal: Private journal visualized as constellations of stars, each representing an entry.
+* Mood Nebulas: Optional public feed for anonymous, tagged reflections with light interaction.
+* Constellation Cards: Weekly reflection prompts with the option to share responses anonymously.
+* Orbits: Invite-only pods for sharing progress and encouragement with close friends.
+* Self-Care Companion: Digital pet that reflects your real-world wellness habits.
+* Privacy & Auth: Secure JWT authentication with private-first, consent-based sharing.
+* Design & Deployment: Mobile-first calm UI, Tailwind CSS, and CI/CD deployment on Render.
 
-* **Constellation Cards (Prompted Reflections):**
-  Weekly prompts (e.g., “a small thing that brought you peace”) appear as themed constellations. Entries remain anonymous and grouped by prompt.
-
-* **Orbit Circles (Private Pods):**
-  Small invite-only groups (2–5 people) for mutual mood tracking, shared badge streaks, and non-verbal encouragement like “⭐ send a star.”
-
-* **Cosmic Visualization:**
-  Interactive galaxy-style UI where each mood log becomes a twinkling star. The longer your streak, the more constellations appear.
-
-* **Secure Auth & Privacy:**
-  JWT-protected routes, all entries private by default, no saved mental health data beyond mood logs. No comments, no messaging — just quiet connection.
-
-* **Responsive & Polished UI:**
-  Styled with Tailwind, featuring soft animations, low-sensory visuals, and mobile-first design.
-
-* **Render Deployment & CI/CD:**
-  Fully deployed on Render with GitHub Actions for build and deploy automation.
 
 | **Key Features**                                  | **Technology Stack**                                                  |
 | ------------------------------------------------- | --------------------------------------------------------------------- |
