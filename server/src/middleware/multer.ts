@@ -1,14 +1,16 @@
+// File: server/src/middleware/multer.ts
+
 import multer from 'multer';
-import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import cloudinary from '../utils/cloudinary';
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: {
+  params: async () => ({
     folder: 'moodtracker_videos',
     resource_type: 'video',
-    allowed_formats: ['mp4', 'mov', 'avi']
-  }
+    format: ['mp4', 'mov', 'avi'],
+  }),
 });
 
 const parser = multer({ storage });

@@ -130,36 +130,29 @@ InnerOrbit/
 │   │   │   └── connection.ts  
 │   │   │   
 │   │   ├── controllers/  
-│   │   │   ├── authController.ts     # signup, login, token handling
-│   │   │   ├── userController.ts     # get profile, friends, group membership
-│   │   │   ├── moodController.ts     # log moods, get recent moods
-│   │   │   ├── journalController.ts  # create, update, delete journal entries
-│   │   │   ├── postController.ts     # create/read posts with privacy logic
-│   │   │   ├── groupController.ts    # manage friend pods
-│   │   │   └── libraryController.ts  # get meditation/music content
+│   │   │   ├── index.ts
+│   │   │   ├── authController.ts        # signup, login, token handling
+│   │   │   ├── userController.ts        # get profile, friends, group membership
+│   │   │   ├── trackerController.ts     # log moods, get recent moods
+│   │   │   ├── journalController.ts     # create, update, delete journal entries
+│   │   │   ├── video.ts  
+│   │   │   ├── postController.ts        # create/read posts with privacy logic
+│   │   │   ├── groupController.ts       # manage friend pods
+│   │   │   └── libraryController.ts     # get meditation/music content
 │   │   │ 
 │   │   ├── middleware/
+│   │   │   ├── multer.ts    
 │   │   │   └── auth.ts              # JWT auth middleware (adds user to context)  
 │   │   │  
 │   │   ├── models/              # Mongoose schemas
+│   │   │   ├── index.ts
 │   │   │   ├── User.ts              # *name, email, password, friends, groups*
-│   │   │   ├── Mood.ts              # *emoji, timestamp, note, user ref*  
-│   │   │   ├── JournalEntry.ts      # *full journal entry, user ref, optional tags*  
+│   │   │   ├── Tracker.ts           # *emoji, timestamp, note, user ref*  
+│   │   │   ├── Journal.ts           # *full journal entry, user ref, optional tags*  
+│   │   │   ├── Video.ts           
 │   │   │   ├── Post.ts              # *content, privacy level, user ref, createdAt*  
 │   │   │   ├── Group.ts             # *name, members, createdBy*  
-│   │   │   └── LibraryItem.ts       # *title, type (music/meditation), url, tags* 
-│   │   │     
-│   │   ├── routes/  
-│   │   │   ├── api/    
-│   │   │   │   ├── index.ts
-│   │   │   │   ├── userRoutes.ts
-│   │   │   │   ├── moodRoutes.ts
-│   │   │   │   ├── journalRoutes.ts
-│   │   │   │   ├── groupRoutes.ts (would this be in user routes???? /Alexis)
-│   │   │   │   └── libraryRoutes.ts
-│   │   │   │   
-│   │   │   ├── index.ts
-│   │   │   └── authRoutes.ts
+│   │   │   └── Library.ts           # *title, type (music/meditation), url, tags* 
 │   │   |    
 │   │   ├── schemas/  
 │   │   │   ├── resolvers.ts         # Query + Mutation logic using controllers/models
@@ -184,7 +177,7 @@ InnerOrbit/
 │   │   ├── utils/  
 │   │   │   ├── auth.ts  
 │   │   │   ├── cloudinary.ts  
-│   │   │   ├── errorHandler.ts  
+│   │   │   ├── trackerColors.ts
 │   │   │   └── formatDate.ts 
 │   │   │   
 │   │   └── server.ts  

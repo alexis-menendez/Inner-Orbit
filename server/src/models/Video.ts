@@ -1,3 +1,5 @@
+// File: server/src/models/Video.ts
+
 import mongoose from 'mongoose';
 
 const videoSchema = new mongoose.Schema({
