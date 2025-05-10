@@ -12,7 +12,7 @@ import resolvers from './schema/resolvers';
 import { connectDB } from './config/connections';
 
 const PORT = process.env.PORT || 4000;
-const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'supersecretkey';
 
 // JWT-based context for GraphQL
 const context = async ({ req }: ExpressContextFunctionArgument) => {
@@ -20,7 +20,7 @@ const context = async ({ req }: ExpressContextFunctionArgument) => {
   if (!token) return { user: null };
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET_KEY);
     return { user: decoded };
   } catch {
     return { user: null };
