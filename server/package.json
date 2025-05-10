@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "dist/server.js",
-    "type": "module",
+    "type": "commonjs",
     "scripts": {
         "build": "tsc",
         "dev": "npm run build && nodemon dist/server.js",
@@ -31,7 +31,8 @@
         "graphql": "^16.11.0",
         "graphql-tag": "^2.12.6",
         "jsonwebtoken": "^9.0.2",
-        "mongoose": "^8.14.1"
+        "mongoose": "^8.14.1",
+        "multer-storage-cloudinary": "^4.0.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
