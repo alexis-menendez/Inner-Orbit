@@ -3,7 +3,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'supersecretkey';
 
 interface AuthPayload {
   _id: string;
@@ -19,7 +19,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): R
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as AuthPayload;
+    const decoded = jwt.verify(token, JWT_SECRET_KEY) as AuthPayload;
     (req as any).user = decoded; 
     next();
   } catch (err) {
