@@ -38,7 +38,7 @@ export const signup = async (req: Request, res: Response) => {
     console.error('Signup error:', err);
     return res.status(500).json({ message: 'Internal server error.' });
   }
-};
+};``
 
 // Login Controller
 export const login = async (req: Request, res: Response) => {

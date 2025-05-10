@@ -1,7 +1,6 @@
 // File: server/src/schema/typeDefs.ts
 
-import gql from 'graphql-tag'; 
-
+import gql from "graphql-tag";
 
 const typeDefs = gql`
   type User {
@@ -21,8 +20,36 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    registerUser(username: String!, email: String!, password: String!): AuthPayload
+    registerUser(
+      username: String!
+      email: String!
+      password: String!
+    ): AuthPayload
     loginUser(username: String!, password: String!): AuthPayload
+  }
+    
+  input RecordJournalInput {
+    title: String!
+    content: String!
+    mood: String
+  }
+
+  type JournalEntry {
+    id: ID!
+    title: String!
+    content: String!
+    mood: String
+    createdAt: String!
+  }
+
+  type RecordJournalPayload {
+    success: Boolean!
+    message: String
+    entry: JournalEntry
+  }
+
+  type Mutation {
+    recordJournal(input: RecordJournalInput!): RecordJournalPayload!
   }
 `;
 

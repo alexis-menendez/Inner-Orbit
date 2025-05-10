@@ -32,7 +32,8 @@
         "graphql-tag": "^2.12.6",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.14.1",
-        "multer-storage-cloudinary": "^4.0.0"
+        "multer-storage-cloudinary": "^4.0.0",
+        "uuid": "^11.1.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
