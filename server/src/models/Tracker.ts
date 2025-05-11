@@ -12,6 +12,12 @@ const MoodEntrySchema = new mongoose.Schema({
     enum: ['Happy', 'Sad', 'Anxious', 'Excited', 'Angry', 'Neutral'],
     required: true,
   },
+  intensity: {
+    type: Number,
+    min: 1,
+    max: 10,
+    required: true,
+  },
   moodColor: {
     type: String,
     required: true,
