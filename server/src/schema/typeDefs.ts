@@ -27,8 +27,9 @@ const typeDefs = gql`
     ): AuthPayload
     loginUser(username: String!, password: String!): AuthPayload
   }
-    
+
   input RecordJournalInput {
+    userId: ID!
     title: String!
     content: String!
     mood: String
@@ -46,6 +47,16 @@ const typeDefs = gql`
     success: Boolean!
     message: String
     entry: JournalEntry
+  }
+
+  type GetJournalEntriesPayload {
+    success: Boolean!
+    message: String
+    entries: [JournalEntry!]!
+  }
+
+  type Query {
+    getJournalEntries(userId: ID!): GetJournalEntriesPayload!
   }
 
   type Mutation {

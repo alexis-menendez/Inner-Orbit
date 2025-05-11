@@ -1,6 +1,14 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+export type JournalInput = {
+  userId: string;
+  title: string;
+  content: string;
+  mood?: string;
+};
+
 export interface IJournalEntry extends Document {
+  userId: string;
   title: string;
   content: string;
   mood?: string;
@@ -8,6 +16,10 @@ export interface IJournalEntry extends Document {
 }
 
 const JournalEntrySchema: Schema = new Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

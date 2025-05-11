@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import User from "../models/User";
 import { signToken } from "../utils/auth";
 import { createJournalEntry } from "../controllers/journalController";
+import IJournalEntry from "../models/Journal";
 
 const resolvers: IResolvers = {
   Query: {
@@ -12,6 +13,18 @@ const resolvers: IResolvers = {
       const user = await User.findById(userId);
       if (!user) throw new Error("User not found.");
       return user;
+    },
+
+    //all journal entries for user
+    getJournalEntries: async (_: any, { userId }: { userId: string }) => {
+      const entries = await IJournalEntry.find({ userId }).sort({
+        createdAt: -1,
+      });
+      return {
+        success: true,
+        message: "Journal entries fetched successfully",
+        entries,
+      };
     },
   },
 
