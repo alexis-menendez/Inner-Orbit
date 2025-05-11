@@ -9,31 +9,37 @@
         "install:root": "npm install",
         "install:server": "cd server && npm install",
         "install:client": "cd client && npm install",
-        "build": "npm run build:server && npm run build:client",
+    
+        "build:all": "npm run build:server && npm run build:client",
         "build:server": "cd server && npm run build",
         "build:client": "cd client && npm run build",
-        "start:dev": "concurrently \"npm run start:server:dev\" \"wait-on tcp:3001 && npm run start:client:dev\"",
-        "start:server:dev": "cd server && npm run dev",
-        "start:client:dev": "cd client && npm run dev",
-        "start": "cd server && npm start",
-        "start:server": "cd server && npm run start",
-        "start:client": "cd client && npm run start",
+    
         "seed": "cd server && npm run seed",
-        "test": "npm run test:dev",
-        "test:dev": "concurrently \"npm run server:dev:test\" \"wait-on tcp:3001 && npm run client:dev:test\"",
-        "server:dev:test": "cd server && npm run dev:test",
-        "client:dev:test": "cd client && npm run dev:test",
-        "clean": "npx rimraf node_modules server/node_modules client/node_modules server/dist client/dist server/tsconfig.tsbuildinfo package-lock.json server/package-lock.json client/package-lock.json",
-        "root:clean-rebuild": "npx rimraf node_modules package-lock.json && npm install",
-        "server:clean-rebuild": "cd server && npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json && npm install && npm run build",
-        "client:clean-rebuild": "cd client && npx rimraf node_modules dist package-lock.json && npm install && npm run build",
-        "dev:full-clean-rebuild": "npm run root:clean-rebuild && cd server && npm run clean-rebuild && cd ../client && npm run clean-rebuild && cd .. && npm run start:dev",
-        "dev:clean-rebuild-reseed": "npm run root:clean-rebuild && cd server && npm run clean-rebuild && cd ../client && npm run clean-rebuild && cd .. && npm run seed && npm run start:dev",
+    
+        "start:all": "concurrently \"npm run start:server\" \"wait-on tcp:3001 && npm run start:client\"",
+        "start:server": "cd server && npm start",
+        "start:client": "cd client && npm start",
+    
+        "clean:root": "npx rimraf node_modules package-lock.json",
+        "clean:server": "cd server && npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json",
+        "clean:client": "cd client && npx rimraf node_modules dist package-lock.json",
+        "clean:all": "npm run clean:root && npm run clean:server && npm run clean:client",
+    
+        "install:build:seed:start": "npm run install:all && npm run build:all && npm run seed && npm run start:all",
+        "clean:install:build:seed:start": "npm run clean:all && npm run install:build:seed:start",
+    
+        "dev:start:all": "concurrently \"npm run dev:start:server\" \"wait-on tcp:3001 && npm run dev:start:client\"",
+        "dev:start:server": "cd server && npm run dev",
+        "dev:start:client": "cd client && npm run dev",
+        "dev:install:build:seed:start": "npm run install:all && npm run build:all && npm run seed && npm run dev:start:all",
+        "dev:clean:install:build:seed:start": "npm run clean:all && npm run dev:install:build:seed:start",
+    
         "paid:render-build": "npm run install:all",
-        "paid:render-pre-start": "npm run build",
-        "paid:render-start": "npm run start",
-        "free:render-build": "npm run install:all && npm run build",
-        "free:render-start": "npm run start"
+        "paid:render-pre-start": "npm run build:all",
+        "paid:render-start": "npm run start:all",
+    
+        "free:render-build": "npm run install:all && npm run build:all",
+        "free:render-start": "npm run start:all"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
@@ -59,6 +65,7 @@
         "cors": "^2.8.5",
         "graphql": "^16.11.0",
         "graphql-tag": "^2.12.6",
+        "mongoose": "^8.14.2",
         "multer": "^1.4.5-lts.2",
         "multer-storage-cloudinary": "^4.0.0",
         "react": "^19.1.0",
