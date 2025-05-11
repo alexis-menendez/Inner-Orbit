@@ -1,22 +1,21 @@
 // File: server/src/server.ts
+import express from "express";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import jwt from "jsonwebtoken";
+import typeDefs from "./schema/typeDefs.js";
+import resolvers from "./schema/resolvers.js";
+import { connectDB } from "./config/connections.js";
+import dotenv from "dotenv";
 
-import express from 'express';
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { ExpressContextFunctionArgument } from '@apollo/server/express4';
-import cors from 'cors';
-import http from 'http';
-import jwt from 'jsonwebtoken';
-import typeDefs from './schema/typeDefs';
-import resolvers from './schema/resolvers';
-import { connectDB } from './config/connections';
+dotenv.config();
 
 const PORT = process.env.PORT || 4000;
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'supersecretkey';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "";
 
-// JWT-based context for GraphQL
-const context = async ({ req }: ExpressContextFunctionArgument) => {
-  const token = req.headers.authorization?.replace('Bearer ', '');
+// JWT-based context
+const context = async ({ req }) => {
+  const token = req.headers.authorization?.replace("Bearer ", "");
   if (!token) return { user: null };
 
   try {
@@ -28,37 +27,36 @@ const context = async ({ req }: ExpressContextFunctionArgument) => {
 };
 
 async function startServer() {
-  const app = express();
-  const httpServer = http.createServer(app);
+  await connectDB();
 
-  // Apollo Server with optional formatError for logging
+  const app = express();
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     formatError: (formattedError) => {
-      console.error('GraphQL Error:', formattedError);
+      console.error("GraphQL Error:", formattedError);
       return formattedError;
     },
   });
 
   await server.start();
 
-  app.use(cors());
-  app.use(express.json());
-
-  // GraphQL endpoint with context middleware
+  // 👇 IMPORTANT: These need to be added *inside* the route chain
   app.use(
-    '/graphql',
-    expressMiddleware(server, { context })
+    "/graphql",
+    express.json(), // required to parse req.body
+    express.urlencoded({ extended: true }), // in case url-encoded is used
+    expressMiddleware(server, {
+      context,
+    })
   );
 
-  await connectDB();
-
-  httpServer.listen(PORT, () => {
-    console.log(`Server ready at http://localhost:${PORT}/graphql`);
+  app.listen(PORT, () => {
+    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
   });
 }
 
 startServer().catch((err) => {
-  console.error('Server failed to start:', err);
+  console.error("Server failed to start:", err);
 });

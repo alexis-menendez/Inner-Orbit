@@ -1,14 +1,45 @@
-// File: server/src/models/Journal.ts
+import mongoose, { Schema, Document } from "mongoose";
 
-/*
-// import mongoose from 'mongoose';
+export type JournalInput = {
+  userId: string;
+  title: string;
+  content: string;
+  mood?: string;
+};
 
-// const JournalEntrySchema = new mongoose.Schema({
+export interface IJournalEntry extends Document {
+  userId: string;
+  title: string;
+  content: string;
+  mood?: string;
+  createdAt: Date;
+}
 
-  // TODO: Create Journal model
-  // Leave this for Blake to do
+const JournalEntrySchema: Schema = new Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  mood: {
+    type: String,
+    default: null,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-// });
-
-// export default mongoose.model('JournalEntry', JournalEntrySchema);
-*/
+export default mongoose.model<IJournalEntry>(
+  "JournalEntry",
+  JournalEntrySchema
+);
