@@ -32,4 +32,4 @@ jobs:
         run: cd client && npx tsc --noEmit
 
       - name: Run TypeScript type check (server)
-        run: cd ../server && npx tsc --noEmit
+        run: cd server && npx tsc --noEmit
