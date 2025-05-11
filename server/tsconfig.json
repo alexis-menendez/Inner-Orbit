@@ -10,7 +10,7 @@
       "outDir": "./dist",
   
       /* Modules */
-      "module": "ESNext",
+      "module": "commonJS",
       "moduleResolution": "Node",
   
       /* JavaScript Support */
