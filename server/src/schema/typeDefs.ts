@@ -62,6 +62,27 @@ const typeDefs = gql`
   type Mutation {
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
   }
+
+  input UpdateJournalInput {
+    id: ID!
+    title: String
+    content: String
+    mood: String
+  }
+
+  type UpdateJournalPayload {
+    success: Boolean!
+    message: String
+    entry: JournalEntry
+  }
+
+  extend type Mutation {
+    updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
+  }
+
+  extend type Query {
+    getJournalEntryById(entryId: ID!): JournalEntry
+  }
 `;
 
 export default typeDefs;

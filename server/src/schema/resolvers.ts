@@ -26,6 +26,16 @@ const resolvers: IResolvers = {
         entries,
       };
     },
+
+    getJournalEntryById: async (_: any, { entryId }: { entryId: string }) => {
+      try {
+        const entry = await IJournalEntry.findById(entryId);
+        return entry || null;
+      } catch (err) {
+        console.error("Error fetching journal entry:", err);
+        return null;
+      }
+    },
   },
 
   Mutation: {
@@ -57,6 +67,39 @@ const resolvers: IResolvers = {
 
       const token = signToken({ id: newUser._id, username: newUser.username });
       return { token };
+    },
+
+    updateJournal: async (_: any, { input }: any) => {
+      try {
+        const { id, title, content, mood } = input;
+
+        const updated = await IJournalEntry.findByIdAndUpdate(
+          id,
+          { $set: { title, content, mood } },
+          { new: true, runValidators: true }
+        );
+
+        if (!updated) {
+          return {
+            success: false,
+            message: "Journal entry not found",
+            entry: null,
+          };
+        }
+
+        return {
+          success: true,
+          message: "Journal entry updated successfully",
+          entry: updated,
+        };
+      } catch (err) {
+        console.error("Error updating journal entry:", err);
+        return {
+          success: false,
+          message: "Failed to update journal entry",
+          entry: null,
+        };
+      }
     },
 
     loginUser: async (
