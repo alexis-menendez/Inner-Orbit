@@ -16,7 +16,8 @@ const typeDefs = gql`
   type MoodEntry {
     _id: ID!
     mood: String!
-    color: String!
+    moodColor: String!
+    intensity: Int!
     createdAt: Date!
     user: User!
   }
@@ -34,7 +35,40 @@ const typeDefs = gql`
     user: User!
   }
 
+  input CreateJournalInput {
+    userId: ID!
+    title: String!
+    content: String!
+    mood: String
+  }
+
+  type CreateJournalPayload {
+    success: Boolean!
+    message: String
+    entry: JournalEntry
+  }
+
+  type GetJournalEntriesPayload {
+    success: Boolean!
+    message: String
+    entries: [JournalEntry!]!
+  }
+
+  input UpdateJournalInput {
+    id: ID!
+    title: String
+    content: String
+    mood: String
+  }
+
+  type UpdateJournalPayload {
+    success: Boolean!
+    message: String
+    entry: JournalEntry
+  }
+
   type Query {
+    getJournalEntryById(entryId: ID!): JournalEntry
     getUserById(userId: ID!): User
     me: User
     getMoodEntries: [MoodEntry]
@@ -42,6 +76,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    createJournal(input: CreateJournalInput!): CreateJournalPayload!
+    updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
     registerUser(
       username: String!
       email: String!
@@ -71,62 +107,6 @@ const typeDefs = gql`
 
     deleteMoodEntry(id: ID!): Boolean
     deleteJournalEntry(id: ID!): Boolean
-  }
-
-  input CreateJournalInput {
-    userId: ID!
-    title: String!
-    content: String!
-    mood: String
-  }
-
-  type JournalEntry {
-    id: ID!
-    title: String!
-    content: String!
-    mood: String
-    createdAt: String!
-  }
-
-  type CreateJournalPayload {
-    success: Boolean!
-    message: String
-    entry: JournalEntry
-  }
-
-  type GetJournalEntriesPayload {
-    success: Boolean!
-    message: String
-    entries: [JournalEntry!]!
-  }
-
-  type Query {
-    getJournalEntries(userId: ID!): GetJournalEntriesPayload!
-  }
-
-  type Mutation {
-    createJournal(input: CreateJournalInput!): CreateJournalPayload!
-  }
-
-  input UpdateJournalInput {
-    id: ID!
-    title: String
-    content: String
-    mood: String
-  }
-
-  type UpdateJournalPayload {
-    success: Boolean!
-    message: String
-    entry: JournalEntry
-  }
-
-  extend type Mutation {
-    updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
-  }
-
-  extend type Query {
-    getJournalEntryById(entryId: ID!): JournalEntry
   }
 `;
 
