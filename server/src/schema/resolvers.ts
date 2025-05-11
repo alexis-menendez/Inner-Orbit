@@ -2,8 +2,8 @@
 
 import { IResolvers } from '@graphql-tools/utils';
 import bcrypt from 'bcrypt';
-import User from '../models/User';
-import { signToken } from '../utils/auth';
+import User from '../models/User.js';
+import { signToken } from '../utils/auth.js';
 
 const resolvers: IResolvers = {
   Query: {
