@@ -13,3 +13,12 @@ export default function BottomNavibar() {
 
     </footer>
 };
+
+
+<footer className="mt-12 text-center text-sm text-gray-400">
+  <p>
+    © {new Date().getFullYear()} YourAppName.{' '}
+    <a href="/terms" className="underline hover:text-gray-600">Terms</a> |{' '}
+    <a href="/privacy" className="underline hover:text-gray-600">Privacy</a>
+  </p>
+</footer>

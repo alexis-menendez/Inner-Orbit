@@ -6,8 +6,10 @@ import { AuthProvider } from './context/authContext';
 
 import Login from './components/auth/LoginForm';
 import Register from './components/auth/RegisterForm';
-//import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import Home from './pages/Home'; // Update the path to the correct location of the Home component
+import Terms from './pages/Terms'; // Update the path to the correct location of the Terms component
+import Privacy from './pages/Privacy'; // Update the path to the correct location of the Privacy component
 // import Breathing from './components/Breathing'; // Add these if they exist
 // import WellnessPet from './components/WellnessPet';
 // import Journal from './components/Journal';
@@ -24,6 +26,9 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/terms" element={<Terms />} />
+<Route path="/privacy" element={<Privacy />} />
+
             {/* Add additional components like these if they're real pages */}
             {/* <Route path="/breathing" element={<Breathing />} /> */}
           </Routes>
