@@ -9,7 +9,7 @@
         "install:root": "npm install",
         "install:server": "cd server && npm install",
         "install:client": "cd client && npm install",
-        
+
         "build:all": "npm run build:server && npm run build:client",
         "build:server": "cd server && npm run build",
         "build:client": "cd client && npm run build",
@@ -20,9 +20,9 @@
         "start:server": "cd server && npm start",
         "start:client": "cd client && npm start",
 
-        "clean:root": "npx rimraf node_modules package-lock.json",
-        "clean:server": "cd server && npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json",
-        "clean:client": "cd client && npx rimraf node_modules dist package-lock.json",
+        "clean:root": "npx rimraf node_modules",
+        "clean:server": "cd server && npx rimraf node_modules dist tsconfig.tsbuildinfo",
+        "clean:client": "cd client && npx rimraf node_modules dist",
         "clean:all": "npm run clean:root && npm run clean:server && npm run clean:client",
 
         "install:build:seed:start": "npm run install:all && npm run build:all && npm run seed && npm run start:all",
