@@ -13,7 +13,8 @@
         "test": "vitest run",
         "dev:test": "vite --open",
         "clean": "npx rimraf node_modules dist package-lock.json",
-        "clean-rebuild": "npx rimraf node_modules dist package-lock.json && npm install && npm run build",
+        "clean:build": "npm run clean && npm install && npm run build",
+        "clean:build:start": "npm run clean:build && npm run start",
         "lfs:install": "git lfs install && git lfs pull"
     },
     "dependencies": {
