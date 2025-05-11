@@ -3,20 +3,42 @@
 import gql from "graphql-tag";
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     _id: ID!
     username: String!
     email: String!
-    isDev: Boolean
-    createdAt: String
+    moodEntries: [MoodEntry]
+    journalEntries: [JournalEntry]
+  }
+
+  type MoodEntry {
+    _id: ID!
+    mood: String!
+    color: String!
+    createdAt: Date!
+    user: User!
+  }
+
+  type JournalEntry {
+    _id: ID!
+    title: String!
+    content: String!
+    createdAt: Date!
+    user: User!
   }
 
   type AuthPayload {
     token: String!
+    user: User!
   }
 
   type Query {
     getUserById(userId: ID!): User
+    me: User
+    getMoodEntries: [MoodEntry]
+    getJournalEntries: [JournalEntry]
   }
 
   type Mutation {
@@ -26,6 +48,29 @@ const typeDefs = gql`
       password: String!
     ): AuthPayload
     loginUser(username: String!, password: String!): AuthPayload
+
+    addMoodEntry(mood: String!, intensity: Int!, color: String!): MoodEntry
+    addJournalEntry(
+      title: String!
+      content: String!
+      videoUrl: String
+    ): JournalEntry
+
+    updateMoodEntry(
+      id: ID!
+      mood: String
+      intensity: Int
+      color: String
+    ): MoodEntry
+    updateJournalEntry(
+      id: ID!
+      title: String
+      content: String
+      videoUrl: String
+    ): JournalEntry
+
+    deleteMoodEntry(id: ID!): Boolean
+    deleteJournalEntry(id: ID!): Boolean
   }
 
   input CreateJournalInput {

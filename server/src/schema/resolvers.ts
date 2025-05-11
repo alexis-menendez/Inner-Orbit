@@ -1,11 +1,23 @@
 // File: server/src/schema/resolvers.ts
 
-import { IResolvers } from "@graphql-tools/utils";
-import bcrypt from "bcrypt";
-import User from "../models/User";
-import { signToken } from "../utils/auth";
+import { IResolvers } from '@graphql-tools/utils';
+import bcrypt from 'bcrypt';
+import User from '../models/User.js';
+import { signToken } from '../utils/auth.js';
+import { MoodEntry } from '../models/index.js';
+import { journalEntry } from '../models/index.js'; uncomment this line once Blake has created the Journal model/Blaine
 import { createJournalEntry } from "../controllers/journalController";
 import IJournalEntry from "../models/Journal";
+import { Video } from '../models/index.js';
+import jwt from 'jsonwebtoken';
+ 
+
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+
+function createToken(user: any) {
+  return jwt.sign({ _id: user._id, email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" });
+}
+
 
 const resolvers: IResolvers = {
   Query: {
@@ -14,7 +26,21 @@ const resolvers: IResolvers = {
       if (!user) throw new Error("User not found.");
       return user;
     },
-
+    me: async (_, __, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await User.findById(user._id)
+        .populate("moodEntries")
+        .populate("journalEntries");
+    },
+    getMoodEntries: async (_, __, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
+    },
+// commenting out below 3 lines of code. I'm not deleting them because I'm not suer how the backend will work. 
+ //getJournalEntries: async (_, __, { user }) => {
+   //   if (!user) throw new Error("Not authenticated");
+     // return await JournalEntry.find({ user: user._id }).sort({ createdAt: -1 });
+    //},
     //all journal entries for user
     getJournalEntries: async (_: any, { userId }: { userId: string }) => {
       const entries = await IJournalEntry.find({ userId }).sort({
@@ -35,7 +61,9 @@ const resolvers: IResolvers = {
         console.error("Error fetching journal entry:", err);
         return null;
       }
-    },
+    
+
+   
   },
 
   Mutation: {
@@ -132,6 +160,24 @@ const resolvers: IResolvers = {
       return await createJournalEntry(input);
     },
   },
+    addMoodEntry: async (_, { mood, intensity, color }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      const entry = await MoodEntry.create({ mood, intensity, color, user: user._id });
+      await User.findByIdAndUpdate(user._id, { $push: { moodEntries: entry._id } });
+      return entry;
+    },
+
+    updateMoodEntry: async (_, { id, ...updates }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await MoodEntry.findOneAndUpdate({ _id: id, user: user._id }, updates, { new: true });
+    },
+
+    deleteMoodEntry: async (_, { id }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+      return true;
+    },
+  }
 };
 
 export default resolvers;
