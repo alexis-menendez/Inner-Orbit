@@ -29,9 +29,10 @@
         "jwt-decode": "^4.0.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
-        "react-router-dom": "^7.5.3",
-        "recharts": "^2.15.3",
-        "styled-components": "^6.1.17"
+        "react-router": "^7.6.0",
+        "react-router-dom": "^7.6.0",
+        "styled-components": "^6.1.17",
+        "recharts": "^2.15.3"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",

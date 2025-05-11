@@ -1,0 +1,35 @@
+name: TypeScript Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  type-check:
+    name: Run TypeScript Compiler
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies (client + server)
+        run: |
+          npm install
+          cd client && npm install && cd ..
+          cd server && npm install && cd ..
+
+      - name: Run TypeScript type check (root)
+        run: npx tsc --noEmit
+
+      - name: Run TypeScript type check (client)
+        run: cd client && npx tsc --noEmit
+
+      - name: Run TypeScript type check (server)
+        run: cd ../server && npx tsc --noEmit
