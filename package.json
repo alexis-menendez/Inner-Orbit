@@ -31,6 +31,10 @@
         "dev:start:all": "concurrently \"npm run dev:start:server\" \"wait-on tcp:3001 && npm run dev:start:client\"",
         "dev:start:server": "cd server && npm run dev",
         "dev:start:client": "cd client && npm run dev",
+        
+        "dev:install:build:start": "npm run install:all && npm run build:all && npm run dev:start:all",
+        "dev:clean:install:build:start": "npm run clean:all && npm run dev:install:build:start",
+
         "dev:install:build:seed:start": "npm run install:all && npm run build:all && npm run seed && npm run dev:start:all",
         "dev:clean:install:build:seed:start": "npm run clean:all && npm run dev:install:build:seed:start",
     
