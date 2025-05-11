@@ -6,7 +6,7 @@ import { AuthProvider } from './context/authContext';
 
 import Login from './components/auth/LoginForm';
 import Register from './components/auth/RegisterForm';
-import Dashboard from './components/dashboard/Dashboard.tsx';
+import Dashboard from './components/dashboard/Dashboard';
 import Home from './pages/Home'; // Update the path to the correct location of the Home component
 import Terms from './pages/Terms'; // Update the path to the correct location of the Terms component
 import Privacy from './pages/Privacy'; // Update the path to the correct location of the Privacy component
