@@ -11,7 +11,7 @@
         "seed": "node dist/seeds/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "test-jest": "jest --detectOpenHandles",
-        "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json",
+        "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo",
         "clean:build": "npm run clean && npm install && npm run build",
         "clean:build:seed": "npm run clean:build && npm run seed"
     },
