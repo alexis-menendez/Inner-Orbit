@@ -1,20 +1,20 @@
 // File: server/src/server.ts
-import express from "express";
+import express, { Request } from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import jwt from "jsonwebtoken";
 import typeDefs from "./schema/typeDefs.js";
 import resolvers from "./schema/resolvers.js";
 import { connectDB } from "./config/connections.js";
-import dotenv from "dotenv";
 
+import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "";
 
 // JWT-based context
-const context = async ({ req }) => {
+const context = async ({ req }: { req: Request }) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
   if (!token) return { user: null };
 
@@ -42,18 +42,17 @@ async function startServer() {
 
   await server.start();
 
-  // 👇 IMPORTANT: These need to be added *inside* the route chain
   app.use(
     "/graphql",
-    express.json(), // required to parse req.body
-    express.urlencoded({ extended: true }), // in case url-encoded is used
+    express.json(),
+    express.urlencoded({ extended: true }),
     expressMiddleware(server, {
       context,
     })
   );
 
   app.listen(PORT, () => {
-    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
+    console.log(`Server ready at http://localhost:${PORT}/graphql`);
   });
 }
 

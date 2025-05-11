@@ -5,11 +5,7 @@ import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
-
 import { createJournalEntry } from "../controllers/journalController";
-import IJournalEntry from "../models/Journal";
-
-
 
 const resolvers: IResolvers = {
   Query: {
@@ -28,14 +24,16 @@ const resolvers: IResolvers = {
       if (!user) throw new Error("Not authenticated");
       return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
     },
+
     // commenting out below 3 lines of code. I'm not deleting them because I'm not suer how the backend will work.
     //getJournalEntries: async (_, __, { user }) => {
     //   if (!user) throw new Error("Not authenticated");
     // return await JournalEntry.find({ user: user._id }).sort({ createdAt: -1 });
     //},
+
     //all journal entries for user
     getJournalEntries: async (_: any, { userId }: { userId: string }) => {
-      const entries = await IJournalEntry.find({ userId }).sort({
+      const entries = await JournalEntry.find({ userId }).sort({
         createdAt: -1,
       });
       return {
@@ -47,7 +45,7 @@ const resolvers: IResolvers = {
 
     getJournalEntryById: async (_: any, { entryId }: { entryId: string }) => {
       try {
-        const entry = await IJournalEntry.findById(entryId);
+        const entry = await JournalEntry.findById(entryId);
         return entry || null;
       } catch (err) {
         console.error("Error fetching journal entry:", err);
@@ -91,7 +89,7 @@ const resolvers: IResolvers = {
       try {
         const { id, title, content, mood } = input;
 
-        const updated = await IJournalEntry.findByIdAndUpdate(
+        const updated = await JournalEntry.findByIdAndUpdate(
           id,
           { $set: { title, content, mood } },
           { new: true, runValidators: true }
