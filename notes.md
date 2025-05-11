@@ -4,3 +4,4 @@ Running "dev:clean:install:build:start" from root:
 - successfully builds client
 - successfully boots server
 - client build + server boot checks pass
+- Typescript error check passes
