@@ -85,7 +85,7 @@ const resolvers: IResolvers = {
       return { token };
     },
 
-    recordJournal: async (_: any, { input }: any) => {
+    createJournal: async (_: any, { input }: any) => {
       return await createJournalEntry(input);
     },
   },

@@ -28,7 +28,7 @@ const typeDefs = gql`
     loginUser(username: String!, password: String!): AuthPayload
   }
 
-  input RecordJournalInput {
+  input CreateJournalInput {
     userId: ID!
     title: String!
     content: String!
@@ -43,7 +43,7 @@ const typeDefs = gql`
     createdAt: String!
   }
 
-  type RecordJournalPayload {
+  type CreateJournalPayload {
     success: Boolean!
     message: String
     entry: JournalEntry
@@ -60,7 +60,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    recordJournal(input: RecordJournalInput!): RecordJournalPayload!
+    createJournal(input: CreateJournalInput!): CreateJournalPayload!
   }
 `;
 
