@@ -12,7 +12,7 @@
         "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "test": "vitest run",
         "dev:test": "vite --open",
-        "clean": "npx rimraf node_modules dist package-lock.json",
+        "clean": "npx rimraf node_modules dist",
         "clean:build": "npm run clean && npm install && npm run build",
         "clean:build:start": "npm run clean:build && npm run start",
         "lfs:install": "git lfs install && git lfs pull"
