@@ -13,7 +13,7 @@
     "test-jest": "jest --detectOpenHandles",
     "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json",
     "clean:build": "npm run clean && npm install && npm run build",
-    "clean:build:reseed": "npm run clean:build && npm run seed"
+    "clean:build:seed": "npm run clean:build && npm run seed"
     },
     "keywords": [],
     "author": "",
