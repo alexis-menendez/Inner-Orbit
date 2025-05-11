@@ -6,7 +6,7 @@
     "type": "commonjs",
     "scripts": {
         "build": "tsc",
-        "dev":  "ts-node-dev --respawn --transpile-only src/server.ts",
+        "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
         "start": "node dist/server.js",
         "seed": "node dist/seeds/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,6 +33,7 @@
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.14.1",
         "multer-storage-cloudinary": "^4.0.0",
+        "react-router": "^7.6.0",
         "uuid": "^11.1.0"
     },
     "devDependencies": {
