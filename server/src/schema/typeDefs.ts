@@ -16,7 +16,8 @@ const typeDefs = gql`
   type MoodEntry {
     _id: ID!
     mood: String!
-    color: String!
+    moodColor: String!
+    intensity: Int!
     createdAt: Date!
     user: User!
   }
@@ -40,7 +41,6 @@ const typeDefs = gql`
     content: String!
     mood: String
   }
-
 
   type CreateJournalPayload {
     success: Boolean!
@@ -68,7 +68,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    getJournalEntries(userId: ID!): GetJournalEntriesPayload!
     getJournalEntryById(entryId: ID!): JournalEntry
     getUserById(userId: ID!): User
     me: User
@@ -108,7 +107,7 @@ const typeDefs = gql`
 
     deleteMoodEntry(id: ID!): Boolean
     deleteJournalEntry(id: ID!): Boolean
-  } 
+  }
 `;
 
 export default typeDefs;
