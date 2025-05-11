@@ -1,4 +1,4 @@
-//bottom navibar - quick links
+//File: client/src/components/layout/bottomnavibar.jsx
 
 export default function BottomNavibar() {
     <footer className="bottom-navibar">
@@ -15,7 +15,7 @@ export default function BottomNavibar() {
 };
 
 
-<footer className="mt-12 text-center text-sm text-gray-400">
+<footer className="mt-12 text-sm text-center text-gray-400">
   <p>
     © {new Date().getFullYear()} YourAppName.{' '}
     <a href="/terms" className="underline hover:text-gray-600">Terms</a> |{' '}
