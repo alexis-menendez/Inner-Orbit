@@ -6,12 +6,13 @@
     "type": "commonjs",
     "scripts": {
         "build": "tsc",
-        "dev":  "ts-node-dev --respawn --transpile-only src/server.ts",
+        "dev": "concurrently \"npm run watch\" \"nodemon dist/server.js\"",
+        "watch": "tsc --watch",
         "start": "node dist/server.js",
         "seed": "node dist/seeds/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "test-jest": "jest --detectOpenHandles",
-        "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo package-lock.json",
+        "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo",
         "clean:build": "npm run clean && npm install && npm run build",
         "clean:build:seed": "npm run clean:build && npm run seed"
     },
@@ -33,6 +34,7 @@
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.14.1",
         "multer-storage-cloudinary": "^4.0.0",
+        "react-router": "^7.6.0",
         "uuid": "^11.1.0"
     },
     "devDependencies": {
@@ -44,6 +46,7 @@
         "@types/mongoose": "^5.11.97",
         "@types/multer": "^1.4.12",
         "@types/node": "^22.15.14",
+        "concurrently": "^9.1.2",
         "dotenv": "^16.5.0",
         "nodemon": "^3.1.10",
         "ts-node-dev": "^2.0.0",
