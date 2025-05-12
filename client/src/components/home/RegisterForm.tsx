@@ -2,7 +2,7 @@
 
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../utils/auth.ts';
+import { AuthContext } from '../../context/authContext';
 
 const Register = () => {
   const authContext = useContext(AuthContext);
