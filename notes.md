@@ -1,5 +1,5 @@
 Alexis:
-Stable as of commit: 3cef68d
+Stable as of commit: 25dd699
 
 Running "dev:clean:install:build:start" from root:
 - successfully builds client

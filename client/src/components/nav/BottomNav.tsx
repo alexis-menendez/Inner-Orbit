@@ -1,4 +1,4 @@
-//File: client/src/components/layout/bottomnavibar.jsx
+//File: client/src/components/nav/BottomNav.tsx
 
 export default function BottomNavibar() {
     <footer className="bottom-navibar">

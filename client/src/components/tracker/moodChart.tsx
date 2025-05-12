@@ -1,3 +1,5 @@
+// File: client/src/components/tracker/moodChart.tsx
+
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 

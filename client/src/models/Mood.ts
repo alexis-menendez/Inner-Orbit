@@ -1,13 +1,13 @@
-// src/tracker/moods.ts
+// File: client/src/models/Mood.ts
 
-export interface Mood {
+export interface MoodEntry {
   id: string;
   label: string;
   emoji?: string;
   defaultColor?: string;
 }
 
-export const moods: Mood[] = [
+export const moods: MoodEntry[] = [
   { id: 'happy', label: 'Happy', defaultColor: '#facc15' },
   { id: 'sad', label: 'Sad', defaultColor: '#60a5fa' },
   { id: 'angry', label: 'Angry', defaultColor: '#f87171' },

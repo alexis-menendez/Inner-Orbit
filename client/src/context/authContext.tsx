@@ -1,4 +1,4 @@
-// file path: how-not-to-die/client/src/components/home/AuthContext.tsx
+// File: client/src/context/authContext.tsx
 
 import React, { createContext, useState, ReactNode } from 'react';
 

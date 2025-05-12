@@ -6,7 +6,7 @@ InnerOrbit/
 ├── Assets/                         
 │   └── *Screenshots for README, design references*
 │  
-├── client/                       # *Frontend (React)*  
+├── client/                       
 │   ├── public/  
 │   │   └── assets/  
 │   │       ├── animations/
@@ -18,14 +18,6 @@ InnerOrbit/
 │   │   └── ...  
 │   │   
 │   ├── src/  
-│   │   ├── api/  
-│   │   │   ├── authAPI.ts         # *Login, signup, verify JWT, logout* 
-│   │   │   ├── journalAPI.ts      # *Create/view/edit/delete journal entries* 
-│   │   │   ├── moodAPI.ts         # *Log/view moods; used by Tracker*
-│   │   │   ├── postAPI.ts         # *Create/view posts (with privacy logic: private/friends/public)*  
-│   │   │   ├── userAPI.ts         # *Fetch user profile, settings, avatar, friends lists, groups, etc...*
-│   │   │   ├── libraryAPI.ts      # *Fetch library items (books, movies, etc...)*
-│   │   │   └── groupAPI.ts        # *Manage friend groups/pods (create, join, get members)*
 │   │   │  
 │   │   ├── assets/   
 │   │   │   └── css/  
@@ -35,76 +27,97 @@ InnerOrbit/
 │   │   │       ├── layout/                
 │   │   │       │   └── *CSS for page or container-level layout components (grid/flexbox layouts, responsive wrappers, Navbars)* 
 │   │   │       │   
-│   │   │       └── effects/  
+│   │   │       └── effects/   
 │   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc..*
 │   │   │  
 │   │   ├── components/  
-│   │   │   ├── auth/  
-│   │   │   │   ├── LoginForm.tsx  
-│   │   │   │   └── RegisterForm.tsx  
 │   │   │   │   
 │   │   │   ├── dashboard/   
+│   │   │   │   ├──  (not yet created)   
 │   │   │   │   └── *any components created specifically for the dashboard page...*
 │   │   │   │   
 │   │   │   ├── feed/  
+│   │   │   │   ├──  (not yet created)   
 │   │   │   │   └── *any components created specifically for the feed page...* 
 │   │   │   │   
+│   │   │   ├── home/  
+│   │   │   │   ├──  LoginForm.tsx  
+│   │   │   │   ├──  RegisterForm.tsx  
+│   │   │   │   └── *any components created specifically for the home page...*
+│   │   │   │   
 │   │   │   ├── tracker/  
+│   │   │   │   ├──  moodChart.tsx  
+│   │   │   │   ├──  moodSelector.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
 │   │   │   │   
 │   │   │   ├── journal/  
+│   │   │   │   ├──  (not yet created)   
 │   │   │   │   └── *any components created specifically for the journal page...*
 │   │   │   │   
 │   │   │   ├── library/  
+│   │   │   │   ├──  (not yet created)   
 │   │   │   │   └── *any components created specifically for the library page...*
 │   │   │   │  
 │   │   │   ├── layout/  
 │   │   │   │   ├──  ProtectedRoute.tsx  
+│   │   │   │   └── *things like "PaggeWrapper.tsx", etc...*  
+│   │   │   │  
+│   │   │   ├── nav/  
+│   │   │   │   ├──  BottomNav.tsx  
 │   │   │   │   └── *things like "Navbar.tsx", PaggeWrapper.tsx, etc...*  
 │   │   │   │   
-│   │   │   ├── common/   
+│   │   │   ├── common/  
+│   │   │   │   ├──  (not yet created)   
 │   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
 │   │   │   │   
 │   │   │   └── user/   
+│   │   │       ├──  (not yet created)  
 │   │   │       └── *things like "FriendsList.tsx", "FriendGroups.tsx", "UserProfile.tsx", etc...*
+│   │   │
+│   │   ├── context/  
+│   │   │   ├── authContext.tsx 
+│   │   │   └── themeContext.tsx
 │   │   │
 │   │   ├── graphql/  
 │   │   │   ├── queries.ts  
-│   │   │   ├── mutations.ts  
-│   │   │   └── client.ts  
+│   │   │   └── mutations.ts  
 │   │   │
-│   │   ├── hooks/  
-│   │   │   └── ...
-│   │   │
-│   │   ├── interfaces/  
-│   │   │   ├── Auth.ts            # *Token data, login/signup responses*
-│   │   │   ├── User.ts            # *User profile data, friend lists, groups*
-│   │   │   ├── Mood.ts            # *Mood log (emoji, timestamp, optional note)*
-│   │   │   ├── JournalEntry.ts    # *Full journal entries*
-│   │   │   ├── Post.ts            # *Post content, author, privacy level*
-│   │   │   ├── Group.ts           # *Friend group metadata (name, members, activity)*
-│   │   │   └── LibraryItem.ts     # *Music or meditation items (title, url, tags)* 
+│   │   ├── models/  
+│   │   │   ├── Index.ts 
+│   │   │   ├── Auth.ts 
+│   │   │   ├── GraphQL.ts            
+│   │   │   ├── User.ts            
+│   │   │   ├── Mood.ts            
+│   │   │   ├── Journal.ts    
+│   │   │   ├── Post.ts            (not yet created)            
+│   │   │   ├── Group.ts           (not yet created)           
+│   │   │   └── Library.ts         (not yet created)    
 │   │   │
 │   │   ├── pages/  
 │   │   │   ├── Home.tsx  
 │   │   │   ├── Dashboard.tsx  
-│   │   │   ├── Journal.tsx  
-│   │   │   ├── Tracker.tsx  
-│   │   │   ├── UserProfile.tsx  
-│   │   │   ├── FriendGroup.tsx  
-│   │   │   ├── Feed.tsx  
-│   │   │   ├── Library.tsx  
-│   │   │   └── NotFound.tsx  
+│   │   │   ├── Privacy.tsx  
+│   │   │   ├── Terms.tsx 
+│   │   │   ├── Journal.tsx         (not yet created)  
+│   │   │   ├── Tracker.tsx         (not yet created)  
+│   │   │   ├── UserProfile.tsx     (not yet created)  
+│   │   │   ├── FriendGroup.tsx     (not yet created)  
+│   │   │   ├── Feed.tsx            (not yet created)  
+│   │   │   ├── Library.tsx         (not yet created)  
+│   │   │   └── NotFound.tsx        (not yet created)  
 │   │   │
 │   │   ├── utils/
-│   │   │   ├── auth.ts            # *JWT handling, getUserFromToken(), isLoggedIn()*
-│   │   │   ├── formatDate.ts      # *Convert timestamps to readable formats*
-│   │   │   ├── privacyFilter.ts   # *Filter posts or journals by privacy (optional but useful?)*
-│   │   │   └── audioPlayer.ts     # *Play/pause helpers for meditation/music (for Library)*
+│   │   │   ├── auth.ts           
+│   │   │   ├── API.ts 
+│   │   │   ├── formatDate.ts       (not yet created) 
+│   │   │   ├── privacyFilter.ts    (not yet created) 
+│   │   │   └── audioPlayer.ts      (not yet created) 
 │   │   │
+│   │   ├── appolloClient.ts
 │   │   ├── App.tsx  
 │   │   ├── index.css  
-│   │   └── main.tsx  
+│   │   ├── main.tsx  
+│   │   └── vite-env.d.ts 
 │   │
 │   ├── node_modules/   
 │   │    └── ...    
@@ -113,14 +126,14 @@ InnerOrbit/
 │   ├── .gitignore  
 │   ├── index.html    
 │   ├── package.json    
-│   ├── postcss.config.js   
-│   ├── tailwind.config.js    
+│   ├── postcss.config.cjs   
+│   ├── tailwind.config.ts    
 │   ├── tsconfig.json    
 │   ├── tsconfig.node.json    
-│   ├── vite.config.js   
-│   └── vitest.config.js   
+│   ├── vite.config.ts   
+│   └── vitest.config.ts   
 │
-├── server/                          # *Backend (Node + GraphQL + Mongo)* 
+├── server/                          
 │   │   
 │   ├── dist/  
 │   │   └── ...  
@@ -131,44 +144,44 @@ InnerOrbit/
 │   │   │   
 │   │   ├── controllers/  
 │   │   │   ├── index.ts
-│   │   │   ├── authController.ts        # signup, login, token handling
-│   │   │   ├── userController.ts        # get profile, friends, group membership
-│   │   │   ├── trackerController.ts     # log moods, get recent moods
-│   │   │   ├── journalController.ts     # create, update, delete journal entries
-│   │   │   ├── video.ts  
-│   │   │   ├── postController.ts        # create/read posts with privacy logic
-│   │   │   ├── groupController.ts       # manage friend pods
-│   │   │   └── libraryController.ts     # get meditation/music content
+│   │   │   ├── authController.ts        
+│   │   │   ├── userController.ts        
+│   │   │   ├── trackerController.ts     
+│   │   │   ├── journalController.ts     
+│   │   │   ├── videoController.ts  
+│   │   │   ├── postController.ts        (not created yet)
+│   │   │   ├── groupController.ts       (not created yet)
+│   │   │   └── libraryController.ts     (not created yet)
 │   │   │ 
 │   │   ├── middleware/
 │   │   │   ├── multer.ts    
-│   │   │   └── auth.ts              # JWT auth middleware (adds user to context)  
+│   │   │   └── auth.ts              
 │   │   │  
-│   │   ├── models/              # Mongoose schemas
+│   │   ├── models/            
 │   │   │   ├── index.ts
-│   │   │   ├── User.ts              # *name, email, password, friends, groups*
-│   │   │   ├── Tracker.ts           # *emoji, timestamp, note, user ref*  
-│   │   │   ├── Journal.ts           # *full journal entry, user ref, optional tags*  
+│   │   │   ├── User.ts              
+│   │   │   ├── Tracker.ts            
+│   │   │   ├── Journal.ts           
 │   │   │   ├── Video.ts           
-│   │   │   ├── Post.ts              # *content, privacy level, user ref, createdAt*  
-│   │   │   ├── Group.ts             # *name, members, createdBy*  
-│   │   │   └── Library.ts           # *title, type (music/meditation), url, tags* 
+│   │   │   ├── Post.ts               (not created yet) 
+│   │   │   ├── Group.ts              (not created yet)
+│   │   │   └── Library.ts            (not created yet)
 │   │   |    
 │   │   ├── schemas/  
-│   │   │   ├── resolvers.ts         # Query + Mutation logic using controllers/models
-│   │   │   ├── typeDefs.ts          # All types: Query, Mutation, types for User, Post, etc.
-│   │   │   └── index.ts             # Combines typeDefs + resolvers for Apollo
+│   │   │   ├── resolvers.ts         
+│   │   │   ├── typeDefs.ts          
+│   │   │   └── index.ts             
 │   │   │   
 │   │   ├── seeds/  
-│   │   │   ├── index.ts
-│   │   │   ├── user-seeds.ts
-│   │   │   ├── user.json
-│   │   │   ├── post-seeds.ts
-│   │   │   ├── post.json
-│   │   │   ├── mood-seeds.ts
-│   │   │   ├── mood.json
-│   │   │   ├── journal-seeds.ts
-│   │   │   └── journal.json
+│   │   │   ├── index.ts             (not yet created) 
+│   │   │   ├── user-seeds.ts        (not yet created) 
+│   │   │   ├── user.json            (not yet created) 
+│   │   │   ├── post-seeds.ts        (not yet created) 
+│   │   │   ├── post.json            (not yet created) 
+│   │   │   ├── mood-seeds.ts        (not yet created) 
+│   │   │   ├── mood.json            (not yet created) 
+│   │   │   ├── journal-seeds.ts     (not yet created) 
+│   │   │   └── journal.json         (not yet created) 
 │   │   │      
 │   │   ├── types/   
 │   │   │   └── express/  

@@ -1,18 +1,26 @@
+// File: client/src/App.tsx
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/authContext'
-import Login from './components/auth/LoginForm';
-import Register from './components/auth/RegisterForm';
-import Dashboard from './components/dashboard/Dashboard';
+
+import { AuthProvider } from './context/authContext';
+
 import Home from './pages/Home';
-import Terms from './pages/Terms'; 
-import Privacy from './pages/Privacy'; 
-// import Breathing from './components/Breathing'; 
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import WellnessPet from './components/WellnessPet';
-// import Journal from './components/Journal';
-// import MoodTracker from './components/MoodTracker';
+import Login from './components/home/LoginForm';
+import Register from './components/home/RegisterForm';
+import Terms from './components/home/Terms';
+import Privacy from './components/home/Privacy';
+// import ProtectedRoute from './components/layout/ProtectedRoute';      --->  not yet created
+import Dashboard from './pages/Dashboard';
+// import Journal from './pages/Journal';              --->  not yet created
+// import Tracker from './pages/Tracker';              --->  not yet created
+// import UserProfile from './pages/UserProfile';      --->  not yet created
+// import FriendGroup from './pages/FriendGroup';      --->  not yet created
+// import Feed from './pages/Feed';                    --->  not yet created
+// import Library from './pages/Library';              --->  not yet created
+// import WellnessPet from './components/WellnessPet'; --->  not yet created
+// import NotFound from './pages/NotFound';            --->  not yet created
+
 
 const App = () => {
   return (
@@ -28,8 +36,6 @@ const App = () => {
             <Route path="/terms" element={<Terms />} />
 <Route path="/privacy" element={<Privacy />} />
 
-            {/* Add additional components like these if they're real pages */}
-            {/* <Route path="/breathing" element={<Breathing />} /> */}
           </Routes>
           <div className="mt-10 text-3xl font-bold text-center text-pink-500">
             Tailwind is working!
