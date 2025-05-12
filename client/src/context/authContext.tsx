@@ -1,6 +1,6 @@
 // File: client/src/context/authContext.tsx
 
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode, useContext } from 'react';
 
 interface User {
   id: string;
@@ -52,4 +52,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+// Add useAuth hook for easy context consumption
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };

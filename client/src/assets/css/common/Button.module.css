@@ -1,0 +1,50 @@
+/* File: client/src/assets/css/common/Button.module.css */
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 10rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+  text-decoration: none;
+  color: #fff8e7;
+  background-color: #4f46e5;
+}
+
+/* This class adds spacing between stacked buttons */
+.spaced {
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+.button:hover {
+  background-color: #4338ca;
+  transform: scale(1.03);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* Variants */
+.primary {
+  background-color: #4f46e5;
+}
+
+.primary:hover {
+  background-color: #4338ca;
+}
+
+.secondary {
+  background-color: #7c3aed;
+}
+
+.secondary:hover {
+  background-color: #6b21a8;
+}
