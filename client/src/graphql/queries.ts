@@ -75,3 +75,27 @@ export const GET_JOURNAL_ENTRY_BY_ID = gql`
     }
   }
 `;
+
+export const GET_CONSTELLATIONS = gql`
+  query GetConstellations {
+    getConstellations {
+      success
+      constellations {
+        _id
+        name
+        createdAt
+      }
+    }
+  }
+`;
+
+export const GET_JOURNAL_ENTRIES_FOR_CONSTELLATION = gql`
+  query GetJournalEntries($constellationId: ID!) {
+    getJournalEntries(constellationId: $constellationId) {
+      _id
+      date
+      content
+      constellationId
+    }
+  }
+`;
