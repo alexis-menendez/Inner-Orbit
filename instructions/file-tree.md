@@ -52,7 +52,8 @@ InnerOrbit/
 │   │   │   │   
 │   │   │   ├── journal/  
 │   │   │   │   ├── dev/
-│   │   │   │   │    └── DevelopConstellations.tsx 
+│   │   │   │   │    ├── DevelopConstellations.tsx 
+│   │   │   │   │    └── *these are dev files that will never be viewed on the site...* 
 │   │   │   │   │    
 │   │   │   │   ├──  Constellation.tsx  
 │   │   │   │   ├──  ConstellationLogic.tsx 
