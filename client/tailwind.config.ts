@@ -1,4 +1,4 @@
-// File Path: client/tailwind.config.ts
+// File: client/tailwind.config.ts
 
 import type { Config } from 'tailwindcss';
 import aspectRatio from '@tailwindcss/aspect-ratio'

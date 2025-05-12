@@ -21,7 +21,6 @@
         "@apollo/client": "^3.13.8",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/line-clamp": "^0.4.4",
-        "@tailwindcss/postcss": "^4.1.5",
         "antd": "^5.24.9",
         "cloudinary": "^1.41.3",
         "framer-motion": "^12.10.0",
@@ -35,6 +34,7 @@
         "styled-components": "^6.1.17"
     },
     "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.6",
         "@types/express": "^4.17.21",
         "@types/multer": "^1.4.12",
         "@types/node": "^22.15.17",
@@ -50,7 +50,7 @@
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^5.2.0",
         "eslint-plugin-react-refresh": "^0.4.20",
-        "postcss": "^8.5.3",
+        "postcss": "^8.4.27",
         "prettier": "^3.5.3",
         "tailwindcss": "^4.1.5",
         "vite": "^6.3.5",

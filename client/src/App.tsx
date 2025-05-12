@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './context/authContext';
 
+import './assets/css/common/CosmicBackground.module.css';
 import Home from './pages/Home';
 import Login from './components/home/LoginForm';
 import Register from './components/home/RegisterForm';
@@ -28,7 +29,7 @@ import DevelopConstellations from './components/journal/DevelopConstellations';
 const App = () => {
   return (
     <AuthProvider>
-       <div className="cosmic-background min-h-screen w-full">
+       <div className="w-full min-h-screen cosmic-background">
       <Router>
        {/*} <Navbar />*/}
         <main className="min-h-screen px-4 py-6 text-white bg-gradient-to-b from-gray-900 to-black">
