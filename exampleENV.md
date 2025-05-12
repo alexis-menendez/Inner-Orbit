@@ -4,7 +4,6 @@ I noticed on server side some files called "MONGODB_URI" and other called "MONGO
 
 
 # MongoDB connection
-# MONGODB_URI=mongodb://127.0.0.1:27017/latticeDB
 MONGODB_URI=
 
 
