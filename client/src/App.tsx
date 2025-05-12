@@ -16,13 +16,13 @@ import Journal from './pages/Journal';
 import Constellation from './components/journal/Constellation';
 import DevelopConstellations from './components/journal/DevelopConstellations';
 
-// import Tracker from './pages/Tracker';              --->  not yet created
-// import UserProfile from './pages/UserProfile';      --->  not yet created
-// import FriendGroup from './pages/FriendGroup';      --->  not yet created
-// import Feed from './pages/Feed';                    --->  not yet created
-// import Library from './pages/Library';              --->  not yet created
+// import Tracker from './pages/Tracker';                  --->  not yet created
+// import UserProfile from './pages/UserProfile';          --->  not yet created
+// import FriendGroup from './pages/FriendGroup';          --->  not yet created
+// import Feed from './pages/Feed';                        --->  not yet created
+// import Library from './pages/Library';                  --->  not yet created
 // import WellnessPet from './components/pet/WellnessPet'; --->  not yet created
-// import NotFound from './pages/NotFound';            --->  not yet created
+// import NotFound from './pages/NotFound';                --->  not yet created
 
 
 const App = () => {
