@@ -7,3 +7,9 @@ export interface JournalEntry {
   mood?: string;
   createdAt: string;
 }
+
+export interface Constellation {
+  _id: string;
+  name: string;
+  createdAt: string;
+}
