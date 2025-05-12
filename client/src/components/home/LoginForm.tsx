@@ -2,6 +2,8 @@
 
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
@@ -19,25 +21,26 @@ const Login = () => {
     password: '',
   });
 
+  const [loginUser] = useMutation(LOGIN_USER);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
   const handleLogin = async () => {
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      const { data } = await loginUser({
+        variables: {
+          username: form.username,
+          password: form.password,
+        },
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        login(data.user, data.token);
+      if (data?.loginUser?.token && data?.loginUser?.user) {
+        login(data.loginUser.user, data.loginUser.token);
         navigate('/dashboard');
       } else {
-        alert(data.message || 'Login failed');
+        alert('Login failed.');
       }
     } catch (err) {
       console.error('Login error:', err);

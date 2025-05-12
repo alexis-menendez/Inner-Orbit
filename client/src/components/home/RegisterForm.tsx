@@ -2,6 +2,8 @@
 
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { REGISTER_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
@@ -13,6 +15,8 @@ const Register = () => {
   }
   const { login } = authContext;
   const navigate = useNavigate();
+
+  const [registerUser] = useMutation(REGISTER_USER);
 
   const [form, setForm] = useState({
     username: '',
@@ -36,19 +40,22 @@ const Register = () => {
     }
 
     try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      const { data } = await registerUser({
+        variables: {
+          username: form.username,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          password: form.password,
+          dob: form.dob,
+        },
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        login(data.user, data.token);
+      if (data?.registerUser?.success) {
+        login(data.registerUser.user, data.registerUser.token);
         navigate('/dashboard');
       } else {
-        alert(data.message || 'Registration failed');
+        alert(data?.registerUser?.message || 'Registration failed');
       }
     } catch (err) {
       console.error('Registration error:', err);
