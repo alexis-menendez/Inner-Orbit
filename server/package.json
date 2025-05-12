@@ -9,12 +9,13 @@
         "dev": "concurrently \"npm run watch\" \"nodemon dist/server.js\"",
         "watch": "tsc --watch",
         "start": "node dist/server.js",
-        "seed": "node dist/seeds/index.js",
+        "seed": "ts-node src/seeds/index.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "test-jest": "jest --detectOpenHandles",
         "clean": "npx rimraf node_modules dist tsconfig.tsbuildinfo",
         "clean:build": "npm run clean && npm install && npm run build",
-        "clean:build:seed": "npm run clean:build && npm run seed"
+        "clean:build:seed": "npm run clean:build && npm run seed",
+        "delete-users": "npx ts-node scripts/clearUsers.ts"
     },
     "keywords": [],
     "author": "",

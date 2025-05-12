@@ -1,16 +1,19 @@
-// file: client/src/components/home/Login.tsx
+// File: client/src/components/home/Login.tsx
 
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
-
+import formStyles from '../../assets/css/common/Form.module.css';
+import buttonStyles from '../../assets/css/common/Button.module.css';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error('AuthContext is undefined. Ensure AuthProvider is wrapping your component tree.');
   }
-  const { login } = authContext; 
+  const { login } = authContext;
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -18,25 +21,26 @@ const Login = () => {
     password: '',
   });
 
+  const [loginUser] = useMutation(LOGIN_USER);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
   const handleLogin = async () => {
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      const { data } = await loginUser({
+        variables: {
+          username: form.username,
+          password: form.password,
+        },
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        login(data.user, data.token); 
+      if (data?.loginUser?.token && data?.loginUser?.user) {
+        login(data.loginUser.user, data.loginUser.token);
         navigate('/dashboard');
       } else {
-        alert(data.message || 'Login failed');
+        alert('Login failed.');
       }
     } catch (err) {
       console.error('Login error:', err);
@@ -49,14 +53,14 @@ const Login = () => {
       <h1 className="mb-2 text-4xl font-bold">Welcome Explorer!</h1>
       <h2 className="mb-6 text-lg">Please log in below</h2>
 
-      <div className="w-full max-w-sm p-6 space-y-4 text-black bg-white rounded-lg shadow-md">
+      <div className={formStyles.formContainer}>
         <input
           type="text"
           id="username"
           placeholder="Username"
           value={form.username}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className={formStyles.input}
         />
         <input
           type="password"
@@ -64,19 +68,16 @@ const Login = () => {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className={formStyles.input}
         />
         <button
           onClick={handleLogin}
-          className="w-full p-2 text-white bg-indigo-700 rounded hover:bg-indigo-800"
+          className={`${buttonStyles.button} ${buttonStyles.primary}`}
         >
           Login
         </button>
-        <p className="text-sm text-center">
-          Don’t have an account?{' '}
-          <a href="/register" className="text-indigo-600 underline">
-            Sign up
-          </a>
+        <p className={formStyles.linkText}>
+          Don’t have an account? <Link to="/register">Sign up</Link>
         </p>
       </div>
     </section>

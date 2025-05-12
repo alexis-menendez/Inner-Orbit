@@ -1,6 +1,6 @@
-// client/postcss.config.js
+// File: client/postcss.config.cjs
 
-const tailwindcss = require('tailwindcss');
+const tailwindcss = require('@tailwindcss/postcss'); 
 const autoprefixer = require('autoprefixer');
 
 module.exports = {

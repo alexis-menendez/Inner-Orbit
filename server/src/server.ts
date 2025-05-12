@@ -1,7 +1,9 @@
 // File: server/src/server.ts
+
 import express, { Request } from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
+import cors from "cors";
 import jwt from "jsonwebtoken";
 import typeDefs from "./schema/typeDefs.js";
 import resolvers from "./schema/resolvers.js";
@@ -31,6 +33,16 @@ async function startServer() {
 
   const app = express();
 
+  // Enable CORS before Apollo middleware
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
+
+  app.use(express.json());
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -44,8 +56,6 @@ async function startServer() {
 
   app.use(
     "/graphql",
-    express.json(),
-    express.urlencoded({ extended: true }),
     expressMiddleware(server, {
       context,
     })

@@ -9,6 +9,9 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
+    firstName: String
+    lastName: String
+    dob: String
     moodEntries: [MoodEntry]
     journalEntries: [JournalEntry]
   }
@@ -33,6 +36,8 @@ const typeDefs = gql`
   type AuthPayload {
     token: String!
     user: User!
+    success: Boolean
+    message: String
   }
 
   input CreateJournalInput {
@@ -78,11 +83,16 @@ const typeDefs = gql`
   type Mutation {
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
     updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
+
     registerUser(
       username: String!
+      firstName: String
+      lastName: String
+      dob: String
       email: String!
       password: String!
     ): AuthPayload
+
     loginUser(username: String!, password: String!): AuthPayload
 
     addMoodEntry(mood: String!, intensity: Int!, color: String!): MoodEntry

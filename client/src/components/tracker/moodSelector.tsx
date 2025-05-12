@@ -1,11 +1,10 @@
 // File: client/src/components/tracker/moodSelector.tsx
 
 import React, { useEffect, useState } from 'react';
-// Removed unused axios import
 
 export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) => {
     const [mood, setMood] = useState<any[]>([]);
-  const [customColor, setCustomColor] = useState("#facc15"); // default yellow
+  const [customColor, setCustomColor] = useState("#facc15"); 
 
  //useEffect(() => {
   // backend route f})
