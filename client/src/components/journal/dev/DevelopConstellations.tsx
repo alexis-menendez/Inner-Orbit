@@ -1,7 +1,7 @@
-// File: client/src/components/journal/DevelopConstellations.tsx
+// File: client/src/components/journal/dev/DevelopConstellations.tsx
 
 import React from 'react';
-import { CONSTELLATIONS, StarPoint, Constellation } from './ConstellationLogic';
+import { CONSTELLATIONS, StarPoint, Constellation } from '../ConstellationLogic';
 
 const DevelopConstellations: React.FC = () => {
   return (
