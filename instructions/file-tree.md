@@ -51,10 +51,12 @@ InnerOrbit/
 │   │   │   │   └── *any components created specifically for the home page...*
 │   │   │   │   
 │   │   │   ├── journal/  
+│   │   │   │   ├── dev/
+│   │   │   │   │    └── DevelopConstellations.tsx 
+│   │   │   │   │    
 │   │   │   │   ├──  Constellation.tsx  
 │   │   │   │   ├──  ConstellationLogic.tsx 
 │   │   │   │   ├──  CreateJournal.tsx 
-│   │   │   │   ├──  DevelopConstellations.tsx 
 │   │   │   │   └── *any components created specifically for the journal page...*
 │   │   │   │  
 │   │   │   ├── layout/  
