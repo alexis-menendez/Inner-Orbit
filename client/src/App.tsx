@@ -28,6 +28,7 @@ import DevelopConstellations from './components/journal/DevelopConstellations';
 const App = () => {
   return (
     <AuthProvider>
+       <div className="cosmic-background min-h-screen w-full">
       <Router>
        {/*} <Navbar />*/}
         <main className="min-h-screen px-4 py-6 text-white bg-gradient-to-b from-gray-900 to-black">
@@ -48,6 +49,7 @@ const App = () => {
         </main>
        {/*<Footer />*/}
       </Router>
+      </div>
     </AuthProvider>
   );
 };

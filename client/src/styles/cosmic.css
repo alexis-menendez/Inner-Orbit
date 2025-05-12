@@ -1,0 +1,26 @@
+/* src/styles/cosmic.css */
+
+.cosmic-background {
+  background-image: url('./public/assets/images/darkmode.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #0d0a1f; /* fallback color for deep cosmic background */
+  color: #fff8e7; /* ivory text */
+}
+
+/* Optional glowing text */
+.glow-text {
+  color: #fff8e7;
+  text-shadow: 0 0 4px #fff8e7, 0 0 8px #9e89ff, 0 0 12px #9e89ff;
+}
+
+/* Optional container style */
+.cosmic-panel {
+  background-color: rgba(26, 21, 51, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(158, 137, 255, 0.2);
+}
