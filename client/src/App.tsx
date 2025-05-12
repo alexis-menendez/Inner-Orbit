@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './context/authContext';
+//import './styles/cosmic.css'; // Update the path if the file is in a 'styles' folder
 
 import Home from './pages/Home';
 import Login from './components/home/LoginForm';
@@ -25,6 +26,7 @@ import Dashboard from './pages/Dashboard';
 const App = () => {
   return (
     <AuthProvider>
+       <div className="cosmic-background min-h-screen w-full">
       <Router>
        {/*} <Navbar />*/}
         <main className="min-h-screen px-4 py-6 text-white bg-gradient-to-b from-gray-900 to-black">
@@ -43,6 +45,7 @@ const App = () => {
         </main>
        {/*<Footer />*/}
       </Router>
+      </div>
     </AuthProvider>
   );
 };

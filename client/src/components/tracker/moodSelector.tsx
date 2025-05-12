@@ -1,7 +1,7 @@
 // File: client/src/components/tracker/moodSelector.tsx
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// Removed unused axios import
 
 export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) => {
     const [mood, setMood] = useState<any[]>([]);
