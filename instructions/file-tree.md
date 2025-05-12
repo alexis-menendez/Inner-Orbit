@@ -14,14 +14,14 @@ InnerOrbit/
 │   │       ├── images/
 │   │       └── video/
 │   │   
-│   ├── dist/  
-│   │   └── ...  
-│   │   
 │   ├── src/  
 │   │   │  
 │   │   ├── assets/   
 │   │   │   └── css/  
-│   │   │       ├── common/              
+│   │   │       ├── common/      
+│   │   │       │   ├── Button.module.css      
+│   │   │       │   ├── CosmicBackground.module.css 
+│   │   │       │   ├── Form.module.css   
 │   │   │       │   └── *Global reusable styles like button styles, loading spinners, modals, etc...*
 │   │   │       │   
 │   │   │       ├── layout/                
@@ -31,6 +31,9 @@ InnerOrbit/
 │   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc..*
 │   │   │  
 │   │   ├── components/  
+│   │   │   ├── common/  
+│   │   │   │   ├──  (not yet created)   
+│   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
 │   │   │   │   
 │   │   │   ├── dashboard/   
 │   │   │   │   ├──  (not yet created)   
@@ -41,35 +44,37 @@ InnerOrbit/
 │   │   │   │   └── *any components created specifically for the feed page...* 
 │   │   │   │   
 │   │   │   ├── home/  
-│   │   │   │   ├──  LoginForm.tsx  
+│   │   │   │   ├──  LoginForm.tsx 
+│   │   │   │   ├──  Privacy.tsx   
 │   │   │   │   ├──  RegisterForm.tsx  
+│   │   │   │   ├──  Terms.tsx  
 │   │   │   │   └── *any components created specifically for the home page...*
 │   │   │   │   
-│   │   │   ├── tracker/  
-│   │   │   │   ├──  moodChart.tsx  
-│   │   │   │   ├──  moodSelector.tsx  
-│   │   │   │   └── *any components created specifically for the tracker page...*
-│   │   │   │   
 │   │   │   ├── journal/  
-│   │   │   │   ├──  (not yet created)   
+│   │   │   │   ├──  Constellation.tsx  
+│   │   │   │   ├──  ConstellationLogic.tsx 
+│   │   │   │   ├──  CreateJournal.tsx 
+│   │   │   │   ├──  DevelopConstellations.tsx 
 │   │   │   │   └── *any components created specifically for the journal page...*
-│   │   │   │   
-│   │   │   ├── library/  
-│   │   │   │   ├──  (not yet created)   
-│   │   │   │   └── *any components created specifically for the library page...*
 │   │   │   │  
 │   │   │   ├── layout/  
+│   │   │   │   ├──  MainLayout.tsx  
 │   │   │   │   ├──  ProtectedRoute.tsx  
-│   │   │   │   └── *things like "PaggeWrapper.tsx", etc...*  
+│   │   │   │   └── *things like "PaggeWrapper.tsx", etc...* 
 │   │   │   │  
 │   │   │   ├── nav/  
 │   │   │   │   ├──  BottomNav.tsx  
 │   │   │   │   └── *things like "Navbar.tsx", PaggeWrapper.tsx, etc...*  
-│   │   │   │   
-│   │   │   ├── common/  
+│   │   │   │
+│   │   │   ├── tracker/  
+│   │   │   │   ├──  moodChart.tsx  
+│   │   │   │   ├──  moodSelector.tsx  
+│   │   │   │   └── *any components created specifically for the tracker page...*
+│   │   │   │    
+│   │   │   ├── library/  
 │   │   │   │   ├──  (not yet created)   
-│   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
-│   │   │   │   
+│   │   │   │   └── *any components created specifically for the library page...* 
+│   │   │   │     
 │   │   │   └── user/   
 │   │   │       ├──  (not yet created)  
 │   │   │       └── *things like "FriendsList.tsx", "FriendGroups.tsx", "UserProfile.tsx", etc...*
@@ -83,45 +88,45 @@ InnerOrbit/
 │   │   │   └── mutations.ts  
 │   │   │
 │   │   ├── models/  
-│   │   │   ├── Index.ts 
 │   │   │   ├── Auth.ts 
-│   │   │   ├── GraphQL.ts            
-│   │   │   ├── User.ts            
-│   │   │   ├── Mood.ts            
-│   │   │   ├── Journal.ts    
+│   │   │   ├── GraphQL.ts 
+│   │   │   ├── Group.ts           (not yet created)   
+│   │   │   ├── Index.ts 
+│   │   │   ├── Journal.ts 
+│   │   │   ├── Mood.ts 
 │   │   │   ├── Post.ts            (not yet created)            
-│   │   │   ├── Group.ts           (not yet created)           
-│   │   │   └── Library.ts         (not yet created)    
+│   │   │   ├── Library.ts         (not yet created)                                             
+│   │   │   └── User.ts       
 │   │   │
 │   │   ├── pages/  
 │   │   │   ├── Home.tsx  
-│   │   │   ├── Dashboard.tsx  
-│   │   │   ├── Privacy.tsx  
-│   │   │   ├── Terms.tsx 
-│   │   │   ├── Journal.tsx         (not yet created)  
-│   │   │   ├── Tracker.tsx         (not yet created)  
-│   │   │   ├── UserProfile.tsx     (not yet created)  
+│   │   │   ├── Dashboard.tsx 
+│   │   │   ├── Feed.tsx            (not yet created)
 │   │   │   ├── FriendGroup.tsx     (not yet created)  
-│   │   │   ├── Feed.tsx            (not yet created)  
-│   │   │   ├── Library.tsx         (not yet created)  
-│   │   │   └── NotFound.tsx        (not yet created)  
+│   │   │   ├── Journal.tsx           
+│   │   │   ├── Library.tsx         (not yet created) 
+│   │   │   ├── NotFound.tsx        (not yet created) 
+│   │   │   ├── Tracker.tsx         (not yet created)  
+│   │   │   └── UserProfile.tsx     (not yet created)       
 │   │   │
 │   │   ├── utils/
-│   │   │   ├── auth.ts           
 │   │   │   ├── API.ts 
+│   │   │   ├── auth.ts  
+│   │   │   ├── audioPlayer.ts      (not yet created)           
 │   │   │   ├── formatDate.ts       (not yet created) 
-│   │   │   ├── privacyFilter.ts    (not yet created) 
-│   │   │   └── audioPlayer.ts      (not yet created) 
+│   │   │   └── privacyFilter.ts    (not yet created) 
 │   │   │
 │   │   ├── appolloClient.ts
 │   │   ├── App.tsx  
-│   │   ├── index.css  
 │   │   ├── main.tsx  
 │   │   └── vite-env.d.ts 
 │   │
 │   ├── node_modules/   
 │   │    └── ...    
-│   │      
+│   │   
+│   ├── dist/   
+│   │    └── ...    
+│   │   
 │   ├── .eslintrc.cjs   
 │   ├── .gitignore  
 │   ├── index.html    
@@ -134,48 +139,47 @@ InnerOrbit/
 │   └── vitest.config.ts   
 │
 ├── server/                          
-│   │   
-│   ├── dist/  
-│   │   └── ...  
-│   │                       
+│   ├── scripts/   
+│   │    └── clearUsers.ts    
+│   │                         
 │   ├── src/  
 │   │   ├── config/  
-│   │   │   └── connection.ts  
+│   │   │   └── connections.ts  
 │   │   │   
 │   │   ├── controllers/  
 │   │   │   ├── index.ts
-│   │   │   ├── authController.ts        
-│   │   │   ├── userController.ts        
-│   │   │   ├── trackerController.ts     
-│   │   │   ├── journalController.ts     
-│   │   │   ├── videoController.ts  
-│   │   │   ├── postController.ts        (not created yet)
+│   │   │   ├── authController.ts 
 │   │   │   ├── groupController.ts       (not created yet)
-│   │   │   └── libraryController.ts     (not created yet)
+│   │   │   ├── journalController.ts 
+│   │   │   ├── libraryController.ts     (not created yet)
+│   │   │   ├── postController.ts        (not created yet) 
+│   │   │   ├── trackerController.ts        
+│   │   │   ├── userController.ts                
+│   │   │   └── videoController.ts  
 │   │   │ 
-│   │   ├── middleware/
-│   │   │   ├── multer.ts    
-│   │   │   └── auth.ts              
+│   │   ├── middleware/   
+│   │   │   ├── auth.ts     
+│   │   │   └── multer.ts         
 │   │   │  
 │   │   ├── models/            
 │   │   │   ├── index.ts
-│   │   │   ├── User.ts              
-│   │   │   ├── Tracker.ts            
-│   │   │   ├── Journal.ts           
-│   │   │   ├── Video.ts           
-│   │   │   ├── Post.ts               (not created yet) 
 │   │   │   ├── Group.ts              (not created yet)
-│   │   │   └── Library.ts            (not created yet)
+│   │   │   ├── Journal.ts
+│   │   │   ├── Library.ts            (not created yet)
+│   │   │   ├── Post.ts               (not created yet) 
+│   │   │   ├── Tracker.ts 
+│   │   │   ├── User.ts                                    
+│   │   │   └── Video.ts           
 │   │   |    
 │   │   ├── schemas/  
+│   │   │   ├── index.ts
 │   │   │   ├── resolvers.ts         
-│   │   │   ├── typeDefs.ts          
-│   │   │   └── index.ts             
+│   │   │   └── typeDefs.ts                    
 │   │   │   
 │   │   ├── seeds/  
-│   │   │   ├── index.ts             (not yet created) 
-│   │   │   ├── user-seeds.ts        (not yet created) 
-│   │   │   ├── user.json            (not yet created) 
+│   │   │   ├── index.ts             
+│   │   │   ├── user-seeds.ts        
+│   │   │   ├── user.json             
 │   │   │   ├── post-seeds.ts        (not yet created) 
 │   │   │   ├── post.json            (not yet created) 
 │   │   │   ├── mood-seeds.ts        (not yet created) 
@@ -190,8 +194,8 @@ InnerOrbit/
 │   │   ├── utils/  
 │   │   │   ├── auth.ts  
 │   │   │   ├── cloudinary.ts  
-│   │   │   ├── trackerColors.ts
-│   │   │   └── formatDate.ts 
+│   │   │   ├── formatDate.ts
+│   │   │   └── trackerColors.ts
 │   │   │   
 │   │   └── server.ts  
 │   │  
@@ -199,11 +203,13 @@ InnerOrbit/
 │   │    └── ...    
 │   │      
 │   ├── dist/  
-│   ├── package.json  
-│   ├── tsconfig.json  
-│   ├── jest.config.js 
+│   │   └── ...  
+│   │   
+│   ├── .env 
 │   ├── .gitignore  
-│   └── .env  
+│   ├── jest.config.js
+│   ├── package.json  
+│   └── tsconfig.json   
 │
 ├── node_modules/   
 │    └── ...    
@@ -211,7 +217,8 @@ InnerOrbit/
 ├── .env 
 ├── .gitattributes 
 ├── .gitignore  
-├── README.md  
+├── exampleENV.md 
+├── notes.md 
 ├── package.json                  # Root-level for install-all, build-all, etc.  
 ├── tsconfig.json                 # Shared config  
 └── README.md 
