@@ -18,14 +18,6 @@ InnerOrbit/
 │   │   └── ...  
 │   │   
 │   ├── src/  
-│   │   ├── api/  
-│   │   │   ├── authAPI.ts         # *Login, signup, verify JWT, logout* 
-│   │   │   ├── journalAPI.ts      # *Create/view/edit/delete journal entries* 
-│   │   │   ├── moodAPI.ts         # *Log/view moods; used by Tracker*
-│   │   │   ├── postAPI.ts         # *Create/view posts (with privacy logic: private/friends/public)*  
-│   │   │   ├── userAPI.ts         # *Fetch user profile, settings, avatar, friends lists, groups, etc...*
-│   │   │   ├── libraryAPI.ts      # *Fetch library items (books, movies, etc...)*
-│   │   │   └── groupAPI.ts        # *Manage friend groups/pods (create, join, get members)*
 │   │   │  
 │   │   ├── assets/   
 │   │   │   └── css/  
@@ -39,9 +31,6 @@ InnerOrbit/
 │   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc..*
 │   │   │  
 │   │   ├── components/  
-│   │   │   ├── auth/  
-│   │   │   │   ├── LoginForm.tsx  
-│   │   │   │   └── RegisterForm.tsx  
 │   │   │   │   
 │   │   │   ├── dashboard/   
 │   │   │   │   └── *any components created specifically for the dashboard page...*
@@ -49,7 +38,14 @@ InnerOrbit/
 │   │   │   ├── feed/  
 │   │   │   │   └── *any components created specifically for the feed page...* 
 │   │   │   │   
+│   │   │   ├── home/  
+│   │   │   │   ├──  LoginForm.tsx  
+│   │   │   │   ├──  RegisterForm.tsx  
+│   │   │   │   └── *any components created specifically for the home page...*
+│   │   │   │   
 │   │   │   ├── tracker/  
+│   │   │   │   ├──  moodChart.tsx  
+│   │   │   │   ├──  moodSelector.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
 │   │   │   │   
 │   │   │   ├── journal/  
@@ -60,6 +56,10 @@ InnerOrbit/
 │   │   │   │  
 │   │   │   ├── layout/  
 │   │   │   │   ├──  ProtectedRoute.tsx  
+│   │   │   │   └── *things like "PaggeWrapper.tsx", etc...*  
+│   │   │   │  
+│   │   │   ├── nav/  
+│   │   │   │   ├──  BottomNav.tsx  
 │   │   │   │   └── *things like "Navbar.tsx", PaggeWrapper.tsx, etc...*  
 │   │   │   │   
 │   │   │   ├── common/   
@@ -68,43 +68,50 @@ InnerOrbit/
 │   │   │   └── user/   
 │   │   │       └── *things like "FriendsList.tsx", "FriendGroups.tsx", "UserProfile.tsx", etc...*
 │   │   │
+│   │   ├── context/  
+│   │   │   ├── authContext.tsx 
+│   │   │   └── themeContext.tsx
+│   │   │
 │   │   ├── graphql/  
 │   │   │   ├── queries.ts  
-│   │   │   ├── mutations.ts  
-│   │   │   └── client.ts  
+│   │   │   └── mutations.ts  
 │   │   │
-│   │   ├── hooks/  
-│   │   │   └── ...
-│   │   │
-│   │   ├── interfaces/  
-│   │   │   ├── Auth.ts            # *Token data, login/signup responses*
-│   │   │   ├── User.ts            # *User profile data, friend lists, groups*
-│   │   │   ├── Mood.ts            # *Mood log (emoji, timestamp, optional note)*
-│   │   │   ├── JournalEntry.ts    # *Full journal entries*
-│   │   │   ├── Post.ts            # *Post content, author, privacy level*
-│   │   │   ├── Group.ts           # *Friend group metadata (name, members, activity)*
-│   │   │   └── LibraryItem.ts     # *Music or meditation items (title, url, tags)* 
+│   │   ├── models/  
+│   │   │   ├── Index.ts 
+│   │   │   ├── Auth.ts 
+│   │   │   ├── GraphQL.ts            
+│   │   │   ├── User.ts            
+│   │   │   ├── Mood.ts            
+│   │   │   ├── Journal.ts    
+│   │   │   ├── Post.ts (not yet created)            
+│   │   │   ├── Group.ts (not yet created)           
+│   │   │   └── Library.ts (not yet created)    
 │   │   │
 │   │   ├── pages/  
 │   │   │   ├── Home.tsx  
 │   │   │   ├── Dashboard.tsx  
-│   │   │   ├── Journal.tsx  
-│   │   │   ├── Tracker.tsx  
-│   │   │   ├── UserProfile.tsx  
-│   │   │   ├── FriendGroup.tsx  
-│   │   │   ├── Feed.tsx  
-│   │   │   ├── Library.tsx  
-│   │   │   └── NotFound.tsx  
+│   │   │   ├── Privacy.tsx  
+│   │   │   ├── Terms.tsx 
+│   │   │   ├── Journal.tsx (not yet created)  
+│   │   │   ├── Tracker.tsx (not yet created)  
+│   │   │   ├── UserProfile.tsx (not yet created)  
+│   │   │   ├── FriendGroup.tsx (not yet created)  
+│   │   │   ├── Feed.tsx (not yet created)  
+│   │   │   ├── Library.tsx (not yet created)  
+│   │   │   └── NotFound.tsx (not yet created)  
 │   │   │
 │   │   ├── utils/
-│   │   │   ├── auth.ts            # *JWT handling, getUserFromToken(), isLoggedIn()*
-│   │   │   ├── formatDate.ts      # *Convert timestamps to readable formats*
-│   │   │   ├── privacyFilter.ts   # *Filter posts or journals by privacy (optional but useful?)*
-│   │   │   └── audioPlayer.ts     # *Play/pause helpers for meditation/music (for Library)*
+│   │   │   ├── auth.ts           
+│   │   │   ├── API.ts 
+│   │   │   ├── formatDate.ts (not yet created) 
+│   │   │   ├── privacyFilter.ts (not yet created) 
+│   │   │   └── audioPlayer.ts (not yet created) 
 │   │   │
+│   │   ├── appolloClient.ts
 │   │   ├── App.tsx  
 │   │   ├── index.css  
-│   │   └── main.tsx  
+│   │   ├── main.tsx  
+│   │   └── vite-env.d.ts 
 │   │
 │   ├── node_modules/   
 │   │    └── ...    
@@ -113,12 +120,12 @@ InnerOrbit/
 │   ├── .gitignore  
 │   ├── index.html    
 │   ├── package.json    
-│   ├── postcss.config.js   
-│   ├── tailwind.config.js    
+│   ├── postcss.config.cjs   
+│   ├── tailwind.config.ts    
 │   ├── tsconfig.json    
 │   ├── tsconfig.node.json    
-│   ├── vite.config.js   
-│   └── vitest.config.js   
+│   ├── vite.config.ts   
+│   └── vitest.config.ts   
 │
 ├── server/                          # *Backend (Node + GraphQL + Mongo)* 
 │   │   

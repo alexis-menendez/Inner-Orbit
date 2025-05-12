@@ -1,15 +1,15 @@
-// file: client/src/auth/Login.tsx
+// file: client/src/components/home/Login.tsx
 
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../utils/AuthContext'; // Adjust path if needed
+import { AuthContext } from '../../utils/auth.ts'; 
 
 const Login = () => {
   const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error('AuthContext is undefined. Ensure AuthProvider is wrapping your component tree.');
   }
-  const { login } = authContext; // ✅ Proper use of context
+  const { login } = authContext; 
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -32,7 +32,7 @@ const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        login(data.user, data.token); // Save token & user to context
+        login(data.user, data.token); 
         navigate('/dashboard');
       } else {
         alert(data.message || 'Login failed');
@@ -44,11 +44,11 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-indigo-900 text-white px-4">
-      <h1 className="text-4xl font-bold mb-2">Welcome Explorer!</h1>
-      <h2 className="text-lg mb-6">Please log in below</h2>
+    <section className="flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-black to-indigo-900">
+      <h1 className="mb-2 text-4xl font-bold">Welcome Explorer!</h1>
+      <h2 className="mb-6 text-lg">Please log in below</h2>
 
-      <div className="bg-white text-black p-6 rounded-lg shadow-md w-full max-w-sm space-y-4">
+      <div className="w-full max-w-sm p-6 space-y-4 text-black bg-white rounded-lg shadow-md">
         <input
           type="text"
           id="username"
@@ -67,7 +67,7 @@ const Login = () => {
         />
         <button
           onClick={handleLogin}
-          className="w-full bg-indigo-700 text-white p-2 rounded hover:bg-indigo-800"
+          className="w-full p-2 text-white bg-indigo-700 rounded hover:bg-indigo-800"
         >
           Login
         </button>

@@ -1,4 +1,4 @@
-// src/tracker/moods.ts
+// File: client/src/models/Mood.ts
 
 export interface Mood {
   id: string;

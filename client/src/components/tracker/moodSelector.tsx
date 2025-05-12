@@ -1,3 +1,5 @@
+// File: client/src/components/tracker/moodSelector.tsx
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -55,7 +57,7 @@ export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) =>
   return (
     <div className="space-y-4">
       <div>
-        <label className="text-white mr-2">Pick your color:</label>
+        <label className="mr-2 text-white">Pick your color:</label>
         <input
           type="color"
           value={customColor}
@@ -68,7 +70,7 @@ export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) =>
           <button
             key={m.id}
             onClick={() => onSelect({ ...m, color: customColor })}
-            className="p-2 rounded-full text-white"
+            className="p-2 text-white rounded-full"
             style={{ backgroundColor: customColor }}
           >
             {m.label}

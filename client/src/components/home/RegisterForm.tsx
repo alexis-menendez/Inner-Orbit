@@ -1,8 +1,8 @@
-// file: client/src/auth/RegisterForm.tsx
+// file: client/src/components/home/RegisterForm.tsx
 
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../utils/AuthContext';
+import { AuthContext } from '../../utils/auth.ts';
 
 const Register = () => {
   const authContext = useContext(AuthContext);
@@ -43,7 +43,7 @@ const Register = () => {
       const data = await res.json();
 
       if (res.ok) {
-        login(data.user, data.token); // ✅ Call login from context
+        login(data.user, data.token); 
         navigate('/dashboard');
       } else {
         alert(data.message || 'Registration failed');
@@ -55,11 +55,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-indigo-900 to-black text-white px-4">
-      <h1 className="text-4xl font-bold tracking-widest mb-4">Hello, InnerOrbit 🌌</h1>
-      <h2 className="text-2xl font-bold tracking-wide mb-8">Welcome to the Register Page</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-indigo-900 to-black">
+      <h1 className="mb-4 text-4xl font-bold tracking-widest">Hello, InnerOrbit 🌌</h1>
+      <h2 className="mb-8 text-2xl font-bold tracking-wide">Welcome to the Register Page</h2>
 
-      <section className="bg-white text-black p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
+      <section className="w-full max-w-md p-6 space-y-4 text-black bg-white rounded-lg shadow-md">
         <h1 className="text-xl font-semibold">Hello New Explorer!</h1>
         <h2 className="mb-4">Please register below!</h2>
 
@@ -71,7 +71,7 @@ const Register = () => {
         <input type="email" id="email" placeholder="Email" value={form.email} onChange={handleChange} />
 
         <label className="flex items-start text-sm">
-          <input type="checkbox" id="disclaimer" checked={form.disclaimer} onChange={handleChange} className="mr-2 mt-1" />
+          <input type="checkbox" id="disclaimer" checked={form.disclaimer} onChange={handleChange} className="mt-1 mr-2" />
           By signing up, you agree to our <a href="/terms" className="underline">Terms of Service</a> and <a href="/privacy" className="underline">Privacy Policy</a>.
         </label>
 
@@ -79,7 +79,7 @@ const Register = () => {
           Disclaimer: If you are sixteen (16) years of age or younger, you must have your parent or guardian's permission to use this service...
         </p>
 
-        <button className="bg-indigo-700 text-white px-4 py-2 rounded mt-4" onClick={handleRegister}>
+        <button className="px-4 py-2 mt-4 text-white bg-indigo-700 rounded" onClick={handleRegister}>
           Register
         </button>
 
