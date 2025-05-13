@@ -1,56 +1,49 @@
-// File: client/src/components/tracker/moodSelector.tsx
+// File: client/src/components/tracker/MoodSelector.tsx
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) => {
-    const [mood, setMood] = useState<any[]>([]);
-  const [customColor, setCustomColor] = useState("#facc15"); 
-
- //useEffect(() => {
-  // backend route f})
-
+export const MoodSelector = ({ selectedMood, onSelect }: { selectedMood: any, onSelect: (mood: any) => void }) => {
+  const [customColor, setCustomColor] = useState("#facc15");
   const moods = [
-    { id: 'happy', label: 'Happy' },
-    { id: 'sad', label: 'Sad' },
-    { id: 'angry', label: 'Angry' },
-    { id: 'anxious', label: 'Anxious' },
-    { id: 'excited', label: 'Excited' },
-    { id: 'bored', label: 'Bored' },
-    { id: 'relaxed', label: 'Relaxed' },
-    { id: 'stressed', label: 'Stressed' },
-    { id: 'confused', label: 'Confused' },
-    { id: 'motivated', label: 'Motivated' },
-    { id: 'tired', label: 'Tired' },
-    { id: 'grateful', label: 'Grateful' },
-    { id: 'hopeful', label: 'Hopeful' },
-    { id: 'lonely', label: 'Lonely' },
-    { id: 'loved', label: 'Loved' },
-    { id: 'overwhelmed', label: 'Overwhelmed' },
-    { id: 'curious', label: 'Curious' },
-    { id: 'creative', label: 'Creative' },
-    { id: 'calm', label: 'Calm' },
-    { id: 'disappointed', label: 'Disappointed' },
-    { id: 'satisfied', label: 'Satisfied' },
-    { id: 'confident', label: 'Confident' },
-    { id: 'ashamed', label: 'Ashamed' },
-    { id: 'jealous', label: 'Jealous' },
-    { id: 'nostalgic', label: 'Nostalgic' },
-    { id: 'indifferent', label: 'Indifferent' },
-    { id: 'hopeful', label: 'Hopeful' },
-    { id: 'disconnected', label: 'Disconnected' },
-    { id: 'connected', label: 'Connected' },
-    { id: 'inspired', label: 'Inspired' },
-    { id: 'empowered', label: 'Empowered' },
-    { id: 'ashamed', label: 'Ashamed' },
-    { id: 'guilty', label: 'Guilty' },
-    { id: 'proud', label: 'Proud' },
-    { id: 'embarrassed', label: 'Embarrassed' },
-    { id: 'frustrated', label: 'Frustrated' },
-    { id: 'disgusted', label: 'Disgusted' },
-    { id: 'surprised', label: 'Surprised' },
-    { id: 'content', label: 'Content' },
-    { id: 'overjoyed', label: 'Overjoyed' },
-    { id: 'relieved', label: 'Relieved' },
+    { id: 'happy', label: 'Happy', color: '#ffe066' },
+    { id: 'sad', label: 'Sad', color: '#5dade2' },
+    { id: 'angry', label: 'Angry', color: '#e74c3c' },
+    { id: 'anxious', label: 'Anxious', color: '#af7ac5' },
+    { id: 'excited', label: 'Excited', color: '#f7c59f' },
+    { id: 'bored', label: 'Bored', color: '#95a5a6' },
+    { id: 'relaxed', label: 'Relaxed', color: '#82e0aa' },
+    { id: 'stressed', label: 'Stressed', color: '#d98880' },
+    { id: 'confused', label: 'Confused', color: '#f4d03f' },
+    { id: 'motivated', label: 'Motivated', color: '#58d68d' },
+    { id: 'tired', label: 'Tired', color: '#aab7b8' },
+    { id: 'grateful', label: 'Grateful', color: '#f0b27a' },
+    { id: 'hopeful', label: 'Hopeful', color: '#7fb3d5' },
+    { id: 'lonely', label: 'Lonely', color: '#85929e' },
+    { id: 'loved', label: 'Loved', color: '#f1948a' },
+    { id: 'overwhelmed', label: 'Overwhelmed', color: '#d7bde2' },
+    { id: 'curious', label: 'Curious', color: '#fad7a0' },
+    { id: 'creative', label: 'Creative', color: '#f8c471' },
+    { id: 'calm', label: 'Calm', color: '#aed6f1' },
+    { id: 'disappointed', label: 'Disappointed', color: '#7f8c8d' },
+    { id: 'satisfied', label: 'Satisfied', color: '#f7dc6f' },
+    { id: 'confident', label: 'Confident', color: '#5dade2' },
+    { id: 'ashamed', label: 'Ashamed', color: '#d5dbdb' },
+    { id: 'jealous', label: 'Jealous', color: '#58d68d' },
+    { id: 'nostalgic', label: 'Nostalgic', color: '#f5cba7' },
+    { id: 'indifferent', label: 'Indifferent', color: '#d5d8dc' },
+    { id: 'disconnected', label: 'Disconnected', color: '#d2b4de' },
+    { id: 'connected', label: 'Connected', color: '#aed6f1' },
+    { id: 'inspired', label: 'Inspired', color: '#f9e79f' },
+    { id: 'empowered', label: 'Empowered', color: '#82e0aa' },
+    { id: 'guilty', label: 'Guilty', color: '#e6b0aa' },
+    { id: 'proud', label: 'Proud', color: '#f7c59f' },
+    { id: 'embarrassed', label: 'Embarrassed', color: '#f1948a' },
+    { id: 'frustrated', label: 'Frustrated', color: '#cd6155' },
+    { id: 'disgusted', label: 'Disgusted', color: '#7dcea0' },
+    { id: 'surprised', label: 'Surprised', color: '#fadbd8' },
+    { id: 'content', label: 'Content', color: '#ffeaa7' },
+    { id: 'overjoyed', label: 'Overjoyed', color: '#f9e79f' },
+    { id: 'relieved', label: 'Relieved', color: '#82e0aa' },
   ];
 
   return (
@@ -64,12 +57,15 @@ export const MoodSelector = ({ onSelect }: { onSelect: (mood: any) => void }) =>
           className="w-10 h-10 p-0 border-none"
         />
       </div>
-      <div className="flex gap-2">
+
+      <div className="flex flex-wrap gap-2">
         {moods.map((m) => (
           <button
             key={m.id}
             onClick={() => onSelect({ ...m, color: customColor })}
-            className="p-2 text-white rounded-full"
+            className={`p-2 rounded-full text-white ${
+              selectedMood?.id === m.id ? 'ring-4 ring-white' : ''
+            }`}
             style={{ backgroundColor: customColor }}
           >
             {m.label}

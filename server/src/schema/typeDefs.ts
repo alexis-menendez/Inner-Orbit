@@ -21,6 +21,7 @@ const typeDefs = gql`
     mood: String!
     moodColor: String!
     intensity: Int!
+    date: Date! 
     createdAt: Date!
     user: User!
   }

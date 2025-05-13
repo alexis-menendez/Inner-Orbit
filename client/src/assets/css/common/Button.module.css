@@ -15,7 +15,7 @@
   text-align: center;
   text-decoration: none;
   color: #fff8e7;
-  background-color: #4f46e5;
+  background-color: #06034e;
 }
 
 /* This class adds spacing between stacked buttons */
@@ -24,7 +24,7 @@
 }
 
 .button:hover {
-  background-color: #4338ca;
+  background-color: #080249;
   transform: scale(1.03);
 }
 
@@ -34,17 +34,17 @@
 
 /* Variants */
 .primary {
-  background-color: #4f46e5;
+  background-color: #7672c9;
 }
 
 .primary:hover {
-  background-color: #4338ca;
+  background-color: #080341;
 }
 
 .secondary {
-  background-color: #7c3aed;
+  background-color: #a982ec;
 }
 
 .secondary:hover {
-  background-color: #6b21a8;
+  background-color: #400a6b;
 }
