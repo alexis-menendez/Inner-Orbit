@@ -4,7 +4,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../../graphql/mutations';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/AuthContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 
