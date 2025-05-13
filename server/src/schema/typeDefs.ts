@@ -77,7 +77,7 @@ const typeDefs = gql`
     getJournalEntryById(entryId: ID!): JournalEntry
     getUserById(userId: ID!): User
     me: User
-    getMoodEntryByDate(date: Date!): MoodEntry
+    getMoodEntryByDate(userId, date: Date!): MoodEntry
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries: [JournalEntry]
