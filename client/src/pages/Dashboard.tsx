@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 //import { link } from 'react-router-dom';
-import BottomNav from '../components/nav/BottomNav';
-import TopNav from '../components/nav/TopNav';
+import BottomNav from '../components/nav/Footer';
+import TopNav from '../components/nav/NavBar';
 import { MoodSelector } from '../components/tracker/moodSelector';
 
 type MoodEntry = {
