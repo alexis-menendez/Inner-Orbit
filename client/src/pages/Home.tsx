@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../assets/css/common/Button.module.css';
 
+
 const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-white bg-gradient-to-b from-indigo-900 to-black">
