@@ -17,7 +17,7 @@ import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
 import Journal from './pages/Journal';
 import Constellation from './components/journal/Constellation';
-import DevelopConstellations from './components/journal/DevelopConstellations';
+import DevelopConstellations from './components/journal/dev/DevelopConstellations';
 
 // TODO pages (not yet created):
  import Tracker from './pages/Tracker';                  
