@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 //import { link } from 'react-router-dom';
-import TopNav from '../components/nav/NavBar';
+import NavBar from '../components/nav/NavBar'; // Adjusted path to match the correct file structure
 
 
 type MoodEntry = {
@@ -46,7 +46,7 @@ const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
   }, []);
   return (
     <div className="cosmic-background min-h-screen">
-      <TopNav />
+      <NavBar />
 
       <div className="flex flex-col items-center px-4 py-8 gap-8">
         <h1 className="text-3xl glow-text mb-4">Welcome to Your Dashboard</h1>
