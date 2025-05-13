@@ -1,5 +1,11 @@
 # InnerOrbit: *Mood Journal, Mood Tracker, & Reflective Social Space*
 
+```md
+⚠️ Work In Progress
+This project is currently under active development and is not yet complete.
+Expect bugs, missing features, and unpolished UI while construction is underway.
+```
+
 ## **Description**
 
 **InnerOrbit** is a full-stack, responsive, and interactive single-page application built using the MERN stack with GraphQL and JWT authentication. This application solves a real-world problem using real data and is designed with a smooth user experience and polished, professional UI in mind. 

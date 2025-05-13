@@ -20,7 +20,7 @@ import Constellation from './components/journal/Constellation';
 import DevelopConstellations from './components/journal/dev/DevelopConstellations';
 
 // TODO pages (not yet created):
-// import Tracker from './pages/Tracker';                  --->  not yet created
+ import Tracker from './pages/Tracker';                  
 // import UserProfile from './pages/UserProfile';          --->  not yet created
 // import FriendGroup from './pages/FriendGroup';          --->  not yet created
 // import Feed from './pages/Feed';                        --->  not yet created
@@ -44,7 +44,7 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Dashboard />
-              </ProtectedRoute>
+                             </ProtectedRoute>
             }
           />
 
@@ -68,6 +68,15 @@ const App: React.FC = () => {
 
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
+        <Route
+          path="/tracker"
+          element={
+            <ProtectedRoute>
+              <Tracker />
+            </ProtectedRoute>
+          }
+        />
+        
       </Routes>
     </AuthProvider>
   );
