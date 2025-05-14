@@ -3,7 +3,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import styles from '../assets/css/common/CosmicBackground.module.css'; // adjust path if needed
 import NavBar from '../components/nav/NavBar';
 
 const GET_MOOD_ENTRIES = gql`
@@ -83,46 +82,45 @@ const Tracker: React.FC = () => {
   };
 
   return (
-   <div className={styles['cosmic-background']}>
- <NavBar />
+    <>
+      <NavBar />
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1.5rem' }}>Tracker Page</h1>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-<button
-  style={{
-    padding: '4px 10px',
-    fontSize: '0.85rem',
-    backgroundColor: '#090585', // Rose red for Previous
-    color: '#ffffff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    marginRight: '6px'
-  }}
-  onClick={() =>
-    setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
-  }
->
-  ◀ Previous
-</button>
-  <h2 style={{ color: 'pink' }}>
-    {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
-  </h2>
- <button
-  style={{
-    padding: '4px 8px',
-    fontSize: '0.85rem',
-    backgroundColor: '#914c67',
-    color: '#ffffff', // white text using hex
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  }}
-   onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}
->
-  Next ▶
-</button>
-
-</div>
+        <button
+          style={{
+            padding: '4px 10px',
+            fontSize: '0.85rem',
+            backgroundColor: '#090585',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginRight: '6px'
+          }}
+          onClick={() =>
+            setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+          }
+        >
+          ◀ Previous
+        </button>
+        <h2 style={{ color: 'pink' }}>
+          {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
+        </h2>
+        <button
+          style={{
+            padding: '4px 8px',
+            fontSize: '0.85rem',
+            backgroundColor: '#914c67',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+          onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}
+        >
+          Next ▶
+        </button>
+      </div>
 
       <div
         style={{
