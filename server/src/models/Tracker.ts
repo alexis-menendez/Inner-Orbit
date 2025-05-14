@@ -9,7 +9,7 @@ const MoodEntrySchema = new mongoose.Schema({
   },
   mood: {
     type: String,
-    enum: ['Happy', 'Sad', 'Anxious', 'Excited', 'Angry', 'Neutral'],
+    enum: ['happy', 'sad', 'angry', 'frustrated', 'excited', 'bored', 'relaxed', 'stressed', 'confused', 'motivated', 'tired', 'grateful', 'hopeful', 'lonely', 'loved', 'overwhelmed', 'curious', 'creative', 'calm', 'disappointed', 'satisfied', 'confident', 'ashamed', 'jealous', 'nostalgic', 'indifferent', 'disconnected', 'connected', 'inspired', 'empowered', 'guilty', 'proud', 'embarassed', 'anxious','neutral'],
     required: true,
   },
   intensity: {
