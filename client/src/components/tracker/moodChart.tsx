@@ -1,4 +1,4 @@
-// File: client/src/components/tracker/moodChart.tsx
+// File: client/src/components/tracker/MoodChart.tsx
 
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';

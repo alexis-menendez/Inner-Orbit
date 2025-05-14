@@ -32,6 +32,7 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <Routes>
+        {/* Routes using MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -44,39 +45,39 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Dashboard />
-                             </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
-            path="/journal"
+            path="/tracker"
             element={
               <ProtectedRoute>
-                <Journal />
+                <Tracker />
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/journal/constellation/:id"
-            element={
-              <ProtectedRoute>
-                <Constellation />
-              </ProtectedRoute>
-            }
-          />
+
           <Route path="/develop-constellations" element={<DevelopConstellations />} />
-
-          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
+
+        {/* Routes WITHOUT MainLayout */}
         <Route
-          path="/tracker"
+          path="/journal"
           element={
             <ProtectedRoute>
-              <Tracker />
+              <Journal />
             </ProtectedRoute>
           }
         />
-        
+        <Route
+          path="/journal/constellation/:id"
+          element={
+            <ProtectedRoute>
+              <Constellation />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </AuthProvider>
   );
