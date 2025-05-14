@@ -1,8 +1,12 @@
+// File: client/src/components/journal/Constellation.tsx
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_JOURNAL_ENTRIES_FOR_CONSTELLATION } from '../../graphql/queries';
 import { JournalEntry } from '../../models/Journal';
+import styles from '../../assets/css/common/Stars.module.css';
+
 
 const Constellation = () => {
   const { id } = useParams<{ id: string }>();
