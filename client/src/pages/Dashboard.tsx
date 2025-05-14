@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 //import { link } from 'react-router-dom';
 import NavBar from '../components/nav/NavBar'; // Adjusted path to match the correct file structure
-
+import WeeklyMoodReview from '../components/tracker/WeeklyMoodCalendar';
 
 type MoodEntry = {
   id: string;
@@ -53,35 +53,13 @@ const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
 
          {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
         <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-          <h2 className="text-2xl text-white mb-4">This Week's Mood</h2>
-          <div className="flex flex-col gap-2 w-full">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((dayLabel, i) => {
-              const date = new Date();
-              date.setDate(date.getDate() - date.getDay() + i);
-              const dateStr = date.toISOString().split('T')[0];
-              const mood = weeklyMoods[dateStr];
-
-              const background = mood?.color || '#0f172a';
-              const isDark = getContrastYIQ(background) === 'light';
-              const textColor = isDark ? 'text-black' : 'text-white';
-
-              return (
-                <div
-                  key={dayLabel}
-                  className={`flex justify-between items-center px-4 py-3 rounded-md border border-white/10 ${textColor}`}
-                  style={{ backgroundColor: background }}
-                >
-                  <span className="font-semibold text-sm sm:text-base">{dayLabel}</span>
-                  <span className="text-sm sm:text-base">{mood?.label || '—'}</span>
+          <h2 className="text-2xl text-white mb-4">Your Weekly Review</h2>
+           <WeeklyMoodReview />
                 </div>
-              );
-            })}
+             
           </div>
         </div>
-      </div>
-
-    
-    </div>
+     
   );
 };
 
