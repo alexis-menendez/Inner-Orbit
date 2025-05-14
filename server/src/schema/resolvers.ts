@@ -6,6 +6,7 @@ import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController";
+import { getMoodColor } from "../utils/trackerColors.js";
 
 const resolvers: IResolvers = {
   Query: {
@@ -25,7 +26,9 @@ const resolvers: IResolvers = {
       return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
     },
     getJournalEntries: async (_: any, { userId }: { userId: string }) => {
-      const entries = await JournalEntry.find({ userId }).sort({ createdAt: -1 });
+      const entries = await JournalEntry.find({ userId }).sort({
+        createdAt: -1,
+      });
       return {
         success: true,
         message: "Journal entries fetched successfully",
@@ -160,12 +163,20 @@ const resolvers: IResolvers = {
       return await createJournalEntry(input);
     },
 
-    addMoodEntry: async (_, { mood, intensity, color }, { user }) => {
+    addMoodEntry: async (_, { mood, intensity }, { user }) => {
       if (!user) throw new Error("Not authenticated");
+
+      if (!mood) throw new Error("Mood is required");
+      if (intensity === undefined) throw new Error("Intensity is required");
+      if (intensity < 1 || intensity > 10)
+        throw new Error("Intensity must be between 1 and 10");
+      if (intensity % 1 !== 0) throw new Error("Intensity must be an integer");
+
       const entry = await MoodEntry.create({
         mood,
         intensity,
-        color,
+        moodColor: getMoodColor(mood),
+        date: new Date(),
         user: user._id,
       });
       await User.findByIdAndUpdate(user._id, {
@@ -174,8 +185,18 @@ const resolvers: IResolvers = {
       return entry;
     },
 
-    updateMoodEntry: async (_, { id, ...updates }, { user }) => {
+    updateMoodEntry: async (_, { id, mood, intensity }, { user }) => {
       if (!user) throw new Error("Not authenticated");
+
+      const updates: any = {};
+      if (mood) {
+        updates.mood = mood;
+        updates.moodColor = getMoodColor(mood);
+      }
+      if (intensity !== undefined) {
+        updates.intensity = intensity;
+      }
+
       return await MoodEntry.findOneAndUpdate(
         { _id: id, user: user._id },
         updates,

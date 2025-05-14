@@ -41,6 +41,7 @@ export const getMoodColor = (mood: string): string => {
     content: "#D475E2",
     overjoyed: "#D475E2",
     relieved: "#9A84A2",
+    default: "#999999", // Default color for unknown moods
   };
 
   return colors[mood.toLowerCase()] || colors.default;
