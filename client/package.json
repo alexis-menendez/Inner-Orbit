@@ -23,6 +23,7 @@
         "@tailwindcss/line-clamp": "^0.4.4",
         "antd": "^5.24.9",
         "cloudinary": "^1.41.3",
+        "date-fns": "^4.1.0",
         "framer-motion": "^12.10.0",
         "graphql": "^16.11.0",
         "jwt-decode": "^4.0.0",

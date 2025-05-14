@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import styles from '../assets/css/common/CosmicBackground.module.css'; // adjust path if needed
-
+import { Link } from 'react-router-dom';
+import NavBar from '../components/nav/NavBar';
 
 const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries {
@@ -21,7 +21,7 @@ const ADD_MOOD_ENTRY = gql`
   mutation AddMoodEntry($date: String!, $mood: String!, $intensity: Int!, $moodColor: String!) {
     addMoodEntry(date: $date, mood: $mood, intensity: $intensity, moodColor: $moodColor) {
       _id
-      date
+      dateI 
       mood
       intensity
       moodColor
@@ -82,20 +82,45 @@ const Tracker: React.FC = () => {
   };
 
   return (
-   <div className={styles['cosmic-background']}>
-
+    <>
+      <NavBar />
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1.5rem' }}>Tracker Page</h1>
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-  <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))}>
-    ◀ Previous
-  </button>
-  <h2 style={{ color: 'white' }}>
-    {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
-  </h2>
-  <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}>
-    Next ▶
-  </button>
-</div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        <button
+          style={{
+            padding: '4px 10px',
+            fontSize: '0.85rem',
+            backgroundColor: '#090585',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            marginRight: '6px'
+          }}
+          onClick={() =>
+            setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))
+          }
+        >
+          ◀ Previous
+        </button>
+        <h2 style={{ color: 'pink' }}>
+          {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
+        </h2>
+        <button
+          style={{
+            padding: '4px 8px',
+            fontSize: '0.85rem',
+            backgroundColor: '#914c67',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+          onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}
+        >
+          Next ▶
+        </button>
+      </div>
 
       <div
         style={{
@@ -105,7 +130,7 @@ const Tracker: React.FC = () => {
           maxWidth: '1200px',
           margin: '0 auto',
           backgroundColor: '#1e1b4b',
-          border: '2px solid red',
+          border: '2px solid pink',
           padding: '0.5rem',
         }}
       >
@@ -115,7 +140,7 @@ const Tracker: React.FC = () => {
             style={{
               textAlign: 'center',
               fontWeight: 'bold',
-              color: 'rgba(255, 255, 255, 0.8)',
+              color: '#faf2f2',
               fontSize: '0.875rem',
               textTransform: 'uppercase',
             }}
@@ -151,7 +176,7 @@ const Tracker: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 

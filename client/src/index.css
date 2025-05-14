@@ -1,0 +1,13 @@
+/* File: client/src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset margins/padding that might cause white bars */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* optional safety net */
+}
