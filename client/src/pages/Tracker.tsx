@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import styles from '../assets/css/common/CosmicBackground.module.css'; // adjust path if needed
 import NavBar from '../components/nav/NavBar';
 
-
 const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries {
     getMoodEntries {
@@ -87,7 +86,7 @@ const Tracker: React.FC = () => {
    <div className={styles['cosmic-background']}>
  <NavBar />
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1.5rem' }}>Tracker Page</h1>
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
 <button
   style={{
     padding: '4px 10px',
@@ -179,7 +178,7 @@ const Tracker: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
