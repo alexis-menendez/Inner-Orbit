@@ -3,6 +3,7 @@
 /* Stars.module.css */
 
 .star {
+  position: absolute;
   fill: white;
   stroke: none;
   opacity: 0.85;
