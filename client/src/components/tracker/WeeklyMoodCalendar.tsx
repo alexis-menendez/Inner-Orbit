@@ -1,3 +1,5 @@
+// File: client/src/components/tracker/WeeklyMoodCalendar.tsx
+
 import React from 'react';
 import { format, subDays } from 'date-fns';
 import { useQuery } from '@apollo/client';
@@ -68,6 +70,7 @@ const WeeklyMoodReview: React.FC = () => {
           );
         })}
       </ul>
+
     </div>
   );
 };

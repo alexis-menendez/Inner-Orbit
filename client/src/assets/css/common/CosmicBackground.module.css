@@ -1,7 +1,7 @@
 /* File: client/src/assets/css/common/CosmicBackground.module.css */
 
 .cosmic-background {
-  background-image: url('/assets/images/DarkMode.svg');
+  background-image: url('/assets/images/DarkModeTransparent.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-attachment: fixed;            

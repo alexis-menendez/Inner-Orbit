@@ -1,0 +1,51 @@
+/* File: client/src/assets/css/journal/Stars.module.css */
+
+/* Stars.module.css */
+
+.star {
+  fill: white;
+  stroke: none;
+  opacity: 0.85;
+  filter:
+    drop-shadow(0 0 4px white)
+    drop-shadow(0 0 8px white)
+    drop-shadow(0 0 12px white)
+    blur(0.4px);
+  transition: filter 0.3s ease, fill 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.star-hover {
+  fill: #3b82f6;
+  stroke: #3b82f6;
+  filter: drop-shadow(0 0 12px #3b82f6)
+          drop-shadow(0 0 18px #3b82f6)
+          drop-shadow(0 0 24px #3b82f6);
+}
+
+.star-soft {
+  filter: drop-shadow(0 0 2px white)
+          drop-shadow(0 0 6px white);
+}
+
+.star-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* Above background image, below UI */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star-background {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 0 6px white, 0 0 12px white;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
