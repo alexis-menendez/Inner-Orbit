@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import CreateJournal from '../components/journal/CreateJournal';
 import { getConstellationForEntryCount } from '../components/journal/ConstellationLogic';
+import styles from '../assets/css/journal/Stars.module.css'; 
 
 interface Entry {
   id: string;
@@ -43,16 +44,10 @@ const Journal: React.FC = () => {
             <div
               key={i}
               title={`Star ${i + 1} - ${constellation.name}`}
+              className={styles.star}
               style={{
-                position: 'absolute',
                 top: `${star.y}%`,
-                left: `${star.x}%`,
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                background: 'white',
-                boxShadow: '0 0 6px 2px white',
-                cursor: 'pointer'
+                left: `${star.x}%`
               }}
             />
           ))}
