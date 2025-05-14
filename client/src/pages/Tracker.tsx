@@ -2,8 +2,6 @@
 
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import styles from '../assets/css/common/CosmicBackground.module.css'; // adjust path if needed
-
 
 const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries {
@@ -82,20 +80,19 @@ const Tracker: React.FC = () => {
   };
 
   return (
-   <div className={styles['cosmic-background']}>
-
+    <>
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1.5rem' }}>Tracker Page</h1>
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-  <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))}>
-    ◀ Previous
-  </button>
-  <h2 style={{ color: 'white' }}>
-    {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
-  </h2>
-  <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}>
-    Next ▶
-  </button>
-</div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))}>
+          ◀ Previous
+        </button>
+        <h2 style={{ color: 'white' }}>
+          {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
+        </h2>
+        <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))}>
+          Next ▶
+        </button>
+      </div>
 
       <div
         style={{
@@ -151,7 +148,7 @@ const Tracker: React.FC = () => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -7,6 +7,8 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './apolloClient';
 import { AuthProvider } from './context/authContext';
 import { BrowserRouter } from 'react-router-dom'; 
+import './index.css';
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
