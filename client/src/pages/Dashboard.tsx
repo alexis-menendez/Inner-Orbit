@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 //import { link } from 'react-router-dom';
 import NavBar from '../components/nav/NavBar'; // Adjusted path to match the correct file structure
 import WeeklyMoodReview from '../components/tracker/WeeklyMoodCalendar';
+import PomodoroTimer from '../components/pomdoro/PomodoroTimer';
+import FocusTaskList from '../components/pomdoro/FocusTaskList';
+
 
 type MoodEntry = {
   id: string;
@@ -55,6 +58,23 @@ const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
         <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
           <h2 className="text-2xl text-white mb-4">Your Weekly Review</h2>
            <WeeklyMoodReview />
+           <h2 className="text-2xl text-white mb-4">-  -  -</h2>
+          <h1 style={{ textAlign: 'center', color: 'white', fontSize: '2rem', margin: '1rem 0' }}>
+        Focus Dashboard
+      </h1>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '2rem',
+          padding: '1rem',
+        }}
+      >
+        <PomodoroTimer />
+        <FocusTaskList />
+      </div>
                 </div>
              
           </div>
