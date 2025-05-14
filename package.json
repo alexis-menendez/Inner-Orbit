@@ -38,6 +38,7 @@
     "devDependencies": {
         "@tailwindcss/postcss": "^4.1.6",
         "@types/bcrypt": "^5.0.2",
+        "@types/date-fns": "^2.5.3",
         "@types/express": "^4.17.21",
         "@types/jsonwebtoken": "^9.0.9",
         "@types/multer": "^1.4.12",
@@ -60,6 +61,7 @@
         "body-parser": "^2.2.0",
         "cloudinary": "^1.41.3",
         "cors": "^2.8.5",
+        "date-fns": "^4.1.0",
         "graphql": "^16.11.0",
         "graphql-tag": "^2.12.6",
         "mongoose": "^8.14.2",
