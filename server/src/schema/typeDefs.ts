@@ -77,6 +77,8 @@ const typeDefs = gql`
     getJournalEntryById(entryId: ID!): JournalEntry
     getUserById(userId: ID!): User
     me: User
+    getMoodEntryByDate(userId, date: Date!): MoodEntry
+    getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries: [JournalEntry]
   }
@@ -96,7 +98,7 @@ const typeDefs = gql`
 
     loginUser(username: String!, password: String!): AuthPayload
 
-    addMoodEntry(mood: String!, intensity: Int!, color: String!): MoodEntry
+    addMoodEntry(mood: String!, intensity: Int!): MoodEntry
     addJournalEntry(
       title: String!
       content: String!
