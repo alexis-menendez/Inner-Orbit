@@ -1,0 +1,45 @@
+/* File: client/src/components/nav/Nav.css */
+
+.dashboard-nav {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, #0a0033, #110044, #1c005c);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(158, 137, 255, 0.3);
+}
+
+.nav-title {
+  font-size: 1.5rem;
+  color: #fff8e7;
+  font-weight: bold;
+  text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #b98dff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #fff8e7;
+  text-shadow: 0 0 6px #b98dff;
+}
+
+.active {
+  color: #fff8e7;
+  border-bottom: 2px solid #fff8e7;
+}

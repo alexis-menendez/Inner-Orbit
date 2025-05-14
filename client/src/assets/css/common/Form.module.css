@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 24rem; /* Tailwind's max-w-sm */
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(241, 109, 186, 0.9);
   color: #0d0a1f;
   border-radius: 1rem;
   box-shadow: 0 0 16px rgba(158, 137, 255, 0.2);
@@ -17,7 +17,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
-  color: #4f46e5;
+  color: #e7e6f0;
   margin-bottom: 0.5rem;
 }
 
@@ -47,7 +47,7 @@
 .linkText {
   font-size: 0.875rem;
   text-align: center;
-  color: #4f46e5;
+  color: #bdbcc4;
   text-decoration: underline;
   cursor: pointer;
 }

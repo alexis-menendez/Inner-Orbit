@@ -3,10 +3,11 @@
 .cosmic-background {
   background-image: url('/assets/images/DarkMode.svg');
   background-repeat: no-repeat;
-  background-size: contain;            
-  background-position: center top;     
-  background-color: #0d0a1f;
-  color: #fff8e7;
+  background-size: contain;
+  background-attachment: fixed;            
+  background-position: center;     
+  background-color: #08012b;
+  color: #d3ccbb;
   width: 100%;
   min-height: 170vh;
   height: auto;
@@ -14,6 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  
   overflow-y: auto;
 }
 
@@ -23,9 +25,10 @@
 }
 
 .cosmic-panel {
-  background-color: rgba(26, 21, 51, 0.8);
+  background-color: #0b0238cc;
   backdrop-filter: blur(8px);
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 0 20px rgba(158, 137, 255, 0.2);
+  box-shadow: 0 0 20px rgba(183, 181, 194, 0.2);
 }
+
