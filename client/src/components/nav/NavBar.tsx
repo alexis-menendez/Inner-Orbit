@@ -11,8 +11,7 @@ const TopNav: React.FC = () => {
       <ul className="nav-links">
         <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink></li>
         <li><NavLink to="/journal" className={({ isActive }) => isActive ? "active" : ""}>Journal</NavLink></li>
-        <li><NavLink to="/develop-constellations" className={({ isActive }) => isActive ? "active" : ""}>Constellations</NavLink></li>
-        <li><NavLink to="/tracker" className={({ isActive }) => isActive ? "active" : ""}>Tracker</NavLink></li>
+          <li><NavLink to="/tracker" className={({ isActive }) => isActive ? "active" : ""}>Tracker</NavLink></li>
       </ul>
     </nav>
   );

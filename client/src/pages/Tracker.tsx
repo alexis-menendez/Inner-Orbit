@@ -112,7 +112,7 @@ const Tracker: React.FC = () => {
   style={{
     padding: '4px 8px',
     fontSize: '0.85rem',
-    backgroundColor: '#914c67',
+    backgroundColor: '#20355D',
     color: '#ffffff', // white text using hex
     border: 'none',
     borderRadius: '4px',
