@@ -11,4 +11,4 @@ Checks that Pass / Fail:
 
 note to self: need to fix journal formatting (create layout router?)
 
-HOW TO GE THE CALENDAR WORKING WHEN THE MOODS DECIDES THAT IT DOES NOT WANT TO MOOD?
+how to mood a mood when it refuses to mood a mood.
