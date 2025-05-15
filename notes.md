@@ -10,3 +10,5 @@ Checks that Pass / Fail:
 - Typescript error check passes
 
 note to self: need to fix journal formatting (create layout router?)
+
+HOW TO GE THE CALENDAR WORKING WHEN THE MOODS DECIDES THAT IT DOES NOT WANT TO MOOD?
