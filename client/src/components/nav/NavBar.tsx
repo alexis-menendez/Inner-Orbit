@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../assets/css/common/Nav.css';
+import '../../assets/css/common/NavBar.module.css';
 
 const TopNav: React.FC = () => {
   return (
