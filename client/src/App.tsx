@@ -15,12 +15,12 @@ import Register from './components/home/RegisterForm';
 import Terms from './components/home/Terms';
 import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
+import Tracker from './pages/Tracker'; 
 import Journal from './pages/Journal';
 import Constellation from './components/journal/Constellation';
 import DevelopConstellations from './components/journal/dev/DevelopConstellations';
 
-// TODO pages (not yet created):
- import Tracker from './pages/Tracker';                  
+// TODO pages (not yet created):                 
 // import UserProfile from './pages/UserProfile';          --->  not yet created
 // import FriendGroup from './pages/FriendGroup';          --->  not yet created
 // import Feed from './pages/Feed';                        --->  not yet created

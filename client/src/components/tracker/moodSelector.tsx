@@ -1,4 +1,5 @@
 // file: client/src/components/tracker/MoodSelector.tsx
+
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_MOOD_ENTRIES } from '../../graphql/queries';

@@ -1,5 +1,12 @@
 // File: client/src/models/Mood.ts
 
+export interface MoodEntry {
+  id: string;
+  date: string;
+  mood: string;
+  moodColor: string;
+}
+
 export interface Mood {
   id: string;
   label: string;

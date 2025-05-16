@@ -1,6 +1,8 @@
+// File: client/src/components/dashboard/pomodoro/PomodoroTimer.tsx
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useTaskStore } from './useTaskStore';
-import styles from './PomodoroTimer.module.css';
+import { useTaskStore } from '../../../hooks/useTaskStore';
+import styles from '../../../../assets/css/dashboard/PomodoroTimer.module.css';
 
 const PomodoroTimer: React.FC = () => {
   const { getSelectedTask } = useTaskStore();

@@ -1,7 +1,7 @@
 // File: client/src/models/GraphQL.ts
 
 import { JournalEntry } from './Journal';
-import { MoodEntry } from './Tracker';
+import { MoodEntry } from './Mood';
 
 // ----- Journal -----
 export interface CreateJournalPayload {
