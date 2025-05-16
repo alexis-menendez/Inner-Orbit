@@ -2,8 +2,8 @@
 
 import fs from 'fs';
 import path from 'path';
-import JournalEntry from '../models/Journal.js';
-import User from '../models/User.js';
+import JournalEntry from '../models/Journal';
+import User from '../models/User';
 
 export const seedJournals = async () => {
   const filePath = path.join(__dirname, 'journal.json');
