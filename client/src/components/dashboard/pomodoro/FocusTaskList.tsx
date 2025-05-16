@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
-import styles from '../../../../assets/css/dashboard/PomodoroTimer.module.css';
+import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 
 const FocusTaskList: React.FC = () => {
   const {

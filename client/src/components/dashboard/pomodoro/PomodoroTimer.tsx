@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
-import styles from '../../../../assets/css/dashboard/PomodoroTimer.module.css';
+import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 
 
 const PomodoroTimer: React.FC = () => {
