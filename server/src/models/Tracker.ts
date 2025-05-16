@@ -22,8 +22,8 @@ const MoodEntrySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  notes: {
-    type: String, 
+  note: {
+    type: String,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,

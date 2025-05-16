@@ -29,6 +29,7 @@ const typeDefs = gql`
     date: Date! 
     createdAt: Date!
     user: User!
+    note: String 
   }
 
   type MoodByDate {
