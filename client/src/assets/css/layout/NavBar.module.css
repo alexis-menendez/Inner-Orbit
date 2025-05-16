@@ -1,6 +1,6 @@
 /* File: client/src/components/nav/NavBar.module.css */
 
-.dashboard-nav {
+.dashboardNav {
   width: 100%;
   padding: 1rem 2rem;
   background: linear-gradient(to right, #0a0033, #110044, #1c005c);
@@ -14,27 +14,27 @@
   box-shadow: 0 0 10px rgba(158, 137, 255, 0.3);
 }
 
-.nav-title {
+.navTitle {
   font-size: 1.5rem;
   color: #fff8e7;
   font-weight: bold;
   text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
 }
 
-.nav-links {
+.navLinks {
   display: flex;
   list-style: none;
   gap: 2rem;
 }
 
-.nav-links a {
+.navLinks a {
   color: #b98dff;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+.navLinks a:hover {
   color: #fff8e7;
   text-shadow: 0 0 6px #b98dff;
 }

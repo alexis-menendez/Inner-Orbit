@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '../../assets/css/layout/NavBar.module.css'; // ✅ fixed the path
+import styles from '../../assets/css/layout/NavBar.module.css'; 
 
 const NavBar: React.FC = () => {
   return (
     <nav className={styles.dashboardNav}>
-      <div className={styles.navTitle}>🌌 Inner Orbit</div>
+      <div className={styles.navTitle}>Inner Orbit</div>
       <ul className={styles.navLinks}>
         <li>
           <NavLink
