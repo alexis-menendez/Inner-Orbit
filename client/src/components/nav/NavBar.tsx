@@ -2,19 +2,40 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../assets/css/common/NavBar.module.css';
+import styles from '../../assets/css/layout/NavBar.module.css'; // ✅ fixed the path
 
-const TopNav: React.FC = () => {
+const NavBar: React.FC = () => {
   return (
-    <nav className="dashboard-nav">
-      <div className="nav-title">🌌 Inner Orbit</div>
-      <ul className="nav-links">
-        <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink></li>
-        <li><NavLink to="/journal" className={({ isActive }) => isActive ? "active" : ""}>Journal</NavLink></li>
-        <li><NavLink to="/tracker" className={({ isActive }) => isActive ? "active" : ""}>Tracker</NavLink></li>
+    <nav className={styles.dashboardNav}>
+      <div className={styles.navTitle}>🌌 Inner Orbit</div>
+      <ul className={styles.navLinks}>
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/journal"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+          >
+            Journal
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/tracker"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+          >
+            Tracker
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
 };
 
-export default TopNav;
+export default NavBar;
