@@ -1,0 +1,26 @@
+{
+  "WhimsyWoods": [
+    {
+      "title": "First Light",
+      "content": "The stars whispered and I listened.",
+      "mood": "calm"
+    },
+    {
+      "title": "Memory Shard",
+      "content": "There was a moment today I want to keep.",
+      "mood": "reflective"
+    }
+  ],
+  "StarSeeker": [
+    {
+      "title": "Cosmic Drift",
+      "content": "Drifted through a thought like a nebula.",
+      "mood": "dreamy"
+    },
+    {
+      "title": "Pulse",
+      "content": "A rhythm moved in the silence. I pulsed with it.",
+      "mood": "meditative"
+    }
+  ]
+}

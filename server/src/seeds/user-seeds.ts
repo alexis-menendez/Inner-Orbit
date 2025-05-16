@@ -24,7 +24,6 @@ export const seedUsers = async () => {
         dob: '1992-09-12',
         isDev: false,
       },
-      // Add more as needed
     ].map(async (user) => ({
       ...user,
       password: await bcrypt.hash(user.password, 10),

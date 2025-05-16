@@ -3,7 +3,11 @@
 import gql from "graphql-tag";
 
 const typeDefs = gql`
+
+
+
   scalar Date
+
 
   type User {
     _id: ID!
@@ -16,6 +20,7 @@ const typeDefs = gql`
     journalEntries: [JournalEntry]
   }
 
+
   type MoodEntry {
     _id: ID!
     mood: String!
@@ -26,13 +31,15 @@ const typeDefs = gql`
     user: User!
   }
 
+
   type JournalEntry {
     _id: ID!
     title: String!
     content: String!
     createdAt: Date!
-    user: User!
+    userId: ID!
   }
+
 
   type AuthPayload {
     token: String!
@@ -41,6 +48,7 @@ const typeDefs = gql`
     message: String
   }
 
+
   input CreateJournalInput {
     userId: ID!
     title: String!
@@ -48,7 +56,20 @@ const typeDefs = gql`
     mood: String
   }
 
+  input UpdateJournalInput {
+    id: ID!
+    title: String
+    content: String
+    mood: String
+  }
+
   type CreateJournalPayload {
+    success: Boolean!
+    message: String
+    entry: JournalEntry
+  }
+
+  type UpdateJournalPayload {
     success: Boolean!
     message: String
     entry: JournalEntry
@@ -60,33 +81,32 @@ const typeDefs = gql`
     entries: [JournalEntry!]!
   }
 
-  input UpdateJournalInput {
-    id: ID!
-    title: String
-    content: String
-    mood: String
+
+  type CompletedConstellationsPayload {
+    count: Int!
+    names: [String!]!
+    message: String
   }
 
-  type UpdateJournalPayload {
-    success: Boolean!
-    message: String
-    entry: JournalEntry
-  }
 
   type Query {
-    getJournalEntryById(entryId: ID!): JournalEntry
     getUserById(userId: ID!): User
-    me: User
+    getJournalEntryById(entryId: ID!): JournalEntry
     getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries: [JournalEntry]
+    me: User
   }
 
-  type Mutation {
-    createJournal(input: CreateJournalInput!): CreateJournalPayload!
-    updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
 
+  extend type Query {
+    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
+  }
+
+
+  type Mutation {
+  
     registerUser(
       username: String!
       firstName: String
@@ -99,28 +119,15 @@ const typeDefs = gql`
     loginUser(username: String!, password: String!): AuthPayload
 
     addMoodEntry(mood: String!, intensity: Int!): MoodEntry
-    addJournalEntry(
-      title: String!
-      content: String!
-      videoUrl: String
-    ): JournalEntry
-
-    updateMoodEntry(
-      id: ID!
-      mood: String
-      intensity: Int
-      color: String
-    ): MoodEntry
-    updateJournalEntry(
-      id: ID!
-      title: String
-      content: String
-      videoUrl: String
-    ): JournalEntry
-
+    updateMoodEntry(id: ID!, mood: String, intensity: Int, color: String): MoodEntry
     deleteMoodEntry(id: ID!): Boolean
+
+    createJournal(input: CreateJournalInput!): CreateJournalPayload!
+    updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
+
+
 `;
 
 export default typeDefs;
