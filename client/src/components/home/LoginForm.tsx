@@ -1,4 +1,4 @@
-// File: client/src/components/home/Login.tsx
+// File: client/src/components/home/LoginForm.tsx
 
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -37,7 +37,8 @@ const Login = () => {
       });
 
       if (data?.loginUser?.token && data?.loginUser?.user) {
-        login(data.loginUser.user, data.loginUser.token);
+        const { _id, username, email } = data.loginUser.user;
+        login({ id: _id, username, email }, data.loginUser.token);
         navigate('/dashboard');
       } else {
         alert('Login failed.');

@@ -1,106 +1,113 @@
 // File: client/src/pages/Journal.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StarBackground from '../components/common/StarBackground';
+import { getConstellationForEntryCount, StarPoint } from '../components/journal/ConstellationLogic';
+import styles from '../assets/css/journal/Stars.module.css';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_JOURNAL_ENTRIES } from '../graphql/queries';
+import { CREATE_JOURNAL } from '../graphql/mutations';
+import { useAuth } from '../context/authContext';
 import CreateJournal from '../components/journal/CreateJournal';
-import { getConstellationForEntryCount } from '../components/journal/ConstellationLogic';
-import styles from '../assets/css/journal/Stars.module.css'; 
+import buttonStyles from '../assets/css/common/Button.module.css';
 
-interface Entry {
-  id: string;
-  title: string;
-  content: string;
-  userId: string;
-}
-
-const mockUser = { id: 'user123', username: 'alexi' }; // simulate logged-in user
 
 const Journal: React.FC = () => {
-  const [entries, setEntries] = useState<Entry[]>([]);
+  const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
+  const [activeStars, setActiveStars] = useState<StarPoint[]>([]);
+  const [connections, setConnections] = useState<[number, number][]>([]);
 
-  const handleSaveEntry = (entry: { title: string; content: string }) => {
-    const newEntry: Entry = {
-      ...entry,
-      id: crypto.randomUUID(),
-      userId: mockUser.id
-    };
-    setEntries((prev) => [...prev, newEntry]);
-    setShowForm(false);
+  const { data, loading, error, refetch } = useQuery(GET_JOURNAL_ENTRIES, {
+    variables: { userId: user?.id },
+    skip: !user,
+    fetchPolicy: 'cache-and-network',
+  });
+
+  const [createJournal] = useMutation(CREATE_JOURNAL);
+
+  useEffect(() => {
+    if (!loading && data?.getJournalEntries) {
+      const entryCount = data.getJournalEntries.entries.length;
+      const { constellation, activeStars } = getConstellationForEntryCount(entryCount);
+      setActiveStars(activeStars);
+      setConnections(constellation.connections || []);
+    }
+  }, [data, loading]);
+
+  const handleSave = async ({ title, content }: { title: string; content: string }) => {
+    try {
+      await createJournal({
+        variables: {
+          input: {
+            userId: user?.id,
+            title,
+            content,
+            mood: 'neutral',
+          },
+        },
+      });
+      await refetch();
+      setShowForm(false);
+    } catch (err) {
+      console.error("Failed to create journal entry:", err);
+    }
   };
 
-  const userEntries = entries.filter((entry) => entry.userId === mockUser.id);
-  const { constellation, activeStars } = getConstellationForEntryCount(userEntries.length);
+  if (!user) return <div className={styles.sky}>Please log in to view your journal.</div>;
+  if (loading) return <div className={styles.sky}>Loading...</div>;
+  if (error) return <div className={styles.sky}>Error loading entries.</div>;
 
- return (
-  <div
-    style={{
-      background: 'black',
-      minHeight: '100vh',
-      color: 'white',
-      position: 'relative',
-      overflow: 'hidden',
-    }}
-  >
-    <StarBackground /> {/* 🌌 Star field behind everything */}
+  return (
+    <div className={styles.sky}>
+      <StarBackground starCount={60} />
 
-    {userEntries.length === 0 ? (
-      <div style={{ textAlign: 'center', marginTop: '5rem', position: 'relative', zIndex: 5 }}>
-        <p>No entries created. Create an entry now.</p>
-        <button onClick={() => setShowForm(true)}>Create Entry</button>
-      </div>
-    ) : (
-      <div style={{ position: 'relative', minHeight: '60vh', zIndex: 5 }}>
-        {activeStars.map((star, i) => (
-          <div
-            key={i}
-            title={`Star ${i + 1} - ${constellation.name}`}
-            className={styles.star}
-            style={{
-              top: `${star.y}%`,
-              left: `${star.x}%`
-            }}
-          />
-        ))}
+      {!showForm && (
         <button
           onClick={() => setShowForm(true)}
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            backgroundColor: '#444',
-            color: 'white',
-            padding: '0.5rem 1rem',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            zIndex: 10
-          }}
+          className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.spaced}`}
         >
-          + Add Entry
+          + Create Journal Entry
         </button>
-      </div>
-    )}
+      )}
 
-    {showForm && (
-      <div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: '#222',
-          padding: '2rem',
-          borderRadius: '8px',
-          zIndex: 20,
-          boxShadow: '0 0 10px rgba(255,255,255,0.2)'
-        }}
-      >
-        <CreateJournal onSave={handleSaveEntry} onCancel={() => setShowForm(false)} />
-      </div>
-    )}
-  </div>
-);
+      {showForm && (
+        <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
+      )}
+
+      {activeStars.map((star, index) => (
+        <div
+          key={index}
+          className={styles.star}
+          style={{
+            top: `${star.y}%`,
+            left: `${star.x}%`,
+            width: `${(star.size || 1)}vh`,
+            height: `${(star.size || 1)}vh`,
+          }}
+        />
+      ))}
+
+      {connections.map(([start, end], idx) => {
+        const a = activeStars[start];
+        const b = activeStars[end];
+        if (!a || !b) return null;
+
+        return (
+          <svg key={`line-${idx}`} className={styles.connectionLine}>
+            <line
+              x1={`${a.x}%`}
+              y1={`${a.y}%`}
+              x2={`${b.x}%`}
+              y2={`${b.y}%`}
+              stroke="white"
+              strokeWidth="0.3"
+            />
+          </svg>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Journal;

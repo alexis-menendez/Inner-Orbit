@@ -1,4 +1,4 @@
-// file: client/src/components/home/RegisterForm.tsx
+// File: client/src/components/home/RegisterForm.tsx
 
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -52,7 +52,8 @@ const Register = () => {
       });
 
       if (data?.registerUser?.success) {
-        login(data.registerUser.user, data.registerUser.token);
+        const { _id, username, email } = data.registerUser.user;
+        login({ id: _id, username, email }, data.registerUser.token);
         navigate('/dashboard');
       } else {
         alert(data?.registerUser?.message || 'Registration failed');
