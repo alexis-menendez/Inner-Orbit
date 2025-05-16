@@ -29,8 +29,14 @@ const typeDefs = gql`
     date: Date! 
     createdAt: Date!
     user: User!
+    note: String 
   }
 
+  type MoodByDate {
+  date: String!
+  mood: String!
+  note: String
+}
 
   type JournalEntry {
     _id: ID!
@@ -97,6 +103,7 @@ const typeDefs = gql`
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
+    moodsByDates(dates: [String!]!): [MoodEntry]
     me: User
   }
 

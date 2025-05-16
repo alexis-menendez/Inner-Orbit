@@ -39,6 +39,15 @@ const resolvers: IResolvers = {
       return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
     },
 
+    // Fetch moods by date for the current user
+    moodsByDates: async (_: any, { dates }: { dates: string[] }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await MoodEntry.find({
+        user: user._id,
+        date: { $in: dates }
+     }).sort({ date: 1 });
+    },
+
 // JOURNAL
 
     // Fetch all journal entries for a specific user
@@ -280,5 +289,6 @@ const resolvers: IResolvers = {
     },
   },
 };
+
 
 export default resolvers;

@@ -1,4 +1,4 @@
-/* File: FocusPomo.module.css */
+/* File: client/src/assets/css/dashboard/PomodoroTimer.module.css */
 
 .timerBox {
   background-color: rgba(26, 26, 46, 0.8); /* semi-transparent */
@@ -119,4 +119,42 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
  
+}
+
+.header {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.input {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  flex: 1;
+  margin-right: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+.addButton {
+  background-color: #3abbbd;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #af71afdc;
+  font-size: 1rem;
+  cursor: pointer;
 }

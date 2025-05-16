@@ -1,5 +1,5 @@
 Alexis:
-Stable as of commit: 3a7ed53
+Stable as of commit: 0003280
 
 Running "dev:clean:install:build:start" from root:
 - successfully builds client
@@ -10,3 +10,5 @@ Checks that Pass / Fail:
 - Typescript error check passes
 
 note to self: need to fix journal formatting (create layout router?)
+
+test
