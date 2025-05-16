@@ -2,43 +2,55 @@
 
 export interface MoodEntry {
   id: string;
-  label: string;
-  emoji?: string;
-  defaultColor?: string;
+  date: string;
+  mood: string;
+  moodColor: string;
 }
 
-export const moods: MoodEntry[] = [
-  { id: 'happy', label: 'Happy', defaultColor: '#facc15' },
-  { id: 'sad', label: 'Sad', defaultColor: '#60a5fa' },
-  { id: 'angry', label: 'Angry', defaultColor: '#f87171' },
-  { id: 'frustrated', label: 'Frustrated',defaultColor: '#fb923c' },
-  { id: 'excited', label: 'Excited', defaultColor: '#a78bfa' },
-  { id: 'bored', label: 'Bored', defaultColor: '#fbbf24' },
-  { id: 'relaxed', label: 'Relaxed', defaultColor: '#34d399' },
-  { id: 'stressed', label: 'Stressed', defaultColor: '#f472b6' },
-  { id: 'confused', label: 'Confused', defaultColor: '#818cf8' },
-  { id: 'motivated', label: 'Motivated', defaultColor: '#a5b4fc' },
-  { id: 'tired', label: 'Tired', defaultColor: '#d1fae5' },
-  { id: 'grateful', label: 'Grateful', defaultColor: '#bbf7d0' },
-  { id: 'hopeful', label: 'Hopeful', defaultColor: '#bbf7d0' },
-  { id: 'lonely', label: 'Lonely', defaultColor: '#fca5a5' },
-  { id: 'loved', label: 'Loved', defaultColor: '#a7f3d0' },
-  { id: 'overwhelmed', label: 'Overwhelmed', defaultColor: '#fca5a5' },
-  { id: 'curious', label: 'Curious', defaultColor: '#c4b5fd' },
-  { id: 'creative', label: 'Creative', defaultColor: '#c4b5fd' },
-  { id: 'calm', label: 'Calm', defaultColor: '#bbf7d0' },
-  { id: 'disappointed', label: 'Disappointed', defaultColor: '#fca5a5' },
-  { id: 'satisfied', label: 'Satisfied', defaultColor:'#bbf7d0' },
-  { id: 'confident', label: 'Confident', defaultColor:'#bbf7d0' },
-  { id: 'ashamed', label:'Ashamed',defaultColor:'#fca5a5'},
-  { id:'jealous',label:'Jealous',defaultColor:'#fca5a5'},
-  { id:'nostalgic',label:'Nostalgic'},
-  { id:'indifferent',label:'Indifferent'},
-  { id:'disconnected',label:'Disconnected'},
-  { id:'connected',label:'Connected'},
-  { id:'inspired',label:'Inspired'},
-  { id:'empowered',label:'Empowered'},
-  { id:'guilty',label:'Guilty'},
-  { id:'proud',label:'Proud'},
-  { id:'embarrassed',label:'Embarrassed'},
+export interface Mood {
+  id: string;
+  label: string;
+  color: string;
+}
+
+export const moodList: Mood[] = [
+  { id: 'happy', label: 'Happy', color: '#D475E2' },
+  { id: 'sad', label: 'Sad', color: '#3E4473' },
+  { id: 'angry', label: 'Angry', color: '#84242e' },
+  { id: 'anxious', label: 'Anxious', color: '#2A4576' },
+  { id: 'excited', label: 'Excited', color: '#D475E2' },
+  { id: 'bored', label: 'Bored', color: '#9A84A2' },
+  { id: 'relaxed', label: 'Relaxed', color: '#9A84A2' },
+  { id: 'stressed', label: 'Stressed', color: '#2A4576' },
+  { id: 'confused', label: 'Confused', color: '#2A4576' },
+  { id: 'motivated', label: 'Motivated', color: '#D475E2' },
+  { id: 'tired', label: 'Tired', color: '#9A84A2' },
+  { id: 'grateful', label: 'Grateful', color: '#D475E2' },
+  { id: 'hopeful', label: 'Hopeful', color: '#D475E2' },
+  { id: 'lonely', label: 'Lonely', color: '#3E4473' },
+  { id: 'loved', label: 'Loved', color: '#CC3E4C' },
+  { id: 'overwhelmed', label: 'Overwhelmed', color: '#2A4576' },
+  { id: 'curious', label: 'Curious', color: '#D475E2' },
+  { id: 'creative', label: 'Creative', color: '#D475E2' },
+  { id: 'calm', label: 'Calm', color: '#9A84A2' },
+  { id: 'disappointed', label: 'Disappointed', color: '#3E4473' },
+  { id: 'satisfied', label: 'Satisfied', color: '#D475E2' },
+  { id: 'confident', label: 'Confident', color: '#D475E2' },
+  { id: 'ashamed', label: 'Ashamed', color: '#3E4473' },
+  { id: 'jealous', label: 'Jealous', color: '#1A5556' },
+  { id: 'nostalgic', label: 'Nostalgic', color: '#9A84A2' },
+  { id: 'indifferent', label: 'Indifferent', color: '#9A84A2' },
+  { id: 'disconnected', label: 'Disconnected', color: '#3E4473' },
+  { id: 'connected', label: 'Connected', color: '#D475E2' },
+  { id: 'inspired', label: 'Inspired', color: '#D475E2' },
+  { id: 'empowered', label: 'Empowered', color: '#D475E2' },
+  { id: 'guilty', label: 'Guilty', color: '#3E4473' },
+  { id: 'proud', label: 'Proud', color: '#D475E2' },
+  { id: 'embarrassed', label: 'Embarrassed', color: '#84242e' },
+  { id: 'frustrated', label: 'Frustrated', color: '#84242e' },
+  { id: 'disgusted', label: 'Disgusted', color: '#1A5556' },
+  { id: 'surprised', label: 'Surprised', color: '#D475E2' },
+  { id: 'content', label: 'Content', color: '#D475E2' },
+  { id: 'overjoyed', label: 'Overjoyed', color: '#D475E2' },
+  { id: 'relieved', label: 'Relieved', color: '#9A84A2' },
 ];

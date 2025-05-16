@@ -2,11 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 //import { link } from 'react-router-dom';
-import NavBar from '../components/nav/NavBar'; // Adjusted path to match the correct file structure
-import WeeklyMoodReview from '../components/tracker/WeeklyMoodCalendar';
-import PomodoroTimer from '../components/pomdoro/PomodoroTimer';
-import FocusTaskList from '../components/pomdoro/FocusTaskList';
-
+import NavBar from '../components/nav/NavBar'; 
+import WeeklyMoodReview from '../components/dashboard/WeeklyMoodCalendar';
+import PomodoroTimer from '../components/dashboard/pomodoro/PomodoroTimer';
+import FocusTaskList from '../components/dashboard/pomodoro/FocusTaskList';
 
 type MoodEntry = {
   id: string;

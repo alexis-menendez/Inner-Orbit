@@ -1,3 +1,5 @@
+// File: server/src/models/Journal.ts
+
 import mongoose, { Schema, Document } from "mongoose";
 
 export type JournalInput = {

@@ -9,22 +9,48 @@ import { createJournalEntry } from "../controllers/journalController";
 import { getMoodColor } from "../utils/trackerColors.js";
 
 const resolvers: IResolvers = {
+
+// QUERIES
+
   Query: {
+
+//USER
+
+    // Fetch user by ID
     getUserById: async (_: any, { userId }: { userId: string }) => {
       const user = await User.findById(userId);
       if (!user) throw new Error("User not found.");
       return user;
     },
+
+    // Authenticated user info
     me: async (_, __, { user }) => {
       if (!user) throw new Error("Not authenticated");
       return await User.findById(user._id)
         .populate("moodEntries")
         .populate("journalEntries");
     },
+
+// TRACKER
+
+    // Fetch all mood entries for the current user
     getMoodEntries: async (_, __, { user }) => {
       if (!user) throw new Error("Not authenticated");
       return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
     },
+
+    // Fetch moods by date for the current user
+    moodsByDates: async (_: any, { dates }: { dates: string[] }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await MoodEntry.find({
+        user: user._id,
+        date: { $in: dates }
+     }).sort({ date: 1 });
+    },
+
+// JOURNAL
+
+    // Fetch all journal entries for a specific user
     getJournalEntries: async (_: any, { userId }: { userId: string }) => {
       const entries = await JournalEntry.find({ userId }).sort({
         createdAt: -1,
@@ -35,6 +61,8 @@ const resolvers: IResolvers = {
         entries,
       };
     },
+
+    // Fetch a single journal entry by its ID
     getJournalEntryById: async (_: any, { entryId }: { entryId: string }) => {
       try {
         const entry = await JournalEntry.findById(entryId);
@@ -44,9 +72,42 @@ const resolvers: IResolvers = {
         return null;
       }
     },
+
+    // Get completed constellations for a user
+    getCompletedConstellations: async (_: any, { userId }: { userId: string }) => {
+      const entries = await JournalEntry.find({ userId });
+
+      const count = entries.length;
+
+      const CONSTELLATION_LIMITS = [9, 19, 32, 43, 54, 65]; // cumulative star counts
+      const CONSTELLATION_NAMES = ["The Key", "The Candle", "The Sun", "The Spiral", "The Bridge", "The Seed"];
+
+      let remaining = count;
+      const completed: string[] = [];
+
+      for (let i = 0; i < CONSTELLATION_LIMITS.length; i++) {
+        if (remaining >= CONSTELLATION_LIMITS[i]) {
+          completed.push(CONSTELLATION_NAMES[i]);
+          remaining -= CONSTELLATION_LIMITS[i];
+        } else {
+          break;
+        }
+      }
+
+      return {
+        count,
+        names: completed,
+        message: "Constellation progress retrieved",
+      };
+    },
   },
 
+// MUTATIONS
   Mutation: {
+
+//USERS
+
+    // Register a new user
     registerUser: async (
       _: any,
       {
@@ -96,6 +157,7 @@ const resolvers: IResolvers = {
       };
     },
 
+    // User login
     loginUser: async (
       _: any,
       { username, password }: { username: string; password: string }
@@ -126,6 +188,14 @@ const resolvers: IResolvers = {
       };
     },
 
+// JOURNAL
+
+    // Create a new journal entry
+    createJournal: async (_: any, { input }: any) => {
+      return await createJournalEntry(input);
+    },
+
+    // Update a journal entry
     updateJournal: async (_: any, { input }: any) => {
       try {
         const { id, title, content, mood } = input;
@@ -159,10 +229,16 @@ const resolvers: IResolvers = {
       }
     },
 
-    createJournal: async (_: any, { input }: any) => {
-      return await createJournalEntry(input);
+    // Delete a journal entry
+    deleteJournalEntry: async (_: any, { id }: { id: string }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      const deleted = await JournalEntry.findOneAndDelete({ _id: id, userId: user._id });
+      return !!deleted;
     },
 
+// MOOD TRACKER
+
+    // Add a mood entry
     addMoodEntry: async (_, { mood, intensity }, { user }) => {
       if (!user) throw new Error("Not authenticated");
 
@@ -185,6 +261,7 @@ const resolvers: IResolvers = {
       return entry;
     },
 
+    // Update a mood entry
     updateMoodEntry: async (_, { id, mood, intensity }, { user }) => {
       if (!user) throw new Error("Not authenticated");
 
@@ -204,6 +281,7 @@ const resolvers: IResolvers = {
       );
     },
 
+    // Delete a mood entry
     deleteMoodEntry: async (_, { id }, { user }) => {
       if (!user) throw new Error("Not authenticated");
       await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
@@ -211,5 +289,6 @@ const resolvers: IResolvers = {
     },
   },
 };
+
 
 export default resolvers;

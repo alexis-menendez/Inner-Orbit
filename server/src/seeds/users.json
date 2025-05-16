@@ -16,32 +16,5 @@
     "lastName": "Reed",
     "dob": "1992-09-12",
     "isDev": false
-  },
-  {
-    "username": "MoonMuse",
-    "email": "moonmuse@innerorbit.space",
-    "password": "test123",
-    "firstName": "Luna",
-    "lastName": "Silva",
-    "dob": "1990-06-21",
-    "isDev": false
-  },
-  {
-    "username": "AstroEcho",
-    "email": "astroecho@innerorbit.space",
-    "password": "test123",
-    "firstName": "Echo",
-    "lastName": "Vega",
-    "dob": "1987-04-18",
-    "isDev": false
-  },
-  {
-    "username": "OrbitOwl",
-    "email": "orbitowl@innerorbit.space",
-    "password": "test123",
-    "firstName": "Sage",
-    "lastName": "Orion",
-    "dob": "1993-11-30",
-    "isDev": false
   }
 ]

@@ -1,4 +1,5 @@
-// src/hooks/useTaskStore.ts
+// File: client/src/hooks/useTaskStore.ts
+
 import { useState, useEffect } from 'react';
 
 export interface Task {

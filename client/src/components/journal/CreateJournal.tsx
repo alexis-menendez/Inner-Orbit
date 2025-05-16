@@ -1,3 +1,5 @@
+// File: client/src/components/journal/CreateJournal.tsx
+
 import React, { useState } from 'react';
 
 interface CreateJournalProps {

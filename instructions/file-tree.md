@@ -23,20 +23,37 @@ InnerOrbit/
 │   │   │       │   ├── CosmicBackground.module.css 
 │   │   │       │   ├── Form.module.css   
 │   │   │       │   └── *Global reusable styles like button styles, loading spinners, modals, etc...*
+│   │   │       │  
+│   │   │       ├── dashboard/ 
+│   │   │       │   ├── PomodoroTimer.module.css    
+│   │   │       │   └── *Dedicated styles for elements on the Dashboard.* 
+│   │   │       │ 
+│   │   │       ├── effects/   
+│   │   │       │   └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc.* 
 │   │   │       │   
-│   │   │       ├── layout/                
+│   │   │       ├── journal/ 
+│   │   │       │   ├── Stars.module.css    
+│   │   │       │   └── *Dedicated styles for the journal and constellations pages.* 
+│   │   │       │   
+│   │   │       ├── layout/   
+│   │   │       │   ├── Tracker.module.css              
 │   │   │       │   └── *CSS for page or container-level layout components (grid/flexbox layouts, responsive wrappers, Navbars)* 
 │   │   │       │   
-│   │   │       └── effects/   
-│   │   │           └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc..*
+│   │   │       └── tracker/  
+│   │   │           ├── Stars.module.css   
+│   │   │           └── *Dedicated styles for the tracker page*
 │   │   │  
 │   │   ├── components/  
 │   │   │   ├── common/  
-│   │   │   │   ├──  (not yet created)   
+│   │   │   │   ├── StarBackground.tsx  
 │   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
 │   │   │   │   
 │   │   │   ├── dashboard/   
-│   │   │   │   ├──  (not yet created)   
+│   │   │   │   ├── pomdoro/
+│   │   │   │   │   ├──  FocusTaskList.tsx
+│   │   │   │   │   └──  PmodoroTimer.tsx
+│   │   │   │   │  
+│   │   │   │   ├──  WeeklyMoodCalendar.tsx   
 │   │   │   │   └── *any components created specifically for the dashboard page...*
 │   │   │   │   
 │   │   │   ├── feed/  
@@ -66,12 +83,14 @@ InnerOrbit/
 │   │   │   │   └── *things like "PaggeWrapper.tsx", etc...* 
 │   │   │   │  
 │   │   │   ├── nav/  
-│   │   │   │   ├──  BottomNav.tsx  
+│   │   │   │   ├──  Footer.tsx 
+│   │   │   │   ├──  NavBar.tsx 
 │   │   │   │   └── *things like "Navbar.tsx", PaggeWrapper.tsx, etc...*  
 │   │   │   │
 │   │   │   ├── tracker/  
-│   │   │   │   ├──  moodChart.tsx  
-│   │   │   │   ├──  moodSelector.tsx  
+│   │   │   │   ├──  MoodCalender.tsx 
+│   │   │   │   ├──  MoodChart.tsx  
+│   │   │   │   ├──  MoodSelector.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
 │   │   │   │    
 │   │   │   ├── library/  
@@ -87,14 +106,17 @@ InnerOrbit/
 │   │   │   └── themeContext.tsx
 │   │   │
 │   │   ├── graphql/  
-│   │   │   ├── queries.ts  
-│   │   │   └── mutations.ts  
+│   │   │   ├── mutations.ts 
+│   │   │   └── queries.ts 
+│   │   │
+│   │   ├── hooks/   
+│   │   │   └── useTaskStore.ts 
 │   │   │
 │   │   ├── models/  
 │   │   │   ├── Auth.ts 
 │   │   │   ├── GraphQL.ts 
 │   │   │   ├── Group.ts           (not yet created)   
-│   │   │   ├── Index.ts 
+│   │   │   ├── index.ts 
 │   │   │   ├── Journal.ts 
 │   │   │   ├── Mood.ts 
 │   │   │   ├── Post.ts            (not yet created)            
@@ -102,14 +124,14 @@ InnerOrbit/
 │   │   │   └── User.ts       
 │   │   │
 │   │   ├── pages/  
-│   │   │   ├── Home.tsx  
 │   │   │   ├── Dashboard.tsx 
+│   │   │   ├── Home.tsx  
 │   │   │   ├── Feed.tsx            (not yet created)
 │   │   │   ├── FriendGroup.tsx     (not yet created)  
 │   │   │   ├── Journal.tsx           
 │   │   │   ├── Library.tsx         (not yet created) 
 │   │   │   ├── NotFound.tsx        (not yet created) 
-│   │   │   ├── Tracker.tsx         (not yet created)  
+│   │   │   ├── Tracker.tsx         
 │   │   │   └── UserProfile.tsx     (not yet created)       
 │   │   │
 │   │   ├── utils/
@@ -121,6 +143,7 @@ InnerOrbit/
 │   │   │
 │   │   ├── appolloClient.ts
 │   │   ├── App.tsx  
+│   │   ├── index.css   
 │   │   ├── main.tsx  
 │   │   └── vite-env.d.ts 
 │   │
@@ -185,10 +208,10 @@ InnerOrbit/
 │   │   │   ├── user.json             
 │   │   │   ├── post-seeds.ts        (not yet created) 
 │   │   │   ├── post.json            (not yet created) 
-│   │   │   ├── mood-seeds.ts        (not yet created) 
-│   │   │   ├── mood.json            (not yet created) 
-│   │   │   ├── journal-seeds.ts     (not yet created) 
-│   │   │   └── journal.json         (not yet created) 
+│   │   │   ├── tracker-seeds.ts     (not yet created) 
+│   │   │   ├── tracker.json         (not yet created) 
+│   │   │   ├── journal-seeds.ts     
+│   │   │   └── journal.json         
 │   │   │      
 │   │   ├── types/   
 │   │   │   └── express/  

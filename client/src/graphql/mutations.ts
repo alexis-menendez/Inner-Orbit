@@ -55,6 +55,7 @@ export const CREATE_JOURNAL = gql`
         content
         mood
         createdAt
+        userId
       }
     }
   }
@@ -71,6 +72,7 @@ export const UPDATE_JOURNAL = gql`
         content
         mood
         createdAt
+        userId
       }
     }
   }
