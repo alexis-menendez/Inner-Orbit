@@ -48,7 +48,6 @@ const WeeklyMoodReview: React.FC = () => {
 
   return (
     <div className="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-      <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-white">This Week's Mood</h3>
       <ul className="space-y-2">
         {last7Dates.map((date) => {
           const moodEntry = moods.find((m) => m.date === date);

@@ -11,11 +11,11 @@ type MoodEntry = {
   id: string;
   label: string;
   date: string;
-   color: string;
+  color: string;
 };
 
 const Dashboard: React.FC = () => {
-const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
+  const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
   const userId = 'YOUR_USER_ID'; // Replace with real user ID or context
 
   useEffect(() => {
@@ -46,42 +46,40 @@ const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
 
     fetchWeeklyMoods();
   }, []);
+
   return (
     <div className="cosmic-background min-h-screen">
       <NavBar />
 
       <div className="flex flex-col items-center px-4 py-8 gap-8">
-        <h1 className="text-3xl glow-text mb-4">Welcome to Your Dashboard</h1>
+        <h1 className="text-3xl glow-text mb-4">Dashboard</h1>
 
-         {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
+        {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
         <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-          <h2 className="text-2xl text-white mb-4">Your Weekly Review</h2>
-           <WeeklyMoodReview />
-           <h2 className="text-2xl text-white mb-4">-  -  -</h2>
-          <h1 style={{ textAlign: 'center', color: 'white', fontSize: '2rem', margin: '1rem 0' }}>
-        Focus Dashboard
-      </h1>
+          <h2 className="text-2xl text-white mb-4">Weekly Review</h2>
+          <WeeklyMoodReview />
+        </div>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: '2rem',
-          padding: '1rem',
-        }}
-      >
-        <PomodoroTimer />
-        <FocusTaskList />
-      </div>
-                </div>
-             
+        {/* Focus App Panel */}
+        <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
+          <h2 className="text-2xl text-white mb-4">Focus App</h2>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+              padding: '1rem',
+            }}
+          >
+            <PomodoroTimer />
+            <FocusTaskList />
           </div>
         </div>
-     
+      </div>
+    </div>
   );
 };
-
 
 // Utility to determine appropriate text color for contrast
 function getContrastYIQ(hex: string): 'light' | 'dark' {
@@ -92,4 +90,5 @@ function getContrastYIQ(hex: string): 'light' | 'dark' {
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? 'light' : 'dark';
 }
+
 export default Dashboard;
