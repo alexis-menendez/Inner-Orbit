@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 24rem; /* Tailwind's max-w-sm */
   padding: 2rem;
-  background-color: rgba(241, 109, 186, 0.9);
+  background-color: #400a6b;
   color: #0d0a1f;
   border-radius: 1rem;
   box-shadow: 0 0 16px rgba(158, 137, 255, 0.2);
