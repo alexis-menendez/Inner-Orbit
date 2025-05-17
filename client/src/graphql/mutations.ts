@@ -78,6 +78,21 @@ export const UPDATE_JOURNAL = gql`
   }
 `;
 
+export const UPDATE_JOURNAL_ENTRY = gql`
+  mutation UpdateJournalEntry($id: ID!, $input: UpdateJournalInput!) {
+    updateJournalEntry(id: $id, input: $input) {
+      success
+      message
+      entry {
+        _id
+        title
+        content
+        createdAt
+      }
+    }
+  }
+`;
+
 export const DELETE_JOURNAL_ENTRY = gql`
   mutation DeleteJournalEntry($id: ID!) {
     deleteJournalEntry(id: $id)

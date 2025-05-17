@@ -290,39 +290,51 @@ export function getConstellationForEntryCount(entryCount: number): {
     remainingEntries -= totalStars;
   }
 
-// If all constellations are completed, generate solo stars beyond the last constellation
-const allStars = CONSTELLATIONS.flatMap(c => c.stars);
-const overflowCount = remainingEntries;
+    // All constellations have been completed
+    const lastConstellation = CONSTELLATIONS[CONSTELLATIONS.length - 1];
 
-// Generate unique solo star points
-const soloStars: StarPoint[] = [];
-
-while (soloStars.length < overflowCount) {
-  const candidate: StarPoint = {
-    x: Math.floor(Math.random() * 90) + 5, // stay 5–95% from edges
-    y: Math.floor(Math.random() * 90) + 5
+    return {
+      constellation: lastConstellation,
+      activeStars: lastConstellation.stars,
+      isComplete: true,
+      completedName: lastConstellation.name,
+      completedDescription: lastConstellation.description
   };
 
-  const isTooClose = allStars.concat(soloStars).some(existing =>
-    Math.abs(existing.x - candidate.x) < 5 && Math.abs(existing.y - candidate.y) < 5
-  );
 
-  if (!isTooClose) {
-    soloStars.push(candidate);
-  }
+// // If all constellations are completed, generate solo stars beyond the last constellation
+// const allStars = CONSTELLATIONS.flatMap(c => c.stars);
+// const overflowCount = remainingEntries;
 
-  // Avoid infinite loops on a crowded screen
-  if (soloStars.length > 100) break;
-}
+// // Generate unique solo star points
+// const soloStars: StarPoint[] = [];
 
-return {
-  constellation: {
-    name: "Wandering Stars",
-    stars: soloStars,
-    connections: []
-  },
-  activeStars: soloStars,
-  isComplete: false
-};
+// while (soloStars.length < overflowCount) {
+//   const candidate: StarPoint = {
+//     x: Math.floor(Math.random() * 90) + 5, // stay 5–95% from edges
+//     y: Math.floor(Math.random() * 90) + 5
+//   };
+
+//   const isTooClose = allStars.concat(soloStars).some(existing =>
+//     Math.abs(existing.x - candidate.x) < 5 && Math.abs(existing.y - candidate.y) < 5
+//   );
+
+//   if (!isTooClose) {
+//     soloStars.push(candidate);
+//   }
+
+//   // Avoid infinite loops on a crowded screen
+//   if (soloStars.length > 100) break;
+// }
+
+// return {
+//   constellation: {
+//     name: "Wandering Stars",
+//     stars: soloStars,
+//     connections: []
+//   },
+//   activeStars: soloStars,
+//   isComplete: false
+// };
 
 }

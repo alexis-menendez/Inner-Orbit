@@ -1,8 +1,14 @@
 // File: client/src/pages/Journal.tsx
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import StarBackground from '../components/common/StarBackground';
-import { getConstellationForEntryCount, StarPoint } from '../components/journal/ConstellationLogic';
+import {
+  getConstellationForEntryCount,
+  CONSTELLATIONS,
+  StarPoint,
+  Constellation,
+} from '../components/journal/ConstellationLogic';
 import styles from '../assets/css/journal/Stars.module.css';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_JOURNAL_ENTRIES } from '../graphql/queries';
@@ -11,12 +17,13 @@ import { useAuth } from '../context/authContext';
 import CreateJournal from '../components/journal/CreateJournal';
 import buttonStyles from '../assets/css/common/Button.module.css';
 
-
 const Journal: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate(); 
   const [showForm, setShowForm] = useState(false);
-  const [activeStars, setActiveStars] = useState<StarPoint[]>([]);
-  const [connections, setConnections] = useState<[number, number][]>([]);
+  const [unlockedData, setUnlockedData] = useState<
+    { constellation: Constellation; stars: StarPoint[]; connections: [number, number][] }[]
+  >([]);
 
   const { data, loading, error, refetch } = useQuery(GET_JOURNAL_ENTRIES, {
     variables: { userId: user?.id },
@@ -29,9 +36,37 @@ const Journal: React.FC = () => {
   useEffect(() => {
     if (!loading && data?.getJournalEntries) {
       const entryCount = data.getJournalEntries.entries.length;
-      const { constellation, activeStars } = getConstellationForEntryCount(entryCount);
-      setActiveStars(activeStars);
-      setConnections(constellation.connections || []);
+      let remaining = entryCount;
+      const unlocked: { constellation: Constellation; stars: StarPoint[]; connections: [number, number][] }[] = [];
+
+      for (const constellation of CONSTELLATIONS) {
+        const totalStars = constellation.stars.length;
+
+        if (remaining >= totalStars) {
+          unlocked.push({
+            constellation,
+            stars: constellation.stars,
+            connections: constellation.connections,
+          });
+          remaining -= totalStars;
+        } else if (remaining > 0) {
+          const visibleStars = constellation.stars.slice(0, remaining);
+          const visibleIndexes = new Set(visibleStars.map((_, i) => i));
+          const filteredConnections = constellation.connections.filter(
+            ([a, b]) => a < remaining && b < remaining
+          );
+          unlocked.push({
+            constellation,
+            stars: visibleStars,
+            connections: filteredConnections,
+          });
+          break;
+        } else {
+          break;
+        }
+      }
+
+      setUnlockedData(unlocked);
     }
   }, [data, loading]);
 
@@ -62,6 +97,13 @@ const Journal: React.FC = () => {
     <div className={styles.sky}>
       <StarBackground starCount={60} />
 
+      <button
+        onClick={() => navigate('/dashboard')}
+        className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
+      >
+        ← Back to Dashboard
+      </button>
+
       {!showForm && (
         <button
           onClick={() => setShowForm(true)}
@@ -71,41 +113,75 @@ const Journal: React.FC = () => {
         </button>
       )}
 
+      {/* Wrap form in centered overlay */}
       {showForm && (
-        <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
+        <div className={styles.formOverlay}>
+          <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
+        </div>
       )}
 
-      {activeStars.map((star, index) => (
-        <div
-          key={index}
-          className={styles.star}
-          style={{
-            top: `${star.y}%`,
-            left: `${star.x}%`,
-            width: `${(star.size || 1)}vh`,
-            height: `${(star.size || 1)}vh`,
-          }}
-        />
-      ))}
+      <div className={styles.gridContainer}>
+        {unlockedData.map(({ constellation, stars, connections }, index) => (
+          <div
+            key={index}
+            className={styles.gridCell}
+            onClick={() =>
+              navigate(`/journal/constellation/${index}`, {
+                state: { entries: data.getJournalEntries.entries }
+              })
+            }
+            style={{ cursor: 'pointer' }}
+          >
+            <svg
+              className={styles.constellationSVG}
+              viewBox="0 0 100 100"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <filter id="whiteGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
 
-      {connections.map(([start, end], idx) => {
-        const a = activeStars[start];
-        const b = activeStars[end];
-        if (!a || !b) return null;
+              {connections.map(([start, end], idx) => {
+                const a = stars[start];
+                const b = stars[end];
+                if (!a || !b) return null;
+                return (
+                  <line
+                    key={`line-${idx}`}
+                    x1={a.x}
+                    y1={a.y}
+                    x2={b.x}
+                    y2={b.y}
+                    stroke="white"
+                    strokeWidth="0.3"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                );
+              })}
 
-        return (
-          <svg key={`line-${idx}`} className={styles.connectionLine}>
-            <line
-              x1={`${a.x}%`}
-              y1={`${a.y}%`}
-              x2={`${b.x}%`}
-              y2={`${b.y}%`}
-              stroke="white"
-              strokeWidth="0.3"
-            />
-          </svg>
-        );
-      })}
+              {stars.map((star, i) => (
+                <circle
+                  key={`star-${i}`}
+                  cx={star.x}
+                  cy={star.y}
+                  r={star.size ?? 1}
+                  className={styles.star}
+                  filter="url(#whiteGlow)"
+                />
+              ))}
+            </svg>
+            <div className={styles.label}>
+              {stars.length === constellation.stars.length ? constellation.name : "???"}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -4,10 +4,7 @@ import gql from "graphql-tag";
 
 const typeDefs = gql`
 
-
-
   scalar Date
-
 
   type User {
     _id: ID!
@@ -20,23 +17,22 @@ const typeDefs = gql`
     journalEntries: [JournalEntry]
   }
 
-
   type MoodEntry {
     _id: ID!
     mood: String!
     moodColor: String!
     intensity: Int!
-    date: Date! 
+    date: Date!
     createdAt: Date!
     user: User!
-    note: String 
+    note: String
   }
 
   type MoodByDate {
-  date: String!
-  mood: String!
-  note: String
-}
+    date: String!
+    mood: String!
+    note: String
+  }
 
   type JournalEntry {
     _id: ID!
@@ -47,14 +43,12 @@ const typeDefs = gql`
     userId: ID!
   }
 
-
   type AuthPayload {
     token: String!
     user: User!
     success: Boolean
     message: String
   }
-
 
   input CreateJournalInput {
     userId: ID!
@@ -64,7 +58,6 @@ const typeDefs = gql`
   }
 
   input UpdateJournalInput {
-    id: ID!
     title: String
     content: String
     mood: String
@@ -88,13 +81,11 @@ const typeDefs = gql`
     entries: [JournalEntry!]!
   }
 
-
   type CompletedConstellationsPayload {
     count: Int!
     names: [String!]!
     message: String
   }
-
 
   type Query {
     getUserById(userId: ID!): User
@@ -107,14 +98,11 @@ const typeDefs = gql`
     me: User
   }
 
-
   extend type Query {
     getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
   }
 
-
   type Mutation {
-  
     registerUser(
       username: String!
       firstName: String
@@ -132,9 +120,9 @@ const typeDefs = gql`
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
     updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
+    updateJournalEntry(id: ID!, input: UpdateJournalInput!): CreateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
-
 
 `;
 

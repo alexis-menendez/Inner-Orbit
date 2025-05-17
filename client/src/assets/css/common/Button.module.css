@@ -48,3 +48,11 @@
 .secondary:hover {
   background-color: #400a6b;
 }
+
+.tertiary {
+  background-color: #a982ec;
+}
+
+.tertiary:hover {
+  background-color: #080341;
+}

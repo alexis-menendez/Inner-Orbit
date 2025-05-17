@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import { seedUsers } from './user-seeds';
-import { seedJournals } from './journal-seeds';
 // import { seedMoods } from './mood-seeds';
 
 dotenv.config();
@@ -22,7 +21,6 @@ if (!MONGO_URI) {
     console.log('✅ Connected to MongoDB');
 
     await seedUsers();
-    await seedJournals();
     // await seedMoods();
 
     console.log('🌱 Database seeded successfully');
