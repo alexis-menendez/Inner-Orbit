@@ -25,16 +25,16 @@
   width: 100%;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: #080341;
+  color: #ffffff;
   outline: none;
   transition: border 0.2s;
+  box-sizing: border-box;
 }
 
 .input:focus {
-  border-color: #7c3aed;
+  border-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
 }
 
