@@ -1,6 +1,8 @@
 // File: client/src/components/journal/CreateJournal.tsx
 
 import React, { useState } from 'react';
+import styles from '../../assets/css/common/Form.module.css';
+import buttonStyles from '../../assets/css/common/Button.module.css';
 
 interface CreateJournalProps {
   onSave: (entry: { title: string; content: string }) => void;
@@ -19,22 +21,40 @@ const CreateJournal: React.FC<CreateJournalProps> = ({ onSave, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: '1rem', background: '#111', color: '#fff' }}>
-      <h2>Create New Journal Entry</h2>
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <h2 className={styles.formTitle}>Create New Journal Entry</h2>
+
       <input
+        className={styles.input}
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
       />
+
       <textarea
+        className={styles.input}
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
         required
+        rows={6}
       />
-      <button type="submit">Save Entry</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+
+      <button
+        type="submit"
+        className={`${buttonStyles.button} ${buttonStyles.primary}`}
+      >
+        Save Entry
+      </button>
+
+      <button
+        type="button"
+        onClick={onCancel}
+        className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+      >
+        Cancel
+      </button>
     </form>
   );
 };
