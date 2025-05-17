@@ -71,7 +71,7 @@ const App: React.FC = () => {
           }
         />
         <Route
-          path="/journal/constellation/:id"
+          path="/journal/constellation/:index"
           element={
             <ProtectedRoute>
               <Constellation />

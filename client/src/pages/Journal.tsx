@@ -1,6 +1,7 @@
-// File: client/src/pages/Journal.tsx
+// File: server/src/pages/Journal.tsx
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import StarBackground from '../components/common/StarBackground';
 import {
   getConstellationForEntryCount,
@@ -18,6 +19,7 @@ import buttonStyles from '../assets/css/common/Button.module.css';
 
 const Journal: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate(); 
   const [showForm, setShowForm] = useState(false);
   const [unlockedData, setUnlockedData] = useState<
     { constellation: Constellation; stars: StarPoint[]; connections: [number, number][] }[]
@@ -41,7 +43,6 @@ const Journal: React.FC = () => {
         const totalStars = constellation.stars.length;
 
         if (remaining >= totalStars) {
-          // Fully completed constellation
           unlocked.push({
             constellation,
             stars: constellation.stars,
@@ -49,7 +50,6 @@ const Journal: React.FC = () => {
           });
           remaining -= totalStars;
         } else if (remaining > 0) {
-          // Partially completed constellation
           const visibleStars = constellation.stars.slice(0, remaining);
           const visibleIndexes = new Set(visibleStars.map((_, i) => i));
           const filteredConnections = constellation.connections.filter(
@@ -112,7 +112,12 @@ const Journal: React.FC = () => {
 
       <div className={styles.gridContainer}>
         {unlockedData.map(({ constellation, stars, connections }, index) => (
-          <div key={index} className={styles.gridCell}>
+          <div
+            key={index}
+            className={styles.gridCell}
+            onClick={() => navigate(`/journal/constellation/${index}`)}
+            style={{ cursor: 'pointer' }} 
+          >
             <svg
               className={styles.constellationSVG}
               viewBox="0 0 100 100"
@@ -157,7 +162,9 @@ const Journal: React.FC = () => {
                 />
               ))}
             </svg>
-            <div className={styles.label}>{constellation.name}</div>
+            <div className={styles.label}>
+              {stars.length === constellation.stars.length ? constellation.name : "???"}
+            </div>
           </div>
         ))}
       </div>
