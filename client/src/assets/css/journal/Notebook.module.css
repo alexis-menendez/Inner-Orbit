@@ -2,14 +2,7 @@
 
 .notebookContainer {
   position: relative;
-  background-color: #fdf9f3;
-
-  /* Use full-size image once, then repeat if taller */
-  background-image: url('/assets/images/Notebook.svg');
-  background-repeat: repeat-y;
-  background-position: left top;
-  background-size: contain; /* full-width vertically without shrinking */
-
+  background-color: transparent;
   border-radius: 1rem;
   width: 100%;
   max-width: 450px;
@@ -20,6 +13,13 @@
   line-height: 1.7;
   color: #2b2b2b;
 
+
+  /* Use full-size image once, then repeat if taller */
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: left top;
+  background-size: contain; /* full-width vertically without shrinking */
+
   /* Prevent early repetition by ensuring container is at least the natural image height */
-  min-height: 850px; /* replace 1200px with the actual height of your Notebook.svg */
+  min-height: 841px; /* replace 1200px with the actual height of your Notebook.svg */
 }
