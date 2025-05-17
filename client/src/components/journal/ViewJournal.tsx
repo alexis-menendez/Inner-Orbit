@@ -8,8 +8,9 @@ import styles from '../../assets/css/journal/Stars.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import notebookStyles from '../../assets/css/journal/Notebook.module.css';
 import formStyles from '../../assets/css/common/Form.module.css';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_JOURNAL_ENTRIES } from '../../graphql/queries';
+import { UPDATE_JOURNAL_ENTRY } from '../../graphql/mutations';
 import { useAuth } from '../../context/authContext';
 
 const ViewJournal: React.FC = () => {
@@ -24,6 +25,8 @@ const ViewJournal: React.FC = () => {
     variables: { userId: user?.id },
     skip: !user,
   });
+
+  const [updateJournalEntry] = useMutation(UPDATE_JOURNAL_ENTRY);
 
   if (!entryId || !entryId.includes('-')) {
     return <div className={styles.sky}>Invalid entry ID</div>;
@@ -51,10 +54,21 @@ const ViewJournal: React.FC = () => {
     setShowForm(true);
   };
 
-  const handleSave = () => {
-    // TODO: Implement the update mutation
-    console.log('Saving:', titleInput, contentInput);
-    setShowForm(false);
+  const handleSave = async () => {
+    try {
+      await updateJournalEntry({
+        variables: {
+          id: entry._id,
+          input: {
+            title: titleInput,
+            content: contentInput,
+          },
+        },
+      });
+      setShowForm(false);
+    } catch (err) {
+      console.error('Failed to update journal entry:', err);
+    }
   };
 
   return (
@@ -74,7 +88,7 @@ const ViewJournal: React.FC = () => {
             onClick={handleEditClick}
             className={`${buttonStyles.button} ${buttonStyles.primary}`}
           >
-            ✎ Edit Journal Entry
+            Edit Journal Entry
           </button>
         )}
       </div>

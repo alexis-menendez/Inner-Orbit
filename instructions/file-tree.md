@@ -75,7 +75,6 @@ InnerOrbit/
 │   │   │   │   ├──  Constellation.tsx  
 │   │   │   │   ├──  ConstellationLogic.tsx 
 │   │   │   │   ├──  CreateJournal.tsx 
-│   │   │   │   ├──  EditJournal.tsx     (*not yet created*)
 │   │   │   │   ├──  ViewJournal.tsx 
 │   │   │   │   └── *any components created specifically for the journal page...*
 │   │   │   │  
