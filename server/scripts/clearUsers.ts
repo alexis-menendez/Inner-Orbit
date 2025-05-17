@@ -1,5 +1,9 @@
 // File: server/scripts/clearUsers.ts
 
+// This script clears all users from the database. 
+// It is intended to be run in a development environment only.
+// CHECK WITH EVERYONE BEFORE RUNNING THIS SCRIPT.
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from '../src/models/User'; 
