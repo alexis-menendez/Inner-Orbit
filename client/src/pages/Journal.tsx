@@ -125,8 +125,12 @@ const Journal: React.FC = () => {
           <div
             key={index}
             className={styles.gridCell}
-            onClick={() => navigate(`/journal/constellation/${index}`)}
-            style={{ cursor: 'pointer' }} 
+            onClick={() =>
+              navigate(`/journal/constellation/${index}`, {
+                state: { entries: data.getJournalEntries.entries }
+              })
+            }
+            style={{ cursor: 'pointer' }}
           >
             <svg
               className={styles.constellationSVG}
