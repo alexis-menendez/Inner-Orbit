@@ -1,20 +1,28 @@
 // File: client/src/components/journal/Constellation.tsx
 
 import React, { useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { CONSTELLATIONS } from './ConstellationLogic';
 import styles from '../../assets/css/journal/Stars.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import StarBackground from '../common/StarBackground';
+import { useQuery } from '@apollo/client';
+import { GET_JOURNAL_ENTRIES } from '../../graphql/queries';
+import { useAuth } from '../../context/authContext';
 
 const Constellation: React.FC = () => {
   const { index } = useParams<{ index: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const entries = location.state?.entries || [];
-  console.log('Entries passed to constellation:', entries);
+  const { user } = useAuth();
+  const { data } = useQuery(GET_JOURNAL_ENTRIES, {
+    variables: { userId: user?.id },
+    skip: !user,
+    fetchPolicy: 'cache-and-network',
+  });
+
+  const entries = data?.getJournalEntries?.entries || [];
 
   const constellationIndex = Number(index);
   const isValidIndex =
@@ -95,20 +103,20 @@ const Constellation: React.FC = () => {
                   height={80}
                   style={{ overflow: 'visible', pointerEvents: 'none' }}
                 >
-                <div
-                  style={{
-                    fontSize: '1.5px',
-                    color: 'white',
-                    background: 'rgba(60, 20, 80, 0.9)',
-                    padding: '1px 2px',
-                    borderRadius: '0.5vw',
-                    wordWrap: 'break-word',
-                    maxWidth: '50%',
-                    lineHeight: '1.2',
-                  }}
-                >
-                  {entryTitle}
-                </div>
+                  <div
+                    style={{
+                      fontSize: '1.5px',
+                      color: 'white',
+                      background: 'rgba(60, 20, 80, 0.9)',
+                      padding: '1px 2px',
+                      borderRadius: '0.5vw',
+                      wordWrap: 'break-word',
+                      maxWidth: '50%',
+                      lineHeight: '1.2',
+                    }}
+                  >
+                    {entryTitle}
+                  </div>
                 </foreignObject>
               )}
             </g>
@@ -120,4 +128,3 @@ const Constellation: React.FC = () => {
 };
 
 export default Constellation;
-
