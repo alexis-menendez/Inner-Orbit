@@ -1,16 +1,17 @@
 // File: client/src/components/journal/Constellation.tsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CONSTELLATIONS } from './ConstellationLogic';
 import styles from '../../assets/css/journal/Stars.module.css';
-import buttonStyles from '../../assets/css/common/Button.module.css'; // Import the button styles
+import buttonStyles from '../../assets/css/common/Button.module.css';
+import StarBackground from '../common/StarBackground';
 
 const Constellation: React.FC = () => {
   const { index } = useParams<{ index: string }>();
   const navigate = useNavigate();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  // Parse and validate the index
   const constellationIndex = Number(index);
   const isValidIndex =
     index !== undefined &&
@@ -26,6 +27,8 @@ const Constellation: React.FC = () => {
 
   return (
     <div className={styles.sky}>
+      <StarBackground starCount={80} />
+
       <button
         onClick={() => navigate(-1)}
         className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
@@ -61,13 +64,29 @@ const Constellation: React.FC = () => {
         })}
 
         {constellation.stars.map((star, i) => (
-          <circle
-            key={`star-${i}`}
-            cx={star.x}
-            cy={star.y}
-            r={star.size ?? 1}
-            className={styles.star}
-          />
+          <g key={`star-group-${i}`}>
+            <circle
+              cx={star.x}
+              cy={star.y}
+              r={star.size ?? 1}
+              className={`${styles.star} ${hoveredIndex === i ? styles['star-hover'] : ''}`}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              onClick={() => navigate(`/journal/entry/${index}-${i}`)}
+              style={{ pointerEvents: 'all' }}
+            />
+            {hoveredIndex === i && (
+              <text
+                x={star.x + 1}
+                y={star.y - 1}
+                fill="white"
+                fontSize="2"
+                style={{ pointerEvents: 'none' }}
+              >
+                Entry {i + 1}
+              </text>
+            )}
+          </g>
         ))}
       </svg>
     </div>

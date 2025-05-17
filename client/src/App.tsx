@@ -15,10 +15,11 @@ import Register from './components/home/RegisterForm';
 import Terms from './components/home/Terms';
 import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
-import Tracker from './pages/Tracker'; 
+import Tracker from './pages/Tracker';
+import DevelopConstellations from './components/journal/dev/DevelopConstellations'; 
 import Journal from './pages/Journal';
 import Constellation from './components/journal/Constellation';
-import DevelopConstellations from './components/journal/dev/DevelopConstellations';
+import ViewJournal from './components/journal/ViewJournal'; 
 
 // TODO pages (not yet created):                 
 // import UserProfile from './pages/UserProfile';          --->  not yet created
@@ -75,6 +76,14 @@ const App: React.FC = () => {
           element={
             <ProtectedRoute>
               <Constellation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/journal/entry/:entryId"
+          element={
+            <ProtectedRoute>
+              <ViewJournal />
             </ProtectedRoute>
           }
         />
