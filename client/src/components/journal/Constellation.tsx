@@ -41,6 +41,10 @@ const Constellation: React.FC = () => {
   const baseEntryIndex = CONSTELLATIONS.slice(0, constellationIndex)
     .reduce((acc, c) => acc + c.stars.length, 0);
 
+  // Dynamically determine max Y to expand viewBox height
+  const maxY = Math.max(...constellation.stars.map(star => star.y));
+  const viewBoxHeight = Math.ceil(maxY + 5); // add padding
+
   return (
     <div className={styles.sky}>
       <StarBackground starCount={80} />
@@ -58,7 +62,7 @@ const Constellation: React.FC = () => {
 
       <svg
         className={styles.constellationSVG}
-        viewBox="0 0 100 100"
+        viewBox={`0 0 100 ${viewBoxHeight}`}
         preserveAspectRatio="xMidYMid meet"
       >
         {constellation.connections.map(([start, end], idx) => {
@@ -97,8 +101,8 @@ const Constellation: React.FC = () => {
               />
               {hoveredIndex === i && (
                 <foreignObject
-                  x={Math.min(star.x + 1, 85)} // prevent overflow
-                  y={Math.max(star.y - 5, 0)}  // prevent going above top
+                  x={Math.min(star.x + 1, 85)}
+                  y={Math.max(star.y - 5, 0)}
                   width={40}
                   height={80}
                   style={{ overflow: 'visible', pointerEvents: 'none' }}
