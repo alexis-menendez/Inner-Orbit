@@ -50,3 +50,19 @@
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 0.3; transform: scale(0.8); }
 }
+
+.constellationSVG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.star {
+  fill: white;
+  opacity: 0.9;
+}
+

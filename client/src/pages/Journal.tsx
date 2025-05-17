@@ -1,4 +1,4 @@
-// File: client/src/pages/Journal.tsx
+// File: server/src/pages/Journal.tsx
 
 import React, { useEffect, useState } from 'react';
 import StarBackground from '../components/common/StarBackground';
@@ -11,6 +11,14 @@ import { useAuth } from '../context/authContext';
 import CreateJournal from '../components/journal/CreateJournal';
 import buttonStyles from '../assets/css/common/Button.module.css';
 
+const JOURNAL_GRID = [
+  { xMin: 0, xMax: 50, yMin: 0, yMax: 33.3 },    // Top-left
+  { xMin: 50, xMax: 100, yMin: 0, yMax: 33.3 },  // Top-right
+  { xMin: 0, xMax: 50, yMin: 33.3, yMax: 66.6 }, // Middle-left
+  { xMin: 50, xMax: 100, yMin: 33.3, yMax: 66.6 }, // Middle-right
+  { xMin: 0, xMax: 50, yMin: 66.6, yMax: 100 },   // Bottom-left
+  { xMin: 50, xMax: 100, yMin: 66.6, yMax: 100 }, // Bottom-right
+];
 
 const Journal: React.FC = () => {
   const { user } = useAuth();
@@ -75,37 +83,50 @@ const Journal: React.FC = () => {
         <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
       )}
 
-      {activeStars.map((star, index) => (
-        <div
-          key={index}
-          className={styles.star}
-          style={{
-            top: `${star.y}%`,
-            left: `${star.x}%`,
-            width: `${(star.size || 1)}vh`,
-            height: `${(star.size || 1)}vh`,
-          }}
-        />
-      ))}
+      <svg
+        className={styles.constellationSVG}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <filter id="whiteGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-      {connections.map(([start, end], idx) => {
-        const a = activeStars[start];
-        const b = activeStars[end];
-        if (!a || !b) return null;
-
-        return (
-          <svg key={`line-${idx}`} className={styles.connectionLine}>
+        {connections.map(([start, end], idx) => {
+          const a = activeStars[start];
+          const b = activeStars[end];
+          if (!a || !b) return null;
+          return (
             <line
-              x1={`${a.x}%`}
-              y1={`${a.y}%`}
-              x2={`${b.x}%`}
-              y2={`${b.y}%`}
+              key={`line-${idx}`}
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
               stroke="white"
               strokeWidth="0.3"
+              vectorEffect="non-scaling-stroke"
             />
-          </svg>
-        );
-      })}
+          );
+        })}
+
+        {activeStars.map((star, i) => (
+          <circle
+            key={`star-${i}`}
+            cx={star.x}
+            cy={star.y}
+            r={star.size ?? 1}
+            className={styles.star}
+            filter="url(#whiteGlow)"
+          />
+        ))}
+      </svg>
     </div>
   );
 };
