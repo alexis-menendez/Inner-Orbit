@@ -1,0 +1,25 @@
+/* File: client/src/assets/css/journal/Notebook.module.css */
+
+.notebookContainer {
+  position: relative;
+  background-color: #fdf9f3;
+
+  /* Use full-size image once, then repeat if taller */
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: left top;
+  background-size: contain; /* full-width vertically without shrinking */
+
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem 8.88% 2rem 10%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Georgia', serif;
+  line-height: 1.7;
+  color: #2b2b2b;
+
+  /* Prevent early repetition by ensuring container is at least the natural image height */
+  min-height: 850px; /* replace 1200px with the actual height of your Notebook.svg */
+}

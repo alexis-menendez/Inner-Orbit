@@ -6,6 +6,7 @@ import StarBackground from '../common/StarBackground';
 import { CONSTELLATIONS } from './ConstellationLogic';
 import styles from '../../assets/css/journal/Stars.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
+import notebookStyles from '../../assets/css/journal/Notebook.module.css';
 import { useQuery } from '@apollo/client';
 import { GET_JOURNAL_ENTRIES } from '../../graphql/queries';
 import { useAuth } from '../../context/authContext';
@@ -25,9 +26,9 @@ const ViewJournal: React.FC = () => {
   }
 
   const [constellationIndexStr, starIndexStr] = entryId.split('-');
-  const starGlobalIndex = CONSTELLATIONS
-    .slice(0, parseInt(constellationIndexStr, 10))
-    .reduce((acc, c) => acc + c.stars.length, 0) + parseInt(starIndexStr, 10);
+  const starGlobalIndex =
+    CONSTELLATIONS.slice(0, parseInt(constellationIndexStr, 10))
+      .reduce((acc, c) => acc + c.stars.length, 0) + parseInt(starIndexStr, 10);
 
   if (!user) return <div className={styles.sky}>Please log in</div>;
   if (loading) return <div className={styles.sky}>Loading...</div>;
@@ -51,9 +52,11 @@ const ViewJournal: React.FC = () => {
         ← Back to Constellation
       </button>
 
-      <div style={{ color: 'white', padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+      <div className={notebookStyles.notebookContainer}>
+        <div className={notebookStyles.spiralImage} />
+
         <h2 style={{ marginBottom: '1rem' }}>{entry.title}</h2>
-        <p style={{ lineHeight: '1.6' }}>{entry.content}</p>
+        <p>{entry.content}</p>
         <p style={{ marginTop: '2rem', fontStyle: 'italic', fontSize: '0.9rem' }}>
           Created on: {new Date(entry.createdAt).toLocaleString()}
         </p>
