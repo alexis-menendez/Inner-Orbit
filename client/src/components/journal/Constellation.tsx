@@ -41,8 +41,15 @@ const Constellation: React.FC = () => {
   const baseEntryIndex = CONSTELLATIONS.slice(0, constellationIndex)
     .reduce((acc, c) => acc + c.stars.length, 0);
 
-  // Dynamically determine max Y to expand viewBox height
-  const maxY = Math.max(...constellation.stars.map(star => star.y));
+  // Count how many stars in this constellation have actual entries
+  const entriesInConstellation = entries.slice(
+    baseEntryIndex,
+    baseEntryIndex + constellation.stars.length
+  );
+
+  // Dynamically determine max Y for visible stars
+  const activeStars = constellation.stars.slice(0, entriesInConstellation.length);
+  const maxY = Math.max(...activeStars.map(star => star.y));
   const viewBoxHeight = Math.ceil(maxY + 5); // add padding
 
   return (
@@ -65,27 +72,34 @@ const Constellation: React.FC = () => {
         viewBox={`0 0 100 ${viewBoxHeight}`}
         preserveAspectRatio="xMidYMid meet"
       >
+        {/* Render only valid connections between existing entries */}
         {constellation.connections.map(([start, end], idx) => {
-          const a = constellation.stars[start];
-          const b = constellation.stars[end];
-          if (!a || !b) return null;
-          return (
-            <line
-              key={`line-${idx}`}
-              x1={a.x}
-              y1={a.y}
-              x2={b.x}
-              y2={b.y}
-              stroke="white"
-              strokeWidth="0.3"
-              vectorEffect="non-scaling-stroke"
-            />
-          );
+          if (
+            start < entriesInConstellation.length &&
+            end < entriesInConstellation.length
+          ) {
+            const a = constellation.stars[start];
+            const b = constellation.stars[end];
+            return (
+              <line
+                key={`line-${idx}`}
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                stroke="white"
+                strokeWidth="0.3"
+                vectorEffect="non-scaling-stroke"
+              />
+            );
+          }
+          return null;
         })}
 
-        {constellation.stars.map((star, i) => {
+        {/* Render stars with entries */}
+        {entriesInConstellation.map((entry, i) => {
+          const star = constellation.stars[i];
           const entryIndex = baseEntryIndex + i;
-          const entryTitle = entries[entryIndex]?.title || `Entry ${i + 1}`;
 
           return (
             <g key={`star-group-${i}`}>
@@ -119,7 +133,7 @@ const Constellation: React.FC = () => {
                       lineHeight: '1.2',
                     }}
                   >
-                    {entryTitle}
+                    {entry.title}
                   </div>
                 </foreignObject>
               )}
@@ -132,3 +146,4 @@ const Constellation: React.FC = () => {
 };
 
 export default Constellation;
+
