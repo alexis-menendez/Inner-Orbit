@@ -1,4 +1,4 @@
-// File: server/src/pages/Journal.tsx
+// File: client/src/pages/Journal.tsx
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
@@ -113,8 +113,11 @@ const Journal: React.FC = () => {
         </button>
       )}
 
+      {/* Wrap form in centered overlay */}
       {showForm && (
-        <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
+        <div className={styles.formOverlay}>
+          <CreateJournal onSave={handleSave} onCancel={() => setShowForm(false)} />
+        </div>
       )}
 
       <div className={styles.gridContainer}>

@@ -1,10 +1,12 @@
 /* File: client/src/assets/css/common/Form.module.css */
 
 .formContainer {
+  position: relative;        
+  z-index: 20; 
   width: 100%;
   max-width: 24rem; /* Tailwind's max-w-sm */
   padding: 2rem;
-  background-color: #400a6b;
+  background-color: rgba(64, 10, 107, 0.94);
   color: #0d0a1f;
   border-radius: 1rem;
   box-shadow: 0 0 16px rgba(158, 137, 255, 0.2);

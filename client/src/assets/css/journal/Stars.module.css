@@ -1,7 +1,5 @@
 /* File: client/src/assets/css/journal/Stars.module.css */
 
-/* Stars.module.css */
-
 .star {
   position: absolute;
   fill: white;
@@ -105,3 +103,13 @@
   opacity: 1;
 }
 
+.formOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+  pointer-events: auto;
+  background: transparent;
+}
