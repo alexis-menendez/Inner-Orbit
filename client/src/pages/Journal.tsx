@@ -97,6 +97,13 @@ const Journal: React.FC = () => {
     <div className={styles.sky}>
       <StarBackground starCount={60} />
 
+      <button
+        onClick={() => navigate('/dashboard')}
+        className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
+      >
+        ← Back to Dashboard
+      </button>
+
       {!showForm && (
         <button
           onClick={() => setShowForm(true)}
