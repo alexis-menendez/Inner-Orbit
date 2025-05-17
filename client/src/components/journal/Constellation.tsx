@@ -88,15 +88,28 @@ const Constellation: React.FC = () => {
                 style={{ pointerEvents: 'all' }}
               />
               {hoveredIndex === i && (
-                <text
-                  x={star.x + 1}
-                  y={star.y - 1}
-                  fill="white"
-                  fontSize="2"
-                  style={{ pointerEvents: 'none' }}
+                <foreignObject
+                  x={Math.min(star.x + 1, 85)} // prevent overflow
+                  y={Math.max(star.y - 5, 0)}  // prevent going above top
+                  width={40}
+                  height={80}
+                  style={{ overflow: 'visible', pointerEvents: 'none' }}
+                >
+                <div
+                  style={{
+                    fontSize: '1.5px',
+                    color: 'white',
+                    background: 'rgba(60, 20, 80, 0.9)',
+                    padding: '1px 2px',
+                    borderRadius: '0.5vw',
+                    wordWrap: 'break-word',
+                    maxWidth: '50%',
+                    lineHeight: '1.2',
+                  }}
                 >
                   {entryTitle}
-                </text>
+                </div>
+                </foreignObject>
               )}
             </g>
           );
@@ -107,3 +120,4 @@ const Constellation: React.FC = () => {
 };
 
 export default Constellation;
+
