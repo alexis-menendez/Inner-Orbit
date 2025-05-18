@@ -7,12 +7,21 @@ import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController.js";
 import { getMoodColor } from "../utils/trackerColors.js";
+import { getVideoLibrary } from "../utils/getVideos.js";
+
 
 const resolvers: IResolvers = {
 
 // QUERIES
 
   Query: {
+
+// VIDEOS
+    getVideoLibrary: async (_: any, { search = "" }: { search: string }, { user }) => {
+    if (!user) throw new Error("Not authenticated");
+
+    return await getVideoLibrary(search);
+  },
 
 //USER
 

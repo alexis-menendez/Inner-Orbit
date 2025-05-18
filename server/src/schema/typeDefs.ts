@@ -87,6 +87,14 @@ const typeDefs = gql`
     message: String
   }
 
+  type VideoResource {
+  publicId: String!
+  url: String!
+  thumbnail: String!
+  title: String
+  description: String
+}
+
   type Query {
     getUserById(userId: ID!): User
     getJournalEntryById(entryId: ID!): JournalEntry
@@ -100,6 +108,10 @@ const typeDefs = gql`
 
   extend type Query {
     getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
+  }
+
+  extend type Query {
+    getVideoLibrary(search: String): [VideoResource!]!
   }
 
   type Mutation {
