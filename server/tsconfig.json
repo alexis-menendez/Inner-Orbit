@@ -11,7 +11,7 @@
       "outDir": "./dist",
   
       /* Modules */
-      "module": "commonJS",
+      "module": "ES2020",
       "moduleResolution": "Node",
   
       /* JavaScript Support */
