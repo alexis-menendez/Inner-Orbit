@@ -59,7 +59,7 @@ Expect bugs, missing features, and unpolished UI while construction is underway.
 
 ## Live Demo
 
-- [NAME-OF-PROJECT](https://NAME-OF-PROJECT.onrender.com/)  **(DO NOT FORGET TO UPDATE THIS!)**  
+- [Inner-Orbit Demo](https://inner-orbit.onrender.com/) 
 
 ## Database Schema **(DO NOT FORGET TO UPDATE THIS!)**  
 Field     |  Type      |  Required  |  Description              |
