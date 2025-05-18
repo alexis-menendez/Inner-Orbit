@@ -50,6 +50,8 @@ const MoodEntrySchema = new mongoose.Schema(
         "embarassed",
         "anxious",
         "neutral",
+        "relieved",
+        "overjoyed",
       ],
       required: true,
     },

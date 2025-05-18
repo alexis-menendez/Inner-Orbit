@@ -6,7 +6,7 @@ import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController";
-import { getMoodColor } from "../utils/trackerColors.js";
+
 import DateScalar from './date';
 
 const resolvers: IResolvers = {
@@ -283,23 +283,13 @@ moodsByDates: async (
 },
 
     // Update a mood entry
-    updateMoodEntry: async (_, { id, mood, intensity }, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-
-      const updates: any = {};
-      if (mood) {
-        updates.mood = mood;
-        updates.moodColor = getMoodColor(mood);
-      }
-      if (intensity !== undefined) {
-        updates.intensity = intensity;
-      }
-
-      return await MoodEntry.findOneAndUpdate(
-        { _id: id, user: user._id },
-        updates,
-        { new: true }
-      );
+    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }) => {
+  console.log('Updating Mood:', { id, mood, intensity, moodColor, note }); // <-- Debug
+  return await MoodEntry.findByIdAndUpdate(
+    id,
+    { mood, intensity, moodColor, note }, // make sure all fields are listed
+    { new: true }
+  );
     },
 
     // Delete a mood entry

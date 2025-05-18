@@ -128,8 +128,30 @@ export const ADD_MOOD_ENTRY = gql`
   }
 }`;
 
-//export const UPDATE_MOOD_ENTRY = gql`
-
+export const UPDATE_MOOD_ENTRY = gql`
+  mutation UpdateMoodEntry(
+    $id: ID!
+    $mood: String
+    $intensity: Int
+    $moodColor: String
+    $note: String
+  ) {
+    updateMoodEntry(
+      id: $id
+      mood: $mood
+      intensity: $intensity
+      moodColor: $moodColor
+      note: $note
+    ) {
+      _id
+      mood
+      intensity
+      moodColor
+      note
+      date
+    }
+  }
+`;
 
 export const DELETE_MOOD_ENTRY = gql`
   mutation DeleteMoodEntry($id: ID!) {

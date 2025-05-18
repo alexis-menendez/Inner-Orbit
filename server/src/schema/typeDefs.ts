@@ -118,12 +118,13 @@ const typeDefs = gql`
       userId: ID!
     ): MoodEntry!
 
-    updateMoodEntry(
-      id: ID!
-      mood: String
-      intensity: Int
-      moodColor: String
-    ): MoodEntry!
+     updateMoodEntry(
+    id: ID!,
+    mood: String,
+    intensity: Int,
+    moodColor: String,
+    note: String
+  ): MoodEntry
 
     deleteMoodEntry(id: ID!): Boolean
 
