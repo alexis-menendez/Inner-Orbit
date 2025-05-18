@@ -25,11 +25,12 @@ const MoodEntrySchema = new mongoose.Schema({
   note: {
     type: String,
   },
-  userId: {
+userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-  }
-});
+  },
+},
+{ timestamps: true }); // ✅ Enables createdAt and updatedAt
 
 export default mongoose.model('MoodEntry', MoodEntrySchema);

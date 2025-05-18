@@ -1,13 +1,7 @@
-// File: server/src/schema/typeDefs.ts
-
-import gql from "graphql-tag";
+import { gql } from "apollo-server";
 
 const typeDefs = gql`
-
-
-
   scalar Date
-
 
   type User {
     _id: ID!
@@ -20,23 +14,22 @@ const typeDefs = gql`
     journalEntries: [JournalEntry]
   }
 
-
   type MoodEntry {
     _id: ID!
+    date: Date!
     mood: String!
-    moodColor: String!
     intensity: Int!
-    date: Date! 
+    moodColor: String!
     createdAt: Date!
     user: User!
-    note: String 
+    note: String
   }
 
   type MoodByDate {
-  date: String!
-  mood: String!
-  note: String
-}
+    date: String!
+    mood: String!
+    note: String
+  }
 
   type JournalEntry {
     _id: ID!
@@ -47,14 +40,12 @@ const typeDefs = gql`
     userId: ID!
   }
 
-
   type AuthPayload {
     token: String!
     user: User!
     success: Boolean
     message: String
   }
-
 
   input CreateJournalInput {
     userId: ID!
@@ -88,13 +79,11 @@ const typeDefs = gql`
     entries: [JournalEntry!]!
   }
 
-
   type CompletedConstellationsPayload {
     count: Int!
     names: [String!]!
     message: String
   }
-
 
   type Query {
     getUserById(userId: ID!): User
@@ -103,18 +92,12 @@ const typeDefs = gql`
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
-    moodsByDates(dates: [String!]!): [MoodEntry]
+    moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
+    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
     me: User
   }
 
-
-  extend type Query {
-    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
-  }
-
-
   type Mutation {
-  
     registerUser(
       username: String!
       firstName: String
@@ -126,16 +109,27 @@ const typeDefs = gql`
 
     loginUser(username: String!, password: String!): AuthPayload
 
-    addMoodEntry(mood: String!, intensity: Int!): MoodEntry
-    updateMoodEntry(id: ID!, mood: String, intensity: Int, color: String): MoodEntry
+    addMoodEntry(
+      date: String!
+      mood: String!
+      intensity: Int!
+      moodColor: String!
+      note: String
+      userId: ID!
+    ): MoodEntry!
+
+    updateMoodEntry(
+      id: ID!
+      mood: String
+      intensity: Int
+      moodColor: String
+    ): MoodEntry!
+
     deleteMoodEntry(id: ID!): Boolean
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
     updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
-
-
 `;
-
 export default typeDefs;

@@ -27,11 +27,14 @@ export const GET_ME = gql`
 `;
 
 export const GET_USER_BY_ID = gql`
-  query GetUserById($userId: ID!) {
-    getUserById(userId: $userId) {
+ query GetMoodEntries {
+    getMoodEntries {
       _id
-      username
-      email
+      date
+      mood
+      intensity
+      moodColor
+      note
     }
   }
 `;
@@ -49,13 +52,16 @@ export const GET_MOOD_ENTRIES = gql`
 `;
 
 export const GET_WEEKLY_MOODS = gql`
-  query GetWeeklyMoods($dates: [String!]!) {
-    moodsByDates(dates: $dates) {
-      date
-      mood
-      note
-    }
+query MoodsByDates($dates: [String!]!, $userId: ID!) {
+  moodsByDates(dates: $dates, userId: $userId) {
+    _id
+    date
+    mood
+    intensity
+    moodColor
+    note
   }
+}
 `;
 
 export const GET_JOURNAL_ENTRIES = gql`

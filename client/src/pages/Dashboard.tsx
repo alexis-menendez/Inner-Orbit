@@ -6,6 +6,7 @@ import NavBar from '../components/nav/NavBar';
 import WeeklyMoodReview from '../components/dashboard/WeeklyMoodCalendar';
 import PomodoroTimer from '../components/dashboard/pomodoro/PomodoroTimer';
 import FocusTaskList from '../components/dashboard/pomodoro/FocusTaskList';
+import { useAuth } from '../context/authContext'; // Assuming you have a context for user authentication
 
 type MoodEntry = {
   id: string;
@@ -16,9 +17,10 @@ type MoodEntry = {
 
 const Dashboard: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
-  const userId = 'YOUR_USER_ID'; // Replace with real user ID or context
+  const { user } = useAuth(); // Use user from context
 
   useEffect(() => {
+     if (!user?.id) return;
     const fetchWeeklyMoods = async () => {
       const today = new Date();
       const startOfWeek = new Date(today);
@@ -29,7 +31,7 @@ const Dashboard: React.FC = () => {
 
       try {
         const res = await fetch(
-          `/api/moods/${userId}/week?start=${startOfWeek.toISOString()}&end=${endOfWeek.toISOString()}`
+          `/api/moods/${user.id}/week?start=${startOfWeek.toISOString()}&end=${endOfWeek.toISOString()}`
         );
         const data = await res.json();
 

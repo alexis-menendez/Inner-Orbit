@@ -1,9 +1,8 @@
-// File: client/src/pages/Tracker.tsx
-
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { Link } from 'react-router-dom';
 import NavBar from '../components/nav/NavBar';
+import { moodList } from '../models/Mood';
+import { useAuth } from '../context/authContext';
 
 const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries {
@@ -13,43 +12,79 @@ const GET_MOOD_ENTRIES = gql`
       mood
       intensity
       moodColor
+      note
     }
   }
 `;
 
 const ADD_MOOD_ENTRY = gql`
-  mutation AddMoodEntry($date: String!, $mood: String!, $intensity: Int!, $moodColor: String!) {
-    addMoodEntry(date: $date, mood: $mood, intensity: $intensity, moodColor: $moodColor) {
+  mutation AddMoodEntry(
+    $date: String!
+    $mood: String!
+    $intensity: Int!
+    $moodColor: String!
+    $note: String
+    $userId: ID!
+  ) {
+    addMoodEntry(
+      date: $date
+      mood: $mood
+      intensity: $intensity
+      moodColor: $moodColor
+      note: $note
+      userId: $userId
+    ) {
       _id
-      dateI 
+      date
       mood
       intensity
       moodColor
+      note
+      createdAt
     }
   }
 `;
 
 const Tracker: React.FC = () => {
+  const { user } = useAuth();
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
-  const { loading, error, data } = useQuery(GET_MOOD_ENTRIES);
+  const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES);
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
 
   const handleDayClick = async (date: Date, entry: any) => {
     if (entry) return alert(`Mood already exists: ${entry.mood}`);
+    if (!user || !user.id) {
+      alert("You must be logged in to add a mood.");
+      return;
+    }
 
-    const mood = prompt("Enter your mood:", "Happy") || "Happy";
-    const intensity = parseInt(prompt("Enter intensity (1-10):", "5") || "5");
-    const moodColor = prompt("Choose a color:", "#ffcc00") || "#ffcc00";
+    const moodLabel = prompt("Enter your mood:", "Happy") || "Happy";
+    const moodItem = moodList.find(
+      (m) => m.label.toLowerCase() === moodLabel.toLowerCase()
+    );
 
-    await addMoodEntry({
-      variables: {
-        date: date.toISOString().split('T')[0],
-        mood,
-        intensity,
-        moodColor
-      },
-    });
+    if (!moodItem) {
+      alert("Invalid mood. Please choose from the defined list.");
+      return;
+    }
+
+    const intensity = parseInt(prompt("Enter intensity (1–10):", "5") || "5");
+    const note = prompt("Add a note (optional):", "") || "";
+console.log("user.id being sent:", user?.id);
+  await addMoodEntry({
+  variables: {
+    date,
+    mood: moodItem.id,
+    intensity,
+    moodColor: moodItem.color,
+    note,
+    userId: user.id, // ✅ passed from context
+  },
+});
+
+
+    refetch();
   };
 
   const entriesByDate = useMemo(() => {
@@ -85,8 +120,9 @@ const Tracker: React.FC = () => {
     <>
       <NavBar />
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1.5rem' }}>Tracker Page</h1>
+
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-<button
+        <button
   style={{
     padding: '4px 10px',
     fontSize: '0.85rem',
@@ -103,10 +139,8 @@ const Tracker: React.FC = () => {
 >
   ◀ Previous
 </button>
-  <h2 style={{ color: 'pink' }}>
-    {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
-  </h2>
- <button
+        <h2 style={{ color: 'pink' }}>{selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}</h2>
+        <button
   style={{
     padding: '4px 8px',
     fontSize: '0.85rem',
@@ -120,40 +154,25 @@ const Tracker: React.FC = () => {
 >
   Next ▶
 </button>
+      </div>
 
-</div>
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(7, 1fr)',
-          gap: '0.5rem',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          backgroundColor: '#1e1b4b',
-          border: '2px solid pink',
-          padding: '0.5rem',
-        }}
-      >
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(7, 1fr)',
+        gap: '0.5rem',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        backgroundColor: '#1e1b4b',
+        border: '2px solid pink',
+        padding: '0.5rem',
+      }}>
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div
-            key={d}
-            style={{
-              textAlign: 'center',
-              fontWeight: 'bold',
-              color: '#faf2f2',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-            }}
-          >
+          <div key={d} style={{ textAlign: 'center', fontWeight: 'bold', color: '#faf2f2', fontSize: '0.875rem' }}>
             {d}
           </div>
         ))}
-
         {getCalendarDays().map(({ date, currentMonth }, i) => {
           const entry = entriesByDate[date.toDateString()];
-          const isToday = date.toDateString() === today.toDateString();
-
           return (
             <div
               key={i}

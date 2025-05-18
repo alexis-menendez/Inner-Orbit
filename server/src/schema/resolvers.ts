@@ -7,8 +7,10 @@ import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController";
 import { getMoodColor } from "../utils/trackerColors.js";
+import DateScalar from './date';
 
 const resolvers: IResolvers = {
+    Date: DateScalar,
 
 // QUERIES
 
@@ -40,13 +42,18 @@ const resolvers: IResolvers = {
     },
 
     // Fetch moods by date for the current user
-    moodsByDates: async (_: any, { dates }: { dates: string[] }, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-      return await MoodEntry.find({
-        user: user._id,
-        date: { $in: dates }
-     }).sort({ date: 1 });
-    },
+   moodsByDates: async (
+  _: any,
+  { userId, dates }: { userId: string; dates: string[] },
+  context
+) => {
+  if (!context.user) throw new Error("Not authenticated");
+
+  return await MoodEntry.find({
+    user: userId,
+    date: { $in: dates },
+  }).sort({ date: 1 });
+},
 
 // JOURNAL
 
@@ -239,27 +246,29 @@ const resolvers: IResolvers = {
 // MOOD TRACKER
 
     // Add a mood entry
-    addMoodEntry: async (_, { mood, intensity }, { user }) => {
-      if (!user) throw new Error("Not authenticated");
+ addMoodEntry: async (_, { date, mood, intensity, moodColor, note, userId }) => {
+  if (!userId) throw new Error("Missing userId");
 
-      if (!mood) throw new Error("Mood is required");
-      if (intensity === undefined) throw new Error("Intensity is required");
-      if (intensity < 1 || intensity > 10)
-        throw new Error("Intensity must be between 1 and 10");
-      if (intensity % 1 !== 0) throw new Error("Intensity must be an integer");
+  if (!mood) throw new Error("Mood is required");
+  if (intensity === undefined) throw new Error("Intensity is required");
+  if (intensity < 1 || intensity > 10) throw new Error("Intensity must be between 1 and 10");
+  if (intensity % 1 !== 0) throw new Error("Intensity must be an integer");
 
-      const entry = await MoodEntry.create({
-        mood,
-        intensity,
-        moodColor: getMoodColor(mood),
-        date: new Date(),
-        user: user._id,
-      });
-      await User.findByIdAndUpdate(user._id, {
-        $push: { moodEntries: entry._id },
-      });
-      return entry;
-    },
+  const entry = await MoodEntry.create({
+    date,
+    mood,
+    intensity,
+    moodColor,
+    note,
+    userId, // ✅ use directly from args
+  });
+
+  await User.findByIdAndUpdate(userId, {
+    $push: { moodEntries: entry._id },
+  });
+
+  return entry;
+},
 
     // Update a mood entry
     updateMoodEntry: async (_, { id, mood, intensity }, { user }) => {

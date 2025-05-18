@@ -11,26 +11,29 @@ export const LOGIN_USER = gql`
         username
         email
       }
+      success
+      message
     }
   }
 `;
+
 
 export const REGISTER_USER = gql`
   mutation RegisterUser(
     $username: String!
     $firstName: String
     $lastName: String
+    $dob: String
     $email: String!
     $password: String!
-    $dob: String
   ) {
     registerUser(
       username: $username
       firstName: $firstName
       lastName: $lastName
+      dob: $dob
       email: $email
       password: $password
-      dob: $dob
     ) {
       token
       user {
@@ -43,6 +46,7 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
 
 export const CREATE_JOURNAL = gql`
   mutation CreateJournal($input: CreateJournalInput!) {
@@ -78,6 +82,21 @@ export const UPDATE_JOURNAL = gql`
   }
 `;
 
+export const UPDATE_JOURNAL_ENTRY = gql`
+  mutation UpdateJournalEntry($id: ID!, $input: UpdateJournalInput!) {
+    updateJournalEntry(id: $id, input: $input) {
+      success
+      message
+      entry {
+        _id
+        title
+        content
+        createdAt
+      }
+    }
+  }
+`;
+
 export const DELETE_JOURNAL_ENTRY = gql`
   mutation DeleteJournalEntry($id: ID!) {
     deleteJournalEntry(id: $id)
@@ -85,28 +104,32 @@ export const DELETE_JOURNAL_ENTRY = gql`
 `;
 
 export const ADD_MOOD_ENTRY = gql`
-  mutation AddMoodEntry($mood: String!, $intensity: Int!, $color: String!) {
-    addMoodEntry(mood: $mood, intensity: $intensity, color: $color) {
-      _id
-      mood
-      moodColor
-      intensity
-      createdAt
-    }
+  mutation AddMoodEntry(
+  $date: String!
+  $mood: String!
+  $intensity: Int!
+  $moodColor: String!
+  $note: String
+ ) {
+  addMoodEntry(
+    date: $date
+    mood: $mood
+    intensity: $intensity
+    moodColor: $moodColor
+    note: $note
+      ) {
+    _id
+    mood
+    intensity
+    moodColor
+    createdAt
+    note
+    date
   }
-`;
+}`;
 
-export const UPDATE_MOOD_ENTRY = gql`
-  mutation UpdateMoodEntry($id: ID!, $mood: String, $intensity: Int, $color: String) {
-    updateMoodEntry(id: $id, mood: $mood, intensity: $intensity, color: $color) {
-      _id
-      mood
-      moodColor
-      intensity
-      createdAt
-    }
-  }
-`;
+//export const UPDATE_MOOD_ENTRY = gql`
+
 
 export const DELETE_MOOD_ENTRY = gql`
   mutation DeleteMoodEntry($id: ID!) {
