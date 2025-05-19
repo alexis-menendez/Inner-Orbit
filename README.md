@@ -100,7 +100,7 @@ There are currently no automated tests for this project
 
 If you have any questions, feel free to contact the team:
 
-#### Project Lead: [**Alex Menendez**](https://alex-menendez.onrender.com/) – Full-Stack Developer with a focus on UI/UX and team collaboration.
+#### Project Lead, UI/UX Designer: [**Alex Menendez**](https://alex-menendez.onrender.com/) – Full-Stack Developer with a focus on UI/UX and team collaboration.
 
 - **Website**: [Crafted-By-Alex](https://alex-menendez.onrender.com/)
 - **LinkedIn**: [in/alex-d-menendez](https://www.linkedin.com/in/alex-d-menendez/)
