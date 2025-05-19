@@ -7,6 +7,7 @@ import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
+import { motion } from 'framer-motion';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
@@ -50,37 +51,44 @@ const Login = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-black to-indigo-900">
-      <h1 className="mb-2 text-4xl font-bold">Welcome Explorer!</h1>
-      <h2 className="mb-6 text-lg">Please log in below</h2>
+    <section className="flex items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-black to-indigo-900">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="text-center"
+      >
+        <h1 className="mb-2 text-4xl font-bold">Welcome Explorer!</h1>
+        <h2 className="mb-6 text-lg">Please log in below</h2>
 
-      <div className={formStyles.formContainer}>
-        <input
-          type="text"
-          id="username"
-          placeholder="Username"
-          value={form.username}
-          onChange={handleChange}
-          className={formStyles.input}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          className={formStyles.input}
-        />
-        <button
-          onClick={handleLogin}
-          className={`${buttonStyles.button} ${buttonStyles.primary}`}
-        >
-          Login
-        </button>
-        <p className={formStyles.linkText}>
-          Don’t have an account? <Link to="/register">Sign up</Link>
-        </p>
-      </div>
+        <div className={formStyles.formContainer}>
+          <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            value={form.username}
+            onChange={handleChange}
+            className={formStyles.input}
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            className={formStyles.input}
+          />
+          <button
+            onClick={handleLogin}
+            className={`${buttonStyles.button} ${buttonStyles.primary}`}
+          >
+            Login
+          </button>
+          <p className={formStyles.linkText}>
+            Don’t have an account? <Link to="/register">Sign up</Link>
+          </p>
+        </div>
+      </motion.div>
     </section>
   );
 };

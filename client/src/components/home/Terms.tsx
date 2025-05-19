@@ -1,50 +1,59 @@
-// file path: client/src/components/home/Terms.tsx
+import React from "react";
+import styles from "../../assets/css/service/terms.module.css";
 
-import React from 'react';
+const Terms = () => {
+  return (
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <h1>Terms of Service</h1>
+        <p className={styles.lastUpdated}>Last updated: May 19, 2025</p>
 
-const Terms = () => (
-  <section className="min-h-screen px-6 py-12 text-gray-800 bg-white">
-    <div className="max-w-3xl mx-auto">
-      <h1 className="mb-6 text-4xl font-bold">Terms of Service</h1>
-      <p className="mb-4">Effective Date: [Insert Date]</p>
+        <p>
+          Welcome to <strong>innerOrbit</strong>! These Terms of Service (the
+          "Terms") govern your use of our website and services. By accessing or
+          using our service, you agree to comply with these Terms. If you do not
+          agree with any part of these Terms, please do not use our services.
+        </p>
+        <h2> 1. Eligibility</h2>
+        <p>        
+          You must be at least 16 years old to use the app. If you're under 18,
+          you must have a parent or guardian’s permission.
+        </p>
+        <h2>2. User Accounts</h2>
+        <p>
+          When you create an account with us, you must provide accurate
+          information. You are responsible for safeguarding your account and for
+          all activities under your account. Please see our{" "}
+          <a href="/privacy">Privacy Policy</a> for information on how we handle
+          your personal data.
+        </p>
+        <h2>3. Mental Health Disclaimer</h2>
+        <p>
+          Our app provides tools for reflection and mindfulness. It does not
+          offer medical advice or replace professional care. If you’re in
+          crisis, seek help from a licensed provider or emergency services.
+        </p>
 
-      <p className="mb-4">
-        Welcome to <strong>[Your App Name]</strong> (“we,” “our,” or “us”), a mental wellness app designed to support emotional well-being through journaling, mindfulness tools, and mood tracking.
+        <h2>4. Termination of Service</h2>
+        <p>
+          We reserve the right to suspend or terminate your access if you
+          violate these Terms or engage in unlawful behavior. We may also
+          terminate the service with prior notice if necessary. Upon
+          termination, your right to use the service will cease immediately.
+        </p>
+<h2> 5. User Conduct</h2>
+ <p>
+        You agree not to misuse the app, share harmful content, or violate laws.
       </p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">1. Eligibility</h2>
-      <p className="mb-4">
-        You must be at least <strong>16 years old</strong> to use this app. If you are under 18, you must have a parent or guardian's permission. By using the app, you confirm that you meet these requirements.
-      </p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">2. Mental Health Disclaimer</h2>
-      <p className="mb-4">
-        This app does not provide medical advice, diagnosis, or treatment. It is not a replacement for professional mental health support. If you're in crisis, contact a licensed therapist or emergency services.
-      </p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">3. User Conduct</h2>
-      <p className="mb-4">You agree not to misuse the app or post harmful, abusive, or inappropriate content.</p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">4. Privacy and Data</h2>
-      <p className="mb-4">Your data is protected under our <a href="/privacy" className="text-indigo-600 underline">Privacy Policy</a>.</p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">5. Account Security</h2>
-      <p className="mb-4">You are responsible for safeguarding your account. Notify us if you suspect unauthorized use.</p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">6. Modifications</h2>
-      <p className="mb-4">We may update these terms. Continued use of the app means you agree to the latest version.</p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">7. Termination</h2>
-      <p className="mb-4">We may suspend or terminate accounts that violate these terms.</p>
-
-      <h2 className="mt-6 mb-2 text-2xl font-semibold">8. Contact</h2>
-      <p>
-        Questions? Contact us at <a href="mailto:support@yourapp.com" className="text-indigo-600 underline">support@yourapp.com</a>.
-      </p>
+        <h2>6. Contact Us</h2>
+        <p>
+          If you have any questions or concerns about these Terms, please
+          contact us at{" "}
+          <a href="mailto:support@cosmicapp.com">support@cosmicapp.com</a>.
+        </p>
+      </div>
     </div>
-  </section>
-);
+  );
+};
 
 export default Terms;
-
-
