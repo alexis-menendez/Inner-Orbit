@@ -100,23 +100,31 @@ There are currently no automated tests for this project
 
 If you have any questions, feel free to contact the team:
 
-Project Lead: [**Alex Menendez**](https://alex-menendez.onrender.com/) – Full-Stack Developer with a focus on UI/UX and team collaboration.
+#### Project Lead: [**Alex Menendez**](https://alex-menendez.onrender.com/) – Full-Stack Developer with a focus on UI/UX and team collaboration.
 
 - **Website**: [Crafted-By-Alex](https://alex-menendez.onrender.com/)
 - **LinkedIn**: [in/alex-d-menendez](https://www.linkedin.com/in/alex-d-menendez/)
 - **GitHub**: [alexis-menendez](https://github.com/alexis-menendez)
 - **Email**: [alexis.menendez@austincc.edu](https://alex-menendez.onrender.com/contact)
- 
+
+#### Frontend Lead: [**FRONTEND-LEAD-NAME**](https://FRONTEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
 
 - [**Portfolio**](https://FRONTEND-LEAD-NAME.onrender.com/)
 - **LinkedIn**: [in/FRONTEND-LEAD-NAME](https://www.linkedin.com/in/FRONTEND-LEAD-NAME/)
 - **GitHub**: [FRONTEND-LEAD-USERNAME](https://github.com/alexis-menendez)
 - **Email**: [FRONTEND-LEAD-NAME@email.com](https://FRONTEND-LEAD-NAME.onrender.com/contact)
 
-Backend Lead: [**BACKEND-LEAD-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
+#### Backend Lead: [**BACKEND-LEAD-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
 
 - [**Portfolio**](https://BACKEND-LEAD-NAME.onrender.com/)
-- **LinkedIn**: [in/FRONTEND-LEAD-NAME](https://www.linkedin.com/in/FRONTEND-LEAD-NAME/)
-- **GitHub**: [FRONTEND-LEAD-USERNAME](https://github.com/alexis-menendez)
-- **Email**: [FRONTEND-LEAD-NAME@email.com](https://FRONTEND-LEAD-NAME.onrender.com/contact)
+- **LinkedIn**: [in/BACKEND-LEAD-NAME](https://www.linkedin.com/in/BACKEND-LEAD-NAME/)
+- **GitHub**: [BACKEND-LEAD-USERNAME](https://github.com/alexis-menendez)
+- **Email**: [BACKEND-LEAD-NAME@email.com](https://BACKEND-LEAD-NAME.onrender.com/contact)
+
+#### Backend Developer: [**BACKEND-DEVELOPER-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
+
+- [**Portfolio**](https://BACKEND-DEVELOPER-NAME.onrender.com/)
+- **LinkedIn**: [in/BACKEND-DEVELOPER-NAME](https://www.linkedin.com/in/BACKEND-DEVELOPER-NAME/)
+- **GitHub**: [BACKEND-DEVELOPER-USERNAME](https://github.com/alexis-menendez)
+- **Email**: [BACKEND-DEVELOPER-NAME@email.com](https://BACKEND-DEVELOPER-NAME.onrender.com/contact)
 
