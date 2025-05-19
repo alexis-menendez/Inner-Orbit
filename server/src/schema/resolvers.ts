@@ -248,6 +248,38 @@ moodsByDates: async (
       }
     },
 
+    // Update journal entry by ID + input (new resolver for separate `id`)
+    updateJournalEntry: async (_: any, { id, input }: { id: string; input: any }) => {
+      try {
+        const updated = await JournalEntry.findByIdAndUpdate(
+          id,
+          { $set: input },
+          { new: true, runValidators: true }
+        );
+
+        if (!updated) {
+          return {
+            success: false,
+            message: "Journal entry not found",
+            entry: null,
+          };
+        }
+
+        return {
+          success: true,
+          message: "Journal entry updated",
+          entry: updated,
+        };
+      } catch (error) {
+        console.error("Error updating journal entry:", error);
+        return {
+          success: false,
+          message: "Server error updating entry",
+          entry: null,
+        };
+      }
+    },
+
     // Delete a journal entry
     deleteJournalEntry: async (_: any, { id }: { id: string }, { user }) => {
       if (!user) throw new Error("Not authenticated");
@@ -300,6 +332,5 @@ moodsByDates: async (
     },
   },
 };
-
 
 export default resolvers;

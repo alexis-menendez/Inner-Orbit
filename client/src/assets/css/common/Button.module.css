@@ -49,6 +49,7 @@
   background-color: #400a6b;
 }
 
+
 /* Base button */
 .button {
   width: 100%;
@@ -69,3 +70,12 @@
   background-color: #4f46e5; /* Tailwind indigo-600 */
   box-shadow: 0 4px 14px rgba(129, 140, 248, 0.3);
 }
+
+.tertiary {
+  background-color: #a982ec;
+}
+
+.tertiary:hover {
+  background-color: #080341;
+}
+

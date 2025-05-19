@@ -20,6 +20,7 @@ const typeDefs = gql`
     mood: String!
     intensity: Int!
     moodColor: String!
+
     createdAt: Date!
     user: User!
     note: String
@@ -55,7 +56,6 @@ const typeDefs = gql`
   }
 
   input UpdateJournalInput {
-    id: ID!
     title: String
     content: String
     mood: String
@@ -93,6 +93,7 @@ const typeDefs = gql`
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
+
     getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
     me: User
   }
@@ -130,6 +131,7 @@ const typeDefs = gql`
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
     updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
+    updateJournalEntry(id: ID!, input: UpdateJournalInput!): CreateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
 `;
