@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
-import { createJournalEntry } from "../controllers/journalController";
+import { createJournalEntry } from "../controllers/journalController.js";
 import { getMoodColor } from "../utils/trackerColors.js";
 
 const resolvers: IResolvers = {
