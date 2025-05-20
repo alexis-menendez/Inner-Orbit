@@ -1,7 +1,7 @@
 // File: server/src/controllers/journalController.ts
 
-import JournalEntry, { IJournalEntry } from "../models/Journal";
-import { JournalInput } from "../models/Journal";
+import JournalEntry, { IJournalEntry, JournalInput } from "../models/Journal.js";
+
 
 export const createJournalEntry = async (input: JournalInput) => {
   console.log("Recording journal entry:", input);

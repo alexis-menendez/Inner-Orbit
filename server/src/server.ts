@@ -10,6 +10,8 @@ import resolvers from "./schema/resolvers.js";
 import { connectDB } from "./config/connections.js";
 
 import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
@@ -53,6 +55,18 @@ async function startServer() {
   });
 
   await server.start();
+
+  if (process.env.NODE_ENV === 'production') {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+    }
+  );
+  }
 
   app.use(
     "/graphql",
