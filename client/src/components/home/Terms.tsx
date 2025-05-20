@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../assets/css/service/terms.module.css";
+import styles from "../../assets/css/service/Terms.module.css";
 
 const Terms = () => {
   return (

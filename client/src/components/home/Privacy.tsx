@@ -1,7 +1,7 @@
 // File: client/src/components/home/Privacy.tsx
 
 import React from 'react';
-import styles from '../../assets/css/service/privatepolicy.module.css'; 
+import styles from '../../assets/css/service/Privatepolicy.module.css'; 
 
 const Privacy = () => (
   <section className={styles.privacySection}>
