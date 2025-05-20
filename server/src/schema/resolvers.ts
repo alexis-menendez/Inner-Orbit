@@ -181,30 +181,44 @@ moodsByDates: async (
       _: any,
       { username, password }: { username: string; password: string }
     ) => {
-      if (!username || !password) {
-        throw new Error("Username and password are required.");
+      try {
+        console.log("[LOGIN] Attempt:", { username });
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+          console.log("[LOGIN] User not found:", username);
+          throw new Error("Invalid credentials.");
+        }
+
+        console.log("[LOGIN] Found user:", {
+          id: user._id,
+          passwordHash: user.password,
+        });
+
+        const isValid = await bcrypt.compare(password, user.password);
+        console.log("[LOGIN] Password valid:", isValid);
+
+        if (!isValid) {
+          throw new Error("Invalid credentials.");
+        }
+
+        const token = signToken({
+          id: user._id,
+          username: user.username,
+          isDev: user.isDev,
+        });
+
+        console.log("[LOGIN] Success. Token issued.");
+
+        return {
+          token,
+          user,
+        };
+      } catch (error) {
+        console.error("[LOGIN] Error during login:", error);
+        throw error;
       }
-
-      const user = await User.findOne({ username });
-      if (!user) {
-        throw new Error("Invalid credentials.");
-      }
-
-      const isValid = await bcrypt.compare(password, user.password);
-      if (!isValid) {
-        throw new Error("Invalid credentials.");
-      }
-
-      const token = signToken({
-        id: user._id,
-        username: user.username,
-        isDev: user.isDev,
-      });
-
-      return {
-        token,
-        user,
-      };
     },
 
 // JOURNAL
