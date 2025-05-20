@@ -165,10 +165,7 @@ InnerOrbit/
 │   ├── vite.config.ts   
 │   └── vitest.config.ts   
 │
-├── server/                          
-│   ├── scripts/   
-│   │    └── clearUsers.ts    
-│   │                         
+├── server/                                                  
 │   ├── src/  
 │   │   ├── config/  
 │   │   │   └── connections.ts  
