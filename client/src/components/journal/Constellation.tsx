@@ -1,20 +1,28 @@
 // File: client/src/components/journal/Constellation.tsx
 
 import React, { useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { CONSTELLATIONS } from './ConstellationLogic';
 import styles from '../../assets/css/journal/Stars.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import StarBackground from '../common/StarBackground';
+import { useQuery } from '@apollo/client';
+import { GET_JOURNAL_ENTRIES } from '../../graphql/queries';
+import { useAuth } from '../../context/authContext';
 
 const Constellation: React.FC = () => {
   const { index } = useParams<{ index: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const entries = location.state?.entries || [];
-  console.log('Entries passed to constellation:', entries);
+  const { user } = useAuth();
+  const { data } = useQuery(GET_JOURNAL_ENTRIES, {
+    variables: { userId: user?.id },
+    skip: !user,
+    fetchPolicy: 'cache-and-network',
+  });
+
+  const entries = data?.getJournalEntries?.entries || [];
 
   const constellationIndex = Number(index);
   const isValidIndex =
@@ -33,6 +41,17 @@ const Constellation: React.FC = () => {
   const baseEntryIndex = CONSTELLATIONS.slice(0, constellationIndex)
     .reduce((acc, c) => acc + c.stars.length, 0);
 
+  // Count how many stars in this constellation have actual entries
+  const entriesInConstellation = entries.slice(
+    baseEntryIndex,
+    baseEntryIndex + constellation.stars.length
+  );
+
+  // Dynamically determine max Y for visible stars
+  const activeStars = constellation.stars.slice(0, entriesInConstellation.length);
+  const maxY = Math.max(...activeStars.map(star => star.y));
+  const viewBoxHeight = Math.ceil(maxY + 5); // add padding
+
   return (
     <div className={styles.sky}>
       <StarBackground starCount={80} />
@@ -50,30 +69,37 @@ const Constellation: React.FC = () => {
 
       <svg
         className={styles.constellationSVG}
-        viewBox="0 0 100 100"
+        viewBox={`0 0 100 ${viewBoxHeight}`}
         preserveAspectRatio="xMidYMid meet"
       >
+        {/* Render only valid connections between existing entries */}
         {constellation.connections.map(([start, end], idx) => {
-          const a = constellation.stars[start];
-          const b = constellation.stars[end];
-          if (!a || !b) return null;
-          return (
-            <line
-              key={`line-${idx}`}
-              x1={a.x}
-              y1={a.y}
-              x2={b.x}
-              y2={b.y}
-              stroke="white"
-              strokeWidth="0.3"
-              vectorEffect="non-scaling-stroke"
-            />
-          );
+          if (
+            start < entriesInConstellation.length &&
+            end < entriesInConstellation.length
+          ) {
+            const a = constellation.stars[start];
+            const b = constellation.stars[end];
+            return (
+              <line
+                key={`line-${idx}`}
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                stroke="white"
+                strokeWidth="0.3"
+                vectorEffect="non-scaling-stroke"
+              />
+            );
+          }
+          return null;
         })}
 
-        {constellation.stars.map((star, i) => {
+        {/* Render stars with entries */}
+        {entriesInConstellation.map((entry: { title: string }, i: number) => {
+          const star = constellation.stars[i];
           const entryIndex = baseEntryIndex + i;
-          const entryTitle = entries[entryIndex]?.title || `Entry ${i + 1}`;
 
           return (
             <g key={`star-group-${i}`}>
@@ -89,26 +115,26 @@ const Constellation: React.FC = () => {
               />
               {hoveredIndex === i && (
                 <foreignObject
-                  x={Math.min(star.x + 1, 85)} // prevent overflow
-                  y={Math.max(star.y - 5, 0)}  // prevent going above top
+                  x={Math.min(star.x + 1, 85)}
+                  y={Math.max(star.y - 5, 0)}
                   width={40}
                   height={80}
                   style={{ overflow: 'visible', pointerEvents: 'none' }}
                 >
-                <div
-                  style={{
-                    fontSize: '1.5px',
-                    color: 'white',
-                    background: 'rgba(60, 20, 80, 0.9)',
-                    padding: '1px 2px',
-                    borderRadius: '0.5vw',
-                    wordWrap: 'break-word',
-                    maxWidth: '50%',
-                    lineHeight: '1.2',
-                  }}
-                >
-                  {entryTitle}
-                </div>
+                  <div
+                    style={{
+                      fontSize: '1.5px',
+                      color: 'white',
+                      background: 'rgba(60, 20, 80, 0.9)',
+                      padding: '1px 2px',
+                      borderRadius: '0.5vw',
+                      wordWrap: 'break-word',
+                      maxWidth: '50%',
+                      lineHeight: '1.2',
+                    }}
+                  >
+                    {entry.title}
+                  </div>
                 </foreignObject>
               )}
             </g>
