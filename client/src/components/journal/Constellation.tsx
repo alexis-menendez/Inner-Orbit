@@ -97,7 +97,7 @@ const Constellation: React.FC = () => {
         })}
 
         {/* Render stars with entries */}
-        {entriesInConstellation.map((entry, i) => {
+        {entriesInConstellation.map((entry: { title: string }, i: number) => {
           const star = constellation.stars[i];
           const entryIndex = baseEntryIndex + i;
 
