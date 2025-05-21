@@ -1,4 +1,6 @@
-import { gql } from "apollo-server";
+// File: server/src/schema/typeDefs.ts
+
+import { gql } from "graphql-tag";
 
 const typeDefs = gql`
 
@@ -15,7 +17,7 @@ const typeDefs = gql`
     journalEntries: [JournalEntry]
   }
 
-type MoodEntry {
+  type MoodEntry {
     _id: ID!
     mood: String!
     moodColor: String!
@@ -85,7 +87,7 @@ type MoodEntry {
     message: String
   }
 
- type Query  {
+  type Query {
     getUserById(userId: ID!): User
     getJournalEntryById(entryId: ID!): JournalEntry
     getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
@@ -95,10 +97,11 @@ type MoodEntry {
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
     me: User
   }
+
   extend type Query {
     getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
   }
-    
+
   type Mutation {
     registerUser(
       username: String!
@@ -111,7 +114,7 @@ type MoodEntry {
 
     loginUser(username: String!, password: String!): AuthPayload
 
-    addMoodEntry(
+        addMoodEntry(
       date: String!
       mood: String!
       intensity: Int!
@@ -127,7 +130,7 @@ type MoodEntry {
       moodColor: String
       note: String
     ): MoodEntry
-
+    
     deleteMoodEntry(id: ID!): Boolean
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
@@ -135,5 +138,7 @@ type MoodEntry {
     updateJournalEntry(id: ID!, input: UpdateJournalInput!): CreateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
+
 `;
+
 export default typeDefs;
