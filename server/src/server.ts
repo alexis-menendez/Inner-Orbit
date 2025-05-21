@@ -41,6 +41,7 @@ async function startServer() {
       origin: (origin, callback) => {
         const allowedOrigins = [
           "http://localhost:3000",
+          "http://localhost:4173",
           "https://inner-orbit.onrender.com"
         ];
 
