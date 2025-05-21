@@ -38,7 +38,18 @@ async function startServer() {
   // Enable CORS before Apollo middleware
   app.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: (origin, callback) => {
+        const allowedOrigins = [
+          "http://localhost:3000",
+          "https://inner-orbit.onrender.com"
+        ];
+
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       credentials: true,
     })
   );
