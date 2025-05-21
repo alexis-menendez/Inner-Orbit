@@ -7,8 +7,6 @@ import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController.js";
-
-
 import DateScalar from './scalars/DateScalar.js';
 
 const resolvers: IResolvers = {

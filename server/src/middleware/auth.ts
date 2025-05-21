@@ -1,4 +1,4 @@
-// File: server/src/utils/auth.ts
+// File: server/src/middleware/auth.ts
 
 import jwt from "jsonwebtoken";
 
