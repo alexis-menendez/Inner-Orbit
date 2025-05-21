@@ -3,7 +3,7 @@
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
 
 const httpLink = new HttpLink({
-  uri: import.meta.env.VITE_API_URL || '/graphql',   // The fallback '/graphql' works with the local dev proxy
+  uri: import.meta.env.VITE_API_URL || '/graphql', // use full URL in prod, proxy in dev
 });
 
 const authLink = new ApolloLink((operation, forward) => {

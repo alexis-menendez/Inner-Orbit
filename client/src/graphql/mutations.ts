@@ -11,26 +11,29 @@ export const LOGIN_USER = gql`
         username
         email
       }
+      success
+      message
     }
   }
 `;
+
 
 export const REGISTER_USER = gql`
   mutation RegisterUser(
     $username: String!
     $firstName: String
     $lastName: String
+    $dob: String
     $email: String!
     $password: String!
-    $dob: String
   ) {
     registerUser(
       username: $username
       firstName: $firstName
       lastName: $lastName
+      dob: $dob
       email: $email
       password: $password
-      dob: $dob
     ) {
       token
       user {
@@ -43,6 +46,7 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
 
 export const CREATE_JOURNAL = gql`
   mutation CreateJournal($input: CreateJournalInput!) {
@@ -100,25 +104,54 @@ export const DELETE_JOURNAL_ENTRY = gql`
 `;
 
 export const ADD_MOOD_ENTRY = gql`
-  mutation AddMoodEntry($mood: String!, $intensity: Int!, $color: String!) {
-    addMoodEntry(mood: $mood, intensity: $intensity, color: $color) {
+  mutation AddMoodEntry(
+    $date: Date!
+    $mood: String!
+    $intensity: Int!
+    $moodColor: String!
+    $note: String
+    $userId: ID!
+  ) {
+    addMoodEntry(
+      date: $date
+      mood: $mood
+      intensity: $intensity
+      moodColor: $moodColor
+      note: $note
+      userId: $userId
+    ) {
       _id
+      date
       mood
-      moodColor
       intensity
+      moodColor
+      note
       createdAt
     }
   }
 `;
 
 export const UPDATE_MOOD_ENTRY = gql`
-  mutation UpdateMoodEntry($id: ID!, $mood: String, $intensity: Int, $color: String) {
-    updateMoodEntry(id: $id, mood: $mood, intensity: $intensity, color: $color) {
+  mutation UpdateMoodEntry(
+    $id: ID!
+    $mood: String
+    $intensity: Int
+    $moodColor: String
+    $note: String
+  ) {
+    updateMoodEntry(
+      id: $id
+      mood: $mood
+      intensity: $intensity
+      moodColor: $moodColor
+      note: $note
+    ) {
       _id
       mood
-      moodColor
       intensity
-      createdAt
+      moodColor
+      note
+      date
     }
   }
 `;

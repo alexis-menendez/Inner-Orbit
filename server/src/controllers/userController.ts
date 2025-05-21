@@ -1,8 +1,8 @@
 // File: server/src/controllers/userController.ts
 
-import User from '../models/User';
+import User from '../models/User.js';
 import bcrypt from 'bcrypt';
-import { signToken } from '../utils/auth';
+import { signToken } from '../utils/auth.js';
 import { Request, Response } from 'express';
 
 export const registerUser = async (req: Request, res: Response) => {
