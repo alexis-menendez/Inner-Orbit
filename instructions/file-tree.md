@@ -27,20 +27,22 @@ InnerOrbit/
 │   │   │       ├── dashboard/ 
 │   │   │       │   ├── PomodoroTimer.module.css    
 │   │   │       │   └── *Dedicated styles for elements on the Dashboard.* 
-│   │   │       │ 
-│   │   │       ├── effects/   
-│   │   │       │   └── *Dedicated styles for interactive or animated elements, like the starfield, nebula, and orbit visuals, etc.* 
 │   │   │       │   
 │   │   │       ├── journal/ 
+│   │   │       │   ├── Notebook.module.css  
 │   │   │       │   ├── Stars.module.css    
 │   │   │       │   └── *Dedicated styles for the journal and constellations pages.* 
 │   │   │       │   
 │   │   │       ├── layout/   
-│   │   │       │   ├── Tracker.module.css              
+│   │   │       │   ├── NavBar.module.css             
 │   │   │       │   └── *CSS for page or container-level layout components (grid/flexbox layouts, responsive wrappers, Navbars)* 
 │   │   │       │   
+│   │   │       ├── service/   
+│   │   │       │   ├── PrivacyPolicy.module.css            
+│   │   │       │   └── Terms.module.css
+│   │   │       │  
 │   │   │       └── tracker/  
-│   │   │           ├── Stars.module.css   
+│   │   │           ├── Tracker.module.css
 │   │   │           └── *Dedicated styles for the tracker page*
 │   │   │  
 │   │   ├── components/  
@@ -51,14 +53,13 @@ InnerOrbit/
 │   │   │   ├── dashboard/   
 │   │   │   │   ├── pomdoro/
 │   │   │   │   │   ├──  FocusTaskList.tsx
-│   │   │   │   │   └──  PmodoroTimer.tsx
+│   │   │   │   │   └──  PomodoroTimer.tsx
+│   │   │   │   │  
+│   │   │   │   ├── pet/
+│   │   │   │   │   └──  SquidPet.tsx
 │   │   │   │   │  
 │   │   │   │   ├──  WeeklyMoodCalendar.tsx   
 │   │   │   │   └── *any components created specifically for the dashboard page...*
-│   │   │   │   
-│   │   │   ├── feed/  
-│   │   │   │   ├──  (not yet created)   
-│   │   │   │   └── *any components created specifically for the feed page...* 
 │   │   │   │   
 │   │   │   ├── home/  
 │   │   │   │   ├──  LoginForm.tsx 
@@ -90,7 +91,6 @@ InnerOrbit/
 │   │   │   │
 │   │   │   ├── tracker/  
 │   │   │   │   ├──  MoodCalender.tsx 
-│   │   │   │   ├──  MoodChart.tsx  
 │   │   │   │   ├──  MoodSelector.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
 │   │   │   │    
@@ -137,10 +137,7 @@ InnerOrbit/
 │   │   │
 │   │   ├── utils/
 │   │   │   ├── API.ts 
-│   │   │   ├── auth.ts  
-│   │   │   ├── audioPlayer.ts      (not yet created)           
-│   │   │   ├── formatDate.ts       (not yet created) 
-│   │   │   └── privacyFilter.ts    (not yet created) 
+│   │   │   └── auth.ts  
 │   │   │
 │   │   ├── appolloClient.ts
 │   │   ├── App.tsx  
@@ -196,6 +193,9 @@ InnerOrbit/
 │   │   │   └── Video.ts           
 │   │   |    
 │   │   ├── schemas/  
+│   │   │   ├── scalars/
+│   │   │   │   └── DateScalar.ts
+│   │   │   │
 │   │   │   ├── index.ts
 │   │   │   ├── resolvers.ts         
 │   │   │   └── typeDefs.ts                    
@@ -203,13 +203,7 @@ InnerOrbit/
 │   │   ├── seeds/  
 │   │   │   ├── index.ts             
 │   │   │   ├── user-seeds.ts        
-│   │   │   ├── user.json             
-│   │   │   ├── post-seeds.ts        (not yet created) 
-│   │   │   ├── post.json            (not yet created) 
-│   │   │   ├── tracker-seeds.ts     (not yet created) 
-│   │   │   ├── tracker.json         (not yet created) 
-│   │   │   ├── journal-seeds.ts     
-│   │   │   └── journal.json         
+│   │   │   └── user.json                     
 │   │   │      
 │   │   ├── types/   
 │   │   │   └── express/  

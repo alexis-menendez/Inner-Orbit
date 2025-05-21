@@ -2,8 +2,8 @@
 
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import User from '../models/User';
-import { signToken } from '../utils/auth';
+import User from '../models/User.js';
+import { signToken } from '../utils/auth.js';
 
 // Signup Controller
 export const signup = async (req: Request, res: Response) => {

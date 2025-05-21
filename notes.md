@@ -1,7 +1,4 @@
-Hello World!
-
-Alexis:
-Stable as of commit: 82e5263
+Stable as of commit: 0aac851
 
 Running "dev:clean:install:build:start" from root:
 - successfully builds client
@@ -11,4 +8,8 @@ Checks that Pass / Fail:
 - client build + server boot checks pass
 - Typescript error check passes
 
-
+Functionality:
+- Login works for seeded and created users
+- journal creation works and saves to db
+- constellation logic works
+- tracker creation works and saves to db

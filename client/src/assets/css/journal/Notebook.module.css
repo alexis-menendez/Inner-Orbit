@@ -7,7 +7,6 @@
   width: 100%;
   max-width: 450px;
   margin: 2rem auto;
-  padding: 2rem 8.88% 2rem 10%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-family: 'Georgia', serif;
   line-height: 1.7;
@@ -21,5 +20,184 @@
   background-size: contain; /* full-width vertically without shrinking */
 
   /* Prevent early repetition by ensuring container is at least the natural image height */
-  min-height: 841px; /* replace 1200px with the actual height of your Notebook.svg */
+  min-height: 1080px; /* replace 1200px with the actual height of your Notebook.svg */
+}
+
+/* Large Desktop/Laptop styles (1920px to 2350px) */
+@media (max-width: 2350px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 1800px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 1.5rem;
+    background-size: 100% auto;
+    min-height: 1080px;
+  }
+}
+
+/* Small Desktop/Laptop styles (1000px to 1919px) */
+@media (max-width: 1919px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 970px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.95rem;
+    background-size: 100% auto;
+    min-height: 1080px;
+  }
+}
+
+/* Extra Large Tablet styles (900px to 999px) */
+@media (max-width: 999px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 870px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.95rem;
+    background-size: 100% auto;
+    min-height: 1080px;
+  }
+}
+
+/* Large Tablet styles (700px to 899px) */
+@media (max-width: 899px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 670px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.95rem;
+    background-size: 100% auto;
+    min-height: 1080px;
+  }
+}
+
+
+/* Tablet styles (500px to 699px) */
+@media (max-width: 699px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 470px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.95rem;
+    background-size: 100% auto;
+    min-height: 1080px;
+  }
+}
+
+/* Mobile styles (300px to 499) */
+@media (max-width: 499px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 270px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.85rem;
+    min-height: 1080px;
+  }
+}
+
+/* Small Mobile styles (399px and under) */
+@media (max-width: 399px) {
+  .notebookContainer {
+  background-image: url('/assets/images/Notebook.svg');
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  width: 100%;
+  max-width: 270px;
+    padding: .5rem;
+    margin: .5rem;
+    font-size: 0.85rem;
+    min-height: 1080px;
+  }
+}
+
+.textContent {
+  padding-left: 4rem;
+  padding-right: 1rem;
+}
+
+/* Large Desktop/Laptop styles (1920px to 2350px) */
+@media (max-width: 2350px) {
+  .textContent {
+    padding-left: 16rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Small Desktop/Laptop styles (1000px to 1919px) */
+@media (max-width: 1919px) {
+  .textContent {
+    padding-left: 8rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Extra Large Tablet styles (900px to 999px) */
+@media (max-width: 999px) {
+  .textContent {
+    padding-left: 7rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Large Tablet */
+@media (max-width: 899px) {
+  .textContent {
+    padding-left: 6rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 699px) {
+  .textContent {
+    padding-left: 4rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 499px) {
+  .textContent {
+    padding-left: 3rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 399px) {
+  .textContent {
+    padding-left: 2rem;
+    padding-right: 1rem;
+  }
 }

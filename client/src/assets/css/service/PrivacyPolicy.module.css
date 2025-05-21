@@ -1,0 +1,77 @@
+/* File: "File: client/src/assets/css/service/PrivacyPolicy.module.css”*/
+
+.privacySection {
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+  background: linear-gradient(to bottom, #0f172a, #1e1b4b, #000000);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.privacyCard {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #c7d2fe; /* indigo-200 */
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  text-align: center;
+  color: #e0e7ff; /* indigo-100 */
+  margin-bottom: 2rem;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.appName {
+  color: #a5b4fc; /* indigo-300 */
+  font-weight: 600;
+}
+
+.sectionHeading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #f1f5f9; /* slate-100 */
+  margin-bottom: 1.5rem;
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  color: #e0e7ff;
+}
+
+.link {
+  color: #818cf8; /* indigo-400 */
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #a5b4fc; /* indigo-300 */
+}

@@ -1,6 +1,6 @@
 // File: server/src/schema/typeDefs.ts
 
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
 const typeDefs = gql`
 
@@ -94,7 +94,7 @@ const typeDefs = gql`
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
-    moodsByDates(dates: [String!]!): [MoodEntry]
+    moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
     me: User
   }
 
@@ -114,8 +114,23 @@ const typeDefs = gql`
 
     loginUser(username: String!, password: String!): AuthPayload
 
-    addMoodEntry(mood: String!, intensity: Int!): MoodEntry
-    updateMoodEntry(id: ID!, mood: String, intensity: Int, color: String): MoodEntry
+        addMoodEntry(
+      date: Date!
+      mood: String!
+      intensity: Int!
+      moodColor: String!
+      note: String
+      userId: ID!
+    ): MoodEntry!
+
+    updateMoodEntry(
+      id: ID!
+      mood: String
+      intensity: Int
+      moodColor: String
+      note: String
+    ): MoodEntry
+    
     deleteMoodEntry(id: ID!): Boolean
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
