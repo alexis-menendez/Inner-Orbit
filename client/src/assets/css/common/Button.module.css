@@ -49,6 +49,28 @@
   background-color: #400a6b;
 }
 
+
+/* Base button */
+.button {
+  width: 100%;
+  padding: 0.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Primary button style */
+.primary {
+  background-color: #4338ca; /* Tailwind indigo-700 */
+  color: white;
+}
+
+.primary:hover {
+  background-color: #4f46e5; /* Tailwind indigo-600 */
+  box-shadow: 0 4px 14px rgba(129, 140, 248, 0.3);
+}
+
 .tertiary {
   background-color: #a982ec;
 }
@@ -56,3 +78,4 @@
 .tertiary:hover {
   background-color: #080341;
 }
+

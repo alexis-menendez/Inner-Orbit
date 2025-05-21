@@ -1,5 +1,3 @@
-// File: server/src/server.ts
-
 import express, { Request } from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -17,18 +15,19 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "";
 
-// JWT-based context
+// JWT-based context <--this was updated/changed-->
 const context = async ({ req }: { req: Request }) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
   if (!token) return { user: null };
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET_KEY);
-    return { user: decoded };
+    return { user: decoded }; // ✅ user = { id, username, ... }
   } catch {
     return { user: null };
   }
 };
+
 
 async function startServer() {
   await connectDB();
