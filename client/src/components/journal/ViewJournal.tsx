@@ -154,7 +154,7 @@ const ViewJournal: React.FC = () => {
         <div className={notebookStyles.notebookContainer}>
           <div className={notebookStyles.spiralImage} />
 
-          <h2 style={{ marginBottom: '1rem' }}>Mood: {entry.title}</h2>
+          <h2 style={{ marginBottom: '1rem' }}>{entry.title}</h2>
           <h3 style={{ marginBottom: '1rem' }}>
             Mood: {entry.mood.charAt(0).toUpperCase() + entry.mood.slice(1)}
           </h3>
