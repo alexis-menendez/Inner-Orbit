@@ -1,11 +1,17 @@
-// File: client/src/components/dashboard/SquidPet/SquidPet.tsx
+// File: client/src/components/dashboard/pet/SquidPet.tsx
 
 import React from 'react';
 
-const SquidPet: React.FC = () => {
+type AnimationKey = 'idle' | 'walk' | 'legLift' | 'fall' | 'jump' | 'jumpslam';
+
+interface SquidPetProps {
+  trigger: AnimationKey;
+}
+
+const SquidPet: React.FC<SquidPetProps> = ({ trigger }) => {
   return (
     <div>
-      <p>🐙 SquidPet component placeholder</p>
+      <p>🐙 SquidPet Placeholder Since I don't have the code: {trigger}</p>
     </div>
   );
 };
