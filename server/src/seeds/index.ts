@@ -3,7 +3,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import { seedUsers } from './user-seeds';
+// @ts-expect-error: TS doesn't allow `.ts` extensions unless noEmit is true
+import { seedUsers } from './user-seeds.ts';
 // import { seedMoods } from './mood-seeds';
 
 dotenv.config();
