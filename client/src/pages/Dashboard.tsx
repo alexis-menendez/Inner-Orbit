@@ -5,7 +5,7 @@ import NavBar from "../components/nav/NavBar";
 import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
-import SquidPet from "../components/dashboard/SquidPet/SquidPet";
+import SquidPet from "../components/dashboard/pet/SquidPet";
 import { useAuth } from "../context/authContext";
 
 type MoodEntry = {
