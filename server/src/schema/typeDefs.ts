@@ -1,6 +1,6 @@
 // File: server/src/schema/typeDefs.ts
 
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
 const typeDefs = gql`
 
