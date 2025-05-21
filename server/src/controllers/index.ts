@@ -1,8 +1,8 @@
 // file: server/src/controllers/index.ts
 
-export * from './userController';
-export * from './trackerController';
-// export * from './journalController';  // Uncomment when journalController is ready
-export * from './videoController';
+export * from './userController.js';
+export * from './trackerController.js';
+export * from './journalController.js';  
+export * from './videoController.js';
 
 // Add more exports here as needed
