@@ -1,6 +1,8 @@
 // File: server/src/controllers/trackerController.ts
 
+import { Date } from 'mongoose';
 import MoodEntry from '../models/Tracker.js';
+import User from '../models/User.js'; 
 import { Request, Response } from 'express';
 
 interface AuthenticatedRequest extends Request {
@@ -9,6 +11,15 @@ interface AuthenticatedRequest extends Request {
     username: string;
     isDev?: boolean;
   };
+}
+
+interface AddMoodEntryArgs {
+  date: Date;
+  mood: string;
+  intensity: number;
+  moodColor: string;
+  note?: string;
+  userId: string;
 }
 
 export const createMoodEntry = async (req: AuthenticatedRequest, res: Response) => {
@@ -28,6 +39,34 @@ export const createMoodEntry = async (req: AuthenticatedRequest, res: Response) 
     }
     return res.status(400).json({ error: 'Unknown error' });
   }
+};
+
+export const addMoodEntry = async ({
+  date,
+  mood,
+  intensity,
+  moodColor,
+  note,
+  userId,
+}: AddMoodEntryArgs) => {
+  console.log("[TRACKER] Creating mood entry:", { date, mood, intensity, moodColor, note, userId });
+
+  const entry = await MoodEntry.create({
+    date,
+    mood,
+    intensity,
+    moodColor,
+    note,
+    userId,
+  });
+
+  await User.findByIdAndUpdate(userId, {
+    $push: { moodEntries: entry._id },
+  });
+
+  console.log("[TRACKER] Mood entry saved:", entry);
+
+  return entry;
 };
 
 export const getUserMoodEntries = async (req: AuthenticatedRequest, res: Response) => {
