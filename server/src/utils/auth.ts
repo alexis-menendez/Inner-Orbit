@@ -10,13 +10,11 @@ export const signToken = (payload: object): string => {
   if (!secret) {
     console.error("JWT_SECRET_KEY is missing from environment variables!");
     throw new Error("Server misconfiguration: missing JWT secret");
-  }
+  } 
 
-
-// ✅ UPDATED
-return jwt.sign(payload, secret, { expiresIn: expiration });
-
-
+  return jwt.sign
+    (payload, secret, { expiresIn: expiration }
+  );
 };
 
 export const verifyToken = (token: string) => {
