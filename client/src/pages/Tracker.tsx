@@ -5,6 +5,7 @@ import NavBar from '../components/nav/NavBar';
 import { moodList } from '../models/Mood';
 import { useAuth } from '../context/authContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from '../../assets/css/tracker/Tracker.module.css';
 
 import { GET_MOOD_ENTRIES } from '../graphql/queries';
 import {

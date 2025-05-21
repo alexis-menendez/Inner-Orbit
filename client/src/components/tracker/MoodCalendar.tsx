@@ -1,6 +1,8 @@
 // File: client/src/components/tracker/MoodCalendar.tsx
 
 import React from 'react';
+import styles from '../../assets/css/tracker/Tracker.module.css';
+
 
 type Props = {
   moodData: Record<string, any>;

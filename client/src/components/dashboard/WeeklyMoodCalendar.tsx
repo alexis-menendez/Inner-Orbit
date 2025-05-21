@@ -3,6 +3,8 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_WEEKLY_MOODS } from '../../graphql/queries';
+import styles from '../../assets/css/tracker/Tracker.module.css';
+
 import {
   ADD_MOOD_ENTRY,
   UPDATE_MOOD_ENTRY,
