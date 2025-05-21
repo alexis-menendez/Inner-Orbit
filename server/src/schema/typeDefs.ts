@@ -115,7 +115,7 @@ const typeDefs = gql`
     loginUser(username: String!, password: String!): AuthPayload
 
         addMoodEntry(
-      date: String!
+      date: Date!
       mood: String!
       intensity: Int!
       moodColor: String!
