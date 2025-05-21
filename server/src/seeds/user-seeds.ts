@@ -1,7 +1,7 @@
 // File: server/src/seeds/user-seeds.ts
 
 import bcrypt from 'bcrypt';
-import User from '../models/User';
+import User from '../models/User.js';
 
 export const seedUsers = async () => {
   const users = await Promise.all(

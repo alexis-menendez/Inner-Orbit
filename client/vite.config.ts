@@ -15,7 +15,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      '/auth': {
+      '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,

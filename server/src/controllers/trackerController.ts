@@ -1,6 +1,6 @@
 // File: server/src/controllers/trackerController.ts
 
-import MoodEntry from '../models/Tracker';
+import MoodEntry from '../models/Tracker.js';
 import { Request, Response } from 'express';
 
 interface AuthenticatedRequest extends Request {
