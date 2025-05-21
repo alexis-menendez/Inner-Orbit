@@ -12,7 +12,11 @@ export const signToken = (payload: object): string => {
     throw new Error("Server misconfiguration: missing JWT secret");
   }
 
-  return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+
+// ✅ UPDATED
+return jwt.sign(payload, secret, { expiresIn: expiration });
+
+
 };
 
 export const verifyToken = (token: string) => {

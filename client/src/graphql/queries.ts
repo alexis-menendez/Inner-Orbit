@@ -27,14 +27,11 @@ export const GET_ME = gql`
 `;
 
 export const GET_USER_BY_ID = gql`
- query GetMoodEntries {
-    getMoodEntries {
+ query GetUserById($userId: ID!) {
+    getUserById(userId: $userId) {
       _id
-      date
-      mood
-      intensity
-      moodColor
-      note
+      username
+      email
     }
   }
 `;

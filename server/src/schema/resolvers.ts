@@ -1,13 +1,15 @@
 // File: server/src/schema/resolvers.ts
 
+
 import { IResolvers } from "@graphql-tools/utils";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
-import { createJournalEntry } from "../controllers/journalController";
+import { createJournalEntry } from "../controllers/journalController.js";
 
-import DateScalar from './date';
+
+import DateScalar from './scalars/DateScalar.js';
 
 const resolvers: IResolvers = {
     Date: DateScalar,
@@ -329,14 +331,36 @@ moodsByDates: async (
 },
 
     // Update a mood entry
-    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }) => {
-  console.log('Updating Mood:', { id, mood, intensity, moodColor, note }); // <-- Debug
+    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
+  if (!user || !user._id) throw new Error("Not authenticated");
+
+  const entry = await MoodEntry.findById(id);
+  if (!entry) throw new Error("Mood entry not found");
+
+  if (!entry.userId || !user._id) {
+    throw new Error("Invalid user or entry data");
+  }
+
+  if (entry.userId.toString() !== user._id.toString()) {
+    throw new Error("Not authorized to update this mood entry");
+  }
+
+  console.log('Updating Mood:', {
+    id,
+    mood,
+    intensity,
+    moodColor,
+    note,
+    entryUserId: entry?.userId,
+    currentUserId: user?._id,
+  });
+
   return await MoodEntry.findByIdAndUpdate(
     id,
-    { mood, intensity, moodColor, note }, // make sure all fields are listed
+    { mood, intensity, moodColor, note },
     { new: true }
   );
-    },
+},
 
     // Delete a mood entry
     deleteMoodEntry: async (_, { id }, { user }) => {

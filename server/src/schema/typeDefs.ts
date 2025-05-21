@@ -1,6 +1,7 @@
 import { gql } from "apollo-server";
 
 const typeDefs = gql`
+
   scalar Date
 
   type User {
@@ -14,13 +15,12 @@ const typeDefs = gql`
     journalEntries: [JournalEntry]
   }
 
-  type MoodEntry {
+type MoodEntry {
     _id: ID!
-    date: Date!
     mood: String!
-    intensity: Int!
     moodColor: String!
-
+    intensity: Int!
+    date: Date!
     createdAt: Date!
     user: User!
     note: String
@@ -85,7 +85,7 @@ const typeDefs = gql`
     message: String
   }
 
-  type Query {
+ type Query  {
     getUserById(userId: ID!): User
     getJournalEntryById(entryId: ID!): JournalEntry
     getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
@@ -93,11 +93,12 @@ const typeDefs = gql`
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
-
-    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
     me: User
   }
-
+  extend type Query {
+    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
+  }
+    
   type Mutation {
     registerUser(
       username: String!
@@ -119,13 +120,13 @@ const typeDefs = gql`
       userId: ID!
     ): MoodEntry!
 
-     updateMoodEntry(
-    id: ID!,
-    mood: String,
-    intensity: Int,
-    moodColor: String,
-    note: String
-  ): MoodEntry
+    updateMoodEntry(
+      id: ID!
+      mood: String
+      intensity: Int
+      moodColor: String
+      note: String
+    ): MoodEntry
 
     deleteMoodEntry(id: ID!): Boolean
 
