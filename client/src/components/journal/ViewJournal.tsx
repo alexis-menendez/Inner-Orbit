@@ -19,6 +19,7 @@ const ViewJournal: React.FC = () => {
   const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [titleInput, setTitleInput] = useState('');
+  const [moodInput, setMoodInput] = useState('neutral');
   const [contentInput, setContentInput] = useState('');
 
   const { data, loading, error } = useQuery(GET_JOURNAL_ENTRIES, {
@@ -50,6 +51,7 @@ const ViewJournal: React.FC = () => {
 
   const handleEditClick = () => {
     setTitleInput(entry.title);
+    setMoodInput: (entry.mood);
     setContentInput(entry.content);
     setShowForm(true);
   };
@@ -61,6 +63,7 @@ const ViewJournal: React.FC = () => {
           id: entry._id,
           input: {
             title: titleInput,
+            mood: moodInput,
             content: contentInput,
           },
         },
@@ -111,6 +114,21 @@ const ViewJournal: React.FC = () => {
             placeholder="Title"
           />
 
+          <select
+            className={styles.input}
+            value={moodInput}
+            onChange={(e) => setMoodInput(e.target.value)}
+            required
+          >
+            <option value="neutral">Neutral</option>
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+            <option value="angry">Angry</option>
+            <option value="anxious">Anxious</option>
+            <option value="excited">Excited</option>
+            <option value="reflective">Reflective</option>
+          </select>
+
           <textarea
             value={contentInput}
             onChange={(e) => setContentInput(e.target.value)}
@@ -136,11 +154,14 @@ const ViewJournal: React.FC = () => {
         <div className={notebookStyles.notebookContainer}>
           <div className={notebookStyles.spiralImage} />
 
-          <h2 style={{ marginBottom: '1rem' }}>{entry.title}</h2>
-          <p>{entry.content}</p>
+          <h2 style={{ marginBottom: '1rem' }}>Mood: {entry.title}</h2>
+          <h3 style={{ marginBottom: '1rem' }}>
+            Mood: {entry.mood.charAt(0).toUpperCase() + entry.mood.slice(1)}
+          </h3>
           <p style={{ marginTop: '2rem', fontStyle: 'italic', fontSize: '0.9rem' }}>
             Created on: {new Date(entry.createdAt).toLocaleString()}
           </p>
+          <p>{entry.content}</p>
         </div>
       )}
     </div>
