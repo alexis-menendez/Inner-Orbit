@@ -1,6 +1,9 @@
-import { gql } from "apollo-server";
+// File: server/src/schema/typeDefs.ts
+
+import { gql } from "graphql-tag";
 
 const typeDefs = gql`
+
   scalar Date
 
   type User {
@@ -16,11 +19,10 @@ const typeDefs = gql`
 
   type MoodEntry {
     _id: ID!
-    date: Date!
     mood: String!
-    intensity: Int!
     moodColor: String!
-
+    intensity: Int!
+    date: Date!
     createdAt: Date!
     user: User!
     note: String
@@ -93,9 +95,11 @@ const typeDefs = gql`
     getMoodEntries: [MoodEntry]
     getJournalEntries(userId: ID!): GetJournalEntriesPayload!
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
-
-    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
     me: User
+  }
+
+  extend type Query {
+    getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
   }
 
   type Mutation {
@@ -110,8 +114,8 @@ const typeDefs = gql`
 
     loginUser(username: String!, password: String!): AuthPayload
 
-    addMoodEntry(
-      date: String!
+        addMoodEntry(
+      date: Date!
       mood: String!
       intensity: Int!
       moodColor: String!
@@ -119,14 +123,14 @@ const typeDefs = gql`
       userId: ID!
     ): MoodEntry!
 
-     updateMoodEntry(
-    id: ID!,
-    mood: String,
-    intensity: Int,
-    moodColor: String,
-    note: String
-  ): MoodEntry
-
+    updateMoodEntry(
+      id: ID!
+      mood: String
+      intensity: Int
+      moodColor: String
+      note: String
+    ): MoodEntry
+    
     deleteMoodEntry(id: ID!): Boolean
 
     createJournal(input: CreateJournalInput!): CreateJournalPayload!
@@ -134,5 +138,7 @@ const typeDefs = gql`
     updateJournalEntry(id: ID!, input: UpdateJournalInput!): CreateJournalPayload!
     deleteJournalEntry(id: ID!): Boolean
   }
+
 `;
+
 export default typeDefs;

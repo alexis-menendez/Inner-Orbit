@@ -1,6 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+// File: client/src/components/dashboard/WeeklyMoodCalendar.ts
+
+import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_WEEKLY_MOODS } from '../../graphql/queries';
+import styles from '../../assets/css/tracker/Tracker.module.css';
+
+import {
+  ADD_MOOD_ENTRY,
+  UPDATE_MOOD_ENTRY,
+  DELETE_MOOD_ENTRY
+} from '../../graphql/mutations'; // Optional: included if you plan to extend functionality
+
 import { useAuth } from '../../context/authContext';
 
 interface MoodEntry {
@@ -93,7 +103,6 @@ const WeeklyMoodReview: React.FC = () => {
         );
       })}
 
-      {/* Modal for Note */}
       {selectedNote && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white text-black p-6 rounded-xl shadow-lg max-w-md w-full">
@@ -113,3 +122,4 @@ const WeeklyMoodReview: React.FC = () => {
 };
 
 export default WeeklyMoodReview;
+

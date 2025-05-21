@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_MOOD_ENTRIES } from '../../graphql/queries';
+import styles from '../../assets/css/tracker/Tracker.module.css';
+
 
 interface Mood {
   id: string;
