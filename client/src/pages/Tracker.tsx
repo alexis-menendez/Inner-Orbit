@@ -21,7 +21,7 @@ const GET_MOOD_ENTRIES = gql`
 
 const ADD_MOOD_ENTRY = gql`
   mutation AddMoodEntry(
-    $date: String!
+    $date: Date!
     $mood: String!
     $intensity: Int!
     $moodColor: String!
