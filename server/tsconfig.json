@@ -11,8 +11,8 @@
       "outDir": "./dist",
   
       /* Modules */
-      "module": "ES2020",
-      "moduleResolution": "Node",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
   
       /* JavaScript Support */
       "allowJs": true,
