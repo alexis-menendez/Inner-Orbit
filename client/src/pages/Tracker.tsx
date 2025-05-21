@@ -1,82 +1,17 @@
  // File: client/src/pages/Tracker.tsx
 import React, { useState, useMemo } from 'react';
-import { useQuery, useMutation, gql } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import NavBar from '../components/nav/NavBar';
 import { moodList } from '../models/Mood';
 import { useAuth } from '../context/authContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const GET_MOOD_ENTRIES = gql`
-  query GetMoodEntries {
-    getMoodEntries {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
-    }
-  }
-`;
-
-const ADD_MOOD_ENTRY = gql`
-  mutation AddMoodEntry(
-    $date: Date!
-    $mood: String!
-    $intensity: Int!
-    $moodColor: String!
-    $note: String
-    $userId: ID!
-  ) {
-    addMoodEntry(
-      date: $date
-      mood: $mood
-      intensity: $intensity
-      moodColor: $moodColor
-      note: $note
-      userId: $userId
-    ) {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
-      createdAt
-    }
-  }
-`;
-
-const UPDATE_MOOD_ENTRY = gql`
-  mutation UpdateMoodEntry(
-    $id: ID!
-    $mood: String
-    $intensity: Int
-    $note: String
-    $moodColor: String
-  ) {
-    updateMoodEntry(
-      id: $id
-      mood: $mood
-      intensity: $intensity
-      note: $note
-      moodColor: $moodColor
-    ) {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
-    }
-  }
-`;
-
-const DELETE_MOOD_ENTRY = gql`
-  mutation DeleteMoodEntry($id: ID!) {
-    deleteMoodEntry(id: $id)
-  }
-`;
+import { GET_MOOD_ENTRIES } from '../graphql/queries';
+import {
+  ADD_MOOD_ENTRY,
+  UPDATE_MOOD_ENTRY,
+  DELETE_MOOD_ENTRY
+} from '../graphql/mutations';
 
 const Tracker: React.FC = () => {
   const { user } = useAuth();

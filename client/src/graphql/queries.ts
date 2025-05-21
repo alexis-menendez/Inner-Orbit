@@ -40,10 +40,11 @@ export const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries {
     getMoodEntries {
       _id
+      date
       mood
-      moodColor
       intensity
-      createdAt
+      moodColor
+      note
     }
   }
 `;

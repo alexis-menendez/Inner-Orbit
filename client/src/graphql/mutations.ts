@@ -105,28 +105,31 @@ export const DELETE_JOURNAL_ENTRY = gql`
 
 export const ADD_MOOD_ENTRY = gql`
   mutation AddMoodEntry(
-  $date: String!
-  $mood: String!
-  $intensity: Int!
-  $moodColor: String!
-  $note: String
- ) {
-  addMoodEntry(
-    date: $date
-    mood: $mood
-    intensity: $intensity
-    moodColor: $moodColor
-    note: $note
-      ) {
-    _id
-    mood
-    intensity
-    moodColor
-    createdAt
-    note
-    date
+    $date: Date!
+    $mood: String!
+    $intensity: Int!
+    $moodColor: String!
+    $note: String
+    $userId: ID!
+  ) {
+    addMoodEntry(
+      date: $date
+      mood: $mood
+      intensity: $intensity
+      moodColor: $moodColor
+      note: $note
+      userId: $userId
+    ) {
+      _id
+      date
+      mood
+      intensity
+      moodColor
+      note
+      createdAt
+    }
   }
-}`;
+`;
 
 export const UPDATE_MOOD_ENTRY = gql`
   mutation UpdateMoodEntry(
