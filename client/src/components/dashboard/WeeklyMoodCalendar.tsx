@@ -1,3 +1,5 @@
+// File: client/src/components/dashboard/WeeklyMoodCalendar.tsx
+
 import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_WEEKLY_MOODS } from '../../graphql/queries';
