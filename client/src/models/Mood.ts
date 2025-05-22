@@ -57,12 +57,13 @@ export const moodList: Mood[] = [
 { id: 'resentful', label: 'Resentful', color: '#1B5E20' }, 
 
 // 6. Anger – Shades of Red
-{ id: 'disgusted', label: 'Disgusted', color: '#558B2F' },
-{ id: 'jealous', label: 'Jealous', color: '#33691E' },
-{ id: 'judgmental', label: 'Judgmental', color: '#388E3C' },
-{ id: 'repulsed', label: 'Repulsed', color: '#4CAF50' },
-{ id: 'resentful', label: 'Resentful', color: '#1B5E20' },
-{ id: 'suspicious', label: 'Suspicious', color: '#2E7D32' }, 
+{ id: 'aggressive', label: 'Aggressive', color: '#BF360C' },
+{ id: 'angry', label: 'Angry', color: '#D72638' },
+{ id: 'annoyed', label: 'Annoyed', color: '#D32F2F' },
+{ id: 'enraged', label: 'Enraged', color: '#B71C1C' },
+{ id: 'frustrated', label: 'Frustrated', color: '#C41B2E' },
+{ id: 'irritated', label: 'Irritated', color: '#E53935' },
+{ id: 'resentful', label: 'Resentful', color: '#C62828' },
 
 // 7. Shame / Guilt – Shades of Red-Orange
 { id: 'ashamed', label: 'Ashamed', color: '#D66A4D' },
