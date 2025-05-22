@@ -57,7 +57,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
 // This is a test to see if it will enable me to use seeded users
 
-import seedUsers from '../seeds/user-seeds.js';
+import { seedUsers } from '../seeds/user-seeds.js';
 
 export const seedUserAccounts = async (req: Request, res: Response) => {
   const token = req.headers.authorization;
