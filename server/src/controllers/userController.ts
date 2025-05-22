@@ -54,3 +54,24 @@ export const loginUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Internal server error.' }); 
   }
 };
+
+// This is a test to see if it will enable me to use seeded users
+
+import seedUsers from '../seeds/user-seeds.js';
+
+export const seedUserAccounts = async (req: Request, res: Response) => {
+  const token = req.headers.authorization;
+
+  if (token !== process.env.SEED_TOKEN) {
+    return res.status(403).json({ message: 'Unauthorized seed request' });
+  }
+
+  try {
+    await seedUsers(); 
+    return res.status(200).json({ message: 'Users successfully seeded' });
+  } catch (err: any) {
+    console.error('Seeding error:', err);
+    return res.status(500).json({ message: 'Seeding failed', error: err.message });
+  }
+};
+
