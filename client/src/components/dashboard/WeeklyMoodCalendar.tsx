@@ -50,7 +50,6 @@ const WeeklyMoodReview: React.FC = () => {
     skip: !userId,
   });
 
-
   const moodMap = useMemo(() => {
     const map: Record<string, MoodEntry> = {};
     if (data?.moodsByDates) {
