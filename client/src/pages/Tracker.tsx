@@ -34,12 +34,14 @@ const Tracker: React.FC = () => {
   };
 
     const handleSubmit = async (values: any) => {
-    if (!user?.id) return;
+      if (!user?.id) return;
 
-    if (!values.date || isNaN(new Date(values.date).getTime())) {
-      console.error("Invalid or missing date", values.date);
-      return;
-    }
+      console.log("[TRACKER SUBMIT] values.date:", values.date);
+
+      if (!values.date || isNaN(new Date(values.date).getTime())) {
+        console.error("Invalid or missing date", values.date);
+        return;
+      }
 
     if (values._id) {
       await updateMoodEntry({
