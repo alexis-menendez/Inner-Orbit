@@ -27,12 +27,18 @@ const typeDefs = gql`
   type MoodEntry {
     _id: ID!
     userId: ID!
+    date: Date!
     mood: String!
     moodColor: String!
     intensity: Int!
-    date: Date!
-    createdAt: Date!
     note: String
+    createdAt: Date!
+  }
+
+  type MoodEntryResponse {
+    success: Boolean!
+    message: String!
+    entries: [MoodEntry!]!
   }
 
   type CreateMoodPayload {
@@ -121,9 +127,9 @@ const typeDefs = gql`
   }
 
   extend type Query {
-    getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
-    getMoodEntries(userId: ID!): [MoodEntry]
+    getMoodEntries(userId: ID): MoodEntryResponse!
+    getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
   }
 
@@ -132,7 +138,7 @@ const typeDefs = gql`
     getJournalEntryById(entryId: ID!): JournalEntry  
     getCompletedConstellations(userId: ID!): CompletedConstellationsPayload!
   }
-
+ 
   type Mutation {
       registerUser(
         username: String!
