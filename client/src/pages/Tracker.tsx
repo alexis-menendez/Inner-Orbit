@@ -33,8 +33,13 @@ const Tracker: React.FC = () => {
     setModalData({ date, entry });
   };
 
-  const handleSubmit = async (values: any) => {
+    const handleSubmit = async (values: any) => {
     if (!user?.id) return;
+
+    if (!values.date || isNaN(new Date(values.date).getTime())) {
+      console.error("Invalid or missing date", values.date);
+      return;
+    }
 
     if (values._id) {
       await updateMoodEntry({
@@ -52,7 +57,7 @@ const Tracker: React.FC = () => {
       await addMoodEntry({
         variables: {
           input: {
-            date: values.date.toISOString(),
+            date: new Date(values.date).toISOString(),
             mood: values.mood,
             intensity: values.intensity,
             moodColor: values.moodColor,
@@ -67,6 +72,7 @@ const Tracker: React.FC = () => {
     refetch();
   };
 
+
   const handleDelete = async (id: string) => {
     await deleteMoodEntry({ variables: { id } });
     setModalData(null);
@@ -75,8 +81,8 @@ const Tracker: React.FC = () => {
 
   const entriesByDate = useMemo(() => {
     const map: Record<string, any> = {};
-    if (data?.getMoodEntries) {
-      data.getMoodEntries.forEach((entry: any) => {
+  if (data?.getMoodEntries?.entries) {
+    data.getMoodEntries.entries.forEach((entry: any) => {
         const dateKey = new Date(entry.date).toDateString();
         map[dateKey] = entry;
       });
