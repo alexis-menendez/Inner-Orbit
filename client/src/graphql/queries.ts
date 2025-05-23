@@ -117,6 +117,7 @@ export const GET_JOURNAL_ENTRIES_FOR_CONSTELLATION = gql`
       date
       content
       constellationId
+      }
     }
   }
 `;
