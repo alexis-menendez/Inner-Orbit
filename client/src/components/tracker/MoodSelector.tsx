@@ -23,9 +23,9 @@ const MoodSelector: React.FC<Props> = ({ selectedMood, onSelect }) => {
 const { user } = useAuth();
 
 const { data, loading, error } = useQuery(GET_MOOD_ENTRIES, {
-  variables: { userId: user?.id },
   skip: !user?.id,
 });
+
 
   if (loading) return <p>Loading moods...</p>;
   if (error) return <p>Error loading moods.</p>;

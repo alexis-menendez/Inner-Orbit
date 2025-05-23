@@ -50,8 +50,8 @@ export const GET_MOOD_ENTRIES = gql`
 `;
 
 export const GET_WEEKLY_MOODS = gql`
-  query MoodsByDates($dates: [String!]!, $userId: ID!) {
-    moodsByDates(dates: $dates, userId: $userId) {
+  query MoodsByDates($dates: [String!]!) {
+    moodsByDates(dates: $dates) {
       _id
       date
       mood
@@ -62,6 +62,8 @@ export const GET_WEEKLY_MOODS = gql`
     }
   }
 `;
+
+
 export const GET_JOURNAL_ENTRIES = gql`
   query GetJournalEntries($userId: ID!) {
     getJournalEntries(userId: $userId) {
