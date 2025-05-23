@@ -39,16 +39,20 @@ export const GET_USER_BY_ID = gql`
 export const GET_MOOD_ENTRIES = gql`
   query GetMoodEntries($userId: ID!) {
     getMoodEntries(userId: $userId) {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
+      success
+      message
+      entries {
+        _id
+        date
+        mood
+        intensity
+        moodColor
+        note
+        createdAt
+        userId
     }
   }
 `;
-
 
 export const GET_WEEKLY_MOODS = gql`
   query MoodsByDates($dates: [String!]!, $userId: ID!) {
