@@ -1,16 +1,9 @@
-// File: client/src/components/dashboard/WeeklyMoodCalendar.ts
+// File: client/src/components/dashboard/WeeklyMoodCalendar.tsx
 
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_WEEKLY_MOODS } from '../../graphql/queries';
 import styles from '../../assets/css/tracker/Tracker.module.css';
-
-import {
-  ADD_MOOD_ENTRY,
-  UPDATE_MOOD_ENTRY,
-  DELETE_MOOD_ENTRY
-} from '../../graphql/mutations'; // Optional: included if you plan to extend functionality
-
 import { useAuth } from '../../context/authContext';
 
 interface MoodEntry {
@@ -54,8 +47,8 @@ const WeeklyMoodReview: React.FC = () => {
     const map: Record<string, MoodEntry> = {};
     if (data?.moodsByDates) {
       data.moodsByDates.forEach((entry: MoodEntry) => {
-        const dateKey = new Date(entry.date).toDateString();
-        map[dateKey] = entry;
+        const key = new Date(entry.date).toISOString().split('T')[0];
+        map[key] = entry;
       });
     }
     return map;
@@ -68,9 +61,8 @@ const WeeklyMoodReview: React.FC = () => {
   return (
     <div className="grid grid-cols-7 gap-2 text-center">
       {dateStrings.map((isoDate) => {
+        const entry = moodMap[isoDate];
         const dateObj = new Date(isoDate);
-        const dateKey = dateObj.toDateString();
-        const entry = moodMap[dateKey];
         const day = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
         const shortDate = dateObj.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' });
 
@@ -95,7 +87,10 @@ const WeeklyMoodReview: React.FC = () => {
               <div className="w-full bg-white bg-opacity-20 h-2 rounded-full mt-2">
                 <div
                   className="h-full rounded-full"
-                  style={{ width: `${(entry.intensity / 10) * 100}%`, backgroundColor: '#fff' }}
+                  style={{
+                    width: `${(entry.intensity / 10) * 100}%`,
+                    backgroundColor: '#fff'
+                  }}
                 ></div>
               </div>
             )}
@@ -122,4 +117,3 @@ const WeeklyMoodReview: React.FC = () => {
 };
 
 export default WeeklyMoodReview;
-
