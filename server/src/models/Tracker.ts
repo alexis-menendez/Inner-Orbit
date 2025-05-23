@@ -75,6 +75,6 @@ const MoodEntrySchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-); // ✅ Enables createdAt and updatedAt
+); 
 
 export default mongoose.model("MoodEntry", MoodEntrySchema);

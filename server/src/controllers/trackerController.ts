@@ -57,7 +57,7 @@ export const addMoodEntry = async ({
     intensity,
     moodColor,
     note,
-    user: userId,
+    userId,
   });
 
   await User.findByIdAndUpdate(userId, {
