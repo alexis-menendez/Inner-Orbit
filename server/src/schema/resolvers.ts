@@ -37,14 +37,16 @@ const resolvers: IResolvers = {
 // TRACKER
 
     // Fetch all mood entries for the current user
-    getMoodEntries: async (_: any, { userId }: { userId: string }) => {
-      if (!userId) {
-        console.warn("No userId provided — user may not be authenticated.");
+    getMoodEntries: async (_: any, { userId }: { userId?: string }, context) => {
+      const resolvedUserId = userId || context.user?._id;
+
+      if (!resolvedUserId) {
+        console.warn("No userId provided and not authenticated.");
         return [];
       }
 
-      console.log("Received userId in getMoodEntries resolver:", userId);
-      return await MoodEntry.find({ user: userId }).sort({ createdAt: -1 });
+      console.log("Resolved userId in getMoodEntries resolver:", resolvedUserId);
+      return await MoodEntry.find({ user: resolvedUserId }).sort({ createdAt: -1 });
     },
 
     // Fetch moods by date for the current user
@@ -310,50 +312,50 @@ const resolvers: IResolvers = {
 
 // MOOD TRACKER
 
-// Add a mood entry
-addMoodEntry: async (_, args, { user }) => {
-  if (!user) throw new Error("Not authenticated");
-  return await addMoodEntryController({ ...args, userId: user._id });
-},
+    // Add a mood entry
+    addMoodEntry: async (_, args, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      return await addMoodEntryController({ ...args, userId: user._id });
+    },
 
-// Update a mood entry
-updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
-  if (!user || !user._id) throw new Error("Not authenticated");
+    // Update a mood entry
+    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
+      if (!user || !user._id) throw new Error("Not authenticated");
 
-  const entry = await MoodEntry.findById(id);
-  if (!entry) throw new Error("Mood entry not found");
+      const entry = await MoodEntry.findById(id);
+      if (!entry) throw new Error("Mood entry not found");
 
-  if (!entry.userId || !user._id) {
-    throw new Error("Invalid user or entry data");
-  }
+      if (!entry.userId || !user._id) {
+        throw new Error("Invalid user or entry data");
+      }
 
-  if (entry.userId.toString() !== user._id.toString()) {
-    throw new Error("Not authorized to update this mood entry");
-  }
+      if (entry.userId.toString() !== user._id.toString()) {
+        throw new Error("Not authorized to update this mood entry");
+      }
 
-  console.log('Updating Mood:', {
-    id,
-    mood,
-    intensity,
-    moodColor,
-    note,
-    entryUserId: entry?.userId,
-    currentUserId: user?._id,
-  });
+      console.log('Updating Mood:', {
+        id,
+        mood,
+        intensity,
+        moodColor,
+        note,
+        entryUserId: entry?.userId,
+        currentUserId: user?._id,
+      });
 
-  return await MoodEntry.findByIdAndUpdate(
-    id,
-    { mood, intensity, moodColor, note },
-    { new: true }
-  );
-},
+      return await MoodEntry.findByIdAndUpdate(
+        id,
+        { mood, intensity, moodColor, note },
+        { new: true }
+      );
+    },
 
-// Delete a mood entry
-deleteMoodEntry: async (_, { id }, { user }) => {
-  if (!user) throw new Error("Not authenticated");
-  await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
-  return true;
-},
+    // Delete a mood entry
+    deleteMoodEntry: async (_, { id }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+      return true;
+    },
 
 },};
 
