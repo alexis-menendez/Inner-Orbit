@@ -38,10 +38,14 @@ const resolvers: IResolvers = {
 
     // Fetch all mood entries for the current user
     getMoodEntries: async (_: any, { userId }: { userId: string }) => {
-     return await MoodEntry.find({ user: userId }).sort({ createdAt: -1 });
-   },
+      if (!userId) {
+        console.warn("No userId provided — user may not be authenticated.");
+        return [];
+      }
 
-
+      console.log("Received userId in getMoodEntries resolver:", userId);
+      return await MoodEntry.find({ user: userId }).sort({ createdAt: -1 });
+    },
 
     // Fetch moods by date for the current user
     moodsByDates: async (
