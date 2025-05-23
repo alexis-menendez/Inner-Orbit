@@ -19,11 +19,15 @@ const Tracker: React.FC = () => {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [modalData, setModalData] = useState<any | null>(null);
-  
-  const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
+
+const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
   variables: { userId: user?.id },
   skip: !user?.id,
+  onCompleted: (data) => {
+    console.log("Fetched mood entries:", data.getMoodEntries);
+  },
 });
+
 
 
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);

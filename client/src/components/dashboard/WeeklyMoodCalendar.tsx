@@ -45,10 +45,10 @@ const WeeklyMoodReview: React.FC = () => {
     return dates;
   }, [startOfWeek, endOfWeek]);
 
-  const { data, loading, error } = useQuery(GET_WEEKLY_MOODS, {
-    variables: { dates: dateStrings, userId },
-    skip: !userId,
-  });
+    const { data, loading, error } = useQuery(GET_WEEKLY_MOODS, {
+      variables: { dates: dateStrings },
+      skip: !userId, // still skip if not authenticated
+    });
 
   const moodMap = useMemo(() => {
     const map: Record<string, MoodEntry> = {};

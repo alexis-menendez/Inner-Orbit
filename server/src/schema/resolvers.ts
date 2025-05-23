@@ -45,7 +45,7 @@ const resolvers: IResolvers = {
     // Fetch moods by date for the current user
     moodsByDates: async (
       _: any,
-      { userId, dates }: { userId: string; dates: string[] },
+      { dates }: { dates: string[] },
       context
     ) => {
       if (!context.user) throw new Error("Not authenticated");
@@ -58,15 +58,14 @@ const resolvers: IResolvers = {
         nextDay.setDate(normalizedDate.getDate() + 1);
 
         return {
-          userId,
+          user: context.user._id,
           date: { $gte: normalizedDate, $lt: nextDay },
         };
       });
 
-  const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
-  return results;
-},
-
+      const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
+      return results;
+    },
 
 // JOURNAL
 
