@@ -37,10 +37,10 @@ const resolvers: IResolvers = {
 // TRACKER
 
     // Fetch all mood entries for the current user
-    getMoodEntries: async (_, __, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-      return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
+    getMoodEntries: async (_: any, { userId }: { userId: string }) => {
+      return await MoodEntry.find({ user: userId });
     },
+
 
     // Fetch moods by date for the current user
     moodsByDates: async (

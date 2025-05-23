@@ -21,13 +21,12 @@ const Tracker: React.FC = () => {
   const [modalData, setModalData] = useState<any | null>(null);
 
 const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
+  variables: { userId: user?.id },
   skip: !user?.id,
   onCompleted: (data) => {
     console.log("Fetched mood entries:", data.getMoodEntries);
   },
 });
-
-
 
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
   const [updateMoodEntry] = useMutation(UPDATE_MOOD_ENTRY);
