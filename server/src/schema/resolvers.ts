@@ -342,7 +342,17 @@ const resolvers: IResolvers = {
       }
 
       try {
+        if (!input.date || isNaN(new Date(input.date).getTime())) {
+          console.error("Invalid or missing date:", input.date);
+          return {
+            success: false,
+            message: "Invalid or missing date.",
+            entry: null,
+          };
+        }
+
         const newEntry = await addMoodEntryController({ ...input, userId: resolvedUserId });
+
         return {
           success: true,
           message: "Mood entry created successfully.",
