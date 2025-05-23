@@ -23,10 +23,8 @@ const Tracker: React.FC = () => {
 const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
   variables: { userId: user?.id },
   skip: !user?.id,
-  onCompleted: (data) => {
-    console.log("Fetched mood entries:", data.getMoodEntries);
-  },
 });
+
 
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
   const [updateMoodEntry] = useMutation(UPDATE_MOOD_ENTRY);
@@ -39,9 +37,23 @@ const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
   const handleSubmit = async (values: any) => {
     if (!user || !user.id) return;
     if (values._id) {
-      await updateMoodEntry({ variables: { id: values._id, mood: values.mood, intensity: values.intensity, note: values.note, moodColor: values.moodColor } });
+      await updateMoodEntry({ 
+        variables: { 
+          id: values._id, 
+          mood: values.mood, 
+          intensity: values.intensity, 
+          note: values.note, 
+          moodColor: values.moodColor } });
     } else {
-      await addMoodEntry({ variables: { date: values.date.toISOString(), mood: values.mood, intensity: values.intensity, moodColor: values.moodColor, note: values.note, userId: user.id } });
+      await addMoodEntry({
+        variables: {
+          date: values.date.toISOString(),
+          mood: values.mood,
+          intensity: values.intensity,
+          moodColor: values.moodColor,
+          note: values.note,
+        }
+      });
     }
     setModalData(null);
     refetch();

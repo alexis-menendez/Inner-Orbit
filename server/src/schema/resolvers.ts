@@ -38,8 +38,9 @@ const resolvers: IResolvers = {
 
     // Fetch all mood entries for the current user
     getMoodEntries: async (_: any, { userId }: { userId: string }) => {
-      return await MoodEntry.find({ user: userId });
-    },
+     return await MoodEntry.find({ user: userId }).sort({ createdAt: -1 });
+   },
+
 
 
     // Fetch moods by date for the current user
@@ -304,8 +305,9 @@ const resolvers: IResolvers = {
 // MOOD TRACKER
 
 // Add a mood entry
-addMoodEntry: async (_, args) => {
-  return await addMoodEntryController(args);
+addMoodEntry: async (_, args, { user }) => {
+  if (!user) throw new Error("Not authenticated");
+  return await addMoodEntryController({ ...args, userId: user._id });
 },
 
 // Update a mood entry
