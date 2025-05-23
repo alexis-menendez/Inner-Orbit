@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_MOOD_ENTRIES } from '../../graphql/queries';
 import styles from '../../assets/css/tracker/Tracker.module.css';
+import { useAuth } from '../../context/authContext';
 
 
 interface Mood {
@@ -19,8 +20,12 @@ interface Props {
 
 const MoodSelector: React.FC<Props> = ({ selectedMood, onSelect }) => {
   const [customColor, setCustomColor] = useState('#facc15');
+const { user } = useAuth();
 
-  const { data, loading, error } = useQuery(GET_MOOD_ENTRIES);
+const { data, loading, error } = useQuery(GET_MOOD_ENTRIES, {
+  variables: { userId: user?.id },
+  skip: !user?.id,
+});
 
   if (loading) return <p>Loading moods...</p>;
   if (error) return <p>Error loading moods.</p>;
