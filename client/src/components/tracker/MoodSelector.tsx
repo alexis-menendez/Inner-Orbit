@@ -1,10 +1,8 @@
-// file: client/src/components/tracker/MoodSelector.tsx
+// File: client/src/components/tracker/MoodSelector.tsx
 
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_MOOD_ENTRIES } from '../../graphql/queries';
 import styles from '../../assets/css/tracker/Tracker.module.css';
-
+import { moodList } from '../../models/Mood';
 
 interface Mood {
   id: string;
@@ -20,13 +18,6 @@ interface Props {
 const MoodSelector: React.FC<Props> = ({ selectedMood, onSelect }) => {
   const [customColor, setCustomColor] = useState('#facc15');
 
-  const { data, loading, error } = useQuery(GET_MOOD_ENTRIES);
-
-  if (loading) return <p>Loading moods...</p>;
-  if (error) return <p>Error loading moods.</p>;
-
-  const moods: Mood[] = data?.moodOptions || [];
-
   return (
     <div className="space-y-4">
       <div>
@@ -40,7 +31,7 @@ const MoodSelector: React.FC<Props> = ({ selectedMood, onSelect }) => {
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {moods.map((m) => (
+        {moodList.map((m) => (
           <button
             key={m.id}
             onClick={() => onSelect({ ...m, color: customColor })}

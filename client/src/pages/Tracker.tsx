@@ -1,4 +1,4 @@
- // File: client/src/pages/Tracker.tsx
+// File: client/src/pages/Tracker.tsx
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import NavBar from '../components/nav/NavBar';
@@ -19,7 +19,12 @@ const Tracker: React.FC = () => {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [modalData, setModalData] = useState<any | null>(null);
-  const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES);
+
+  const { loading, error, data, refetch } = useQuery(GET_MOOD_ENTRIES, {
+    variables: { userId: user?.id },
+    skip: !user?.id,
+  });
+
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
   const [updateMoodEntry] = useMutation(UPDATE_MOOD_ENTRY);
   const [deleteMoodEntry] = useMutation(DELETE_MOOD_ENTRY);
@@ -28,16 +33,49 @@ const Tracker: React.FC = () => {
     setModalData({ date, entry });
   };
 
-  const handleSubmit = async (values: any) => {
-    if (!user || !user.id) return;
+    const handleSubmit = async (values: any) => {
+      if (!user?.id) return;
+
+  console.log("[TRACKER] localStorage token:", localStorage.getItem("token")); 
+
+  console.log("[TRACKER SUBMIT] values.date:", values.date);
+
+      if (!values.date || isNaN(new Date(values.date).getTime())) {
+        console.error("Invalid or missing date", values.date);
+        return;
+      }
+
     if (values._id) {
-      await updateMoodEntry({ variables: { id: values._id, mood: values.mood, intensity: values.intensity, note: values.note, moodColor: values.moodColor } });
+      await updateMoodEntry({
+        variables: {
+          id: values._id,
+          input: {
+            mood: values.mood,
+            intensity: values.intensity,
+            note: values.note,
+            moodColor: values.moodColor,
+          },
+        },
+      });
     } else {
-      await addMoodEntry({ variables: { date: values.date.toISOString(), mood: values.mood, intensity: values.intensity, moodColor: values.moodColor, note: values.note, userId: user.id } });
+      await addMoodEntry({
+        variables: {
+          input: {
+            date: new Date(values.date).toISOString(),
+            mood: values.mood,
+            intensity: values.intensity,
+            moodColor: values.moodColor,
+            note: values.note,
+            userId: user.id,
+          },
+        },
+      });
     }
+
     setModalData(null);
     refetch();
   };
+
 
   const handleDelete = async (id: string) => {
     await deleteMoodEntry({ variables: { id } });
@@ -47,8 +85,8 @@ const Tracker: React.FC = () => {
 
   const entriesByDate = useMemo(() => {
     const map: Record<string, any> = {};
-    if (data?.getMoodEntries) {
-      data.getMoodEntries.forEach((entry: any) => {
+  if (data?.getMoodEntries?.entries) {
+    data.getMoodEntries.entries.forEach((entry: any) => {
         const dateKey = new Date(entry.date).toDateString();
         map[dateKey] = entry;
       });
@@ -160,9 +198,13 @@ const MoodModal = ({ date, entry, onSubmit, onDelete, onClose }: any) => {
   const moodItem = moodList.find((m) => m.id === mood);
 
   const handleSubmit = () => {
+    const resolvedDate = entry?.date ? new Date(entry.date) : date;
+
+    console.log("[MODAL SUBMIT] resolvedDate:", resolvedDate);
+
     onSubmit({
       _id: entry?._id,
-      date,
+      date: resolvedDate,
       mood,
       intensity,
       note,

@@ -58,8 +58,8 @@ const Login = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="text-center"
       >
-        <h1 className="mb-2 text-4xl font-bold">Welcome Explorer!</h1>
-        <h2 className="mb-6 text-lg">Please log in below</h2>
+      <h1 className="text-4xl font-bold tracking-widest">InnerOrbit</h1>
+      <h2 className="text-2xl font-bold tracking-wider">Please Sign In</h2>
 
         <div className={formStyles.formContainer}>
           <input

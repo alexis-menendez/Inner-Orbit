@@ -51,11 +51,13 @@ const Register = () => {
         },
       });
 
-      if (data?.registerUser?.success) {
-        const { _id, username, email } = data.registerUser.user;
-        login({ id: _id, username, email }, data.registerUser.token);
-        navigate('/dashboard');
-      } else {
+    if (data?.registerUser?.success) {
+      const { _id, username, email } = data.registerUser.user;
+      console.log(`✅ User created successfully: ${username} (ID: ${_id})`);
+      login({ id: _id, username, email }, data.registerUser.token);
+      navigate('/dashboard');
+    }
+    else {
         alert(data?.registerUser?.message || 'Registration failed');
       }
     } catch (err) {

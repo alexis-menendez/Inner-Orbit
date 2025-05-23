@@ -37,18 +37,44 @@ const resolvers: IResolvers = {
 // TRACKER
 
     // Fetch all mood entries for the current user
-    getMoodEntries: async (_, __, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-      return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
+    getMoodEntries: async (_: any, { userId }: { userId?: string }, context) => {
+      const resolvedUserId = userId || context.user?._id;
+
+      if (!resolvedUserId) {
+        return {
+          success: false,
+          message: "User not authenticated.",
+          entries: [],
+        };
+      }
+
+      try {
+        const entries = await MoodEntry.find({ user: resolvedUserId }).sort({ createdAt: -1 });
+
+        return {
+          success: true,
+          message: "Mood entries fetched successfully.",
+          entries,
+        };
+      } catch (error) {
+        console.error("Error fetching mood entries:", error);
+        return {
+          success: false,
+          message: "Failed to fetch mood entries.",
+          entries: [],
+        };
+      }
     },
 
     // Fetch moods by date for the current user
     moodsByDates: async (
       _: any,
-      { userId, dates }: { userId: string; dates: string[] },
+      { userId, dates }: { userId?: string; dates: string[] },
       context
     ) => {
-      if (!context.user) throw new Error("Not authenticated");
+      const resolvedUserId = userId || context.user?._id;
+
+      if (!resolvedUserId) throw new Error("Not authenticated");
 
       const dateConditions = dates.map((dateStr) => {
         const normalizedDate = new Date(dateStr);
@@ -58,15 +84,14 @@ const resolvers: IResolvers = {
         nextDay.setDate(normalizedDate.getDate() + 1);
 
         return {
-          userId,
+          user: resolvedUserId,
           date: { $gte: normalizedDate, $lt: nextDay },
         };
       });
 
-  const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
-  return results;
-},
-
+      const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
+      return results;
+    },
 
 // JOURNAL
 
@@ -263,7 +288,7 @@ const resolvers: IResolvers = {
       }
     },
 
-    // Update journal entry by ID + input (new resolver for separate `id`)
+    // Update journal entry by ID + input 
     updateJournalEntry: async (_: any, { id, input }: { id: string; input: any }) => {
       try {
         const updated = await JournalEntry.findByIdAndUpdate(
@@ -304,50 +329,110 @@ const resolvers: IResolvers = {
 
 // MOOD TRACKER
 
-// Add a mood entry
-addMoodEntry: async (_, args) => {
-  return await addMoodEntryController(args);
+// Add a mood entry 
+addMoodEntry: async (_: any, { input }: any, { user }) => {
+  if (!user || !user._id) {
+    console.error("[AUTH] No authenticated user in context.");
+    return {
+      success: false,
+      message: "User not authenticated.",
+      entry: null,
+    };
+  }
+
+  const resolvedUserId = input.userId || user._id;
+
+  if (resolvedUserId.toString() !== user._id.toString()) {
+    return {
+      success: false,
+      message: "Not authorized to create mood entry for this user.",
+      entry: null,
+    };
+  }
+
+  try {
+    if (!input.date || isNaN(new Date(input.date).getTime())) {
+      console.error("Invalid or missing date:", input.date);
+      return {
+        success: false,
+        message: "Invalid or missing date.",
+        entry: null,
+      };
+    }
+
+    const newEntry = await addMoodEntryController({ ...input, userId: resolvedUserId });
+
+    return {
+      success: true,
+      message: "Mood entry created successfully.",
+      entry: newEntry,
+    };
+  } catch (error) {
+    console.error("Error creating mood entry:", error);
+    return {
+      success: false,
+      message: "Failed to create mood entry.",
+      entry: null,
+    };
+  }
 },
 
-// Update a mood entry
-updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
-  if (!user || !user._id) throw new Error("Not authenticated");
+// Update a mood entry 
+updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { user }) => {
+  const resolvedUserId = user?._id;
 
-  const entry = await MoodEntry.findById(id);
-  if (!entry) throw new Error("Mood entry not found");
-
-  if (!entry.userId || !user._id) {
-    throw new Error("Invalid user or entry data");
+  if (!resolvedUserId) {
+    return {
+      success: false,
+      message: "Not authenticated.",
+      entry: null,
+    };
   }
 
-  if (entry.userId.toString() !== user._id.toString()) {
-    throw new Error("Not authorized to update this mood entry");
+  try {
+    const entry = await MoodEntry.findById(id);
+
+    if (!entry) {
+      return {
+        success: false,
+        message: "Mood entry not found.",
+        entry: null,
+      };
+    }
+
+    if (entry.userId.toString() !== resolvedUserId.toString()) {
+      return {
+        success: false,
+        message: "Unauthorized to update this mood entry.",
+        entry: null,
+      };
+    }
+
+    const updated = await MoodEntry.findByIdAndUpdate(id, { $set: input }, { new: true, runValidators: true });
+
+    return {
+      success: true,
+      message: "Mood entry updated successfully.",
+      entry: updated,
+    };
+  } catch (error) {
+    console.error("Error updating mood entry:", error);
+    return {
+      success: false,
+      message: "Server error updating entry.",
+      entry: null,
+    };
   }
-
-  console.log('Updating Mood:', {
-    id,
-    mood,
-    intensity,
-    moodColor,
-    note,
-    entryUserId: entry?.userId,
-    currentUserId: user?._id,
-  });
-
-  return await MoodEntry.findByIdAndUpdate(
-    id,
-    { mood, intensity, moodColor, note },
-    { new: true }
-  );
 },
 
 // Delete a mood entry
-deleteMoodEntry: async (_, { id }, { user }) => {
+deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {
   if (!user) throw new Error("Not authenticated");
-  await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
-  return true;
-},
 
-},};
+  const deleted = await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+  return !!deleted;
+},
+},
+};
 
 export default resolvers;

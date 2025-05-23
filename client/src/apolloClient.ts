@@ -8,11 +8,14 @@ const httpLink = new HttpLink({
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token');
-  operation.setContext({
+
+  operation.setContext(({ headers = {} }) => ({
     headers: {
+      ...headers,
       Authorization: token ? `Bearer ${token}` : '',
     },
-  });
+  }));
+
   return forward(operation);
 });
 
@@ -20,4 +23,3 @@ export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
