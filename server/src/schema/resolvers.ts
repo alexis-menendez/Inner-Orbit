@@ -314,13 +314,22 @@ const resolvers: IResolvers = {
 
     // Add a mood entry
     addMoodEntry: async (_, args, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-      return await addMoodEntryController({ ...args, userId: user._id });
+      const resolvedUserId = args.userId || user?._id;
+
+      if (!resolvedUserId || resolvedUserId.toString() !== user?._id.toString()) {
+        throw new Error("Not authorized to create mood for this user.");
+      }
+
+      return await addMoodEntryController({ ...args, userId: resolvedUserId });
     },
 
     // Update a mood entry
-    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
-      if (!user || !user._id) throw new Error("Not authenticated");
+    updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note, userId }, { user }) => {
+      const resolvedUserId = userId || user?._id;
+
+      if (!resolvedUserId || resolvedUserId.toString() !== user?._id.toString()) {
+        throw new Error("Not authorized.");
+      }
 
       const entry = await MoodEntry.findById(id);
       if (!entry) throw new Error("Mood entry not found");
@@ -329,7 +338,7 @@ const resolvers: IResolvers = {
         throw new Error("Invalid user or entry data");
       }
 
-      if (entry.userId.toString() !== user._id.toString()) {
+      if (entry.userId.toString() !== resolvedUserId.toString()) {
         throw new Error("Not authorized to update this mood entry");
       }
 
@@ -351,12 +360,17 @@ const resolvers: IResolvers = {
     },
 
     // Delete a mood entry
-    deleteMoodEntry: async (_, { id }, { user }) => {
-      if (!user) throw new Error("Not authenticated");
-      await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+    deleteMoodEntry: async (_, { id, userId }, { user }) => {
+      const resolvedUserId = userId || user?._id;
+
+      if (!resolvedUserId || resolvedUserId.toString() !== user?._id.toString()) {
+        throw new Error("Not authorized.");
+      }
+
+      await MoodEntry.findOneAndDelete({ _id: id, user: resolvedUserId });
       return true;
     },
-
-},};
+  },
+};
 
 export default resolvers;
