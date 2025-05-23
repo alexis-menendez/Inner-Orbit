@@ -196,9 +196,13 @@ const MoodModal = ({ date, entry, onSubmit, onDelete, onClose }: any) => {
   const moodItem = moodList.find((m) => m.id === mood);
 
   const handleSubmit = () => {
+    const resolvedDate = entry?.date ? new Date(entry.date) : date;
+
+    console.log("[MODAL SUBMIT] resolvedDate:", resolvedDate);
+
     onSubmit({
       _id: entry?._id,
-      date,
+      date: resolvedDate,
       mood,
       intensity,
       note,
