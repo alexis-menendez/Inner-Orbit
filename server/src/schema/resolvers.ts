@@ -329,101 +329,110 @@ const resolvers: IResolvers = {
 
 // MOOD TRACKER
 
-    // Add a mood entry 
-    addMoodEntry: async (_: any, { input }: any, { user }) => {
-      const resolvedUserId = input.userId || user?._id;
+// Add a mood entry 
+addMoodEntry: async (_: any, { input }: any, { user }) => {
+  if (!user || !user._id) {
+    console.error("[AUTH] No authenticated user in context.");
+    return {
+      success: false,
+      message: "User not authenticated.",
+      entry: null,
+    };
+  }
 
-      if (!resolvedUserId || resolvedUserId.toString() !== user?._id.toString()) {
-        return {
-          success: false,
-          message: "Not authorized to create mood entry for this user.",
-          entry: null,
-        };
-      }
+  const resolvedUserId = input.userId || user._id;
 
-      try {
-        if (!input.date || isNaN(new Date(input.date).getTime())) {
-          console.error("Invalid or missing date:", input.date);
-          return {
-            success: false,
-            message: "Invalid or missing date.",
-            entry: null,
-          };
-        }
+  if (resolvedUserId.toString() !== user._id.toString()) {
+    return {
+      success: false,
+      message: "Not authorized to create mood entry for this user.",
+      entry: null,
+    };
+  }
 
-        const newEntry = await addMoodEntryController({ ...input, userId: resolvedUserId });
+  try {
+    if (!input.date || isNaN(new Date(input.date).getTime())) {
+      console.error("Invalid or missing date:", input.date);
+      return {
+        success: false,
+        message: "Invalid or missing date.",
+        entry: null,
+      };
+    }
 
-        return {
-          success: true,
-          message: "Mood entry created successfully.",
-          entry: newEntry,
-        };
-      } catch (error) {
-        console.error("Error creating mood entry:", error);
-        return {
-          success: false,
-          message: "Failed to create mood entry.",
-          entry: null,
-        };
-      }
-    },
+    const newEntry = await addMoodEntryController({ ...input, userId: resolvedUserId });
 
-    // Update a mood entry 
-    updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { user }) => {
-      const resolvedUserId = user?._id;
+    return {
+      success: true,
+      message: "Mood entry created successfully.",
+      entry: newEntry,
+    };
+  } catch (error) {
+    console.error("Error creating mood entry:", error);
+    return {
+      success: false,
+      message: "Failed to create mood entry.",
+      entry: null,
+    };
+  }
+},
 
-      if (!resolvedUserId) {
-        return {
-          success: false,
-          message: "Not authenticated.",
-          entry: null,
-        };
-      }
+// Update a mood entry 
+updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { user }) => {
+  const resolvedUserId = user?._id;
 
-      try {
-        const entry = await MoodEntry.findById(id);
+  if (!resolvedUserId) {
+    return {
+      success: false,
+      message: "Not authenticated.",
+      entry: null,
+    };
+  }
 
-        if (!entry) {
-          return {
-            success: false,
-            message: "Mood entry not found.",
-            entry: null,
-          };
-        }
+  try {
+    const entry = await MoodEntry.findById(id);
 
-        if (entry.userId.toString() !== resolvedUserId.toString()) {
-          return {
-            success: false,
-            message: "Unauthorized to update this mood entry.",
-            entry: null,
-          };
-        }
+    if (!entry) {
+      return {
+        success: false,
+        message: "Mood entry not found.",
+        entry: null,
+      };
+    }
 
-        const updated = await MoodEntry.findByIdAndUpdate(id, { $set: input }, { new: true, runValidators: true });
+    if (entry.userId.toString() !== resolvedUserId.toString()) {
+      return {
+        success: false,
+        message: "Unauthorized to update this mood entry.",
+        entry: null,
+      };
+    }
 
-        return {
-          success: true,
-          message: "Mood entry updated successfully.",
-          entry: updated,
-        };
-      } catch (error) {
-        console.error("Error updating mood entry:", error);
-        return {
-          success: false,
-          message: "Server error updating entry.",
-          entry: null,
-        };
-      }
-    },
+    const updated = await MoodEntry.findByIdAndUpdate(id, { $set: input }, { new: true, runValidators: true });
 
-    // Delete a mood entry
-    deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {
-      if (!user) throw new Error("Not authenticated");
+    return {
+      success: true,
+      message: "Mood entry updated successfully.",
+      entry: updated,
+    };
+  } catch (error) {
+    console.error("Error updating mood entry:", error);
+    return {
+      success: false,
+      message: "Server error updating entry.",
+      entry: null,
+    };
+  }
+},
 
-      const deleted = await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
-      return !!deleted;
-    },
-  },
+// Delete a mood entry
+deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {
+  if (!user) throw new Error("Not authenticated");
+
+  const deleted = await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+  return !!deleted;
+},
+},
 };
 
 export default resolvers;

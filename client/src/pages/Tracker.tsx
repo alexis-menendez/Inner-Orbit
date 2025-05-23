@@ -36,7 +36,9 @@ const Tracker: React.FC = () => {
     const handleSubmit = async (values: any) => {
       if (!user?.id) return;
 
-      console.log("[TRACKER SUBMIT] values.date:", values.date);
+  console.log("[TRACKER] localStorage token:", localStorage.getItem("token")); 
+
+  console.log("[TRACKER SUBMIT] values.date:", values.date);
 
       if (!values.date || isNaN(new Date(values.date).getTime())) {
         console.error("Invalid or missing date", values.date);
