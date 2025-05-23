@@ -50,6 +50,7 @@ export const GET_MOOD_ENTRIES = gql`
         note
         createdAt
         userId
+      }
     }
   }
 `;
@@ -119,5 +120,4 @@ export const GET_JOURNAL_ENTRIES_FOR_CONSTELLATION = gql`
       constellationId
       }
     }
-  }
 `;
