@@ -21,8 +21,11 @@ const context = async ({ req }: { req: Request }) => {
   if (!token) return { user: null };
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET_KEY);
-    return { user: decoded }; // ✅ user = { id, username, ... }
+    // const decoded = jwt.verify(token, JWT_SECRET_KEY);
+    // return { user: decoded }; // ✅ user = { id, username, ... }
+  const decoded: any = jwt.verify(token, JWT_SECRET_KEY);
+    const normalizedUser = { ...decoded, _id: decoded.id }; // normalize for resolvers
+    return { user: normalizedUser };
   } catch {
     return { user: null };
   }
