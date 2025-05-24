@@ -27,12 +27,16 @@ export const addMoodEntry = async (input: MoodInput): Promise<{
       $push: { moodEntries: saved._id },
     });
 
-    console.log("[TRACKER] Mood entry saved:", saved);
+    // Convert to plain object to ensure GraphQL compatibility
+    const result = saved.toObject();
+    result._id = result._id.toString();
+
+    console.log("[TRACKER] Mood entry saved:", result);
 
     return {
       success: true,
       message: "Mood entry recorded successfully",
-      entry: saved,
+      entry: result,
     };
   } catch (error) {
     console.error("Error recording mood entry:", error);
@@ -50,7 +54,12 @@ export const getAllMoodEntries = async (): Promise<{
   entries: IMoodEntry[] | null;
 }> => {
   try {
-    const entries = await MoodEntry.find().sort({ createdAt: -1 });
+    const rawEntries = await MoodEntry.find().sort({ createdAt: -1 });
+    const entries = rawEntries.map(entry => {
+      const obj = entry.toObject();
+      obj._id = obj._id.toString();
+      return obj;
+    });
 
     return {
       success: true,
