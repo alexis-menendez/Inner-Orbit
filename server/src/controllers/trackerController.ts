@@ -2,6 +2,7 @@
 
 import MoodEntry, { IMoodEntry, MoodInput } from '../models/Tracker.js';
 import User from '../models/User.js';
+import { formatMoodEntry } from '../utils/formatEntry.js'; // create this file if not yet made
 
 export const addMoodEntry = async (input: MoodInput): Promise<{
   success: boolean;
@@ -22,14 +23,11 @@ export const addMoodEntry = async (input: MoodInput): Promise<{
 
     const saved = await newEntry.save();
 
-    // Link entry to user
     await User.findByIdAndUpdate(input.userId, {
       $push: { moodEntries: saved._id },
     });
 
-    // Convert to plain object to ensure GraphQL compatibility
-    const result = saved.toObject();
-    result._id = result._id.toString();
+    const result = formatMoodEntry(saved);
 
     console.log("[TRACKER] Mood entry saved:", result);
 
@@ -55,11 +53,7 @@ export const getAllMoodEntries = async (): Promise<{
 }> => {
   try {
     const rawEntries = await MoodEntry.find().sort({ createdAt: -1 });
-    const entries = rawEntries.map(entry => {
-      const obj = entry.toObject();
-      obj._id = obj._id.toString();
-      return obj;
-    });
+    const entries = rawEntries.map(formatMoodEntry);
 
     return {
       success: true,
