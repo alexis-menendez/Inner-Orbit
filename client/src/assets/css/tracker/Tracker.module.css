@@ -52,3 +52,89 @@
 .calendar-header div {
   padding: 5px 0;
 }
+
+
+.trackerHeader {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.navButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prevButton,
+.nextButton {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.prevButton {
+  background-color: #090585;
+}
+
+.nextButton {
+  background-color: #20355D;
+}
+
+.monthLabel {
+  color: pink;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #1e1b4b;
+  border: 2px solid pink;
+  padding: 0.5rem;
+}
+
+.dayLabel {
+  text-align: center;
+  font-weight: bold;
+  color: #faf2f2;
+  font-size: 0.875rem;
+}
+
+.dayCell {
+  height: 5rem;
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.otherMonth {
+  background-color: #1f2937;
+}
+
+.dayNumber {
+  font-weight: bold;
+}
+
+.moodLabel {
+  font-size: 0.75rem;
+}
+
+.modalWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}

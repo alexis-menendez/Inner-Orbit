@@ -340,16 +340,6 @@ addMoodEntry: async (_: any, { input }: any, { user }) => {
     };
   }
 
-  const resolvedUserId = input.userId || user._id;
-
-  if (resolvedUserId.toString() !== user._id.toString()) {
-    return {
-      success: false,
-      message: "Not authorized to create mood entry for this user.",
-      entry: null,
-    };
-  }
-
   try {
     if (!input.date || isNaN(new Date(input.date).getTime())) {
       console.error("Invalid or missing date:", input.date);
@@ -360,7 +350,11 @@ addMoodEntry: async (_: any, { input }: any, { user }) => {
       };
     }
 
-    const newEntry = await addMoodEntryController({ ...input, userId: resolvedUserId });
+    // ✅ Always use context.user._id — never trust client input
+    const newEntry = await addMoodEntryController({
+      ...input,
+      userId: user._id,
+    });
 
     return {
       success: true,
@@ -408,7 +402,11 @@ updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { use
       };
     }
 
-    const updated = await MoodEntry.findByIdAndUpdate(id, { $set: input }, { new: true, runValidators: true });
+    const updated = await MoodEntry.findByIdAndUpdate(
+      id,
+      { $set: input },
+      { new: true, runValidators: true }
+    );
 
     return {
       success: true,
