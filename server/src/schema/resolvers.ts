@@ -430,6 +430,11 @@ deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {
   const deleted = await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
   return !!deleted;
 },
+}, 
+
+// Scalar or nested field resolvers
+MoodEntry: {
+  _id: (parent) => parent._id?.toString?.() ?? parent.id?.toString?.(),
 },
 };
 
