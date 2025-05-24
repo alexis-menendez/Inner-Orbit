@@ -1,23 +1,22 @@
 // File: server/src/schema/resolvers.ts
 
-
 import { IResolvers } from "@graphql-tools/utils";
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { signToken } from "../utils/auth.js";
 import { JournalEntry, MoodEntry } from "../models/index.js";
 import { createJournalEntry } from "../controllers/journalController.js";
-import DateScalar from './scalars/DateScalar.js';
-import { addMoodEntry as addMoodEntryController } from '../controllers/trackerController.js';
+import DateScalar from "./scalars/DateScalar.js";
+import { addMoodEntry as addMoodEntryController } from "../controllers/trackerController.js";
+import { isValidObjectId } from "mongoose";
 
 const resolvers: IResolvers = {
-    Date: DateScalar,
+  Date: DateScalar,
 
-// QUERIES
+  // QUERIES
 
   Query: {
-
-//USER
+    //USER
 
     // Fetch user by ID
     getUserById: async (_: any, { userId }: { userId: string }) => {
@@ -34,12 +33,18 @@ const resolvers: IResolvers = {
         .populate("journalEntries");
     },
 
-// TRACKER
+    // TRACKER
 
     // Fetch all mood entries for the current user
-    getMoodEntries: async (_, __, { user }) => {
+    getMoodEntries: async (_, __,  context ) => { 
+      const user = context.user;
+      if (!isValidObjectId(user.id)) {
+        throw new Error(`${user.id}is an invalid ObjectId`);
+      }
       if (!user) throw new Error("Not authenticated");
-      return await MoodEntry.find({ user: user._id }).sort({ createdAt: -1 });
+      return await MoodEntry.find({
+        userId: user.id,
+      }).sort({ createdAt: -1 });
     },
 
     // Fetch moods by date for the current user
@@ -63,12 +68,13 @@ const resolvers: IResolvers = {
         };
       });
 
-  const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
-  return results;
-},
+      const results = await MoodEntry.find({ $or: dateConditions }).sort({
+        date: 1,
+      });
+      return results;
+    },
 
-
-// JOURNAL
+    // JOURNAL
 
     // Fetch all journal entries for a specific user
     getJournalEntries: async (_: any, { userId }: { userId: string }) => {
@@ -94,13 +100,23 @@ const resolvers: IResolvers = {
     },
 
     // Get completed constellations for a user
-    getCompletedConstellations: async (_: any, { userId }: { userId: string }) => {
+    getCompletedConstellations: async (
+      _: any,
+      { userId }: { userId: string }
+    ) => {
       const entries = await JournalEntry.find({ userId });
 
       const count = entries.length;
 
       const CONSTELLATION_LIMITS = [9, 19, 32, 43, 54, 65]; // cumulative star counts
-      const CONSTELLATION_NAMES = ["The Key", "The Candle", "The Sun", "The Spiral", "The Bridge", "The Seed"];
+      const CONSTELLATION_NAMES = [
+        "The Key",
+        "The Candle",
+        "The Sun",
+        "The Spiral",
+        "The Bridge",
+        "The Seed",
+      ];
 
       let remaining = count;
       const completed: string[] = [];
@@ -122,10 +138,9 @@ const resolvers: IResolvers = {
     },
   },
 
-// MUTATIONS
+  // MUTATIONS
   Mutation: {
-
-//USERS
+    //USERS
 
     // Register a new user
     registerUser: async (
@@ -222,7 +237,7 @@ const resolvers: IResolvers = {
       }
     },
 
-// JOURNAL
+    // JOURNAL
 
     // Create a new journal entry
     createJournal: async (_: any, { input }: any) => {
@@ -264,7 +279,10 @@ const resolvers: IResolvers = {
     },
 
     // Update journal entry by ID + input (new resolver for separate `id`)
-    updateJournalEntry: async (_: any, { id, input }: { id: string; input: any }) => {
+    updateJournalEntry: async (
+      _: any,
+      { id, input }: { id: string; input: any }
+    ) => {
       try {
         const updated = await JournalEntry.findByIdAndUpdate(
           id,
@@ -298,56 +316,63 @@ const resolvers: IResolvers = {
     // Delete a journal entry
     deleteJournalEntry: async (_: any, { id }: { id: string }, { user }) => {
       if (!user) throw new Error("Not authenticated");
-      const deleted = await JournalEntry.findOneAndDelete({ _id: id, userId: user._id });
+      const deleted = await JournalEntry.findOneAndDelete({
+        _id: id,
+        userId: user._id,
+      });
       return !!deleted;
     },
 
-// MOOD TRACKER
+    // MOOD TRACKER
 
-// Add a mood entry
-addMoodEntry: async (_, args) => {
-  return await addMoodEntryController(args);
-},
+    // Add a mood entry
+    addMoodEntry: async (_, args) => {
+      return await addMoodEntryController(args);
+    },
 
-// Update a mood entry
-updateMoodEntry: async (_parent, { id, mood, intensity, moodColor, note }, { user }) => {
-  if (!user || !user._id) throw new Error("Not authenticated");
+    // Update a mood entry
+    updateMoodEntry: async (
+      _parent,
+      { id, mood, intensity, moodColor, note },
+      { user }
+    ) => {
+      if (!user || !user._id) throw new Error("Not authenticated");
 
-  const entry = await MoodEntry.findById(id);
-  if (!entry) throw new Error("Mood entry not found");
+      const entry = await MoodEntry.findById(id);
+      if (!entry) throw new Error("Mood entry not found");
 
-  if (!entry.userId || !user._id) {
-    throw new Error("Invalid user or entry data");
-  }
+      if (!entry.userId || !user._id) {
+        throw new Error("Invalid user or entry data");
+      }
 
-  if (entry.userId.toString() !== user._id.toString()) {
-    throw new Error("Not authorized to update this mood entry");
-  }
+      if (entry.userId.toString() !== user._id.toString()) {
+        throw new Error("Not authorized to update this mood entry");
+      }
 
-  console.log('Updating Mood:', {
-    id,
-    mood,
-    intensity,
-    moodColor,
-    note,
-    entryUserId: entry?.userId,
-    currentUserId: user?._id,
-  });
+      console.log("Updating Mood:", {
+        id,
+        mood,
+        intensity,
+        moodColor,
+        note,
+        entryUserId: entry?.userId,
+        currentUserId: user?._id,
+      });
 
-  return await MoodEntry.findByIdAndUpdate(
-    id,
-    { mood, intensity, moodColor, note },
-    { new: true }
-  );
-},
+      return await MoodEntry.findByIdAndUpdate(
+        id,
+        { mood, intensity, moodColor, note },
+        { new: true }
+      );
+    },
 
-// Delete a mood entry
-deleteMoodEntry: async (_, { id }, { user }) => {
-  if (!user) throw new Error("Not authenticated");
-  await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
-  return true;
-},
-
-},};
+    // Delete a mood entry
+    deleteMoodEntry: async (_, { id }, { user }) => {
+      if (!user) throw new Error("Not authenticated");
+      await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+      return true;
+    },
+  },
+};
 
 export default resolvers;
