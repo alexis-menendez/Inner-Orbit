@@ -1,10 +1,14 @@
 // File: client/src/models/Mood.ts
 
 export interface MoodEntry {
-  id: string;
+  _id: string;
+  userId: string;
   date: string;
   mood: string;
   moodColor: string;
+  intensity: number;
+  note?: string;
+  createdAt: string;
 }
 
 export interface Mood {
@@ -50,11 +54,11 @@ export const moodList: Mood[] = [
 
 // 5. Disgust – Shades of Green
 { id: 'disgusted', label: 'Disgusted', color: '#558B2F' },
-{ id: 'jealous', label: 'Jealous', color: '#33691E' },    
-{ id: 'repulsed', label: 'Repulsed', color: '#4CAF50' },        
-{ id: 'judgmental', label: 'Judgmental', color: '#388E3C' },     
-{ id: 'suspicious', label: 'Suspicious', color: '#2E7D32' },     
-{ id: 'resentful', label: 'Resentful', color: '#1B5E20' }, 
+{ id: 'jealous', label: 'Jealous', color: '#33691E' },
+{ id: 'repulsed', label: 'Repulsed', color: '#4CAF50' },
+{ id: 'judgmental', label: 'Judgmental', color: '#388E3C' },
+{ id: 'suspicious', label: 'Suspicious', color: '#2E7D32' },
+{ id: 'resentful', label: 'Resentful', color: '#1B5E20' },
 
 // 6. Anger – Shades of Red
 { id: 'aggressive', label: 'Aggressive', color: '#BF360C' },

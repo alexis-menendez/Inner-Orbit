@@ -7,11 +7,12 @@ import { moodList } from '../../models/Mood';
 import styles from '../../assets/css/tracker/Tracker.module.css';
 
 interface CreateMoodProps {
+  userId: string;
   onSave: () => void;
   onCancel: () => void;
 }
 
-const CreateMood: React.FC<CreateMoodProps> = ({ onSave, onCancel }) => {
+const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => {
   const [mood, setMood] = useState('');
   const [intensity, setIntensity] = useState(5);
   const [note, setNote] = useState('');
@@ -24,20 +25,24 @@ const CreateMood: React.FC<CreateMoodProps> = ({ onSave, onCancel }) => {
     const today = new Date();
     const moodItem = moodList.find((m) => m.id === mood);
     const moodColor = moodItem?.color || '#ccc';
-    const userId = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!).id : '';
 
-    console.log('[TRACKER] Attempting to create mood entry:', { mood, intensity, note });
+    console.log('[TRACKER] Attempting to create mood entry:', {
+      mood,
+      intensity,
+      note,
+      userId,
+    });
 
     try {
       await addMoodEntry({
         variables: {
           input: {
+            userId,
             date: today.toISOString(),
             mood,
             intensity,
             note,
             moodColor,
-            userId,
           },
         },
       });
@@ -53,7 +58,12 @@ const CreateMood: React.FC<CreateMoodProps> = ({ onSave, onCancel }) => {
       <h2>Create Mood Entry</h2>
 
       <label>Mood</label>
-      <select value={mood} onChange={(e) => setMood(e.target.value)} className={styles.modalInput} required>
+      <select
+        value={mood}
+        onChange={(e) => setMood(e.target.value)}
+        className={styles.modalInput}
+        required
+      >
         <option value="" disabled>Select a mood</option>
         {moodList.map((m) => (
           <option key={m.id} value={m.id}>{m.label}</option>
@@ -61,10 +71,22 @@ const CreateMood: React.FC<CreateMoodProps> = ({ onSave, onCancel }) => {
       </select>
 
       <label>Intensity: {intensity}</label>
-      <input type="range" min="1" max="10" value={intensity} onChange={(e) => setIntensity(+e.target.value)} className={styles.modalInput} />
+      <input
+        type="range"
+        min="1"
+        max="10"
+        value={intensity}
+        onChange={(e) => setIntensity(+e.target.value)}
+        className={styles.modalInput}
+      />
 
       <label>Note</label>
-      <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional note..." className={styles.modalTextarea} />
+      <textarea
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        placeholder="Optional note..."
+        className={styles.modalTextarea}
+      />
 
       <div className={styles.modalActions}>
         <button type="submit" className={styles.saveButton}>Save</button>

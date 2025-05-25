@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_MOOD_ENTRY, UPDATE_MOOD_ENTRY } from '../../graphql/mutations';
 import { moodList } from '../../models/Mood';
+import { useAuth } from '../../context/authContext';
 import styles from '../../assets/css/tracker/Tracker.module.css';
 
 interface MoodModalProps {
+  userId: string;
   date: Date;
   entry?: any;
   onClose: () => void;
@@ -14,6 +16,7 @@ interface MoodModalProps {
 }
 
 const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) => {
+  const { user } = useAuth();
   const [mood, setMood] = useState(entry?.mood || '');
   const [intensity, setIntensity] = useState(entry?.intensity || 5);
   const [note, setNote] = useState(entry?.note || '');
@@ -24,6 +27,11 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
   const moodItem = moodList.find((m) => m.id === mood);
 
   const handleSubmit = async () => {
+    if (!user || !user.id) {
+      console.error('[TRACKER] No authenticated user found.');
+      return;
+    }
+
     const resolvedDate = entry?.date ? new Date(entry.date) : date;
     const moodColor = moodItem?.color || '#ccc';
 
@@ -46,12 +54,12 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
         await addMoodEntry({
           variables: {
             input: {
+              userId: user.id,
               date: resolvedDate.toISOString(),
               mood,
               intensity,
               note,
               moodColor,
-              userId: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!).id : '',
             },
           },
         });
@@ -78,14 +86,30 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
       </select>
 
       <label>Intensity: {intensity}</label>
-      <input type="range" min="1" max="10" value={intensity} onChange={(e) => setIntensity(+e.target.value)} className={styles.modalInput} />
+      <input
+        type="range"
+        min="1"
+        max="10"
+        value={intensity}
+        onChange={(e) => setIntensity(+e.target.value)}
+        className={styles.modalInput}
+      />
 
       <label>Note</label>
-      <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional note..." className={styles.modalTextarea} />
+      <textarea
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        placeholder="Optional note..."
+        className={styles.modalTextarea}
+      />
 
       <div className={styles.modalActions}>
-        <button onClick={handleSubmit} className={styles.saveButton}>{entry ? 'Update' : 'Add'}</button>
-        <button onClick={onClose} className={styles.cancelButton}>Cancel</button>
+        <button onClick={handleSubmit} className={styles.saveButton}>
+          {entry ? 'Update' : 'Add'}
+        </button>
+        <button onClick={onClose} className={styles.cancelButton}>
+          Cancel
+        </button>
       </div>
     </div>
   );

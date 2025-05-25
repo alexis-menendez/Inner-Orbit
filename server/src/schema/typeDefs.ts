@@ -35,12 +35,6 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
-  type MoodEntryResponse {
-    success: Boolean!
-    message: String!
-    entries: [MoodEntry!]!
-  }
-
   type CreateMoodPayload {
     success: Boolean!
     message: String
@@ -60,13 +54,14 @@ const typeDefs = gql`
   }
 
   input CreateMoodInput {
-    userId: ID!
+    userId: ID! 
     date: Date!
     mood: String!
     intensity: Int!
     moodColor: String!
     note: String
   }
+
 
   input UpdateMoodInput {
     mood: String
@@ -128,7 +123,7 @@ const typeDefs = gql`
 
   extend type Query {
     getMoodEntriesByDateRange(startDate: Date!, endDate: Date!): [MoodEntry]
-    getMoodEntries(userId: ID): MoodEntryResponse!
+    getMoodEntries(userId: ID): GetMoodEntriesPayload!
     getMoodEntryByDate(userId: ID!, date: Date!): MoodEntry
     moodsByDates(userId: ID!, dates: [String!]!): [MoodEntry]
   }

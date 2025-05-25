@@ -2,8 +2,9 @@
 
 import MoodEntry, { IMoodEntry, MoodInput } from '../models/Tracker.js';
 import User from '../models/User.js';
-import { formatMoodEntry } from '../utils/formatEntry.js'; // create this file if not yet made
+import { formatMoodEntry } from '../utils/formatEntry.js'; // make sure this file exists
 
+// CREATE mood entry
 export const addMoodEntry = async (input: MoodInput): Promise<{
   success: boolean;
   message: string;
@@ -23,6 +24,7 @@ export const addMoodEntry = async (input: MoodInput): Promise<{
 
     const saved = await newEntry.save();
 
+    // Link mood entry to the user
     await User.findByIdAndUpdate(input.userId, {
       $push: { moodEntries: saved._id },
     });
@@ -46,13 +48,14 @@ export const addMoodEntry = async (input: MoodInput): Promise<{
   }
 };
 
-export const getAllMoodEntries = async (): Promise<{
+// FETCH mood entries for a specific user
+export const getMoodEntries = async (userId: string): Promise<{
   success: boolean;
   message: string;
   entries: IMoodEntry[] | null;
 }> => {
   try {
-    const rawEntries = await MoodEntry.find().sort({ createdAt: -1 });
+    const rawEntries = await MoodEntry.find({ userId }).sort({ createdAt: -1 });
     const entries = rawEntries.map(formatMoodEntry);
 
     return {
@@ -69,3 +72,4 @@ export const getAllMoodEntries = async (): Promise<{
     };
   }
 };
+

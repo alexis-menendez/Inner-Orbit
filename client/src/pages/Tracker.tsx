@@ -14,11 +14,12 @@ const Tracker: React.FC = () => {
   const { user } = useAuth();
   const [showCreate, setShowCreate] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedEntry, setSelectedEntry] = useState<any>(null);
+  const [selectedEntry, setSelectedEntry] = useState<any | null>(null);
 
   const { data, loading, error, refetch } = useQuery(GET_MOOD_ENTRIES, {
     variables: { userId: user?.id },
     skip: !user?.id,
+
   });
 
   const entries = data?.getMoodEntries?.entries || [];
@@ -83,7 +84,11 @@ const Tracker: React.FC = () => {
         <>
           <p className={styles.statusMessage}>No Entries Created</p>
           {showCreate ? (
-            <CreateMood onSave={handleSaveCreate} onCancel={handleCancelCreate} />
+            <CreateMood
+              userId={user.id}
+              onSave={handleSaveCreate}
+              onCancel={handleCancelCreate}
+            />
           ) : (
             <button onClick={handleCreate} className={styles.createButton}>Create</button>
           )}
@@ -97,6 +102,7 @@ const Tracker: React.FC = () => {
           />
           {selectedDate && (
             <MoodModal
+              userId={user.id}
               date={selectedDate}
               entry={selectedEntry}
               onClose={closeModal}

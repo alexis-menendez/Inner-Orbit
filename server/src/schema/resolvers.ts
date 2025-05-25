@@ -327,15 +327,72 @@ const resolvers: IResolvers = {
       return !!deleted;
     },
 
-// MOOD TRACKER
+// TRACKER
 
-// Add a mood entry 
-addMoodEntry: async (_: any, { input }: any, { user }) => {
-  if (!user || !user._id) {
-    console.error("[AUTH] No authenticated user in context.");
+// Fetch all mood entries for the current user
+getMoodEntries: async (_: any, { userId }: { userId?: string }, context) => {
+  const resolvedUserId = userId || context.user?._id;
+
+  if (!resolvedUserId) {
     return {
       success: false,
       message: "User not authenticated.",
+      entries: [],
+    };
+  }
+
+  try {
+    const entries = await MoodEntry.find({ userId: resolvedUserId }).sort({ createdAt: -1 });
+
+    return {
+      success: true,
+      message: "Mood entries fetched successfully.",
+      entries,
+    };
+  } catch (error) {
+    console.error("Error fetching mood entries:", error);
+    return {
+      success: false,
+      message: "Failed to fetch mood entries.",
+      entries: [],
+    };
+  }
+},
+
+// Fetch moods by date for the current user
+moodsByDates: async (
+  _: any,
+  { userId, dates }: { userId?: string; dates: string[] },
+  context
+) => {
+  const resolvedUserId = userId || context.user?._id;
+
+  if (!resolvedUserId) throw new Error("Not authenticated");
+
+  const dateConditions = dates.map((dateStr) => {
+    const normalizedDate = new Date(dateStr);
+    normalizedDate.setHours(0, 0, 0, 0);
+
+    const nextDay = new Date(normalizedDate);
+    nextDay.setDate(normalizedDate.getDate() + 1);
+
+    return {
+      userId: resolvedUserId,
+      date: { $gte: normalizedDate, $lt: nextDay },
+    };
+  });
+
+  const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
+  return results;
+},
+
+// Add a mood entry 
+addMoodEntry: async (_: any, { input }: any) => {
+  if (!input.userId) {
+    console.error("[TRACKER] Missing userId in input.");
+    return {
+      success: false,
+      message: "User ID is required.",
       entry: null,
     };
   }
@@ -350,16 +407,20 @@ addMoodEntry: async (_: any, { input }: any, { user }) => {
       };
     }
 
-    // ✅ Always use context.user._id — never trust client input
-    const newEntry = await addMoodEntryController({
-      ...input,
-      userId: user._id,
-    });
+    const result = await addMoodEntryController(input);
+
+    if (!result.entry) {
+      return {
+        success: false,
+        message: "Entry was not created.",
+        entry: null,
+      };
+    }
 
     return {
       success: true,
       message: "Mood entry created successfully.",
-      entry: newEntry,
+      entry: result.entry,
     };
   } catch (error) {
     console.error("Error creating mood entry:", error);
@@ -427,15 +488,9 @@ updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { use
 deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {
   if (!user) throw new Error("Not authenticated");
 
-  const deleted = await MoodEntry.findOneAndDelete({ _id: id, user: user._id });
+  const deleted = await MoodEntry.findOneAndDelete({ _id: id, userId: user._id });
   return !!deleted;
 },
-}, 
-
-// Scalar or nested field resolvers
-MoodEntry: {
-  _id: (parent) => parent._id?.toString?.() ?? parent.id?.toString?.(),
 },
-};
-
+};  
 export default resolvers;
