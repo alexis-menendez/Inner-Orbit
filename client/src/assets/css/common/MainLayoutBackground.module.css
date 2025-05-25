@@ -1,0 +1,19 @@
+  /* File: client/src/assets/css/common/MainLayoutBackground.module.css */
+  
+.main-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-image: url('/assets/images/MainLayoutBackground.svg');
+  background-repeat: no-repeat;
+  background-size: cover;               /* ✅ Stretch image to fill height and width */
+  background-position: center center;   /* ✅ Keep it centered */
+  background-attachment: fixed;
+
+  z-index: 5;
+  pointer-events: none;
+}
+

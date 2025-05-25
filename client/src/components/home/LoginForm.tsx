@@ -7,6 +7,7 @@ import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
+import logoStyles from '../../assets/css/common/Logo.module.css';
 import { motion } from 'framer-motion';
 
 const Login = () => {
@@ -51,15 +52,17 @@ const Login = () => {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-black to-indigo-900">
+    <section className={formStyles.authSection}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="text-center"
+        className={formStyles.authContainer}
       >
-      <h1 className="text-4xl font-bold tracking-widest">InnerOrbit</h1>
-      <h2 className="text-2xl font-bold tracking-wider">Please Sign In</h2>
+        <h1 className={logoStyles.title}>
+          <span className={logoStyles.titleInner}>inner</span>
+          <span className={logoStyles.titleOrbit}>Orbit</span>
+        </h1>
 
         <div className={formStyles.formContainer}>
           <input
@@ -84,9 +87,9 @@ const Login = () => {
           >
             Login
           </button>
-          <p className={formStyles.linkText}>
-            Don’t have an account? <Link to="/register">Sign up</Link>
-          </p>
+            <p className={formStyles.linkText}>
+              Don’t have an account? <Link to="/register" className={formStyles.link}>Sign up</Link>
+            </p>
         </div>
       </motion.div>
     </section>

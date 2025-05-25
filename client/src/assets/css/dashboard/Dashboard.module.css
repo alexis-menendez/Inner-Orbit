@@ -1,0 +1,56 @@
+/* File: client/src/assets/css/dashboard/Dashboard.module.css */
+
+
+/* Layout styling */
+.dashboardPage {
+  color: white;
+}
+
+.dashboardPanel {
+  width: 100%;
+  max-width: 90vw;
+}
+
+@media (min-width: 640px) {
+  .dashboardPanel {
+    max-width: 36rem; /* sm */
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardPanel {
+    max-width: 48rem; /* md */
+  }
+}
+
+.panelSpacing {
+  margin-bottom: 2rem;
+}
+
+/* Subtitle styling */
+.subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #e0e7ff; 
+
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.25rem;
+}
+
+.subtitle h1 {
+  font-size: 3rem; 
+
+}
+
+.subtitle h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  
+}
+
+.subtitle h3 {
+  font-size: 1.5rem; 
+}

@@ -2,33 +2,39 @@
 
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import NavBar from '../components/nav/NavBar';
 import { useAuth } from '../context/authContext';
 import { GET_MOOD_ENTRIES } from '../graphql/queries';
 import MoodCalendar from '../components/tracker/MoodCalendar';
 import MoodModal from '../components/tracker/MoodModal';
 import CreateMood from '../components/tracker/CreateMood';
 import styles from '../assets/css/tracker/Tracker.module.css';
+import buttonStyles from '../assets/css/common/Button.module.css';
+import { MoodEntry } from '../models/Mood'; 
 
 const Tracker: React.FC = () => {
   const { user } = useAuth();
   const [showCreate, setShowCreate] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedEntry, setSelectedEntry] = useState<any | null>(null);
+  const [selectedEntries, setSelectedEntries] = useState<MoodEntry[]>([]); 
 
   const { data, loading, error, refetch } = useQuery(GET_MOOD_ENTRIES, {
     variables: { userId: user?.id },
     skip: !user?.id,
-
   });
 
-  const entries = data?.getMoodEntries?.entries || [];
+  const entries: MoodEntry[] = data?.getMoodEntries?.entries || [];
 
   const entriesByDate = useMemo(() => {
-    const map: Record<string, any> = {};
+    const map: Record<string, { moods: { mood: string; moodColor: string }[] }> = {};
     for (const entry of entries) {
       const key = new Date(entry.date).toDateString();
-      map[key] = entry;
+      if (!map[key]) {
+        map[key] = {
+          moods: [{ mood: entry.mood, moodColor: entry.moodColor }],
+        };
+      } else if (map[key].moods.length < 3) {
+        map[key].moods.push({ mood: entry.mood, moodColor: entry.moodColor });
+      }
     }
     return map;
   }, [entries]);
@@ -54,14 +60,18 @@ const Tracker: React.FC = () => {
     return days;
   }, []);
 
-  const handleDayClick = (date: Date, entry: any) => {
+  const handleDayClick = (date: Date) => {
+    const key = date.toDateString();
+    const entriesForDay = entries.filter(
+      (e: MoodEntry) => new Date(e.date).toDateString() === key
+    );
     setSelectedDate(date);
-    setSelectedEntry(entry);
+    setSelectedEntries(entriesForDay);
   };
 
   const closeModal = () => {
     setSelectedDate(null);
-    setSelectedEntry(null);
+    setSelectedEntries([]);
   };
 
   const handleCreate = () => setShowCreate(true);
@@ -73,43 +83,50 @@ const Tracker: React.FC = () => {
 
   return (
     <>
-      <NavBar />
-      <h1 className={styles.trackerHeader}>Mood Tracker</h1>
-
       {!user ? (
         <p className={styles.statusMessage}>Error: User Not Authenticated</p>
       ) : loading ? (
         <p className={styles.statusMessage}>Loading...</p>
       ) : entries.length === 0 ? (
         <>
-          <p className={styles.statusMessage}>No Entries Created</p>
-          {showCreate ? (
-            <CreateMood
-              userId={user.id}
-              onSave={handleSaveCreate}
-              onCancel={handleCancelCreate}
-            />
-          ) : (
-            <button onClick={handleCreate} className={styles.createButton}>Create</button>
-          )}
+      <p className={`${styles.statusMessage} text-white`}>No Entries Created</p>
+      {showCreate ? (
+        <CreateMood
+          userId={user.id}
+          onSave={handleSaveCreate}
+          onCancel={handleCancelCreate}
+        />
+      ) : (
+        <button
+          onClick={handleCreate}
+          className={`${buttonStyles.button} ${buttonStyles.primary}`}
+        >
+          Create
+        </button>
+      )}
         </>
       ) : (
-        <>
-          <MoodCalendar
-            calendarDays={calendarDays}
-            entriesByDate={entriesByDate}
-            handleDayClick={handleDayClick}
-          />
-          {selectedDate && (
-            <MoodModal
-              userId={user.id}
-              date={selectedDate}
-              entry={selectedEntry}
-              onClose={closeModal}
-              refetch={refetch}
+        <div className={styles.trackerFlexContainer}>
+          <div className={styles.calendarWrapper}>
+            <MoodCalendar
+              calendarDays={calendarDays}
+              entriesByDate={entriesByDate}
+              handleDayClick={handleDayClick}
             />
+          </div>
+
+          {selectedDate && (
+            <div className={styles.modalWrapper}>
+              <MoodModal
+                userId={user.id}
+                date={selectedDate}
+                entries={selectedEntries}
+                onClose={closeModal}
+                refetch={refetch}
+              />
+            </div>
           )}
-        </>
+        </div>
       )}
     </>
   );

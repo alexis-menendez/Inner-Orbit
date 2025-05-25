@@ -1,87 +1,76 @@
 /* File: client/src/assets/css/common/Form.module.css */
 
-.formContainer {
-  position: relative;        
-  z-index: 20; 
-  width: 100%;
-  max-width: 24rem; /* Tailwind's max-w-sm */
-  padding: 2rem;
-  background-color: rgba(64, 10, 107, 0.94);
-  color: #0d0a1f;
-  border-radius: 1rem;
-  box-shadow: 0 0 16px rgba(158, 137, 255, 0.2);
+/* AUTH SECTION BACKGROUND */
+.authSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: white;
+  background: transparent;
+}
+
+/* CENTERED FORM CONTAINER */
+.authContainer {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.formTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  color: #e7e6f0;
-  margin-bottom: 0.5rem;
-}
-
-.input {
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  background-color: #080341;
-  color: #ffffff;
-  outline: none;
-  transition: border 0.2s;
-  box-sizing: border-box;
+  max-width: 100%;
 }
 
-.input:focus {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+/* LARGE PAGE HEADER */
+.pageTitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 2.25rem;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  color: #fff8e7; 
+  background-color: #08012b; 
+  letter-spacing: 0.1em; 
 }
 
-.error {
-  color: #dc2626;
-  font-size: 0.875rem;
-  text-align: center;
+/* SUBHEADER FOR PAGES */
+.pageSubtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 1.5rem;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  color: #fff8e7; 
+  letter-spacing: 0.05em;
 }
 
-.linkText {
-  font-size: 0.875rem;
-  text-align: center;
-  color: #bdbcc4;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-/* File: Form.module.css */
-
-/* Frosted form container with glass effect */
+/* FORM BOX */
 .formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 
-  background: rgba(255, 255, 255, 0.1); /* semi-transparent white */
-  backdrop-filter: blur(12px);          /* frosted glass effect */
-  -webkit-backdrop-filter: blur(12px);  /* Safari support */
+  background: rgba(255, 255, 255, 0.01); 
+  backdrop-filter: blur(12px);         
+  -webkit-backdrop-filter: blur(12px);  
 
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 400px;
+  width: fit-content;
+  max-width: 90vw;
+  margin: 0 auto;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.5s ease-in-out;
 }
 
-/* Input styling */
+/* INPUT STYLING */
 .input {
   width: 100%;
   padding: 0.5rem 1rem;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
   color: white;
 
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -98,12 +87,75 @@
 }
 
 .input:focus {
-  border-color: #818cf8; /* indigo-400 */
+  border-color: #818cf8; 
   box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Link text */
-.linkText {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+/* FORM LINK TEXT */
+.link {
+  color: #fff8e7;
+  text-decoration: none;
+  font-weight: 400;
 }
+
+.link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  text-decoration: underline;
+}
+
+.linkText {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: #fff8e7;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ERROR MESSAGE */
+.error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* WHITE TEXT */
+.whiteText {
+  color: white;
+}
+
+.whiteText label,
+.whiteText p,
+.whiteText h2,
+.whiteText strong {
+  color: white;
+}
+
+/* LOGIN / REGISTER  */
+.disclaimerText {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: white;
+  line-height: 1.5;
+}
+
+.disclaimerLink {
+  margin: 0 0.25rem;
+  color: #fff8e7;
+  text-decoration: none;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.disclaimerLink:hover {
+  color: #fff8e7;
+  text-decoration: underline;
+}
+
+.disclaimerNote {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: #fff8e7;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+

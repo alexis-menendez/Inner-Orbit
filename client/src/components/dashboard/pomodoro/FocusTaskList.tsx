@@ -18,7 +18,6 @@ const FocusTaskList: React.FC = () => {
 
   return (
     <div className={styles.taskContainer}>
-      <h3 className={styles.header}>Focus Tasks</h3>
 
       <div className={styles.inputGroup}>
         <input

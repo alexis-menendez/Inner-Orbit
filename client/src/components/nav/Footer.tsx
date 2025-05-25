@@ -1,23 +1,30 @@
-//File: client/src/components/nav/Footer.tsx
+// File: client/src/components/nav/Footer.tsx
 
-export default function BottomNavibar() {
-    <footer className="bottom-navibar">
-        <a href='#' className="bottom-navibar-link">Home</a>
-        <a href='#' className="bottom-navibar-link">About</a>
-        <a href='#' className="bottom-navibar-link">Contact</a>
-        <a href='#' className="bottom-navibar-link">Resources</a>
-        <a href='#' className="bottom-navibar-link">Journal</a>
-        <a href='#' className="bottom-navibar-link">TOS</a>
-        <a href='#' className="bottom-navibar-link">FAQ</a>
+import React from 'react';
+import { useAuth } from '../../context/authContext';
+import styles from '../../assets/css/layout/NavBar.module.css';
 
+const Footer: React.FC = () => {
+  const { logout } = useAuth();
+
+  return (
+    <footer className={styles.footer}>
+      <p>
+        <span>
+          <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a>
+        </span>
+        <br />
+        <span style={{ marginTop: '0.9rem', display: 'inline-block' }}>
+          © {new Date().getFullYear()} innerOrbit
+        </span>
+      </p>
+      <div className={styles.logoutFooterWrapper}>
+        <button onClick={logout} className={styles.logoutButton}>
+          Logout
+        </button>
+      </div>
     </footer>
+  );
 };
 
-
-<footer className="mt-12 text-sm text-center text-gray-400">
-  <p>
-    © {new Date().getFullYear()} InnerOrbit.{' '}
-    <a href="/terms" className="underline hover:text-gray-600">Terms</a> |{' '}
-    <a href="/privacy" className="underline hover:text-gray-600">Privacy</a>
-  </p>
-</footer>
+export default Footer;
