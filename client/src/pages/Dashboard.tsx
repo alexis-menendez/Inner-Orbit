@@ -42,7 +42,9 @@ const Dashboard: React.FC = () => {
 
       {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-        <h2 className="text-2xl mb-4">Weekly Review</h2>
+      <div className={pageStyles.subtitle}>
+        <h2>Weekly Review</h2>
+      </div>
         <WeeklyMoodReview />
       </div>
 
@@ -52,9 +54,14 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Focus App Panel */}
-        <div className="w-full sm:w-1/2">
-          <FocusTaskList />
-        </div>
+{/* Focus App Panel */}
+<div className="w-full sm:w-1/2">
+  <div className={pageStyles.subtitle}>
+    <h2>Task Timer</h2>
+  </div>
+  <FocusTaskList />
+</div>
+
         <div className="flex flex-col sm:flex-row justify-center gap-8 p-4 w-full">
           <div className="w-full sm:w-1/2">
             <PomodoroTimer />
