@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/authContext';
 
 // Layout
+import LoginLayout from './components/layout/LoginLayout';
 import MainLayout from './components/layout/MainLayout';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
@@ -16,6 +17,8 @@ import Terms from './components/home/Terms';
 import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
 import Tracker from './pages/Tracker';
+
+// Components
 import DevelopConstellations from './components/journal/dev/DevelopConstellations'; 
 import Journal from './pages/Journal';
 import Constellation from './components/journal/Constellation';
@@ -33,14 +36,17 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <Routes>
-        {/* Routes using MainLayout */}
-        <Route element={<MainLayout />}>
+        {/* Routes using LoginLayout */}
+        <Route element={<LoginLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+        </Route>
 
+        {/* Routes using MainLayout */}
+        <Route element={<MainLayout />}>
           <Route
             path="/dashboard"
             element={
@@ -49,7 +55,6 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/tracker"
             element={
@@ -58,11 +63,10 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-
           <Route path="/develop-constellations" element={<DevelopConstellations />} />
         </Route>
 
-        {/* Routes WITHOUT MainLayout */}
+        {/* Journal system outside both layouts */}
         <Route
           path="/journal"
           element={

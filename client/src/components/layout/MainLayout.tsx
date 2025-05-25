@@ -2,18 +2,14 @@
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import styles from '../../assets/css/common/CosmicBackground.module.css';
 import StarBackground from '../common/StarBackground';
 
 const MainLayout: React.FC = () => {
   return (
-    <div className={`w-full min-h-screen ${styles['cosmic-background']} relative overflow-hidden`}>
+    <div className="w-full min-h-screen bg-[#0a0029] text-white relative overflow-hidden">
       <StarBackground />
-
-      <main className="relative z-10 min-h-screen px-4 py-6 text-white">
+      <main className="relative z-10 min-h-screen px-4 py-6">
         <Outlet />
-        <div className="mt-10 text-3xl font-bold text-center text-pink-500">
-        </div>
       </main>
     </div>
   );

@@ -51,15 +51,15 @@ const Login = () => {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-black to-indigo-900">
+    <section className={formStyles.authSection}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="text-center"
+        className={formStyles.authContainer}
       >
-      <h1 className="text-4xl font-bold tracking-widest">InnerOrbit</h1>
-      <h2 className="text-2xl font-bold tracking-wider">Please Sign In</h2>
+        <h1 className={formStyles.pageTitle}>InnerOrbit</h1>
+        <h2 className={formStyles.pageSubtitle}>Please Sign In</h2>
 
         <div className={formStyles.formContainer}>
           <input

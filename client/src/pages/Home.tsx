@@ -7,7 +7,7 @@ import styles from '../assets/css/common/Button.module.css';
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-white bg-gradient-to-b from-indigo-900 to-black">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full text-center gap-6 text-white">
       <h1 className="text-4xl font-bold tracking-widest">InnerOrbit</h1>
       <h2 className="text-2xl font-bold tracking-wider">Please Sign In</h2>
 
