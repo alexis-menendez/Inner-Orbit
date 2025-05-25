@@ -83,7 +83,6 @@ const PomodoroTimer: React.FC = () => {
              </div>
 </div>
       <h2 className={styles.timerTitle}>
-        {modeLabel === 'Work Time' && task ? task.text : modeLabel}
       </h2>
 
       <div className={styles.progressRing}>
