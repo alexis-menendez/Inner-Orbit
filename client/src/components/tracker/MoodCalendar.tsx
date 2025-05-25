@@ -1,4 +1,4 @@
-// File: client/src/components/tracker/MoodCalendar.tsx
+// file: client/src/components/tracker/MoodCalendar.tsx
 
 import React from 'react';
 import styles from '../../assets/css/tracker/Tracker.module.css';
@@ -39,7 +39,7 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
 
         const background = entry?.moods?.length
           ? getMoodGradient(entry.moods)
-          : (currentMonth ? '#4c1d95' : '#1f2937');
+          : (currentMonth ? 'rgba(76, 29, 149, 0.7)' : 'rgba(31, 41, 55, 0.5)');
 
         return (
           <div
@@ -48,8 +48,12 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
             className={`${cellClass} ${isToday ? styles.today : ''}`}
             style={{
               background,
-              opacity: currentMonth ? 1 : 0.5,
+              opacity: currentMonth ? 0.85 : 0.5,
               position: 'relative',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              transition: 'all 0.3s ease-in-out',
+              cursor: 'pointer',
             }}
           >
             <div className={styles.dayContent}>

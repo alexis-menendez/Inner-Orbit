@@ -97,6 +97,9 @@
   width: 90vw;
   max-width: 1200px;
   background-color: #1e1b4b;
+  background: rgba(255, 255, 255, 0.01); /* semi-transparent white */
+  backdrop-filter: blur(12px);           /* blur effect */
+  -webkit-backdrop-filter: blur(12px);   /* Safari support */
   border: 2px solid pink;
   padding: 0.5rem;
 }
@@ -119,6 +122,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   justify-content: center;
   cursor: pointer;
   position: relative;
