@@ -49,7 +49,7 @@ const resolvers: IResolvers = {
       }
 
       try {
-        const entries = await MoodEntry.find({ user: resolvedUserId }).sort({ createdAt: -1 });
+        const entries = await MoodEntry.find({ userId: resolvedUserId }).sort({ createdAt: -1 });
 
         return {
           success: true,
@@ -328,63 +328,6 @@ const resolvers: IResolvers = {
     },
 
 // TRACKER
-
-// Fetch all mood entries for the current user
-getMoodEntries: async (_: any, { userId }: { userId?: string }, context) => {
-  const resolvedUserId = userId || context.user?._id;
-
-  if (!resolvedUserId) {
-    return {
-      success: false,
-      message: "User not authenticated.",
-      entries: [],
-    };
-  }
-
-  try {
-    const entries = await MoodEntry.find({ userId: resolvedUserId }).sort({ createdAt: -1 });
-
-    return {
-      success: true,
-      message: "Mood entries fetched successfully.",
-      entries,
-    };
-  } catch (error) {
-    console.error("Error fetching mood entries:", error);
-    return {
-      success: false,
-      message: "Failed to fetch mood entries.",
-      entries: [],
-    };
-  }
-},
-
-// Fetch moods by date for the current user
-moodsByDates: async (
-  _: any,
-  { userId, dates }: { userId?: string; dates: string[] },
-  context
-) => {
-  const resolvedUserId = userId || context.user?._id;
-
-  if (!resolvedUserId) throw new Error("Not authenticated");
-
-  const dateConditions = dates.map((dateStr) => {
-    const normalizedDate = new Date(dateStr);
-    normalizedDate.setHours(0, 0, 0, 0);
-
-    const nextDay = new Date(normalizedDate);
-    nextDay.setDate(normalizedDate.getDate() + 1);
-
-    return {
-      userId: resolvedUserId,
-      date: { $gte: normalizedDate, $lt: nextDay },
-    };
-  });
-
-  const results = await MoodEntry.find({ $or: dateConditions }).sort({ date: 1 });
-  return results;
-},
 
 // Add a mood entry 
 addMoodEntry: async (_: any, { input }: any) => {
