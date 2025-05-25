@@ -9,6 +9,11 @@
   max-width: 90vw;
 }
 
+.panelSpacing {
+  margin-bottom: 2rem;
+}
+
+
 @media (min-width: 640px) {
   .dashboardPanel {
     max-width: 36rem; /* sm */

@@ -39,7 +39,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
-      <h1 className="text-3xl glow-text mb-4">Dashboard</h1>
 
       {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
@@ -53,19 +52,15 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Focus App Panel */}
-      <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-        <h2 className="text-2xl text-white mb-4">Focus App</h2>
-        <div className="flex justify-center flex-wrap gap-8 p-4">
-          <PomodoroTimer />
+        <div className="w-full sm:w-1/2">
           <FocusTaskList />
         </div>
-      </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-8 p-4 w-full">
+          <div className="w-full sm:w-1/2">
+            <PomodoroTimer />
+          </div>
+        </div>
 
-      {/* Debug Buttons — replace with real event hooks later */}
-      <div className="flex flex-wrap gap-2">
-        <button onClick={handleMoodLog}>Log Mood</button>
-        <button onClick={handleFocusTaskAdd}>Add Focus Task</button>
-      </div>
     </div>
   );
 };
