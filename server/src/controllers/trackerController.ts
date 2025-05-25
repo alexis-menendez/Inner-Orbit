@@ -1,116 +1,75 @@
 // File: server/src/controllers/trackerController.ts
 
-import { Date } from 'mongoose';
-import MoodEntry from '../models/Tracker.js';
-import User from '../models/User.js'; 
-import { Request, Response } from 'express';
+import MoodEntry, { IMoodEntry, MoodInput } from '../models/Tracker.js';
+import User from '../models/User.js';
+import { formatMoodEntry } from '../utils/formatEntry.js'; // make sure this file exists
 
-interface AuthenticatedRequest extends Request {
-  user: {
-    _id: string;
-    username: string;
-    isDev?: boolean;
-  };
-}
+// CREATE mood entry
+export const addMoodEntry = async (input: MoodInput): Promise<{
+  success: boolean;
+  message: string;
+  entry: IMoodEntry | null;
+}> => {
+  console.log("[TRACKER] Creating mood entry:", input);
 
-interface AddMoodEntryArgs {
-  date: Date;
-  mood: string;
-  intensity: number;
-  moodColor: string;
-  note?: string;
-  userId: string;
-}
-
-export const createMoodEntry = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const { mood, notes, date } = req.body;
-    const newMood = new MoodEntry({
-      user: req.user._id,
-      mood,
-      notes,
-      date
+    const newEntry = new MoodEntry({
+      userId: input.userId,
+      date: input.date,
+      mood: input.mood,
+      intensity: input.intensity,
+      moodColor: input.moodColor,
+      note: input.note || '',
     });
-    const saved = await newMood.save();
-    return res.status(201).json(saved);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(400).json({ error: err.message });
-    }
-    return res.status(400).json({ error: 'Unknown error' });
+
+    const saved = await newEntry.save();
+
+    // Link mood entry to the user
+    await User.findByIdAndUpdate(input.userId, {
+      $push: { moodEntries: saved._id },
+    });
+
+    const result = formatMoodEntry(saved);
+
+    console.log("[TRACKER] Mood entry saved:", result);
+
+    return {
+      success: true,
+      message: "Mood entry recorded successfully",
+      entry: result,
+    };
+  } catch (error) {
+    console.error("Error recording mood entry:", error);
+    return {
+      success: false,
+      message: "Failed to record mood entry",
+      entry: null,
+    };
   }
 };
 
-export const addMoodEntry = async ({
-  date,
-  mood,
-  intensity,
-  moodColor,
-  note,
-  userId,
-}: AddMoodEntryArgs) => {
-  console.log("[TRACKER] Creating mood entry:", { date, mood, intensity, moodColor, note, userId });
-
-  const entry = await MoodEntry.create({
-    date,
-    mood,
-    intensity,
-    moodColor,
-    note,
-    userId,
-  });
-
-  await User.findByIdAndUpdate(userId, {
-    $push: { moodEntries: entry._id },
-  });
-
-  console.log("[TRACKER] Mood entry saved:", entry);
-
-  return entry;
-};
-
-export const getUserMoodEntries = async (req: AuthenticatedRequest, res: Response) => {
+// FETCH mood entries for a specific user
+export const getMoodEntries = async (userId: string): Promise<{
+  success: boolean;
+  message: string;
+  entries: IMoodEntry[] | null;
+}> => {
   try {
-    const moods = await MoodEntry.find({ user: req.user._id }).sort({ date: -1 });
-    return res.json(moods);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(500).json({ error: err.message });
-    }
-    return res.status(500).json({ error: 'Unknown error' });
+    const rawEntries = await MoodEntry.find({ userId }).sort({ createdAt: -1 });
+    const entries = rawEntries.map(formatMoodEntry);
+
+    return {
+      success: true,
+      message: "Mood entries fetched successfully",
+      entries,
+    };
+  } catch (error) {
+    console.error("Error fetching mood entries:", error);
+    return {
+      success: false,
+      message: "Failed to fetch mood entries",
+      entries: null,
+    };
   }
 };
 
-export const updateMoodEntry = async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const updated = await MoodEntry.findOneAndUpdate(
-      { _id: req.params.id, user: req.user._id },
-      { mood: req.body.mood, notes: req.body.notes },
-      { new: true }
-    );
-    if (!updated) {
-      return res.status(404).json({ message: 'Mood entry not found' });
-    }
-    return res.json(updated);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(400).json({ error: err.message });
-    }
-    return res.status(400).json({ error: 'Unknown error' });
-  }
-};
-
-export const deleteMoodEntry = async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const deleted = await MoodEntry.findOneAndDelete({ _id: req.params.id, user: req.user._id });
-    if (!deleted) {
-      return res.status(404).json({ message: 'Mood entry not found' });
-    }
-    return res.json({ message: 'Mood entry deleted' });
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(500).json({ error: err.message });
-    }
-    return res.status(500).json({ error: 'Unknown error' });
-  }
-};

@@ -37,14 +37,20 @@ export const GET_USER_BY_ID = gql`
 `;
 
 export const GET_MOOD_ENTRIES = gql`
-  query GetMoodEntries {
-    getMoodEntries {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
+  query GetMoodEntries($userId: ID!) {
+    getMoodEntries(userId: $userId) {
+      success
+      message
+      entries {
+        _id
+        date
+        mood
+        intensity
+        moodColor
+        note
+        createdAt
+        userId
+      }
     }
   }
 `;
@@ -62,6 +68,8 @@ export const GET_WEEKLY_MOODS = gql`
     }
   }
 `;
+
+
 export const GET_JOURNAL_ENTRIES = gql`
   query GetJournalEntries($userId: ID!) {
     getJournalEntries(userId: $userId) {
@@ -110,6 +118,6 @@ export const GET_JOURNAL_ENTRIES_FOR_CONSTELLATION = gql`
       date
       content
       constellationId
+      }
     }
-  }
 `;

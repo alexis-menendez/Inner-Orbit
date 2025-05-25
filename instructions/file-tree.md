@@ -90,8 +90,9 @@ InnerOrbit/
 │   │   │   │   └── *things like "Navbar.tsx", PaggeWrapper.tsx, etc...*  
 │   │   │   │
 │   │   │   ├── tracker/  
-│   │   │   │   ├──  MoodCalender.tsx 
-│   │   │   │   ├──  MoodSelector.tsx  
+│   │   │   │   ├──  CreateMood.tsx 
+│   │   │   │   ├──  MoodCalendar.tsx  
+│   │   │   │   ├──  MoodModal.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
 │   │   │   │    
 │   │   │   ├── library/  

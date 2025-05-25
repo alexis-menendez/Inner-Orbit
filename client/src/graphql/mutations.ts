@@ -2,6 +2,8 @@
 
 import { gql } from '@apollo/client';
 
+// === USER AUTH ===
+
 export const LOGIN_USER = gql`
   mutation LoginUser($username: String!, $password: String!) {
     loginUser(username: $username, password: $password) {
@@ -47,6 +49,7 @@ export const REGISTER_USER = gql`
   }
 `;
 
+// === JOURNAL ===
 
 export const CREATE_JOURNAL = gql`
   mutation CreateJournal($input: CreateJournalInput!) {
@@ -103,55 +106,40 @@ export const DELETE_JOURNAL_ENTRY = gql`
   }
 `;
 
+// === TRACKER ===
+
 export const ADD_MOOD_ENTRY = gql`
-  mutation AddMoodEntry(
-    $date: Date!
-    $mood: String!
-    $intensity: Int!
-    $moodColor: String!
-    $note: String
-    $userId: ID!
-  ) {
-    addMoodEntry(
-      date: $date
-      mood: $mood
-      intensity: $intensity
-      moodColor: $moodColor
-      note: $note
-      userId: $userId
-    ) {
-      _id
-      date
-      mood
-      intensity
-      moodColor
-      note
-      createdAt
+  mutation AddMoodEntry($input: CreateMoodInput!) {
+    addMoodEntry(input: $input) {
+      success
+      message
+      entry {
+        _id
+        userId
+        mood
+        moodColor
+        intensity
+        date
+        createdAt
+        note
+      }
     }
   }
 `;
 
 export const UPDATE_MOOD_ENTRY = gql`
-  mutation UpdateMoodEntry(
-    $id: ID!
-    $mood: String
-    $intensity: Int
-    $moodColor: String
-    $note: String
-  ) {
-    updateMoodEntry(
-      id: $id
-      mood: $mood
-      intensity: $intensity
-      moodColor: $moodColor
-      note: $note
-    ) {
-      _id
-      mood
-      intensity
-      moodColor
-      note
-      date
+  mutation UpdateMoodEntry($id: ID!, $input: UpdateMoodInput!) {
+    updateMoodEntry(id: $id, input: $input) {
+      success
+      message
+      entry {
+        _id
+        mood
+        intensity
+        moodColor
+        note
+        date
+      }
     }
   }
 `;

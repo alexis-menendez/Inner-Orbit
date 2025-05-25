@@ -19,14 +19,19 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  firstName: String,
+  lastName: String,
+  dob: String,
   isDev: {
     type: Boolean,
     default: false,
   },
+  moodEntries: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MoodEntry' }],
+  journalEntries: [{ type: mongoose.Schema.Types.ObjectId, ref: 'JournalEntry' }],
   createdAt: {
     type: Date,
     default: Date.now,
-  }
+  },
 });
 
 export default mongoose.model('User', UserSchema);

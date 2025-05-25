@@ -1,65 +1,74 @@
 // File: server/src/models/Tracker.ts
 
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const MoodEntrySchema = new mongoose.Schema(
+export type MoodInput = {
+  userId: string;
+  date: Date;
+  mood: string;
+  intensity: number;
+  moodColor: string;
+  note?: string;
+};
+
+export interface IMoodEntry extends Document {
+  userId: string;
+  date: Date;
+  mood: string;
+  intensity: number;
+  moodColor: string;
+  note?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const MoodEntrySchema: Schema = new Schema(
   {
+    userId: {
+      type: String, // Changed from Schema.Types.ObjectId
+      required: true,
+    },
     date: {
       type: Date,
-      default: Date.now,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
+      required: true,
     },
     mood: {
       type: String,
       enum: [
-        "happy",
-        "sad",
-        "angry",
-        "frustrated",
-        "excited",
-        "bored",
-        "relaxed",
-        "stressed",
-        "confused",
-        "motivated",
-        "tired",
-        "grateful",
-        "hopeful",
-        "lonely",
-        "loved",
-        "overwhelmed",
-        "curious",
-        "creative",
-        "calm",
-        "disappointed",
-        "satisfied",
-        "confident",
-        "ashamed",
-        "jealous",
-        "nostalgic",
-        "indifferent",
-        "disconnected",
-        "connected",
-        "inspired",
-        "empowered",
-        "guilty",
-        "proud",
-        "embarassed",
-        "anxious",
-        "neutral",
-        "relieved",
-        "overjoyed",
+        // 1. Connection / Love
+        'affectionate', 'connected', 'horny', 'intimate', 'loved', 'tender', 'warm',
+        // 2. Happy / Energized
+        'excited', 'grateful', 'happy', 'hopeful', 'overjoyed',
+        // 3. Motivated / Empowered
+        'confident', 'creative', 'curious', 'empowered', 'inspired', 'motivated', 'proud',
+        // 4. Surprise / Shock
+        'alarmed', 'amazed', 'shocked', 'speechless', 'startled', 'surprised',
+        // 5. Disgust
+        'disgusted', 'jealous', 'repulsed', 'judgmental', 'suspicious', 'resentful',
+        // 6. Anger
+        'aggressive', 'angry', 'annoyed', 'enraged', 'frustrated', 'irritated',
+        // 7. Shame / Guilt
+        'ashamed', 'embarrassed', 'guilty', 'humiliated', 'insecure', 'regretful', 'remorseful',
+        // 8. Fear / Anxiety
+        'anxious', 'confused', 'overwhelmed', 'stressed',
+        // 9. Disappointment / Sadness
+        'blue', 'despairing', 'disappointed', 'down', 'heartbroken', 'melancholy', 'sad',
+        // 10. Isolation / Longing
+        'disconnected', 'lonely',
+        // 11. Low Stimulation / Exhaustion
+        'bored', 'nostalgic', 'tired',
+        // 12. Calm / Neutral
+        'calm', 'content', 'indifferent', 'relaxed', 'relieved', 'satisfied',
+        // 13. Mourning / Grief
+        'bereft', 'grieving', 'heartache', 'mourning', 'numb', 'yearning',
       ],
       required: true,
     },
     intensity: {
       type: Number,
+      required: true,
       min: 1,
       max: 10,
-      required: true,
     },
     moodColor: {
       type: String,
@@ -67,14 +76,10 @@ const MoodEntrySchema = new mongoose.Schema(
     },
     note: {
       type: String,
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+      default: "",
     },
   },
   { timestamps: true }
-); // ✅ Enables createdAt and updatedAt
+);
 
-export default mongoose.model("MoodEntry", MoodEntrySchema);
+export default mongoose.model<IMoodEntry>("MoodEntry", MoodEntrySchema);
