@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_MOOD_ENTRY, UPDATE_MOOD_ENTRY } from '../../graphql/mutations';
+import { ADD_MOOD_ENTRY, UPDATE_MOOD_ENTRY, DELETE_MOOD_ENTRY } from '../../graphql/mutations';
 import { moodList } from '../../models/Mood';
 import { useAuth } from '../../context/authContext';
 import styles from '../../assets/css/tracker/Tracker.module.css';
@@ -23,6 +23,7 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
 
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
   const [updateMoodEntry] = useMutation(UPDATE_MOOD_ENTRY);
+  const [deleteMoodEntry] = useMutation(DELETE_MOOD_ENTRY);
 
   const moodItem = moodList.find((m) => m.id === mood);
 
@@ -35,9 +36,9 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
     const resolvedDate = entry?.date ? new Date(entry.date) : date;
     const moodColor = moodItem?.color || '#ccc';
 
-    if (entry?._id) {
-      console.log('[TRACKER] Attempting to update mood entry:', entry._id);
-      try {
+    try {
+      if (entry?._id) {
+        console.log('[TRACKER] Attempting to update mood entry:', entry._id);
         await updateMoodEntry({
           variables: {
             id: entry._id,
@@ -45,12 +46,8 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
           },
         });
         console.log('[TRACKER] Mood entry successfully updated:', entry._id);
-      } catch (error) {
-        console.error('[TRACKER] Failed to update mood entry:', error);
-      }
-    } else {
-      console.log('[TRACKER] Attempting to create mood entry:', { date: resolvedDate, mood });
-      try {
+      } else {
+        console.log('[TRACKER] Attempting to create mood entry:', { date: resolvedDate, mood });
         await addMoodEntry({
           variables: {
             input: {
@@ -64,13 +61,27 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
           },
         });
         console.log('[TRACKER] Mood entry successfully created and saved');
-      } catch (error) {
-        console.error('[TRACKER] Failed to create mood entry:', error);
       }
-    }
 
-    onClose();
-    refetch();
+      onClose();
+      refetch();
+    } catch (error) {
+      console.error('[TRACKER] Mutation failed:', error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!entry?._id) return;
+
+    try {
+      console.log('[TRACKER] Attempting to delete mood entry:', entry._id);
+      await deleteMoodEntry({ variables: { id: entry._id } });
+      console.log('[TRACKER] Mood entry successfully deleted:', entry._id);
+      onClose();
+      refetch();
+    } catch (error) {
+      console.error('[TRACKER] Failed to delete mood entry:', error);
+    }
   };
 
   return (
@@ -107,6 +118,11 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
         <button onClick={handleSubmit} className={styles.saveButton}>
           {entry ? 'Update' : 'Add'}
         </button>
+        {entry && (
+          <button onClick={handleDelete} className={styles.deleteButton}>
+            Delete
+          </button>
+        )}
         <button onClick={onClose} className={styles.cancelButton}>
           Cancel
         </button>
@@ -116,3 +132,4 @@ const MoodModal: React.FC<MoodModalProps> = ({ date, entry, onClose, refetch }) 
 };
 
 export default MoodModal;
+
