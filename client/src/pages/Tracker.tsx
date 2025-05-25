@@ -8,6 +8,7 @@ import MoodCalendar from '../components/tracker/MoodCalendar';
 import MoodModal from '../components/tracker/MoodModal';
 import CreateMood from '../components/tracker/CreateMood';
 import styles from '../assets/css/tracker/Tracker.module.css';
+import buttonStyles from '../assets/css/common/Button.module.css';
 import { MoodEntry } from '../models/Mood'; 
 
 const Tracker: React.FC = () => {
@@ -88,16 +89,21 @@ const Tracker: React.FC = () => {
         <p className={styles.statusMessage}>Loading...</p>
       ) : entries.length === 0 ? (
         <>
-          <p className={styles.statusMessage}>No Entries Created</p>
-          {showCreate ? (
-            <CreateMood
-              userId={user.id}
-              onSave={handleSaveCreate}
-              onCancel={handleCancelCreate}
-            />
-          ) : (
-            <button onClick={handleCreate} className={styles.createButton}>Create</button>
-          )}
+      <p className={`${styles.statusMessage} text-white`}>No Entries Created</p>
+      {showCreate ? (
+        <CreateMood
+          userId={user.id}
+          onSave={handleSaveCreate}
+          onCancel={handleCancelCreate}
+        />
+      ) : (
+        <button
+          onClick={handleCreate}
+          className={`${buttonStyles.button} ${buttonStyles.primary}`}
+        >
+          Create
+        </button>
+      )}
         </>
       ) : (
         <div className={styles.trackerFlexContainer}>
