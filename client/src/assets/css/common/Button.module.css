@@ -3,7 +3,7 @@
 .button {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
   text-align: center;
   text-decoration: none;

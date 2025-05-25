@@ -107,7 +107,7 @@
   bottom: 0.5rem;
   left: 0.5rem;
   color: white;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
   background-color: rgba(0, 0, 0, 0.6);
   padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;

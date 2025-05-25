@@ -27,7 +27,7 @@
 .pageTitle {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 100;
-  font-size: 2.25rem;
+  font-size: clamp(1.4rem, 4.5vw, 2.25rem);
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: #fff8e7; 
   background-color: #08012b; 
@@ -38,7 +38,7 @@
 .pageSubtitle {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 100;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: #fff8e7; 
   letter-spacing: 0.05em;
@@ -76,7 +76,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 0.5rem;
 
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
   outline: none;
 
   transition: 0.3s;
@@ -115,7 +115,7 @@
 /* ERROR MESSAGE */
 .error {
   color: #dc2626;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   text-align: center;
 }
 
