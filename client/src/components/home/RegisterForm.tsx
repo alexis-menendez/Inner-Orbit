@@ -74,8 +74,8 @@ const Register = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={formStyles.authContainer}
       >
-        <h1 className={formStyles.pageTitle}>Hello, InnerOrbit 🌌</h1>
-        <h2 className={formStyles.pageSubtitle}>Welcome to the Register Page</h2>
+        <h1 className={formStyles.pageTitle}>InnerOrbit</h1>
+        <h2 className={formStyles.pageSubtitle}>Create An Account</h2>
 
         <div className={formStyles.formContainer}>
           <input type="text" id="username" placeholder="Username" value={form.username} onChange={handleChange} className={formStyles.input} />
@@ -93,7 +93,12 @@ const Register = () => {
               onChange={handleChange}
               className="mt-1 mr-2"
             />
-            By signing up, you agree to our <Link to="/terms" className="underline">Terms of Service</Link> and <Link to="/privacy" className="underline">Privacy Policy</Link>.
+            <span className={formStyles.disclaimerText}>
+              By signing up, you agree to our
+              <Link to="/terms" className={formStyles.disclaimerLink}> Terms of Service </Link>
+              and
+              <Link to="/privacy" className={formStyles.disclaimerLink}> Privacy Policy </Link>.
+            </span>
           </label>
 
           <p className="text-xs italic text-white mb-2">
@@ -108,7 +113,8 @@ const Register = () => {
           </button>
 
           <p className={formStyles.linkText}>
-            Already have an account? <Link to="/login">Log in</Link>
+            Already have an account?
+            <Link to="/login" className={formStyles.loginLink}> Log in</Link>
           </p>
         </div>
       </motion.div>
