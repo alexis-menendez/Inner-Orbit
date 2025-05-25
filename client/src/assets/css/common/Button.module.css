@@ -128,3 +128,66 @@
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   transform: scale(1.03);
 }
+
+/* Pomdoro Timer Button Styles */
+
+.buttonGroup button {
+  background-color: #400a6b;
+}
+
+.action {
+  background-color: #400a6b;
+}
+
+.add {
+  background-color: #400a6b;
+}
+
+.delete {
+  background-color: #b98dff;
+}
+
+.iconButton {
+  background-color: #b98dff;
+  padding: 0;
+  width: auto;
+  min-width: unset;
+}
+
+.modeButton {
+  background-color: #b98dff;
+}
+
+.modeButtonActive {
+  background-color: #3abbbd;
+}
+
+/* Apply to all PomodoroTimer button styles */
+.buttonGroup button:hover,
+.action:hover,
+.add:hover,
+.delete:hover,
+.iconButton:hover,
+.modeButton:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+
+.buttonGroup button,
+.action,
+.add,
+.delete,
+.iconButton,
+.modeButton {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  text-shadow: none;
+  color: #ffffff;
+  margin: 0 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}

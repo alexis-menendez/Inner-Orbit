@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
-
+import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 const PomodoroTimer: React.FC = () => {
   const { getSelectedTask } = useTaskStore();
@@ -75,15 +75,26 @@ const PomodoroTimer: React.FC = () => {
 
   return (
     <div className={styles.timerContainer}>
-        <div className={styles.buttonGroup}>
-      <div className={styles.modeSelector}>
-        <button onClick={() => switchMode('Work Time', WORK_DURATION)}>Task</button>
-        <button onClick={() => switchMode('Short Break', BREAK_DURATION)}>5 Min Break</button>
-        <button onClick={() => switchMode('Long Break', LONG_BREAK_DURATION)}>15 Min Break</button>
-             </div>
-</div>
-      <h2 className={styles.timerTitle}>
-      </h2>
+      <div className={buttonStyles.buttonGroup}>
+        <button
+          onClick={() => switchMode('Work Time', WORK_DURATION)}
+          className={`${buttonStyles.modeButton} ${modeLabel === 'Work Time' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          Task
+        </button>
+        <button
+          onClick={() => switchMode('Short Break', BREAK_DURATION)}
+          className={`${buttonStyles.modeButton} ${modeLabel === 'Short Break' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          5 Min Break
+        </button>
+        <button
+          onClick={() => switchMode('Long Break', LONG_BREAK_DURATION)}
+          className={`${buttonStyles.modeButton} ${modeLabel === 'Long Break' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          15 Min Break
+        </button>
+      </div>
 
       <div className={styles.progressRing}>
         <svg viewBox="0 0 100 100" className={styles.ringSvg}>
@@ -93,7 +104,10 @@ const PomodoroTimer: React.FC = () => {
             cy="50"
             r="45"
             className={styles.ringProgress}
-            style={{ strokeDasharray: '282.6', strokeDashoffset: 282.6 - (282.6 * progress) / 100 }}
+            style={{
+              strokeDasharray: '282.6',
+              strokeDashoffset: 282.6 - (282.6 * progress) / 100,
+            }}
           />
           <text x="50%" y="55%" textAnchor="middle" className={styles.ringText}>
             {formatTime(secondsLeft)}
@@ -101,14 +115,14 @@ const PomodoroTimer: React.FC = () => {
         </svg>
       </div>
 
-      <div className={styles.buttonGroup}>
-        <button className={`${styles.timerButton} ${styles.start}`} onClick={startTimer}>
+      <div className={buttonStyles.buttonGroup}>
+        <button className={buttonStyles.action} onClick={startTimer}>
           Start
         </button>
-        <button className={`${styles.timerButton} ${styles.pause}`} onClick={pauseTimer}>
+        <button className={buttonStyles.action} onClick={pauseTimer}>
           Pause
         </button>
-        <button className={`${styles.timerButton} ${styles.reset}`} onClick={resetTimer}>
+        <button className={buttonStyles.action} onClick={resetTimer}>
           Reset
         </button>
       </div>
