@@ -17,8 +17,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
   overflow-y: auto;
+}
+
+/* Phones: up to 639px */
+@media (max-width: 639px) {
+  .cosmic-background {
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+  }
+}
+
+/* Tablets: 640px to 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .cosmic-background {
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+  }
 }
 
 .glow-text {
