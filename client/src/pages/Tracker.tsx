@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import NavBar from '../components/nav/NavBar';
 import { useAuth } from '../context/authContext';
 import { GET_MOOD_ENTRIES } from '../graphql/queries';
 import MoodCalendar from '../components/tracker/MoodCalendar';
@@ -83,7 +82,6 @@ const Tracker: React.FC = () => {
 
   return (
     <>
-      <NavBar />
       <h1 className={styles.trackerHeader}>Mood Tracker</h1>
 
       {!user ? (

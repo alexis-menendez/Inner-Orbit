@@ -1,5 +1,7 @@
 /* File: client/src/assets/css/common/CosmicBackground.module.css */
 
+
+/* Login Layout */
 .cosmic-background {
   background-image: url('/assets/images/DarkModeTransparent.svg');
   background-repeat: no-repeat;
@@ -31,4 +33,20 @@
   padding: 2rem;
   box-shadow: 0 0 20px rgba(183, 181, 194, 0.2);
 }
+
+/* Main Layout */
+.gradient-overlay {
+  width: 75%;
+  min-height: 100%;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+
+
 
