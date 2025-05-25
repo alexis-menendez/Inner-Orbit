@@ -9,11 +9,22 @@
 
   background-image: url('/assets/images/MainLayoutBackground.svg');
   background-repeat: no-repeat;
-  background-size: cover;               /* ✅ Stretch image to fill height and width */
-  background-position: center center;   /* ✅ Keep it centered */
+  background-size: cover;              
+  background-position: center center;   
   background-attachment: fixed;
 
   z-index: 5;
   pointer-events: none;
 }
 
+/* Main Layout */
+.gradient-overlay {
+  width: 75%;
+  min-height: 100%;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
