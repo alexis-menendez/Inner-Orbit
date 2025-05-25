@@ -1,15 +1,23 @@
 // File: client/src/components/nav/Footer.tsx
 
 import React from 'react';
+import { useAuth } from '../../context/authContext';
+import styles from '../../assets/css/layout/NavBar.module.css';
 
 const Footer: React.FC = () => {
+  const { logout } = useAuth();
+
   return (
-    <footer className="mt-12 text-sm text-center text-gray-400">
+    <footer className={styles.footer}>
       <p>
         © {new Date().getFullYear()} InnerOrbit.{' '}
-        <a href="/terms" className="underline hover:text-gray-600">Terms</a> |{' '}
-        <a href="/privacy" className="underline hover:text-gray-600">Privacy</a>
+        <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a>
       </p>
+      <div className={styles.logoutFooterWrapper}>
+        <button onClick={logout} className={styles.logoutButton}>
+          Logout
+        </button>
+      </div>
     </footer>
   );
 };

@@ -5,7 +5,6 @@ import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
 import SquidPet from "../components/dashboard/pet/SquidPet";
-import { useAuth } from "../context/authContext";
 import buttonStyles from '../assets/css/common/Button.module.css';
 
 type MoodEntry = {
@@ -17,7 +16,6 @@ type MoodEntry = {
 
 const Dashboard: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
-  const { logout } = useAuth();
   type AnimationKey = 'idle' | 'walk' | 'legLift' | 'fall' | 'jump' | 'jumpslam';
 
   const [petAnim, setPetAnim] = useState<AnimationKey>('idle');
@@ -79,13 +77,6 @@ const Dashboard: React.FC = () => {
       <div className="flex flex-wrap gap-2">
         <button onClick={handleMoodLog}>Log Mood</button>
         <button onClick={handleFocusTaskAdd}>Add Focus Task</button>
-      </div>
-
-      {/* Logout Button */}
-      <div className="w-full max-w-xs mt-6">
-        <button onClick={logout} className={`${buttonStyles.button} ${buttonStyles.primary}`}>
-          Log Out
-        </button>
       </div>
     </div>
   );

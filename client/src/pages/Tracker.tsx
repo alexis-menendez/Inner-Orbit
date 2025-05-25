@@ -82,8 +82,6 @@ const Tracker: React.FC = () => {
 
   return (
     <>
-      <h1 className={styles.trackerHeader}>Mood Tracker</h1>
-
       {!user ? (
         <p className={styles.statusMessage}>Error: User Not Authenticated</p>
       ) : loading ? (
