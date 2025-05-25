@@ -1,0 +1,22 @@
+/* File: client/src/assets/css/dashboard/Dashboard.module.css */
+
+.dashboardPage {
+  color: white;
+}
+
+.dashboardPanel {
+  width: 100%;
+  max-width: 90vw;
+}
+
+@media (min-width: 640px) {
+  .dashboardPanel {
+    max-width: 36rem; /* sm */
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardPanel {
+    max-width: 48rem; /* md */
+  }
+}

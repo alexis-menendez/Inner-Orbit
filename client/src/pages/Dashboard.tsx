@@ -6,6 +6,8 @@ import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
 import SquidPet from "../components/dashboard/pet/SquidPet";
 import buttonStyles from '../assets/css/common/Button.module.css';
+import pageStyles from '../assets/css/dashboard/Dashboard.module.css';
+
 
 type MoodEntry = {
   id: string;
@@ -36,32 +38,18 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center px-4 py-8 gap-8 relative z-10">
+    <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
       <h1 className="text-3xl glow-text mb-4">Dashboard</h1>
 
       {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-        <h2 className="text-2xl text-white mb-4">Weekly Review</h2>
+        <h2 className="text-2xl mb-4">Weekly Review</h2>
         <WeeklyMoodReview />
       </div>
 
       {/* Squid Pet */}
       <div className="my-4">
         <SquidPet trigger={petAnim} />
-      </div>
-
-      {/* Focus App Panel */}
-      <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-        <h2 className="text-2xl text-white mb-4">Focus App</h2>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            gap: "2rem",
-            padding: "1rem",
-          }}
-        ></div>
       </div>
 
       {/* Focus App Panel */}

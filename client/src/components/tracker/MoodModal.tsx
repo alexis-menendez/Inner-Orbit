@@ -96,7 +96,8 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
   };
 
   return (
-    <div className={formStyles.formContainer}>
+    <div className={`${formStyles.formContainer} ${formStyles.whiteText}`}>
+
       <h2>
         {editingEntry ? 'Edit Mood Entry' : isAddingNew ? 'Add Mood Entry' : `Entries for ${date.toDateString()}`}
       </h2>

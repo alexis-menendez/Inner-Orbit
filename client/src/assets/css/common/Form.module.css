@@ -99,3 +99,16 @@
   font-size: 0.875rem;
   text-align: center;
 }
+
+/* WHITE TEXT */
+
+.whiteText {
+  color: white;
+}
+
+.whiteText label,
+.whiteText p,
+.whiteText h2,
+.whiteText strong {
+  color: white;
+}
