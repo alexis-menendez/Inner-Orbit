@@ -7,6 +7,7 @@ import { LOGIN_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
+import logoStyles from '../../assets/css/common/Logo.module.css';
 import { motion } from 'framer-motion';
 
 const Login = () => {
@@ -58,8 +59,10 @@ const Login = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={formStyles.authContainer}
       >
-        <h1 className={formStyles.pageTitle}>InnerOrbit</h1>
-        <h2 className={formStyles.pageSubtitle}>Please Sign In</h2>
+        <h1 className={logoStyles.title}>
+          <span className={logoStyles.titleInner}>inner</span>
+          <span className={logoStyles.titleOrbit}>Orbit</span>
+        </h1>
 
         <div className={formStyles.formContainer}>
           <input
@@ -84,9 +87,9 @@ const Login = () => {
           >
             Login
           </button>
-          <p className={formStyles.linkText}>
-            Don’t have an account? <Link to="/register">Sign up</Link>
-          </p>
+            <p className={formStyles.linkText}>
+              Don’t have an account? <Link to="/register" className={formStyles.link}>Sign up</Link>
+            </p>
         </div>
       </motion.div>
     </section>

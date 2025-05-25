@@ -7,6 +7,7 @@ import { REGISTER_USER } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
+import logoStyles from '../../assets/css/common/Logo.module.css';
 import { motion } from 'framer-motion';
 
 const Register = () => {
@@ -74,8 +75,10 @@ const Register = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={formStyles.authContainer}
       >
-        <h1 className={formStyles.pageTitle}>InnerOrbit</h1>
-        <h2 className={formStyles.pageSubtitle}>Create An Account</h2>
+        <h1 className={logoStyles.title}>
+          <span className={logoStyles.titleInner}>inner</span>
+          <span className={logoStyles.titleOrbit}>Orbit</span>
+        </h1>
 
         <div className={formStyles.formContainer}>
           <input type="text" id="username" placeholder="Username" value={form.username} onChange={handleChange} className={formStyles.input} />
@@ -85,23 +88,23 @@ const Register = () => {
           <input type="password" id="password" placeholder="Password" value={form.password} onChange={handleChange} className={formStyles.input} />
           <input type="email" id="email" placeholder="Email" value={form.email} onChange={handleChange} className={formStyles.input} />
 
-          <label className="flex items-start text-sm text-white mt-2 mb-1">
+          <label className="flex items-center text-sm text-white mt-2 mb-1">
             <input
               type="checkbox"
               id="disclaimer"
               checked={form.disclaimer}
               onChange={handleChange}
-              className="mt-1 mr-2"
+              className="mt-[7px] mr-1"
             />
             <span className={formStyles.disclaimerText}>
               By signing up, you agree to our
               <Link to="/terms" className={formStyles.disclaimerLink}> Terms of Service </Link>
               and
-              <Link to="/privacy" className={formStyles.disclaimerLink}> Privacy Policy </Link>.
+              <Link to="/privacy" className={formStyles.disclaimerLink}> Privacy Policy </Link>
             </span>
           </label>
 
-          <p className="text-xs italic text-white mb-2">
+          <p className={formStyles.disclaimerNote}>
             Disclaimer: If you are sixteen (16) years of age or younger, you must have your parent or guardian's permission to use this service...
           </p>
 
@@ -114,7 +117,7 @@ const Register = () => {
 
           <p className={formStyles.linkText}>
             Already have an account?
-            <Link to="/login" className={formStyles.loginLink}> Log in</Link>
+            <Link to="/login" className={formStyles.disclaimerLink}> Log in</Link>
           </p>
         </div>
       </motion.div>

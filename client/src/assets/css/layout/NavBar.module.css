@@ -14,13 +14,34 @@
 }
 
 .navTitle {
-  font-size: 1.5rem;
-  color: #fff8e7;
-  font-weight: bold;
+  font-size: 2.5rem;
   text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.inner {
+  font-family: 'La Belle Aurore', cursive;
+  font-weight: 400;
+  color: #fff8e7;
+  text-shadow: 0 0 1px #fff8e7, 0 0 5px #9e89ff;
+  padding-top: 0.15rem; /* align inner with orbit */
+
+}
+
+.orbit {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 2.8rem;
+  color: #fff8e7;
+  text-shadow: 0 0 2px #fff8e7, 0 0 5px #9e89ff;
+  padding-top: 0.15rem; /* align inner with inner */
 }
 
 .navLinks {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 1.5rem;
   display: flex;
   list-style: none;
   gap: 2rem;
@@ -41,6 +62,25 @@
 .active {
   color: #fff8e7;
   border-bottom: 2px solid #fff8e7;
+}
+
+/* logout button */
+
+.logoutButton {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500; /* match .navLinks a */
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  color: #b98dff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logoutButton:hover {
+  color: #fff8e7;
+  text-shadow: 0 0 6px #b98dff;
 }
 
 /* Footer Styles */
@@ -65,26 +105,4 @@
 
 .footer a:hover {
   color: #b98dff;
-}
-
-
-/* logout button */
-
-.logoutButton {
-  background: transparent;
-  border: none;
-  color: #b98dff;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  font-size: 1rem;
-}
-
-.logoutButton:hover {
-  color: #fff8e7;
-  text-shadow: 0 0 6px #b98dff;
-}
-
-.logoutFooterWrapper {
-  margin-top: 1rem;
 }

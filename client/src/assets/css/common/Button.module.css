@@ -1,26 +1,30 @@
 /* File: client/src/assets/css/common/Button.module.css */
 
 .button {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
+  text-align: center;
+  text-decoration: none;
+
+  color: #400a6b; 
+  background-color: #08012b;
+  transition: background-color 0.3s, transform 0.2s;
+
+  min-width: 10rem;
+  width: 100%;
+
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 10rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  text-align: center;
-  text-decoration: none;
-  color: #fff8e7;
-  background-color: #06034e;
-}
 
-/* This class adds spacing between stacked buttons */
-.spaced {
-  margin-bottom: 1.5rem; /* 24px */
+  cursor: pointer;
 }
 
 .button:hover {
@@ -33,49 +37,94 @@
 }
 
 /* Variants */
+
+/* Primary Variant */
 .primary {
-  background-color: #7672c9;
+  background-color: #400a6b; 
+  color: #ffffff;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
 }
 
 .primary:hover {
-  background-color: #080341;
+  background-color: #e7dffd; 
+  color: #000000;
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
 }
 
+/* Secondary Variant */
 .secondary {
-  background-color: #a982ec;
+  background-color: #d1baf7;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
 }
 
 .secondary:hover {
-  background-color: #400a6b;
+  background-color: #1a0d2e;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
+  transform: scale(1.03);
 }
 
-
-/* Base button */
-.button {
-  width: 100%;
-  padding: 0.5rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Primary button style */
-.primary {
-  background-color: #4338ca; /* Tailwind indigo-700 */
-  color: white;
-}
-
-.primary:hover {
-  background-color: #4f46e5; /* Tailwind indigo-600 */
-  box-shadow: 0 4px 14px rgba(129, 140, 248, 0.3);
-}
-
+/* Tertiary Variant */
 .tertiary {
-  background-color: #a982ec;
+  background-color: #4338ca; 
+  color: white;
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
 }
 
 .tertiary:hover {
-  background-color: #080341;
+  background-color: #2e2491; 
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
 }
 
+/* Quaternary Variant */
+.quaternary {
+  background-color: #8a80f0;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
+}
+
+.quaternary:hover {
+  background-color: #c5bafc; 
+  color: rgb(0, 0, 0);
+  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
+  transform: scale(1.03);
+}
+
+/* Quinary Variant */
+.quinary {
+  background-color: #73489f;
+  background-image: linear-gradient(to right, #d876cc, #0d1a71);
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  transform: scale(1.03);
+}
+
+.quinary:hover {
+  background-color: #412a5c; 
+  background-image: linear-gradient(to right, #7a4374, #081044);
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  transform: scale(1.03);
+}
+
+/* Senary Variant */
+.senary {
+  background-color: #2a1f5c;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  transform: scale(1.03);
+}
+
+.senary:hover {
+  background-color: #08012b; 
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  transform: scale(1.03);
+}

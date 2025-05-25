@@ -10,8 +10,13 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <p>
-        © {new Date().getFullYear()} InnerOrbit.{' '}
-        <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a>
+        <span>
+          <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a>
+        </span>
+        <br />
+        <span style={{ marginTop: '0.9rem', display: 'inline-block' }}>
+          © {new Date().getFullYear()} innerOrbit
+        </span>
       </p>
       <div className={styles.logoutFooterWrapper}>
         <button onClick={logout} className={styles.logoutButton}>

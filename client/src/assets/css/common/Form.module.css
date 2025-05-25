@@ -25,16 +25,23 @@
 
 /* LARGE PAGE HEADER */
 .pageTitle {
-  font-size: 2.25rem; /* text-4xl */
-  font-weight: bold;
-  letter-spacing: 0.1em; /* tracking-widest */
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 2.25rem;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  color: #fff8e7; 
+  background-color: #08012b; 
+  letter-spacing: 0.1em; 
 }
 
 /* SUBHEADER FOR PAGES */
 .pageSubtitle {
-  font-size: 1.5rem; /* text-2xl */
-  font-weight: bold;
-  letter-spacing: 0.05em; /* tracking-wider */
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 1.5rem;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  color: #fff8e7; 
+  letter-spacing: 0.05em;
 }
 
 /* FORM BOX */
@@ -44,9 +51,9 @@
   align-items: center;
   gap: 1rem;
 
-  background: rgba(255, 255, 255, 0.01); /* semi-transparent white */
-  backdrop-filter: blur(12px);          /* frosted glass effect */
-  -webkit-backdrop-filter: blur(12px);  /* Safari support */
+  background: rgba(255, 255, 255, 0.01); 
+  backdrop-filter: blur(12px);         
+  -webkit-backdrop-filter: blur(12px);  
 
   padding: 1.5rem;
   border-radius: 1rem;
@@ -63,7 +70,7 @@
 .input {
   width: 100%;
   padding: 0.5rem 1rem;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
   color: white;
 
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -80,14 +87,27 @@
 }
 
 .input:focus {
-  border-color: #818cf8; /* indigo-400 */
+  border-color: #818cf8; 
   box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* FORM LINK TEXT */
+.link {
+  color: #fff8e7;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  text-decoration: underline;
+}
+
 .linkText {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: #fff8e7;
   text-align: center;
   cursor: pointer;
 }
@@ -100,7 +120,6 @@
 }
 
 /* WHITE TEXT */
-
 .whiteText {
   color: white;
 }
@@ -113,29 +132,30 @@
 }
 
 /* LOGIN / REGISTER  */
-
 .disclaimerText {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   color: white;
   line-height: 1.5;
 }
 
 .disclaimerLink {
   margin: 0 0.25rem;
-  color: white;
+  color: #fff8e7;
+  text-decoration: none;
+  font-weight: 400;
   text-decoration: none;
 }
 
 .disclaimerLink:hover {
   color: #fff8e7;
+  text-decoration: underline;
 }
 
-.loginLink {
-  margin-left: 0.25rem;
-  color: white;
-  text-decoration: none;
-}
-
-.loginLink:hover {
+.disclaimerNote {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   color: #fff8e7;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
 }
 

@@ -11,3 +11,12 @@ body {
   padding: 0;
   background-color: black; /* optional safety net */
 }
+
+/* Global default font and text shadow */
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+  color: #fff8e7; 
+  background-color: #08012b; 
+}

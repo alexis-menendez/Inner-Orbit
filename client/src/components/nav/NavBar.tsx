@@ -10,7 +10,10 @@ const NavBar: React.FC = () => {
 
   return (
     <nav className={styles.dashboardNav}>
-      <div className={styles.navTitle}>InnerOrbit</div>
+      <div className={styles.navTitle}>
+        <span className={styles.inner}>inner</span>
+        <span className={styles.orbit}>Orbit</span>
+      </div>
       <ul className={styles.navLinks}>
         <li>
           <NavLink
