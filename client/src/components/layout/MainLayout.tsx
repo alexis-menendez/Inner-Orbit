@@ -4,11 +4,12 @@ import StarBackground from '../common/StarBackground';
 import MainLayoutBackground from '../common/MainLayoutBackground';
 import NavBar from '../nav/NavBar';
 import Footer from '../nav/Footer';
-import styles from '../../assets/css/common/MainLayoutBackground.module.css'; // ✅ Correct import
+import styles from '../../assets/css/common/MainLayoutBackground.module.css'; 
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="w-full min-h-screen bg-[#0a0029] text-white relative overflow-hidden">
+    <div className="w-full min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: 'transparent' }}>
+
       <StarBackground />
       <MainLayoutBackground />
 

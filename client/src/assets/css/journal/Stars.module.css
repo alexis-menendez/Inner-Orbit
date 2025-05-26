@@ -1,5 +1,12 @@
 /* File: client/src/assets/css/journal/Stars.module.css */
 
+.background-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #0a0029, #030124, black);
+  z-index: -3;
+}
+
 .star {
   position: absolute;
   fill: white;
@@ -30,13 +37,13 @@
 .star-wrapper {
   position: fixed;
   inset: 0;
-  z-index: 1; /* Above background image, below UI */
   pointer-events: none;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: -1;
 }
 
 .star-background {
@@ -92,7 +99,7 @@
 
 .gridCell {
   position: relative;
-  background-color: black;
+  background-color: transparent;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -108,7 +115,7 @@
   left: 0.5rem;
   color: white;
   font-size: clamp(0.75rem, 2vw, 0.9rem);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
   padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;
   opacity: 0;
@@ -125,7 +132,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 2; 
   pointer-events: auto;
   background: transparent;
 }

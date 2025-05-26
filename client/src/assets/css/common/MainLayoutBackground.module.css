@@ -12,8 +12,8 @@
   background-size: cover;              
   background-position: center center;   
   background-attachment: fixed;
+  background-color: transparent;
 
-  z-index: 5;
   pointer-events: none;
 }
 
