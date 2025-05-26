@@ -54,11 +54,13 @@
         "tailwindcss": "^4.1.6",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
+        "vite-plugin-static-copy": "^3.0.0",
         "wait-on": "^8.0.3"
     },
     "dependencies": {
         "@apollo/client": "^3.13.8",
         "@apollo/server": "^4.12.0",
+        "@lottiefiles/react-lottie-player": "^3.6.0",
         "apollo-server": "^3.13.0",
         "body-parser": "^2.2.0",
         "cloudinary": "^1.41.3",

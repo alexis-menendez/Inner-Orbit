@@ -15,8 +15,13 @@ interface MoodEntry {
   note?: string;
   createdAt?: string;
 }
+interface WeeklyMoodReviewProps {
+  onMoodSubmit?: () => void;
+}
 
-const WeeklyMoodReview: React.FC = () => {
+
+const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => {
+
   const { user } = useAuth();
   const userId = user?.id;
   const [selectedNote, setSelectedNote] = useState<string | null>(null);

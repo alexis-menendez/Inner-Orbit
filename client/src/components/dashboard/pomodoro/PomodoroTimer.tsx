@@ -4,8 +4,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 
+interface PomodoroTimerProps {
+  onPomodoroEnd?: () => void;
+}
 
-const PomodoroTimer: React.FC = () => {
+const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ onPomodoroEnd }) => {
   const { getSelectedTask } = useTaskStore();
   const task = getSelectedTask();
 

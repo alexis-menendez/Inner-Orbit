@@ -4,7 +4,12 @@ import React, { useState } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 
-const FocusTaskList: React.FC = () => {
+
+interface FocusTaskListProps {
+  onTaskAdd?: () => void;
+}
+
+const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
   const {
     tasks,
     addTask,

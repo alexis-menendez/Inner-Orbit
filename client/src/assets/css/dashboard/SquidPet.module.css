@@ -1,0 +1,9 @@
+/* File: SquidPet.css */
+.squid-pet {
+  width: 64px;
+  height: 64px;
+  background-image: url('/assets/animations/CharacterSheet.png'); /* adjust if path differs */
+      background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transition: background-position 0.1s steps(1);
+}
