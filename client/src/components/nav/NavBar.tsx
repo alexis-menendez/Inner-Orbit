@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
         <li>
           <NavLink
             to="/dashboard"
-            className={({ isActive }) => isActive ? styles.active : undefined}
+            className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
           >
             Home
           </NavLink>
@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
         <li>
           <NavLink
             to="/journal"
-            className={({ isActive }) => isActive ? styles.active : undefined}
+            className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
           >
             Journal
           </NavLink>
@@ -34,13 +34,13 @@ const NavBar: React.FC = () => {
         <li>
           <NavLink
             to="/tracker"
-            className={({ isActive }) => isActive ? styles.active : undefined}
+            className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
           >
             Tracker
           </NavLink>
         </li>
         <li>
-          <button className={styles.logoutButton} onClick={logout}>
+          <button className={styles.navLinkItem} onClick={logout}>
             Logout
           </button>
         </li>

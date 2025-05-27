@@ -18,11 +18,6 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} innerOrbit
         </span>
       </p>
-      <div className={styles.logoutFooterWrapper}>
-        <button onClick={logout} className={styles.logoutButton}>
-          Logout
-        </button>
-      </div>
     </footer>
   );
 };

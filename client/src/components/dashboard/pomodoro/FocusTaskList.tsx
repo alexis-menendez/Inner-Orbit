@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
+import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 const FocusTaskList: React.FC = () => {
   const {
@@ -18,7 +19,6 @@ const FocusTaskList: React.FC = () => {
 
   return (
     <div className={styles.taskContainer}>
-
       <div className={styles.inputGroup}>
         <input
           className={styles.input}
@@ -31,7 +31,7 @@ const FocusTaskList: React.FC = () => {
             addTask(newTask);
             setNewTask('');
           }}
-          className={styles.addButton}
+          className={buttonStyles.add} 
         >
           Add
         </button>
@@ -58,7 +58,7 @@ const FocusTaskList: React.FC = () => {
                 e.stopPropagation();
                 deleteTask(task.id);
               }}
-              className={styles.deleteButton}
+              className={buttonStyles.iconButton} 
               title="Delete task"
             >
               ✕

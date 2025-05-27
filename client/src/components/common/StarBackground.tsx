@@ -30,24 +30,25 @@ const StarBackground: React.FC<{ starCount?: number }> = ({ starCount = 100 }) =
     setStars(generateStars());
   }, [starCount]);
 
-  return (
-    <div className={styles['star-wrapper']}>
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className={styles['star-background']}
-          style={{
-            top: `${star.y}%`,
-            left: `${star.x}%`,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-            animationDuration: `${star.duration}s`,
-            animationDelay: `${star.delay}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+return (
+  <div className={styles['star-wrapper']}>
+    <div className={styles['background-gradient']} /> {/* ← Gradient layer */}
+    {stars.map((star) => (
+      <div
+        key={star.id}
+        className={styles['star-background']}
+        style={{
+          top: `${star.y}%`,
+          left: `${star.x}%`,
+          width: `${star.size}px`,
+          height: `${star.size}px`,
+          animationDuration: `${star.duration}s`,
+          animationDelay: `${star.delay}s`,
+        }}
+      />
+    ))}
+  </div>
+);
+}
 
 export default StarBackground;

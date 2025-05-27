@@ -34,7 +34,7 @@
   max-width: 1800px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
     background-size: 100% auto;
     min-height: 1080px;
   }
@@ -51,7 +51,7 @@
   max-width: 970px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 2.25vw, 0.95rem);
     background-size: 100% auto;
     min-height: 1080px;
   }
@@ -68,7 +68,7 @@
   max-width: 870px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
     background-size: 100% auto;
     min-height: 1080px;
   }
@@ -85,7 +85,7 @@
   max-width: 670px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
     background-size: 100% auto;
     min-height: 1080px;
   }
@@ -103,7 +103,7 @@
   max-width: 470px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.95rem;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
     background-size: 100% auto;
     min-height: 1080px;
   }
@@ -120,7 +120,7 @@
   max-width: 270px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     min-height: 1080px;
   }
 }
@@ -136,7 +136,7 @@
   max-width: 270px;
     padding: .5rem;
     margin: .5rem;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     min-height: 1080px;
   }
 }
