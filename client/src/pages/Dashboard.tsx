@@ -1,14 +1,13 @@
-// File: client/src/pages/Dashboard.tsx
-
 import React, { useState } from "react";
 import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
-import SquidPet from "../components/dashboard/pet/SquidPet"; // ✅ includes onDone + CSS
+import SquidPet from "../components/dashboard/pet/SquidPet";
 import buttonStyles from "../assets/css/common/Button.module.css";
 import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
 import { usePetEmotion } from "../hooks/usePetEmotion";
-import MoodBubble from '../components/dashboard/pet/MoodBubble';
+import MoodBubble from "../components/dashboard/pet/MoodBubble";
+import type { AnimationKey } from "../components/dashboard/pet/SquidPet";
 
 // Type for individual mood entries
 type MoodEntry = {
@@ -20,55 +19,54 @@ type MoodEntry = {
 
 const Dashboard: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
-  // ✅ Pet emotion system
-  const { mood, setMood, affection, adjustAffection, getAnimation } =
-    usePetEmotion();
+  const { mood, setMood, affection, adjustAffection } = usePetEmotion();
 
-  // ✅ Use petAnim based on mood-to-animation logic
-  const petAnim = getAnimation(); // ✅ direct from pet emotion system
-
-
+  const [petAnim, setPetAnim] = useState<AnimationKey>("idle");
 
   // 🟢 Mood submitted → squid walks
   const handleMoodLog = () => {
     setMood("focused");
+    setPetAnim("walk");
     adjustAffection(+1);
   };
 
   // 🟢 Journal created → squid jumps
   const handleJournalSubmit = () => {
-    setMood("happy"); // or "playful" or "focused", your choice!
+    setMood("happy");
+    setPetAnim("jump");
     adjustAffection(+2);
   };
 
   // 🟢 Focus task added → squid does leg lift
   const handleFocusTaskAdd = () => {
     setMood("playful");
+    setPetAnim("legLift");
     adjustAffection(+2);
   };
 
   // 🟢 Pomodoro started → squid attacks up
   const handlePomodoroStart = () => {
     setMood("focused");
+    setPetAnim("attackUp");
     adjustAffection(+1);
   };
 
   // 🟢 Pomodoro break started → squid inks
   const handlePomodoroBreak = () => {
     setMood("happy");
+    setPetAnim("inksquirt");
     adjustAffection(+1);
   };
 
   // 🟢 Pomodoro ends → squid dies dramatically 💀
   const handlePomodoroEnd = () => {
     setMood("tired");
+    setPetAnim("die");
     adjustAffection(-1);
   };
 
   return (
-    <div
-      className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}
-    >
+    <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
       {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
         <h2 className="text-2xl mb-4">Weekly Review</h2>
@@ -86,39 +84,47 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="relative">
-  <MoodBubble mood={mood} />
-  <SquidPet
+          <MoodBubble mood={mood} />
+          <SquidPet
   trigger={petAnim}
-  onDone={() => setMood("idle")}
+  onDone={() => {
+    setMood("idle");
+    setPetAnim("idle"); // ✅ reset animation after it's done
+  }}
   name="Squidy"
-  hasAura={affection >= 50} // 🟣 aura unlock!
+  hasAura={affection >= 50}
+  auraColor="#b388ff"
 />
-</div>
+
+
+        </div>
 
         <div className="text-sm text-white mt-2 text-center">
-          Mood: <strong>{mood}</strong> | Affection:{" "}
-          <strong>{affection}</strong>
+          Mood: <strong>{mood}</strong> | Affection: <strong>{affection}</strong>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 mt-4">
-  {[
-    { label: "Idle", mood: "idle" },
-    { label: "Happy", mood: "happy" },
-    { label: "Tired", mood: "tired" },
-    { label: "Playful", mood: "playful" },
-    { label: "Focused", mood: "focused" },
-    { label: "Sad", mood: "sad" },
-    { label: "Angry", mood: "angry" },
-  ].map(({ label, mood: m }) => (
-    <button
-      key={label}
-      onClick={() => setMood(m as any)}
-      className="px-3 py-1 text-sm bg-purple-800 text-white rounded hover:bg-purple-600 transition-all"
-    >
-      {label}
-    </button>
-  ))}
-</div>
 
+        <div className="flex flex-wrap justify-center gap-2 mt-4">
+          {[
+            { label: "Idle", mood: "idle", anim: "idle" },
+            { label: "Happy", mood: "happy", anim: "jump" },
+            { label: "Tired", mood: "tired", anim: "fall" },
+            { label: "Playful", mood: "playful", anim: "legLift" },
+            { label: "Focused", mood: "focused", anim: "attackUp" },
+            { label: "Sad", mood: "sad", anim: "hurt" },
+            { label: "Angry", mood: "angry", anim: "attackDown" },
+          ].map(({ label, mood: m, anim }) => (
+            <button
+              key={label}
+              onClick={() => {
+                setMood(m as any);
+                setPetAnim(anim as AnimationKey);
+              }}
+              className="px-3 py-1 text-sm bg-purple-800 text-white rounded hover:bg-purple-600 transition-all"
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Task List */}
@@ -139,15 +145,5 @@ const Dashboard: React.FC = () => {
     </div>
   );
 };
-
-// Utility to determine appropriate text color for contrast
-function getContrastYIQ(hex: string): "light" | "dark" {
-  const sanitizedHex = hex.replace("#", "");
-  const r = parseInt(sanitizedHex.substr(0, 2), 16);
-  const g = parseInt(sanitizedHex.substr(2, 2), 16);
-  const b = parseInt(sanitizedHex.substr(4, 2), 16);
-  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-  return yiq >= 128 ? "light" : "dark";
-}
 
 export default Dashboard;

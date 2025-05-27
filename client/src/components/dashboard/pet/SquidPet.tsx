@@ -24,8 +24,10 @@ interface SquidPetProps {
   size?: number;
   onDone?: () => void;
   name?: string;
-  hasAura?: boolean; // ✅ New prop
+  hasAura?: boolean;
+  auraColor?: string; // 👈 Add this line
 }
+
 
 const animationFrameCounts: Record<AnimationKey, number> = {
   idle: 4,
