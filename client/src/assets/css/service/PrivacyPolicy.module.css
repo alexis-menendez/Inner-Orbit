@@ -14,7 +14,7 @@
 
 .privacyCard {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
   font-weight: 100;
   line-height: 1.6;
   
@@ -39,7 +39,7 @@
 /* Subtitle styling */
 .subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.75rem;
+  font-size: clamp(1.2rem, 4.5vw, 1.75rem);
   color: #e0e7ff; 
 
   margin-bottom: 2rem;
@@ -47,7 +47,7 @@
 
 .subtitle h2 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 3rem; 
+  font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: 400;
 
   margin-top: 2rem;
@@ -58,7 +58,7 @@
 
 .subtitle h3 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.75rem;
+  font-size: clamp(1.2rem, 4vw, 1.75rem);
   font-weight: 400;
 
   margin-top: 2rem;
@@ -77,7 +77,7 @@
 }
 
 .sectionHeading {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
   font-weight: 600;
   color: #a5b4fc;
   margin-top: 3rem;
@@ -95,7 +95,7 @@
 
 .list {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
   font-weight: 100;
   list-style-type: disc;
   padding-left: 1.5rem;

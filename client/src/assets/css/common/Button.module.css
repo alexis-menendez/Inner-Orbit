@@ -1,16 +1,22 @@
 /* File: client/src/assets/css/common/Button.module.css */
 
-.button {
+/*  === Universal Button Styles ===  */
+/* Apply to all Universal button styles */
+.button,
+.primary,
+.secondary,
+.tertiary,
+.quaternary,
+.quinary,
+.senary {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 300;
-  font-size: 1.4rem;
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   text-align: center;
   text-decoration: none;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
 
-  color: #400a6b; 
-  background-color: #08012b;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s;
 
   min-width: 10rem;
   width: 100%;
@@ -25,31 +31,40 @@
   justify-content: center;
 
   cursor: pointer;
+  z-index: 1;
+}
+
+.button:hover,
+.primary:hover,
+.secondary:hover,
+.tertiary:hover,
+.quaternary:hover,
+.quinary:hover,
+.senary:hover {
+  transform: scale(1.1);
+}
+
+.button {
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
+  color: #400a6b; 
+  background-color: #08012b;
 }
 
 .button:hover {
   background-color: #080249;
-  transform: scale(1.03);
 }
 
-.button:active {
-  transform: scale(0.98);
-}
-
-/* Variants */
-
+/*  === Variants ===  */
 /* Primary Variant */
 .primary {
   background-color: #400a6b; 
   color: #ffffff;
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
 }
 
 .primary:hover {
   background-color: #e7dffd; 
   color: #000000;
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 /* Secondary Variant */
@@ -57,14 +72,11 @@
   background-color: #d1baf7;
   color: rgb(0, 0, 0);
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 .secondary:hover {
   background-color: #1a0d2e;
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
-  transform: scale(1.03);
 }
 
 /* Tertiary Variant */
@@ -72,14 +84,12 @@
   background-color: #4338ca; 
   color: white;
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 .tertiary:hover {
   background-color: #2e2491; 
   color: rgb(255, 255, 255);
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 /* Quaternary Variant */
@@ -87,14 +97,12 @@
   background-color: #8a80f0;
   color: rgb(255, 255, 255);
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 .quaternary:hover {
   background-color: #c5bafc; 
   color: rgb(0, 0, 0);
   text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
-  transform: scale(1.03);
 }
 
 /* Quinary Variant */
@@ -102,29 +110,130 @@
   background-color: #73489f;
   background-image: linear-gradient(to right, #d876cc, #0d1a71);
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
-  transform: scale(1.03);
 }
 
 .quinary:hover {
   background-color: #412a5c; 
   background-image: linear-gradient(to right, #7a4374, #081044);
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
-  transform: scale(1.03);
 }
 
 /* Senary Variant */
 .senary {
   background-color: #2a1f5c;
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
-  transform: scale(1.03);
 }
 
 .senary:hover {
   background-color: #08012b; 
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
-  transform: scale(1.03);
+}
+
+/*  === Pomdoro Timer Button Styles ===  */
+/* Apply to all PomodoroTimer button styles */
+.buttonGroup button,
+.action,
+.add,
+.delete,
+.iconButton,
+.modeButton {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  text-shadow: none;
+  color: #ffffff;
+  margin: 0 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttonGroup button:hover,
+.action:hover,
+.add:hover,
+.delete:hover,
+.iconButton:hover,
+.modeButton:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.buttonGroup button {
+  background-color: #400a6b;
+}
+
+.action {
+  background-color: #400a6b;
+}
+
+.add {
+  background-color: #400a6b;
+}
+
+.delete {
+  background-color: #b98dff;
+}
+
+.iconButton {
+  background-color: #b98dff;
+  padding: 0;
+  width: auto;
+  min-width: unset;
+}
+
+.modeButton {
+  background-color: #b98dff;
+}
+
+.modeButtonActive {
+  background-color: #3abbbd;
+}
+
+/*  === Tracker Button Styles ===  */
+/* Create Tracker Entry Button */
+.createButton {
+  background-color: #b98dff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.createButton:hover {
+  background-color: #fff8e7;
+  color: #1a103d;
+}
+
+/* Month Navigation Buttons */
+.navButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prevButton,
+.nextButton {
+  padding: 4px 10px;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.prevButton {
+  background-color: #090585;
+}
+
+.nextButton {
+  background-color: #20355D;
+}
+
+.monthLabel {
+  color: pink;
 }

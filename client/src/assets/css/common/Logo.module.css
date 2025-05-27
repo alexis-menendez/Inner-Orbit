@@ -11,7 +11,7 @@
 .titleInner {
   font-family: 'La Belle Aurore', cursive;
   font-weight: 400;
-    font-size: 5.5rem;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
   color: #fff8e7;
   text-shadow: 0 0 1px #fff8e7, 0 0 5px #000000;
   padding-top: 0.15rem; /* aligns baseline with Orbit */
@@ -20,7 +20,7 @@
 .titleOrbit {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 100;
-  font-size: 5.8rem;
+  font-size: clamp(2.8rem, 8.5vw, 5.8rem);
   color: #fff8e7;
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   padding-top: 0.15rem;

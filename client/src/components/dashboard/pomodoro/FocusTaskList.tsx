@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Task, useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
+import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 interface FocusTaskListProps {
   onTaskAdd?: () => void; // ✅ Optional callback to trigger pet animation
@@ -22,7 +23,6 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
 
   return (
     <div className={styles.taskContainer}>
-
       <div className={styles.inputGroup}>
         <input
           className={styles.input}
@@ -38,7 +38,7 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
               setNewTask('');               // ✅ Clear input
             }
           }}
-          className={styles.addButton}
+          className={buttonStyles.add} 
         >
           Add
         </button>
@@ -65,7 +65,7 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
                 e.stopPropagation();
                 deleteTask(task.id);
               }}
-              className={styles.deleteButton}
+              className={buttonStyles.iconButton} 
               title="Delete task"
             >
               ✕

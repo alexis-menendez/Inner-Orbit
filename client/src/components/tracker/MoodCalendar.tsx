@@ -48,10 +48,9 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
             className={`${cellClass} ${isToday ? styles.today : ''}`}
             style={{
               background,
-              opacity: currentMonth ? 0.85 : 0.5,
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               position: 'relative',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
               transition: 'all 0.3s ease-in-out',
               cursor: 'pointer',
             }}
@@ -70,13 +69,21 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
                       : `${i * 33.33}%`;
 
                   return (
-                    <div
-                      key={i}
-                      className={styles.moodItem}
-                      style={{ top: segmentHeight }}
-                    >
-                      {m.mood}
-                    </div>
+                <div
+                  key={i}
+                  className={styles.moodItem}
+                  style={{
+                    top: segmentHeight,
+                    backgroundColor: '#1c005c',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    transition: 'all 0.3s ease-in-out',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {m.mood}
+                </div>
+
                   );
                 })}
               </div>

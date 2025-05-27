@@ -1,11 +1,24 @@
 /* File: client/src/assets/css/dashboard/PomodoroTimer.module.css */
 
-.timerBox {
-  background-color: rgba(26, 26, 46, 0.8); /* semi-transparent */
-  backdrop-filter: blur(6px); /* frosted glass effect */
-  -webkit-backdrop-filter: blur(6px);
+.header {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
 
-  
+/* timer */
+
+ .timerContainer {
+  background-color: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.timerBox {
+  background-color: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: #5f3c78;
   padding: 1.5rem;
   border-radius: 1rem;
@@ -16,9 +29,17 @@
 }
 
 .timerDisplay {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   font-family: 'Courier New', monospace;
   margin-bottom: 1rem;
+}
+
+/* task */
+
+.taskContainer {
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .taskBox {
@@ -56,6 +77,22 @@
   color: #af71afdc;
 }
 
+/* input */
+
+.inputGroup {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.input {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  flex: 1;
+  margin-right: 0.5rem;
+  border: none;
+  outline: none;
+}
+
 .addTaskInput {
   padding: 0.25rem;
   border-radius: 0.25rem;
@@ -63,14 +100,7 @@
   margin-right: 0.5rem;
 }
 
-.buttonGroup button {
-  margin: 0 0.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  background-color: #b98dff;
-  color: #ffffff;
-}
+/* ring*/
 
 .progressRing {
   width: 40vw;
@@ -93,7 +123,7 @@
 
 .ringProgress {
   fill: none;
-  stroke: #3abbbd;
+  stroke: #b98dff;
   stroke-width: 10;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s linear;
@@ -101,60 +131,8 @@
 
 .ringText {
   fill: #7e4287;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   dominant-baseline: middle;
   transform: rotate(90deg);
   font-family: monospace;
-}
-
- .timerContainer {
-  background-color: rgba(26, 26, 46, 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  
-}
-
-.taskContainer {
-  background-color: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
- 
-}
-
-.header {
-  font-size: 1.25rem;
-  color: #ffffff;
-  margin-bottom: 0.75rem;
-  text-align: center;
-}
-
-.inputGroup {
-  display: flex;
-  margin-bottom: 1rem;
-}
-
-.input {
-  padding: 0.5rem;
-  border-radius: 0.375rem;
-  flex: 1;
-  margin-right: 0.5rem;
-  border: none;
-  outline: none;
-}
-
-.addButton {
-  background-color: #3abbbd;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  border: none;
-}
-
-.deleteButton {
-  background: none;
-  border: none;
-  color: #af71afdc;
-  font-size: 1rem;
-  cursor: pointer;
 }

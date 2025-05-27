@@ -1,8 +1,8 @@
 /* File: client/src/components/nav/NavBar.module.css */
 
 .dashboardNav {
-  width: 100%;
-  padding: 1rem 2rem;
+  Width: 100%;
+  padding: .5rem 1rem;
   background: linear-gradient(to right, #0a0033, #110044, #1c005c);
   display: flex;
   align-items: center;
@@ -10,11 +10,53 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 2;
+}
+
+/* Format NavBar to fit on smal screens */
+@media screen and (max-width: 1024px) {
+  .dashboardNav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 0.5rem;
+  }
+
+  .navContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 0.5rem;
+    width: 100%;
+  }
+
+  .navLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 0.5rem;
+    padding-left: 0.05rem; 
+  }
+
+  .navLinkItem {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 0.5rem;
+    width: 100%;
+  }
 }
 
 .navTitle {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
   display: flex;
   gap: 0.25rem;
@@ -23,6 +65,7 @@
 .inner {
   font-family: 'La Belle Aurore', cursive;
   font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: #fff8e7;
   text-shadow: 0 0 1px #fff8e7, 0 0 5px #9e89ff;
   padding-top: 0.15rem; /* align inner with orbit */
@@ -32,31 +75,61 @@
 .orbit {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 100;
-  font-size: 2.8rem;
+  font-size: clamp(1.6rem, 5.5vw, 2.8rem);
   color: #fff8e7;
   text-shadow: 0 0 2px #fff8e7, 0 0 5px #9e89ff;
   padding-top: 0.15rem; /* align inner with inner */
 }
 
-.navLinks {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 100;
-  font-size: 1.5rem;
+.navContent {
+  width: 100%;
+  margin: 0 auto;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Shared link/button styles */
+.navLinkItem {
+  color: #b98dff;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   list-style: none;
+
+  transition: color 0.3s ease;
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  display: flex;
   gap: 2rem;
 }
 
-.navLinks a {
-  color: #b98dff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navLinks a:hover {
+.navLinkItem:hover {
   color: #fff8e7;
   text-shadow: 0 0 6px #b98dff;
+}
+
+.navLinks {
+  color: #b98dff;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  list-style: none;
+
+  transition: color 0.3s ease;
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  display: flex;
+  gap: 2rem;
 }
 
 .active {
@@ -64,41 +137,22 @@
   border-bottom: 2px solid #fff8e7;
 }
 
-/* logout button */
-
-.logoutButton {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 500; /* match .navLinks a */
-  font-size: 1.5rem;
-  background: transparent;
-  border: none;
-  color: #b98dff;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.logoutButton:hover {
-  color: #fff8e7;
-  text-shadow: 0 0 6px #b98dff;
-}
-
 /* Footer Styles */
 .footer {
   width: 75vw;
   margin-top: 3rem;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   text-align: center;
   color: #fff8e7;
-  border-top: 2px solid #b98dff; /* Add this line */
-  padding-top: 1rem;             /* Add spacing above content */
+  border-top: 2px solid #b98dff; 
+  padding-top: 1rem;            
 }
 
 
 .footer a {
   color: #fff8e7;
-  text-decoration: none;            /* no underline */
-  border-bottom: 2px solid #b98dff; /* always show line */
+  text-decoration: none;           
+  border-bottom: 2px solid #b98dff; 
   padding-bottom: 2px;
   transition: color 0.3s ease;
 }
