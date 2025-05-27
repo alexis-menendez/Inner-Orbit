@@ -72,9 +72,11 @@ const Dashboard: React.FC = () => {
     >
       {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
+<div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
         <h2 className="text-2xl mb-4">Weekly Review</h2>
         <WeeklyMoodReview onMoodSubmit={handleMoodLog} />
       </div>
+
 
       {/* Squid Pet with animations */}
       <div className="relative flex flex-col items-center">
@@ -131,6 +133,7 @@ const Dashboard: React.FC = () => {
             onPomodoroEnd={handlePomodoroEnd}
             onBreakStart={handlePomodoroBreak}
           />
+
         </div>
       </div>
     </div>
