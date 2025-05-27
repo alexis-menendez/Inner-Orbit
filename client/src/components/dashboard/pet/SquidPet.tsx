@@ -24,6 +24,7 @@ interface SquidPetProps {
   size?: number;
   onDone?: () => void;
   name?: string;
+  hasAura?: boolean; // ✅ New prop
 }
 
 const animationFrameCounts: Record<AnimationKey, number> = {
@@ -37,12 +38,13 @@ const animationFrameCounts: Record<AnimationKey, number> = {
   attackDown: 4,
   attackUp: 4,
   hurt: 2,
-  die: 3,  win: 4,
+  die: 3,
+  win: 4,
 };
 
 const loopableAnimations: AnimationKey[] = ["idle", "walk"];
 
-const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name = "Squidy" }) => {
+const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name = "Squidy", hasAura = false }) => {
   const [currentAnim, setCurrentAnim] = useState<AnimationKey>("idle");
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name =
   const loop = loopableAnimations.includes(currentAnim);
 
   return (
-    <div className={styles.squidFrame}>
+    <div className={`${styles.squidFrame} ${hasAura ? styles.sparkleAura : ''}`}>
       <div className={styles.starBackground} />
 
       <div className={styles.squidContainer}>

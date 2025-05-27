@@ -8,6 +8,7 @@ import SquidPet from "../components/dashboard/pet/SquidPet"; // ✅ includes onD
 import buttonStyles from "../assets/css/common/Button.module.css";
 import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
 import { usePetEmotion } from "../hooks/usePetEmotion";
+import MoodBubble from '../components/dashboard/pet/MoodBubble';
 
 // Type for individual mood entries
 type MoodEntry = {
@@ -26,9 +27,7 @@ const Dashboard: React.FC = () => {
   // ✅ Use petAnim based on mood-to-animation logic
   const petAnim = getAnimation(); // ✅ direct from pet emotion system
 
-  // Define allowed animation keys for the squid pet
 
-  // Called when animation completes (from SquidPet)
 
   // 🟢 Mood submitted → squid walks
   const handleMoodLog = () => {
@@ -86,11 +85,15 @@ const Dashboard: React.FC = () => {
           {mood === "sad" && "😢"}
         </div>
 
-        <SquidPet
-          trigger={petAnim}
-          onDone={() => setMood("idle")}
-          name="Squidy"
-        />
+        <div className="relative">
+  <MoodBubble mood={mood} />
+  <SquidPet
+  trigger={petAnim}
+  onDone={() => setMood("idle")}
+  name="Squidy"
+  hasAura={affection >= 50} // 🟣 aura unlock!
+/>
+</div>
 
         <div className="text-sm text-white mt-2 text-center">
           Mood: <strong>{mood}</strong> | Affection:{" "}

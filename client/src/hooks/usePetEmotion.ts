@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-type Mood = 'idle' | 'happy' | 'sad' | 'tired' | 'playful' | 'angry' | 'focused';
+type Mood = 'idle' | 'happy' | 'sad' | 'tired' | 'playful' | 'angry' | 'focused' | 'inspired' | 'lonely';
 type AnimationKey =
   | 'idle'
   | 'walk'
@@ -20,11 +20,13 @@ type AnimationKey =
 const moodToAnimation: Record<Mood, AnimationKey> = {
   idle: 'idle',
   happy: 'jump',
-  sad: 'fall',
   tired: 'fall',
   playful: 'legLift',
   angry: 'attackDown',
+  sad: 'hurt',
   focused: 'walk',
+  inspired: 'jumpslam', // ✅ looks energetic
+  lonely: 'idle', 
 };
 
 export const usePetEmotion = () => {

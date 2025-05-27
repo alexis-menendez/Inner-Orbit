@@ -1,0 +1,55 @@
+/* File: client/src/components/dashboard/pet/MoodBubble.module.css */
+
+.bubbleContainer {
+  position: absolute;
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  animation: floatFade 6s ease-in-out forwards;
+  z-index: 20;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.quote {
+  font-size: 0.875rem;
+  color: #ffffffcc;
+  font-style: italic;
+  margin-top: 0.25rem;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes floatFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px #a855f7, 0 0 16px #6366f1;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 12px #c084fc, 0 0 20px #818cf8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

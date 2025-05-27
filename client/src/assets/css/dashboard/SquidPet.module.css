@@ -53,3 +53,28 @@
     opacity: 0.35;
   }
 }
+
+.glow-aura::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  animation: sparkleGlow 4s infinite;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@keyframes sparkleGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
