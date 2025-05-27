@@ -22,7 +22,6 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
 
   return (
     <div className={styles.taskContainer}>
-      <h3 className={styles.header}>Task Timer</h3>
 
       <div className={styles.inputGroup}>
         <input
