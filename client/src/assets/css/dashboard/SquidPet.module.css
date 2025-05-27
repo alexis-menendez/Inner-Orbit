@@ -1,9 +1,55 @@
-/* File: SquidPet.css */
-.squid-pet {
-  width: 64px;
-  height: 64px;
-  background-image: url('/assets/animations/CharacterSheet.png'); /* adjust if path differs */
-      background-repeat: no-repeat;
-  image-rendering: pixelated;
-  transition: background-position 0.1s steps(1);
+/* File: SquidPet.module.css */
+
+.squidFrame {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  padding: 1rem;
+  border: 2px solid #a855f7; /* Tailwind's purple-500 */
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+  backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom right, #312e81, #6b21a8, #000000);
+  overflow: hidden;
+}
+
+.starBackground {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background-image: url("client/public/assets/images/starr.svg");
+  background-size: cover;
+  z-index: 0;
+  animation: pulse 4s infinite ease-in-out;
+}
+
+.squidContainer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.petLabel {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: white;
+  z-index: 10;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+/* optional glow animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }

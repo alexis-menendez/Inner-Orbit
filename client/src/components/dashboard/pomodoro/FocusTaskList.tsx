@@ -1,12 +1,11 @@
 // File: client/src/components/dashboard/pomodoro/FocusTaskList.tsx
 
 import React, { useState } from 'react';
-import { useTaskStore } from '../../../hooks/useTaskStore';
+import { Task, useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 
-
 interface FocusTaskListProps {
-  onTaskAdd?: () => void;
+  onTaskAdd?: () => void; // ✅ Optional callback to trigger pet animation
 }
 
 const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
@@ -34,8 +33,11 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
         />
         <button
           onClick={() => {
-            addTask(newTask);
-            setNewTask('');
+            if (newTask.trim() !== '') {
+              addTask(newTask);             // ✅ Add the task
+              onTaskAdd?.();                // ✅ Trigger animation (leg lift)
+              setNewTask('');               // ✅ Clear input
+            }
           }}
           className={styles.addButton}
         >

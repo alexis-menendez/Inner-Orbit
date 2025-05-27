@@ -1,56 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import Lottie from 'lottie-react';
+// File: src/components/pet/SquidPet.tsx
 
-import idleAnim from '../../../assets/lottie/squid-idle.json';
-import walkAnim from '../../../assets/lottie/squid-walk.json';
-import legLiftAnim from '../../../assets/lottie/squid-legLift.json';
-import fallAnim from '../../../assets/lottie/squid-fall.json';
-import jumpAnim from '../../../assets/lottie/squid-jump.json';
-import jumpslamAnim from '../../../assets/lottie/squid-jumpslam.json';
-import inksquirtAnim from '../../../assets/lottie/squid-inksquirt.json';
-import attackDownAnim from '../../../assets/lottie/squid-attackDown.json';
-import attackUpAnim from '../../../assets/lottie/squid-attackUp.json';
-import hurtAnim from '../../../assets/lottie/squid-hurt.json';
-import dieAnim from '../../../assets/lottie/squid-die.json';
-import winAnim from '../../../assets/lottie/squid-win.json';
+import React, { useEffect, useState } from "react";
+import SpriteAnimator from "../../common/SpriteAnimator";
+import { loadFrames } from "../../../utils/loadFrames";
+import styles from "../../../assets/css/dashboard/SquidPet.module.css"; // ← Import your CSS
+
+export type AnimationKey =
+  | "idle"
+  | "walk"
+  | "legLift"
+  | "fall"
+  | "jump"
+  | "jumpslam"
+  | "inksquirt"
+  | "attackDown"
+  | "attackUp"
+  | "hurt"
+  | "die"
+  | "win";
 
 interface SquidPetProps {
   trigger: AnimationKey;
+  size?: number;
+  onDone?: () => void;
+  name?: string;
 }
 
-type AnimationKey =
-  | 'idle'
-  | 'walk'
-  | 'legLift'
-  | 'fall'
-  | 'jump'
-  | 'jumpslam'
-  | 'inksquirt'
-  | 'attackDown'
-  | 'attackUp'
-  | 'hurt'
-  | 'die'
-  | 'win';
-
-const animationMap: Record<AnimationKey, any> = {
-  idle: idleAnim,
-  walk: walkAnim,
-  legLift: legLiftAnim,
-  fall: fallAnim,
-  jump: jumpAnim,
-  jumpslam: jumpslamAnim,
-  inksquirt: inksquirtAnim,
-  attackDown: attackDownAnim,
-  attackUp: attackUpAnim,
-  hurt: hurtAnim,
-  die: dieAnim,
-  win: winAnim,
+const animationFrameCounts: Record<AnimationKey, number> = {
+  idle: 4,
+  walk: 4,
+  legLift: 5,
+  fall: 2,
+  jump: 8,
+  jumpslam: 7,
+  inksquirt: 7,
+  attackDown: 4,
+  attackUp: 4,
+  hurt: 2,
+  die: 3,  win: 4,
 };
 
-const loopableAnimations: AnimationKey[] = ['idle', 'walk'];
+const loopableAnimations: AnimationKey[] = ["idle", "walk"];
 
-const SquidPet: React.FC<SquidPetProps> = ({ trigger }) => {
-  const [currentAnim, setCurrentAnim] = useState<AnimationKey>('idle');
+const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name = "Squidy" }) => {
+  const [currentAnim, setCurrentAnim] = useState<AnimationKey>("idle");
 
   useEffect(() => {
     if (trigger !== currentAnim) {
@@ -58,13 +51,31 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger }) => {
     }
   }, [trigger]);
 
+  const frames = loadFrames(currentAnim, animationFrameCounts[currentAnim]);
+  const loop = loopableAnimations.includes(currentAnim);
+
   return (
-    <Lottie
-      animationData={animationMap[currentAnim]}
-      loop={loopableAnimations.includes(currentAnim)}
-      autoplay
-      style={{ width: 256, height: 341 }}
-    />
+    <div className={styles.squidFrame}>
+      <div className={styles.starBackground} />
+
+      <div className={styles.squidContainer}>
+        <SpriteAnimator
+          frames={frames}
+          fps={12}
+          loop={loop}
+          width={size}
+          height={size}
+          onAnimationEnd={() => {
+            if (!loop) {
+              setCurrentAnim("idle");
+              onDone?.();
+            }
+          }}
+        />
+      </div>
+
+      <div className={styles.petLabel}>{name}</div>
+    </div>
   );
 };
 

@@ -1,15 +1,13 @@
 // File: client/src/pages/Dashboard.tsx
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
-import SquidPet from "../components/dashboard/pet/SquidPet";
-import buttonStyles from '../assets/css/common/Button.module.css';
-import pageStyles from '../assets/css/dashboard/Dashboard.module.css';
-import Lottie from 'lottie-react';
-import squidIdleAnimation from '../assets/lottie/squid-idle.json';
-
+import SquidPet from "../components/dashboard/pet/SquidPet"; // ✅ includes onDone + CSS
+import buttonStyles from "../assets/css/common/Button.module.css";
+import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
+import { usePetEmotion } from "../hooks/usePetEmotion";
 
 // Type for individual mood entries
 type MoodEntry = {
@@ -21,71 +19,118 @@ type MoodEntry = {
 
 const Dashboard: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
+  // ✅ Pet emotion system
+  const { mood, setMood, affection, adjustAffection, getAnimation } =
+    usePetEmotion();
+
+  // ✅ Use petAnim based on mood-to-animation logic
+  const petAnim = getAnimation(); // ✅ direct from pet emotion system
 
   // Define allowed animation keys for the squid pet
-  type AnimationKey = 'idle' | 'walk' | 'legLift' | 'fall' | 'jump' | 'jumpslam' | 'inksquirt' | 'attackDown' | 'attackUp' | 'hurt' | 'die' | 'win';
 
-  // Current animation being played
-  const [petAnim, setPetAnim] = useState<AnimationKey>('idle');
+  // Called when animation completes (from SquidPet)
 
-  // Resets the animation to idle after 2 seconds
-  const resetToIdle = () => {
-    setTimeout(() => setPetAnim('idle'), 2000);
-  };
-
-  // Example: Trigger walk animation when mood is logged
+  // 🟢 Mood submitted → squid walks
   const handleMoodLog = () => {
-    setPetAnim('walk');
-    resetToIdle();
+    setMood("focused");
+    adjustAffection(+1);
   };
 
-  // Example: Trigger leg lift when task is added
+  // 🟢 Journal created → squid jumps
+  const handleJournalSubmit = () => {
+    setMood("happy"); // or "playful" or "focused", your choice!
+    adjustAffection(+2);
+  };
+
+  // 🟢 Focus task added → squid does leg lift
   const handleFocusTaskAdd = () => {
-    setPetAnim('legLift');
-    resetToIdle();
+    setMood("playful");
+    adjustAffection(+2);
   };
 
-  // Example: Trigger die animation when pomodoro ends
+  // 🟢 Pomodoro started → squid attacks up
+  const handlePomodoroStart = () => {
+    setMood("focused");
+    adjustAffection(+1);
+  };
+
+  // 🟢 Pomodoro break started → squid inks
+  const handlePomodoroBreak = () => {
+    setMood("happy");
+    adjustAffection(+1);
+  };
+
+  // 🟢 Pomodoro ends → squid dies dramatically 💀
   const handlePomodoroEnd = () => {
-    setPetAnim('die');
-    resetToIdle();
+    setMood("tired");
+    adjustAffection(-1);
   };
 
   return (
-    <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
-
-      {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
+    <div
+      className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}
+    >
+      {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
         <h2 className="text-2xl mb-4">Weekly Review</h2>
         <WeeklyMoodReview onMoodSubmit={handleMoodLog} />
       </div>
 
-      {/* Squid Pet - reacts to dashboard events */}
-      <div className="my-4">
-        <SquidPet trigger={petAnim} />
+      {/* Squid Pet with animations */}
+      <div className="relative flex flex-col items-center">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-3xl animate-bounce">
+          {mood === "happy" && "😄"}
+          {mood === "tired" && "😴"}
+          {mood === "focused" && "🧠"}
+          {mood === "playful" && "✨"}
+          {mood === "sad" && "😢"}
+        </div>
 
-        {/* Debug/Test Direct Lottie Playback */}
-        <Lottie
-          animationData={squidIdleAnimation}
-          loop
-          autoplay
-          style={{
-            width: 256,
-            height: 341,
-            border: '2px solid lime',
-            backgroundColor: 'black',
-          }}
+        <SquidPet
+          trigger={petAnim}
+          onDone={() => setMood("idle")}
+          name="Squidy"
         />
+
+        <div className="text-sm text-white mt-2 text-center">
+          Mood: <strong>{mood}</strong> | Affection:{" "}
+          <strong>{affection}</strong>
+        </div>
+        <div className="flex flex-wrap justify-center gap-2 mt-4">
+  {[
+    { label: "Idle", mood: "idle" },
+    { label: "Happy", mood: "happy" },
+    { label: "Tired", mood: "tired" },
+    { label: "Playful", mood: "playful" },
+    { label: "Focused", mood: "focused" },
+    { label: "Sad", mood: "sad" },
+    { label: "Angry", mood: "angry" },
+  ].map(({ label, mood: m }) => (
+    <button
+      key={label}
+      onClick={() => setMood(m as any)}
+      className="px-3 py-1 text-sm bg-purple-800 text-white rounded hover:bg-purple-600 transition-all"
+    >
+      {label}
+    </button>
+  ))}
+</div>
+
       </div>
 
-      {/* Focus App Panel */}
+      {/* Task List */}
       <div className="w-full sm:w-1/2">
         <FocusTaskList onTaskAdd={handleFocusTaskAdd} />
       </div>
 
+      {/* Pomodoro + Break Triggers */}
       <div className="flex flex-col sm:flex-row justify-center gap-8 p-4 w-full">
         <div className="w-full sm:w-1/2">
-          <PomodoroTimer onPomodoroEnd={handlePomodoroEnd} />
+          <PomodoroTimer
+            onPomodoroStart={handlePomodoroStart}
+            onPomodoroEnd={handlePomodoroEnd}
+            onBreakStart={handlePomodoroBreak}
+          />
         </div>
       </div>
     </div>
