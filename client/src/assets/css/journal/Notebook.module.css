@@ -11,16 +11,39 @@
   font-family: 'Georgia', serif;
   line-height: 1.7;
   color: #2b2b2b;
-
-
-  /* Use full-size image once, then repeat if taller */
   background-image: url('/assets/images/Notebook.svg');
   background-repeat: repeat-y;
   background-position: left top;
-  background-size: contain; /* full-width vertically without shrinking */
+  background-size: contain; 
+  min-height: 1080px;
+}
 
-  /* Prevent early repetition by ensuring container is at least the natural image height */
-  min-height: 1080px; /* replace 1200px with the actual height of your Notebook.svg */
+.journalTitle {
+  font-family: 'Just Me Again Down Here', cursive;
+  font-weight: bold;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: .5;
+}
+
+.journalMood {
+  font-family: 'Just Me Again Down Here', cursive;
+  font-weight: bold;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  line-height: .5;
+}
+
+.journalDate {
+  font-family: 'Just Me Again Down Here', cursive;
+  font-style: italic;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  line-height: .5;
+}
+
+.journalContent {
+  font-family: 'Just Me Again Down Here', cursive;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  line-height: 1;
+  white-space: pre-wrap;
 }
 
 /* Large Desktop/Laptop styles (1920px to 2350px) */
