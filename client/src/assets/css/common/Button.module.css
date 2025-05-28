@@ -14,7 +14,6 @@
   font-size: clamp(1rem, 2.5vw, 1.3rem); 
   text-align: center;
   text-decoration: none;
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: white;
   padding: 4px 10px;
   border: none;
@@ -40,7 +39,6 @@
 }
 
 .button {
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
   color: #400a6b; 
   background-color: #08012b;
 }
@@ -59,14 +57,12 @@
 .primary:hover {
   background-color: #e7dffd; 
   color: #000000;
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 /* Secondary Variant */
 .secondary {
   background-color: #d1baf7;
   color: rgb(0, 0, 0);
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 .secondary:hover {
@@ -78,26 +74,22 @@
 .tertiary {
   background-color: #4338ca; 
   color: white;
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 .tertiary:hover {
   background-color: #2e2491; 
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 /* Quaternary Variant */
 .quaternary {
   background-color: #8a80f0;
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 .quaternary:hover {
   background-color: #c5bafc; 
   color: rgb(0, 0, 0);
-  text-shadow: 0 0 3px #000000, 0 0 5px #ffffff;
 }
 
 /* Quinary Variant */
@@ -134,7 +126,6 @@
 .modeButton {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: clamp(1rem, 2.5vw, 1.4rem);
-  text-shadow: none;
   color: #ffffff;
   margin: 0 0.25rem;
   padding: 0.5rem 1rem;
@@ -218,7 +209,6 @@
   font-size: clamp(1rem, 2.5vw, 1.3rem); 
   text-align: center;
   text-decoration: none;
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: white;
   padding: 4px 10px;
   border: none;
@@ -230,12 +220,10 @@
 
 .prevButton {
   background-color: 	#400733;
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
 }
 
 .nextButton {
   background-color: #690D4F;
-  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
 }
 
 .prevButton:hover,

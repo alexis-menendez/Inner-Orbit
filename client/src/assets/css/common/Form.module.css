@@ -101,7 +101,6 @@
 
 .link:hover {
   color: #ffffff;
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   text-decoration: underline;
 }
 
