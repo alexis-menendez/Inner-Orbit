@@ -11,7 +11,6 @@ import { usePetEmotion } from "../hooks/usePetEmotion";
 import MoodBubble from "../components/dashboard/pet/MoodBubble";
 import type { AnimationKey } from "../components/dashboard/pet/SquidPet";
 
-// Type for individual mood entries
 type MoodEntry = {
   id: string;
   label: string;
@@ -69,10 +68,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
+
       {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-        <h2 className="text-2xl mb-4">Weekly Review</h2>
-        <WeeklyMoodReview onMoodSubmit={handleMoodLog} />
+      <div className={pageStyles.subtitle}>
+        <h2>Weekly Review</h2>
+      </div>
+        <WeeklyMoodReview />
       </div>
 
       {/* Squid Pet with animations */}
@@ -129,8 +131,12 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Task List */}
-      <div className="w-full sm:w-1/2">
+      {/* Focus App Panel */}
+{/* Focus App Panel */}
+<div className="w-full sm:w-1/2">
+  <div className={pageStyles.subtitle}>
+    <h2>Task Timer</h2>
+  </div>
         <FocusTaskList onTaskAdd={handleFocusTaskAdd} />
       </div>
 
