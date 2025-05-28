@@ -69,7 +69,7 @@ const CreateJournal: React.FC<CreateJournalProps> = ({ onSave, onCancel }) => {
       <button
         type="button"
         onClick={onCancel}
-        className={`${buttonStyles.button} ${buttonStyles.tertiary}`}
+        className={`${buttonStyles.button} ${buttonStyles.secondary}`}
       >
         Cancel
       </button>
