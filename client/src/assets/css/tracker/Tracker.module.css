@@ -1,15 +1,12 @@
 /* client/src/assets/css/tracker/Tracker.module.css */
 
-/* === Page Title === */
-
+/* === Page Layout === */
 .trackerHeader {
   font-size: clamp(1.4rem, 5vw, 2rem);
   font-weight: bold;
   text-align: center;
   margin-bottom: 1.5rem;
 }
-
-/* === Main Layout for Calendar and Modal === */
 
 .trackerFlexContainer {
   display: flex;
@@ -43,7 +40,40 @@
   z-index: 2;
 }
 
-/* === Calendar Header (Weekday Labels) === */
+/* === Calendar Navigation === */
+.navRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;    
+  margin-bottom: 0.5rem; 
+  flex-wrap: wrap;
+  width: 100%; /* <-- ADD THIS */
+}
+
+.monthLabel {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 2px #000;
+}
+
+/* === Calendar Grid and Weekday Labels === */
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25vw;
+  width: 90vw;
+  max-width: 1200px;
+  border: 2px solid pink;
+  padding: 0.25rem; 
+  margin-top: 0;
+  background-color: rgba(30, 27, 75, 0.3);
+  background: rgba(255, 255, 255, 0.01); 
+  backdrop-filter: blur(12px);           
+  -webkit-backdrop-filter: blur(12px); 
+}
 
 .calendar-header {
   display: grid;
@@ -57,34 +87,14 @@
   padding: 5px 0;
 }
 
-/* === Calendar Grid Container === */
-
-.calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0.25vw;
-  width: 90vw;
-  max-width: 1200px;
-  border: 2px solid pink;
-  padding: 0.5rem;
-
-  background-color: rgba(30, 27, 75, 0.3);
-  background: rgba(255, 255, 255, 0.01); 
-  backdrop-filter: blur(12px);           
-  -webkit-backdrop-filter: blur(12px); 
-}
-
-/* === Day Label (Sun–Sat) === */
-
 .dayLabel {
   text-align: center;
   font-weight: bold;
   color: #faf2f2;
-  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-size: clamp(1.1rem, 1.75vw, 1.2rem);
 }
 
-/* === Calendar Day Cell === */
-
+/* === Day Cells & Dates === */
 .dayCell {
   aspect-ratio: 1 / 1;
   color: white;
@@ -116,7 +126,6 @@
 }
 
 /* === Mood Cell Visuals === */
-
 .dayContent {
   width: 100%;
   height: 100%;
@@ -138,7 +147,7 @@
   position: absolute;
   left: 4px;
   right: 4px;
-  font-size: clamp(1rem, 1.5vw, 1rem);
+  font-size: clamp(1.1rem, 1.75vw, 1.2rem);
   max-width: calc(100% - 8px);
   color: white;
   background: rgba(0, 0, 0, 0);
@@ -164,12 +173,10 @@
 }
 
 /* === Status Message & Empty State === */
-
 .statusMessage {
   color: white;
   text-align: center;
   font-size: clamp(0.95rem, 2.5vw, 1.125rem);
   margin-bottom: 1rem;
 }
-
 

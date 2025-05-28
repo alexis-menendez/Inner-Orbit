@@ -218,22 +218,32 @@
 
 .prevButton,
 .nextButton {
-  padding: 4px 10px;
-  font-size: clamp(0.75rem, 2vw, 0.85rem);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.3rem); 
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: white;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .prevButton {
-  background-color: #090585;
+  background-color: 	#400733;
 }
 
 .nextButton {
-  background-color: #20355D;
+  background-color: #690D4F;
 }
 
 .monthLabel {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
   color: pink;
 }

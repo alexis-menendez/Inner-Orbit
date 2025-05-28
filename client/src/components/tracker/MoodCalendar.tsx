@@ -1,4 +1,4 @@
-// file: client/src/components/tracker/MoodCalendar.tsx
+// File: client/src/components/tracker/MoodCalendar.tsx
 
 import React from 'react';
 import styles from '../../assets/css/tracker/Tracker.module.css';
@@ -13,7 +13,11 @@ type Props = {
   handleDayClick: (date: Date) => void;
 };
 
-const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayClick }) => {
+const MoodCalendar: React.FC<Props> = ({
+  calendarDays,
+  entriesByDate,
+  handleDayClick
+}) => {
   const todayStr = new Date().toDateString();
 
   const getMoodGradient = (moods: { moodColor: string }[]) => {
@@ -58,7 +62,6 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
             <div className={styles.dayContent}>
               <div className={styles.dayNumber}>{date.getDate()}</div>
 
-              {/* Mood labels aligned with gradient segments */}
               <div className={styles.moodList}>
                 {entry?.moods.map((m, i) => {
                   const segmentHeight =
@@ -69,21 +72,20 @@ const MoodCalendar: React.FC<Props> = ({ calendarDays, entriesByDate, handleDayC
                       : `${i * 33.33}%`;
 
                   return (
-                <div
-                  key={i}
-                  className={styles.moodItem}
-                  style={{
-                    top: segmentHeight,
-                    backgroundColor: '#1c005c',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    transition: 'all 0.3s ease-in-out',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {m.mood}
-                </div>
-
+                    <div
+                      key={i}
+                      className={styles.moodItem}
+                      style={{
+                        top: segmentHeight,
+                        backgroundColor: '#1c005c',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)',
+                        transition: 'all 0.3s ease-in-out',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {m.mood}
+                    </div>
                   );
                 })}
               </div>
