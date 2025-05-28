@@ -54,6 +54,7 @@
         "tailwindcss": "^4.1.6",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
+        "vite-plugin-static-copy": "^3.0.0",
         "wait-on": "^8.0.3"
     },
     "dependencies": {
@@ -66,7 +67,6 @@
         "date-fns": "^4.1.0",
         "graphql": "^16.11.0",
         "graphql-tag": "^2.12.6",
-        "lottie-react": "^2.4.1",
         "mongoose": "^8.14.2",
         "multer": "^1.4.5-lts.2",
         "multer-storage-cloudinary": "^4.0.0",
