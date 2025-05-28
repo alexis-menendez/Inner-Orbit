@@ -97,17 +97,10 @@ const Journal: React.FC = () => {
     <div className={styles.sky}>
       <StarBackground starCount={60} />
 
-      <button
-        onClick={() => navigate('/dashboard')}
-        className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
-      >
-        ← Back to Dashboard
-      </button>
-
       {!showForm && (
         <button
           onClick={() => setShowForm(true)}
-          className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.spaced}`}
+          className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
         >
           + Create Journal Entry
         </button>

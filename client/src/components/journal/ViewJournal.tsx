@@ -155,14 +155,14 @@ const ViewJournal: React.FC = () => {
           <div className={notebookStyles.spiralImage} />
 
           <div className={notebookStyles.textContent}>
-            <h2 style={{ marginBottom: '1rem' }}>{entry.title}</h2>
-            <h3 style={{ marginBottom: '1rem' }}>
+            <h2 className={notebookStyles.journalTitle}>{entry.title}</h2>
+            <h3 className={notebookStyles.journalMood}>
               Mood: {entry.mood.charAt(0).toUpperCase() + entry.mood.slice(1)}
             </h3>
-            <p style={{ marginTop: '2rem', fontStyle: 'italic', fontSize: '0.9rem' }}>
-              Created on: {new Date(entry.createdAt).toLocaleString()}
+            <p className={notebookStyles.journalDate}>
+              {new Date(entry.createdAt).toLocaleString()}
             </p>
-            <p>{entry.content}</p>
+            <p className={notebookStyles.journalContent}>{entry.content}</p>
           </div>
         </div>
       )}

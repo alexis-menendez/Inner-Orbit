@@ -7,6 +7,8 @@
 /* Reset margins/padding that might cause white bars */
 html,
 body {
+  height: 100%;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
@@ -15,6 +17,5 @@ body {
 body {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 100;
-  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
   color: #fff8e7; 
 }

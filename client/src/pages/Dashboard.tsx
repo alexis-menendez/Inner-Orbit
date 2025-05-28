@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
 
-      {/* Weekly Mood Summary - Vertical, Mobile-First, Auto-Contrast */}
+      {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
       <div className={pageStyles.subtitle}>
         <h2>Weekly Review</h2>
