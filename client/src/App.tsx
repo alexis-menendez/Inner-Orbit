@@ -7,6 +7,7 @@ import { AuthProvider } from './context/authContext';
 // Layout
 import LoginLayout from './components/layout/LoginLayout';
 import MainLayout from './components/layout/MainLayout';
+import JournalLayout from './components/layout/JournalLayout';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
 // Pages
@@ -66,31 +67,19 @@ const App: React.FC = () => {
           <Route path="/develop-constellations" element={<DevelopConstellations />} />
         </Route>
 
-        {/* Journal system outside both layouts */}
+        {/* Journal routes using JournalLayout */}
         <Route
           path="/journal"
           element={
             <ProtectedRoute>
-              <Journal />
+              <JournalLayout />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="/journal/constellation/:index"
-          element={
-            <ProtectedRoute>
-              <Constellation />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/journal/entry/:entryId"
-          element={
-            <ProtectedRoute>
-              <ViewJournal />
-            </ProtectedRoute>
-          }
-        />
+        >
+          <Route index element={<Journal />} />
+          <Route path="constellation/:index" element={<Constellation />} />
+          <Route path="entry/:entryId" element={<ViewJournal />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );

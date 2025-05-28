@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../assets/css/service/PrivacyPolicy.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import logoStyles from '../../assets/css/common/Logo.module.css';
+import TransparentStars from '../common/TransparentStars';
 
 const Privacy = () => {
   const navigate = useNavigate();
 
   return (
     <section className={styles.privacySection}>
+      <TransparentStars /> 
       <div className={styles.privacyCard}>
         <div className={styles.background}>
           <div className={styles.container}>

@@ -31,64 +31,65 @@ const Dashboard: React.FC = () => {
     return quotes[Math.floor(Math.random() * quotes.length)];
   };
 
-  // 🟢 Mood submitted → squid walks
+  // Mood submitted → squid walks
   const handleMoodLog = () => {
     const mood = "focused";
     setMood(mood);
     setPetAnim("walk");
     adjustAffection(+1);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
-  // 🟢 Journal created → squid jumps
+  // Journal created → squid jumps
   const handleJournalSubmit = () => {
     const mood = "happy";
     setMood(mood);
     setPetAnim("jump");
     adjustAffection(+2);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
-  // 🟢 Focus task added → squid does leg lift
+  // Focus task added → squid does leg lift
   const handleFocusTaskAdd = () => {
     const mood = "playful";
     setMood(mood);
     setPetAnim("inksquirt");
     adjustAffection(+2);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
-  // 🟢 Pomodoro started → squid attacks up
+  // Pomodoro started → squid attacks up
   const handlePomodoroStart = () => {
     const mood = "focused";
     setMood(mood);
     setPetAnim("attackUp");
     adjustAffection(+1);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
-  // 🟢 Pomodoro break started → squid inks
+  // Pomodoro break started → squid inks
   const handlePomodoroBreak = () => {
     const mood = "happy";
     setMood(mood);
     setPetAnim("inksquirt");
     adjustAffection(+1);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
-  // 🟢 Pomodoro ends → squid dies dramatically 💀
+  // Pomodoro ends → squid dies dramatically 
   const handlePomodoroEnd = () => {
     const mood = "tired";
     setMood(mood);
     setPetAnim("die");
     adjustAffection(-1);
-    setQuote(getRandomQuote(mood)); // 🧠 Add this!
+    setQuote(getRandomQuote(mood)); 
   };
 
   return (
     <div
       className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}
     >
+
       {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
         <div className={pageStyles.subtitle}>
@@ -125,7 +126,6 @@ const Dashboard: React.FC = () => {
   </div>
 )}
 
-
           <SquidPet
             trigger={petAnim}
             onDone={() => {
@@ -133,7 +133,7 @@ const Dashboard: React.FC = () => {
                 setPetAnim("idle");
                 setMood("idle");
                 setQuote("");
-              }, 5000); // Let the quote float for 5 seconds
+              }, 5000); 
             }}
             name="Squidy"
             hasAura={affection >= 50}
@@ -165,7 +165,7 @@ const Dashboard: React.FC = () => {
               onClick={() => {
   setMood(m as any);
   setPetAnim(anim as AnimationKey);
-  setQuote(getRandomQuote(m)); // 🧠 Ensure a new quote is set every time
+  setQuote(getRandomQuote(m)); 
 }}
               className="px-3 py-1 text-sm bg-purple-800 text-white rounded hover:bg-purple-600 transition-all"
             >
@@ -175,7 +175,6 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Focus App Panel */}
       {/* Focus App Panel */}
       <div className="w-full sm:w-1/2">
         <div className={pageStyles.subtitle}>
