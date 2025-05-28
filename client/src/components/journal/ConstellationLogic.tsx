@@ -3,7 +3,7 @@
 export interface StarPoint {
   x: number;
   y: number;
-  size?: number; // optional star size
+  size?: number; 
 }
 
 export interface Constellation {
