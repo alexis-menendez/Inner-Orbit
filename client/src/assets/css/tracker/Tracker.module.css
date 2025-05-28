@@ -40,6 +40,24 @@
   z-index: 2;
 }
 
+@media (max-width: 1024px) {
+  .calendarWrapper,
+  .modalWrapper, .trackerFlexContainer, .calendarGrid {
+    width: 100%;
+    align-items: center;
+    padding: 0.1rem 1rem 0.1rem .1rem;      
+    box-sizing: border-box;
+  }
+
+  .trackerFlexContainer {
+    flex-direction: column;
+  }
+
+  .calendarGrid {
+    overflow-x: auto;
+  }
+}
+
 /* === Calendar Navigation === */
 .navRow {
   display: flex;
