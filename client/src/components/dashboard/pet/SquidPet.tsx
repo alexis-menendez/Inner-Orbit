@@ -67,7 +67,7 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name =
        <SpriteAnimator
   key={currentAnim} 
   frames={frames}
-  fps={12}
+  fps={4}
   loop={loop}
   width={size}
   height={size}

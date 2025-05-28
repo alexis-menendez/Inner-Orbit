@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_MOOD_ENTRIES } from '../../graphql/queries';
-import styles from '../../assets/css/tracker/Tracker.module.css';
+import styles from '../../assets/css/dashboard/Dashboard.module.css';
 import { useAuth } from '../../context/authContext';
 
 interface MoodEntry {
@@ -15,13 +15,12 @@ interface MoodEntry {
   note?: string;
   createdAt?: string;
 }
+
 interface WeeklyMoodReviewProps {
   onMoodSubmit?: () => void;
 }
 
-
 const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => {
-
   const { user } = useAuth();
   const userId = user?.id;
   const [selectedNote, setSelectedNote] = useState<string | null>(null);
@@ -73,7 +72,7 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="grid grid-cols-7 gap-2 text-center">
+    <div className={styles.weeklyReviewContainer}>
       {dateStrings.map((dateStr) => {
         const entries = moodMap[dateStr] || [];
         const dateObj = new Date(dateStr);
@@ -83,33 +82,34 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
         return (
           <div
             key={dateStr}
-            className="p-3 rounded-lg shadow-md border transition duration-300 hover:shadow-lg hover:scale-105"
+            className={styles.weeklyMoodCell}
             style={{
               background: entries.length > 0 ? getMoodGradient(entries) : '#1e293b',
-              borderColor: '#000000',
-              borderWidth: '1px',
               opacity: entries.length > 0 ? 1 : 0.4,
-              color: '#fff',
-              cursor: entries.some(e => e.note) ? 'pointer' : 'default'
+              cursor: entries.some(e => e.note) ? 'pointer' : 'default',
             }}
             onClick={() => {
               const noted = entries.find(e => e.note);
               if (noted?.note) setSelectedNote(noted.note);
             }}
           >
-            <div className="text-sm font-semibold">{day}</div>
-            <div className="text-xs mb-1">{shortDate}</div>
-            <div className="text-xs font-medium">
-              {entries.map(e => e.mood).join(', ') || '—'}
+            <div className={styles.weeklyMoodDay}>{day}</div>
+            <div className={styles.weeklyMoodDate}>{shortDate}</div>
+            <div className={styles.weeklyMoodList}>
+              {entries.length > 0 ? (
+                entries.map((e, i) => <div key={i}>{e.mood}</div>)
+              ) : (
+                <div>—</div>
+              )}
             </div>
-
             {entries.length > 0 && (
-              <div className="w-full bg-white bg-opacity-20 h-2 rounded-full mt-2">
+              <div className={styles.weeklyMoodBar}>
                 <div
-                  className="h-full rounded-full"
                   style={{
                     width: `${(entries.reduce((sum, e) => sum + e.intensity, 0) / entries.length / 10) * 100}%`,
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
+                    height: '100%',
+                    borderRadius: '9999px',
                   }}
                 ></div>
               </div>
