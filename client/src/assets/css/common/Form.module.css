@@ -10,6 +10,8 @@
   padding-right: 1rem;
   color: white;
   background: transparent;
+  overflow-y: auto;
+  flex-shrink: 1;
 }
 
 /* CENTERED FORM CONTAINER */
@@ -158,3 +160,11 @@
   line-height: 1.6;
 }
 
+/* Adjust calendar icon color in date input */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  filter: invert(1);
+}
