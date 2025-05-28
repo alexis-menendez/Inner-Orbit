@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// File: client/src/pages/Dashboard.tsx
+
+import React, { useEffect, useState } from "react";
 import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
