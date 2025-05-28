@@ -22,10 +22,16 @@ InnerOrbit/
 │   │   │       │   ├── Button.module.css      
 │   │   │       │   ├── CosmicBackground.module.css 
 │   │   │       │   ├── Form.module.css   
+│   │   │       │   ├── Logo.module.css   
+│   │   │       │   ├── MainLayoutBackground.module.css   
+│   │   │       │   ├── TransparentStarsmodule.css   
 │   │   │       │   └── *Global reusable styles like button styles, loading spinners, modals, etc...*
 │   │   │       │  
 │   │   │       ├── dashboard/ 
+│   │   │       │   ├── Dashboard.module.css  
+│   │   │       │   ├── MoodBubble.module.css  
 │   │   │       │   ├── PomodoroTimer.module.css    
+│   │   │       │   ├── SquidPet.module.css  
 │   │   │       │   └── *Dedicated styles for elements on the Dashboard.* 
 │   │   │       │   
 │   │   │       ├── journal/ 
@@ -47,15 +53,21 @@ InnerOrbit/
 │   │   │  
 │   │   ├── components/  
 │   │   │   ├── common/  
+│   │   │   │   ├── MainLayoutBackground.tsx  
 │   │   │   │   ├── StarBackground.tsx  
+│   │   │   │   ├── TransparentStars.tsx  
 │   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
 │   │   │   │   
 │   │   │   ├── dashboard/   
-│   │   │   │   ├── pomdoro/
+│   │   │   │   ├── pomodoro/
 │   │   │   │   │   ├──  FocusTaskList.tsx
 │   │   │   │   │   └──  PomodoroTimer.tsx
 │   │   │   │   │  
 │   │   │   │   ├── pet/
+│   │   │   │   │   ├──  dev/
+│   │   │   │   │   │    └── SquidPetDev.tsx
+│   │   │   │   │   ├──  MoodBubble.tsx
+│   │   │   │   │   ├──  SpriteAnimator.tsx
 │   │   │   │   │   └──  SquidPet.tsx
 │   │   │   │   │  
 │   │   │   │   ├──  WeeklyMoodCalendar.tsx   
@@ -80,6 +92,8 @@ InnerOrbit/
 │   │   │   │   └── *any components created specifically for the journal page...*
 │   │   │   │  
 │   │   │   ├── layout/  
+│   │   │   │   ├──  JournalLayout.tsx 
+│   │   │   │   ├──  LoginLayout.tsx 
 │   │   │   │   ├──  MainLayout.tsx  
 │   │   │   │   ├──  ProtectedRoute.tsx  
 │   │   │   │   └── *things like "PaggeWrapper.tsx", etc...* 
@@ -112,6 +126,7 @@ InnerOrbit/
 │   │   │   └── queries.ts 
 │   │   │
 │   │   ├── hooks/   
+│   │   │   ├── usePetEmotion.ts 
 │   │   │   └── useTaskStore.ts 
 │   │   │
 │   │   ├── models/  
@@ -138,10 +153,13 @@ InnerOrbit/
 │   │   │
 │   │   ├── utils/
 │   │   │   ├── API.ts 
-│   │   │   └── auth.ts  
+│   │   │   ├── auth.ts 
+│   │   │   ├── loadFrames.ts 
+│   │   │   └── moodQuotes.ts  
 │   │   │
 │   │   ├── appolloClient.ts
-│   │   ├── App.tsx  
+│   │   ├── App.tsx 
+│   │   ├── custom.d.ts   
 │   │   ├── index.css   
 │   │   ├── main.tsx  
 │   │   └── vite-env.d.ts 

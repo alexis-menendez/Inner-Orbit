@@ -18,6 +18,7 @@ import Terms from './components/home/Terms';
 import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
 import Tracker from './pages/Tracker';
+import SquidDev from './components/dashboard/pet/dev/SquidDev';
 
 // Components
 import DevelopConstellations from './components/journal/dev/DevelopConstellations'; 
@@ -61,7 +62,17 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/develop-constellations" element={<DevelopConstellations />} />
+          <Route
+            path="/dev/squid"
+            element={
+              <ProtectedRoute>
+                <SquidDev />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/develop-constellations" 
+          element={
+          <DevelopConstellations />} />
         </Route>
 
         {/* Journal routes using JournalLayout */}
