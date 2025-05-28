@@ -11,12 +11,23 @@ type Props = {
   calendarDays: { date: Date; currentMonth: boolean }[];
   entriesByDate: Record<string, CalendarMoodEntry>;
   handleDayClick: (date: Date) => void;
+  hideMoodText?: boolean;
+};
+
+// Helper to determine if a background color is dark
+const isDarkColor = (hex: string): boolean => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 150;
 };
 
 const MoodCalendar: React.FC<Props> = ({
   calendarDays,
   entriesByDate,
-  handleDayClick
+  handleDayClick,
+  hideMoodText
 }) => {
   const todayStr = new Date().toDateString();
 
@@ -71,13 +82,16 @@ const MoodCalendar: React.FC<Props> = ({
                       ? `${i * 50}%`
                       : `${i * 33.33}%`;
 
+                  const textColor = isDarkColor(m.moodColor) ? '#ffffff' : '#000000';
+
                   return (
                     <div
                       key={i}
-                      className={styles.moodItem}
+                      className={`${styles.moodItem} ${hideMoodText ? styles.hideMoodText : ''}`}
                       style={{
                         top: segmentHeight,
-                        backgroundColor: '#1c005c',
+                        backgroundColor: m.moodColor,
+                        color: textColor,
                         backdropFilter: 'blur(12px)',
                         WebkitBackdropFilter: 'blur(12px)',
                         transition: 'all 0.3s ease-in-out',

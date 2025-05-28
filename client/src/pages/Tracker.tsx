@@ -135,6 +135,7 @@ const Tracker: React.FC = () => {
                 calendarDays={calendarDays}
                 entriesByDate={entriesByDate}
                 handleDayClick={handleDayClick}
+                hideMoodText={!!selectedDate}
               />
             </div>
 

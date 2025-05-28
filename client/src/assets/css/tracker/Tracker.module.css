@@ -148,6 +148,7 @@
   left: 4px;
   right: 4px;
   font-size: clamp(1.1rem, 1.75vw, 1.2rem);
+  font-weight: 400;
   max-width: calc(100% - 8px);
   color: white;
   background: rgba(0, 0, 0, 0);
@@ -157,6 +158,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.hideMoodText {
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
 
 /* Hide mood text on narrow screens */
 @media (max-width: 640px) {
@@ -180,3 +187,24 @@
   margin-bottom: 1rem;
 }
 
+/* === Mood Modal Text Styles === */
+.modalMoodText {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.modalIntensityText {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.modalNoteText {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  color: white;
+  margin-bottom: 0.75rem;
+}

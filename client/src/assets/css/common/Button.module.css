@@ -11,27 +11,22 @@
 .senary {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 300;
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1rem, 2.5vw, 1.3rem); 
   text-align: center;
   text-decoration: none;
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
-
-  transition: background-color 0.3s ease, transform 0.2s;
-
-  min-width: 10rem;
-  width: 100%;
-
-  padding: 0.5rem 1.5rem;
+  color: white;
+  padding: 4px 10px;
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.2s;
+  min-width: 10rem;
   margin-bottom: 1.5rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  cursor: pointer;
-  z-index: 1;
 }
 
 .button:hover,
@@ -235,10 +230,17 @@
 
 .prevButton {
   background-color: 	#400733;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
 }
 
 .nextButton {
   background-color: #690D4F;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #000000;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  transform: scale(1.1);
 }
 
 .monthLabel {
