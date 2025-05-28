@@ -2,14 +2,14 @@
 export const moodQuotes: Record<string, string[]> = {
   happy: [
     "I'm feeling bubbly today!",
-    "The stars are extra sparkly 🌟",
+    "The stars are extra sparkly",
     "You make my tentacles tingle with joy!",
     "Jellyfish are fun to bounce on!",
     "Why yes, I know Crush the turtle!",
     "Just a squid in a cosmic sea of happiness!",
   ],
   tired: [
-    "Nap time... 💤",
+    "Nap time...",
     "Too many bubbles... need rest...",
     "Energy levels low. Send snacks.",
     "So... much... swimming...",
@@ -17,7 +17,7 @@ export const moodQuotes: Record<string, string[]> = {
     "Doubts... Blake... doubts...",
   ],
   focused: [
-    "Engaging focus mode 🧠",
+    "Engaging focus mode",
     "Time to conquer the task sea!",
     "Zero distractions. Full swim ahead.",
     "Just keep swimming, just keep swimming...",
@@ -33,14 +33,14 @@ export const moodQuotes: Record<string, string[]> = {
   sad: [
     "My glow's a little dim today...",
     "Feeling... a bit inked out.",
-    "Hug me with your thoughts 🐙",
+    "Hug me with your thoughts",
     "Even squids have off days...",
     "Just a little lost in the cosmic sea...",
     "Floating in the void, floating in the void...",
   ],
   idle: [
     "I'm just floating...",
-    "What a peaceful orbit 🌌",
+    "What a peaceful orbit",
     "Do squids dream of electric jellyfish?",
     "... how many tentacles does it take to change a lightbulb?",
     "I don't know, do squids live in space?",
