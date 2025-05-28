@@ -6,7 +6,7 @@ import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 interface FocusTaskListProps {
-  onTaskAdd?: () => void; // ✅ Optional callback to trigger pet animation
+  onTaskAdd?: () => void; 
 }
 
 const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
@@ -33,9 +33,9 @@ const FocusTaskList: React.FC<FocusTaskListProps> = ({ onTaskAdd }) => {
         <button
           onClick={() => {
             if (newTask.trim() !== '') {
-              addTask(newTask);             // ✅ Add the task
-              onTaskAdd?.();                // ✅ Trigger animation (leg lift)
-              setNewTask('');               // ✅ Clear input
+              addTask(newTask);            
+              onTaskAdd?.();                
+              setNewTask('');              
             }
           }}
           className={buttonStyles.add} 

@@ -6,7 +6,6 @@ interface User {
   id: string;
   username: string;
   email?: string;
-  // Add other fields from your user model as needed
 }
 
 interface AuthContextType {
@@ -54,7 +53,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
-// Add useAuth hook for easy context consumption
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {

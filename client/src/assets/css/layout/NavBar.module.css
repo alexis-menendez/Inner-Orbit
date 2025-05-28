@@ -68,7 +68,7 @@
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: #fff8e7;
   text-shadow: 0 0 1px #fff8e7, 0 0 5px #9e89ff;
-  padding-top: 0.15rem; /* align inner with orbit */
+  padding-top: 0.15rem; 
 
 }
 
@@ -78,7 +78,7 @@
   font-size: clamp(1.6rem, 5.5vw, 2.8rem);
   color: #fff8e7;
   text-shadow: 0 0 2px #fff8e7, 0 0 5px #9e89ff;
-  padding-top: 0.15rem; /* align inner with inner */
+  padding-top: 0.15rem; 
 }
 
 .navContent {

@@ -25,7 +25,7 @@ const moodToAnimation: Record<Mood, AnimationKey> = {
   angry: 'attackDown',
   sad: 'hurt',
   focused: 'walk',
-  inspired: 'jumpslam', // ✅ looks energetic
+  inspired: 'jumpslam', 
   lonely: 'idle', 
 };
 

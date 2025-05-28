@@ -94,13 +94,13 @@ const task: Task | null = getSelectedTask(); //
     setIsRunning(false);
   };
 
-  // 🔄 Resets timer to the current mode's full time
+  // Resets timer to the current mode's full time
   const resetTimer = () => {
     pauseTimer();
     setSecondsLeft(initialTime);
   };
 
-  // 🧹 Clean up on unmount
+  // Clean up on unmount
   useEffect(() => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);

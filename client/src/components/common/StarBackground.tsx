@@ -22,8 +22,8 @@ const StarBackground: React.FC<{ starCount?: number }> = ({ starCount = 100 }) =
         x: Math.random() * 100,
         y: Math.random() * 100,
         size: Math.random() * 2 + 1,
-        duration: Math.random() * 2 + 1.5, // 1.5s to 3.5s
-        delay: Math.random() * 4,          // 0s to 4s
+        duration: Math.random() * 2 + 1.5, 
+        delay: Math.random() * 4,          
       }));
     };
 
@@ -32,7 +32,7 @@ const StarBackground: React.FC<{ starCount?: number }> = ({ starCount = 100 }) =
 
 return (
   <div className={styles['star-wrapper']}>
-    <div className={styles['background-gradient']} /> {/* ← Gradient layer */}
+    <div className={styles['background-gradient']} /> 
     {stars.map((star) => (
       <div
         key={star.id}

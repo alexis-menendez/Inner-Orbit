@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import SpriteAnimator from "./SpriteAnimator";
 import { loadFrames } from "../../../utils/loadFrames";
-import styles from "../../../assets/css/dashboard/SquidPet.module.css"; // ← Import your CSS
+import styles from "../../../assets/css/dashboard/SquidPet.module.css"; 
 
 export type AnimationKey =
   | "idle"
@@ -25,7 +25,7 @@ interface SquidPetProps {
   onDone?: () => void;
   name?: string;
   hasAura?: boolean;
-  auraColor?: string; // 👈 Add this line
+  auraColor?: string; 
 }
 
 
@@ -65,7 +65,7 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name =
 
       <div className={styles.squidContainer}>
        <SpriteAnimator
-  key={currentAnim} // ✅ Reset on animation change
+  key={currentAnim} 
   frames={frames}
   fps={12}
   loop={loop}
@@ -75,8 +75,8 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name =
     if (!loop) {
       setTimeout(() => {
         setCurrentAnim("idle");
-        onDone?.(); // callback to reset state in parent
-      }, 100); // short delay to ensure full cycle
+        onDone?.(); 
+      }, 100); 
     }
   }}
 />

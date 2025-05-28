@@ -13,13 +13,13 @@
 
 @media (min-width: 640px) {
   .dashboardPanel {
-    max-width: 36rem; /* sm */
+    max-width: 36rem; 
   }
 }
 
 @media (min-width: 768px) {
   .dashboardPanel {
-    max-width: 48rem; /* md */
+    max-width: 48rem; 
   }
 }
 

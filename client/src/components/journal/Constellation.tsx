@@ -47,7 +47,7 @@ const Constellation: React.FC = () => {
 
   const activeStars = constellation.stars.slice(0, entriesInConstellation.length);
   const maxY = Math.max(...activeStars.map(star => star.y));
-  const viewBoxHeight = Math.ceil(maxY + 5); // add padding
+  const viewBoxHeight = Math.ceil(maxY + 5);
 
   return (
     <div className={styles.sky}>

@@ -14,7 +14,6 @@ type Props = {
   hideMoodText?: boolean;
 };
 
-// Helper to determine if a background color is dark
 const isDarkColor = (hex: string): boolean => {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);

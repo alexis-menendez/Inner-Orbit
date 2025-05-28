@@ -14,7 +14,7 @@
   font-size: clamp(2.5rem, 8vw, 5.5rem);
   color: #fff8e7;
   text-shadow: 0 0 1px #fff8e7, 0 0 5px #000000;
-  padding-top: 0.15rem; /* aligns baseline with Orbit */
+  padding-top: 0.15rem; 
 }
 
 .titleOrbit {

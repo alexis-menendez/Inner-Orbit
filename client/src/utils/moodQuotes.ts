@@ -1,4 +1,5 @@
-// src/utils/moodQuotes.ts
+// file: client/src/utils/moodQuotes.ts
+
 export const moodQuotes: Record<string, string[]> = {
   happy: [
     "I'm feeling bubbly today!",
