@@ -10,6 +10,7 @@ import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
 import { usePetEmotion } from "../hooks/usePetEmotion";
 import MoodBubble from "../components/dashboard/pet/MoodBubble";
 import type { AnimationKey } from "../components/dashboard/pet/SquidPet";
+import { moodQuotes } from "../utils/moodQuotes";
 
 type MoodEntry = {
   id: string;
@@ -21,59 +22,78 @@ type MoodEntry = {
 const Dashboard: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
   const { mood, setMood, affection, adjustAffection } = usePetEmotion();
+  const [quote, setQuote] = useState<string>("");
 
   const [petAnim, setPetAnim] = useState<AnimationKey>("idle");
+  const getRandomQuote = (mood: string): string => {
+    const quotes = moodQuotes[mood];
+    if (!quotes || quotes.length === 0) return "";
+    return quotes[Math.floor(Math.random() * quotes.length)];
+  };
 
   // 🟢 Mood submitted → squid walks
   const handleMoodLog = () => {
-    setMood("focused");
+    const mood = "focused";
+    setMood(mood);
     setPetAnim("walk");
     adjustAffection(+1);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   // 🟢 Journal created → squid jumps
   const handleJournalSubmit = () => {
-    setMood("happy");
+    const mood = "happy";
+    setMood(mood);
     setPetAnim("jump");
     adjustAffection(+2);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   // 🟢 Focus task added → squid does leg lift
   const handleFocusTaskAdd = () => {
-    setMood("playful");
+    const mood = "playful";
+    setMood(mood);
     setPetAnim("inksquirt");
     adjustAffection(+2);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   // 🟢 Pomodoro started → squid attacks up
   const handlePomodoroStart = () => {
-    setMood("focused");
+    const mood = "focused";
+    setMood(mood);
     setPetAnim("attackUp");
     adjustAffection(+1);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   // 🟢 Pomodoro break started → squid inks
   const handlePomodoroBreak = () => {
-    setMood("happy");
+    const mood = "happy";
+    setMood(mood);
     setPetAnim("inksquirt");
     adjustAffection(+1);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   // 🟢 Pomodoro ends → squid dies dramatically 💀
   const handlePomodoroEnd = () => {
-    setMood("tired");
+    const mood = "tired";
+    setMood(mood);
     setPetAnim("die");
     adjustAffection(-1);
+    setQuote(getRandomQuote(mood)); // 🧠 Add this!
   };
 
   return (
-    <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
-
+    <div
+      className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}
+    >
       {/* Weekly Mood Summary */}
       <div className="w-full max-w-md sm:max-w-xl md:max-w-2xl cosmic-panel">
-      <div className={pageStyles.subtitle}>
-        <h2>Weekly Review</h2>
-      </div>
+        <div className={pageStyles.subtitle}>
+          <h2>Weekly Review</h2>
+        </div>
         <WeeklyMoodReview />
       </div>
 
@@ -89,22 +109,41 @@ const Dashboard: React.FC = () => {
 
         <div className="relative">
           <MoodBubble mood={mood} />
+          {quote && (
+  <div className={pageStyles.quoteBubble}>
+    <p>"{quote}"</p>
+    <div className={pageStyles.curvedTail}>
+      <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0,0 C15,30 45,30 60,0"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.85)"
+          stroke-width="3"
+        />
+      </svg>
+    </div>
+  </div>
+)}
+
+
           <SquidPet
-  trigger={petAnim}
-  onDone={() => {
-    setMood("idle");
-    setPetAnim("idle"); // ✅ reset animation after it's done
-  }}
-  name="Squidy"
-  hasAura={affection >= 50}
-  auraColor="#b388ff"
-/>
-
-
+            trigger={petAnim}
+            onDone={() => {
+              setTimeout(() => {
+                setPetAnim("idle");
+                setMood("idle");
+                setQuote("");
+              }, 5000); // Let the quote float for 5 seconds
+            }}
+            name="Squidy"
+            hasAura={affection >= 50}
+            auraColor="#b388ff"
+          />
         </div>
 
         <div className="text-sm text-white mt-2 text-center">
-          Mood: <strong>{mood}</strong> | Affection: <strong>{affection}</strong>
+          Mood: <strong>{mood}</strong> | Affection:{" "}
+          <strong>{affection}</strong>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mt-4">
@@ -124,9 +163,10 @@ const Dashboard: React.FC = () => {
             <button
               key={label}
               onClick={() => {
-                setMood(m as any);
-                setPetAnim(anim as AnimationKey);
-              }}
+  setMood(m as any);
+  setPetAnim(anim as AnimationKey);
+  setQuote(getRandomQuote(m)); // 🧠 Ensure a new quote is set every time
+}}
               className="px-3 py-1 text-sm bg-purple-800 text-white rounded hover:bg-purple-600 transition-all"
             >
               {label}
@@ -136,11 +176,11 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Focus App Panel */}
-{/* Focus App Panel */}
-<div className="w-full sm:w-1/2">
-  <div className={pageStyles.subtitle}>
-    <h2>Task Timer</h2>
-  </div>
+      {/* Focus App Panel */}
+      <div className="w-full sm:w-1/2">
+        <div className={pageStyles.subtitle}>
+          <h2>Task Timer</h2>
+        </div>
         <FocusTaskList onTaskAdd={handleFocusTaskAdd} />
       </div>
 

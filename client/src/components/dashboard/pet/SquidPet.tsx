@@ -1,7 +1,7 @@
 // File: client/src/components/dashboard/pet/SquidPet.tsx
 
 import React, { useEffect, useState } from "react";
-import SpriteAnimator from "../../common/SpriteAnimator";
+import SpriteAnimator from "./SpriteAnimator";
 import { loadFrames } from "../../../utils/loadFrames";
 import styles from "../../../assets/css/dashboard/SquidPet.module.css"; // ← Import your CSS
 
