@@ -1,4 +1,4 @@
-// client/src/utils/API.ts
+// file: client/src/utils/API.ts
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 

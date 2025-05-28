@@ -26,7 +26,7 @@ const SpriteAnimator: React.FC<SpriteAnimatorProps> = ({
   useEffect(() => {
     if (!isPlaying || frames.length === 0) return;
 
-    setIndex(0); // reset to first frame on new animation
+    setIndex(0); 
 
     const interval = setInterval(() => {
       setIndex((prev) => {

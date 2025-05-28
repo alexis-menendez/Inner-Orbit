@@ -8,7 +8,6 @@
 }
 
 /* timer */
-
  .timerContainer {
   background-color: rgba(26, 26, 46, 0.8);
   backdrop-filter: blur(6px);
@@ -35,7 +34,6 @@
 }
 
 /* task */
-
 .taskContainer {
   background-color: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(6px);
@@ -78,7 +76,6 @@
 }
 
 /* input */
-
 .inputGroup {
   display: flex;
   margin-bottom: 1rem;
@@ -101,7 +98,6 @@
 }
 
 /* ring*/
-
 .progressRing {
   width: 40vw;
   height: 40vw;

@@ -1,4 +1,4 @@
-// client/src/utils/auth.ts
+// file: client/src/utils/auth.ts
 
 // Get the token from localStorage
 export const getToken = (): string | null => {

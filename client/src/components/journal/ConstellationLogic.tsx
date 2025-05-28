@@ -1,21 +1,18 @@
 // File: client/src/components/journal/ConstellationLogic.tsx
 
-// Represents a star's position as a percentage of container width/height
 export interface StarPoint {
   x: number;
   y: number;
-  size?: number; // optional star size
+  size?: number; 
 }
 
-// Each constellation has a name, star layout, connection lines, and a description
 export interface Constellation {
   name: string;
   description?: string;
   stars: StarPoint[];
-  connections: [number, number][]; // line from index A to B
+  connections: [number, number][]; 
 }
 
-// Preset constellations
 export const CONSTELLATIONS: Constellation[] = [
   {
     name: "The Key",
@@ -252,7 +249,6 @@ connections: [
   }
 ];
 
-// Determine which constellation and how many stars should be visible
 export function getConstellationForEntryCount(entryCount: number): {
   constellation: Constellation;
   activeStars: StarPoint[];
@@ -266,7 +262,6 @@ export function getConstellationForEntryCount(entryCount: number): {
     const constellation = CONSTELLATIONS[i];
     const totalStars = constellation.stars.length;
 
-    // Not yet filled this constellation
     if (remainingEntries < totalStars) {
       return {
         constellation,
@@ -275,7 +270,6 @@ export function getConstellationForEntryCount(entryCount: number): {
       };
     }
 
-    // Just completed this constellation exactly
     if (remainingEntries === totalStars) {
       return {
         constellation,
@@ -286,11 +280,8 @@ export function getConstellationForEntryCount(entryCount: number): {
       };
     }
 
-    // Skip to next constellation
     remainingEntries -= totalStars;
   }
-
-    // All constellations have been completed
     const lastConstellation = CONSTELLATIONS[CONSTELLATIONS.length - 1];
 
     return {
@@ -300,41 +291,4 @@ export function getConstellationForEntryCount(entryCount: number): {
       completedName: lastConstellation.name,
       completedDescription: lastConstellation.description
   };
-
-
-// // If all constellations are completed, generate solo stars beyond the last constellation
-// const allStars = CONSTELLATIONS.flatMap(c => c.stars);
-// const overflowCount = remainingEntries;
-
-// // Generate unique solo star points
-// const soloStars: StarPoint[] = [];
-
-// while (soloStars.length < overflowCount) {
-//   const candidate: StarPoint = {
-//     x: Math.floor(Math.random() * 90) + 5, // stay 5–95% from edges
-//     y: Math.floor(Math.random() * 90) + 5
-//   };
-
-//   const isTooClose = allStars.concat(soloStars).some(existing =>
-//     Math.abs(existing.x - candidate.x) < 5 && Math.abs(existing.y - candidate.y) < 5
-//   );
-
-//   if (!isTooClose) {
-//     soloStars.push(candidate);
-//   }
-
-//   // Avoid infinite loops on a crowded screen
-//   if (soloStars.length > 100) break;
-// }
-
-// return {
-//   constellation: {
-//     name: "Wandering Stars",
-//     stars: soloStars,
-//     connections: []
-//   },
-//   activeStars: soloStars,
-//   isComplete: false
-// };
-
 }

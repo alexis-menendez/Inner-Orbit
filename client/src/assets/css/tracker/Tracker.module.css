@@ -67,7 +67,7 @@
   margin-top: 2rem;    
   margin-bottom: 0.5rem; 
   flex-wrap: wrap;
-  width: 100%; /* <-- ADD THIS */
+  width: 100%; 
 }
 
 .monthLabel {

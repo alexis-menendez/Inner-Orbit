@@ -5,7 +5,6 @@ import { Task, useTaskStore } from '../../../hooks/useTaskStore';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 import buttonStyles from '../../../assets/css/common/Button.module.css';
 
-// ✅ Updated: Added optional props for triggering pet animations
 interface PomodoroTimerProps {
   onPomodoroStart?: () => void;
   onPomodoroEnd?: () => void;
@@ -37,20 +36,17 @@ const task: Task | null = getSelectedTask(); //
       .toString()
       .padStart(2, '0')}`;
 
-  // 🟡 Switches mode and resets timer
   const switchMode = (label: string, duration: number) => {
     pauseTimer();
     setSecondsLeft(duration);
     setInitialTime(duration);
     setModeLabel(label);
 
-    // 🟣 Trigger squid ink animation when a break starts
     if (label.toLowerCase().includes("break")) {
       onBreakStart?.();
     }
   };
 
-  // 🔧 Prompt user for custom time
   const handleCustomTime = () => {
     const minutes = parseInt(prompt("Enter time in minutes:") || "0", 10);
     if (!isNaN(minutes) && minutes > 0) {
@@ -58,11 +54,9 @@ const task: Task | null = getSelectedTask(); //
     }
   };
 
-  // ▶️ Starts the countdown
   const startTimer = () => {
     if (intervalRef.current) return;
 
-    // ✅ Trigger squid attack when starting a focus session
     if (modeLabel.toLowerCase().includes("work")) {
       onPomodoroStart?.();
     }
@@ -73,7 +67,6 @@ const task: Task | null = getSelectedTask(); //
           clearInterval(intervalRef.current!);
           intervalRef.current = null;
 
-          // 🔴 Trigger squid death when a focus session ends
           if (modeLabel.toLowerCase().includes("work")) {
             onPomodoroEnd?.();
           }
@@ -87,20 +80,17 @@ const task: Task | null = getSelectedTask(); //
     setIsRunning(true);
   };
 
-  // ⏸️ Pauses the countdown
   const pauseTimer = () => {
     clearInterval(intervalRef.current!);
     intervalRef.current = null;
     setIsRunning(false);
   };
 
-  // 🔄 Resets timer to the current mode's full time
   const resetTimer = () => {
     pauseTimer();
     setSecondsLeft(initialTime);
   };
 
-  // 🧹 Clean up on unmount
   useEffect(() => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);

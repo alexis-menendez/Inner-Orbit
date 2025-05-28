@@ -1,3 +1,5 @@
+// file: c;ient/src/components/layout/MainLayout.tsx
+
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import StarBackground from '../common/StarBackground';

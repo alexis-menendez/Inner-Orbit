@@ -3,7 +3,6 @@
 import React from 'react';
 import styles from '../../../assets/css/dashboard/MoodBubble.module.css';
 
-// Define the moods and their corresponding emoji + message
 const moodDisplayMap: Record<string, { emoji: string; quote: string }> = {
   happy: { emoji: '😄', quote: 'Feeling bright like a nebula today!' },
   sad: { emoji: '😢', quote: 'Even stars dim sometimes.' },
