@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
   // 🟢 Focus task added → squid does leg lift
   const handleFocusTaskAdd = () => {
     setMood("playful");
-    setPetAnim("legLift");
+    setPetAnim("inksquirt");
     adjustAffection(+2);
   };
 
@@ -108,10 +108,14 @@ const Dashboard: React.FC = () => {
             { label: "Idle", mood: "idle", anim: "idle" },
             { label: "Happy", mood: "happy", anim: "jump" },
             { label: "Tired", mood: "tired", anim: "fall" },
-            { label: "Playful", mood: "playful", anim: "legLift" },
-            { label: "Focused", mood: "focused", anim: "attackUp" },
+            { label: "Playful", mood: "playful", anim: "inksquirt" },
+            { label: "Focused", mood: "focused", anim: "attackDown" },
             { label: "Sad", mood: "sad", anim: "hurt" },
-            { label: "Angry", mood: "angry", anim: "attackDown" },
+            { label: "Angry", mood: "angry", anim: "attackUp" },
+            { label: "Inspired", mood: "inspired", anim: "jumpslam" },
+            { label: "Bored", mood: "bored", anim: "die" },
+            { label: "Anxious", mood: "anxious", anim: "hurt" },
+            { label: "Content", mood: "content", anim: "walk" },
           ].map(({ label, mood: m, anim }) => (
             <button
               key={label}

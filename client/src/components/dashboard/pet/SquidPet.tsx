@@ -1,4 +1,4 @@
-// File: src/components/pet/SquidPet.tsx
+// File: client/src/components/dashboard/pet/SquidPet.tsx
 
 import React, { useEffect, useState } from "react";
 import SpriteAnimator from "../../common/SpriteAnimator";
@@ -49,11 +49,12 @@ const loopableAnimations: AnimationKey[] = ["idle", "walk"];
 const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name = "Squidy", hasAura = false }) => {
   const [currentAnim, setCurrentAnim] = useState<AnimationKey>("idle");
 
-  useEffect(() => {
-    if (trigger !== currentAnim) {
-      setCurrentAnim(trigger);
-    }
-  }, [trigger]);
+ useEffect(() => {
+  if (trigger !== "idle") {
+    setCurrentAnim(trigger);
+  }
+}, [trigger]);
+
 
   const frames = loadFrames(currentAnim, animationFrameCounts[currentAnim]);
   const loop = loopableAnimations.includes(currentAnim);
@@ -63,19 +64,24 @@ const SquidPet: React.FC<SquidPetProps> = ({ trigger, size = 256, onDone, name =
       <div className={styles.starBackground} />
 
       <div className={styles.squidContainer}>
-        <SpriteAnimator
-          frames={frames}
-          fps={12}
-          loop={loop}
-          width={size}
-          height={size}
-          onAnimationEnd={() => {
-            if (!loop) {
-              setCurrentAnim("idle");
-              onDone?.();
-            }
-          }}
-        />
+       <SpriteAnimator
+  key={currentAnim} // ✅ Reset on animation change
+  frames={frames}
+  fps={12}
+  loop={loop}
+  width={size}
+  height={size}
+  onAnimationEnd={() => {
+    if (!loop) {
+      setTimeout(() => {
+        setCurrentAnim("idle");
+        onDone?.(); // callback to reset state in parent
+      }, 100); // short delay to ensure full cycle
+    }
+  }}
+/>
+
+
       </div>
 
       <div className={styles.petLabel}>{name}</div>
