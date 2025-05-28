@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
-import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
-import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
-import SquidPet from "../components/dashboard/pet/SquidPet";
-import buttonStyles from "../assets/css/common/Button.module.css";
-import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
-import { usePetEmotion } from "../hooks/usePetEmotion";
-import MoodBubble from "../components/dashboard/pet/MoodBubble";
-import type { AnimationKey } from "../components/dashboard/pet/SquidPet";
-import { moodQuotes } from "../utils/moodQuotes";
+// file: client/src/components/dashboard/pet/dev/SquidDev.tsx
 
+import React, { useEffect, useState } from "react";
+import WeeklyMoodReview from "../../WeeklyMoodCalendar";
+import PomodoroTimer from "../../pomodoro/PomodoroTimer";
+import FocusTaskList from "../../pomodoro/FocusTaskList";
+import SquidPet from "../SquidPet";
+import MoodBubble from "../MoodBubble";
+import type { AnimationKey } from "../SquidPet";
+import { usePetEmotion } from "../../../../hooks/usePetEmotion";
+import { moodQuotes } from "../../../../utils/moodQuotes";
+import pageStyles from "../../../../assets/css/dashboard/Dashboard.module.css";
+import buttonStyles from "../../../../assets/css/common/Button.module.css";
 type MoodEntry = {
   id: string;
   label: string;
@@ -17,7 +18,7 @@ type MoodEntry = {
   color: string;
 };
 
-const DashboardDev: React.FC = () => {
+const SquidDev: React.FC = () => {
   const [weeklyMoods, setWeeklyMoods] = useState<Record<string, MoodEntry>>({});
   const { mood, setMood, affection, adjustAffection } = usePetEmotion();
   const [quote, setQuote] = useState<string>("");
@@ -183,4 +184,4 @@ const DashboardDev: React.FC = () => {
   );
 };
 
-export default DashboardDev;
+export default SquidDev;

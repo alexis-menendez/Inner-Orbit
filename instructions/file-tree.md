@@ -59,7 +59,7 @@ InnerOrbit/
 │   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
 │   │   │   │   
 │   │   │   ├── dashboard/   
-│   │   │   │   ├── pomdoro/
+│   │   │   │   ├── pomodoro/
 │   │   │   │   │   ├──  FocusTaskList.tsx
 │   │   │   │   │   └──  PomodoroTimer.tsx
 │   │   │   │   │  
