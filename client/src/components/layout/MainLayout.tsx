@@ -1,16 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import StarBackground from '../common/StarBackground';
-import MainLayoutBackground from '../common/MainLayoutBackground'; // NEW
+import MainLayoutBackground from '../common/MainLayoutBackground';
 import NavBar from '../nav/NavBar';
 import Footer from '../nav/Footer';
-import styles from '../../assets/css/common/CosmicBackground.module.css';
+import styles from '../../assets/css/common/MainLayoutBackground.module.css'; 
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="w-full min-h-screen bg-[#0a0029] text-white relative overflow-hidden">
+    <div className="w-full min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: 'transparent' }}>
+
       <StarBackground />
-      <MainLayoutBackground /> {/* INSERTED HERE */}
+      <MainLayoutBackground />
 
       <div className="relative z-10 flex flex-col items-center min-h-screen">
         <div className={styles['gradient-overlay']}>

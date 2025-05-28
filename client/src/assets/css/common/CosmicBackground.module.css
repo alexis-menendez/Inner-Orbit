@@ -8,7 +8,6 @@
   background-size: contain;
   background-attachment: fixed;            
   background-position: center;     
-  background-color: #08012b;
   color: #d3ccbb;
   width: 100%;
   min-height: 170vh;
@@ -17,8 +16,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
   overflow-y: auto;
+  background-color: transparent;
+
+}
+
+/* Phones: up to 639px */
+@media (max-width: 639px) {
+  .cosmic-background {
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+  }
+}
+
+/* Tablets: 640px to 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .cosmic-background {
+    background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+  }
 }
 
 .glow-text {
@@ -27,24 +45,10 @@
 }
 
 .cosmic-panel {
-  background-color: #0b0238cc;
   backdrop-filter: blur(8px);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 0 20px rgba(183, 181, 194, 0.2);
-}
-
-/* Main Layout */
-.gradient-overlay {
-  width: 75%;
-  min-height: 100%;
-  margin: 0 auto;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 1rem;
 }
 
 
