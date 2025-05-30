@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
-import buttonStyles from "../assets/css/common/Button.module.css";
 import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
 
 type MoodEntry = {
@@ -21,11 +20,13 @@ const Dashboard: React.FC = () => {
     <div className={`flex flex-col items-center px-4 py-8 gap-8 relative z-10 ${pageStyles.dashboardPage}`}>
 
       {/* Weekly Mood Summary */}
-      <div className="w-full max-w-md sm:max-w-xl md:max-w-lg cosmic-panel">
+      <div className="w-full cosmic-panel">
         <div className={pageStyles.subtitle}>
           <h2>Weekly Review</h2>
         </div>
-        <WeeklyMoodReview />
+        <div className={pageStyles.weeklyReviewRow}>
+          <WeeklyMoodReview horizontal />
+        </div>
       </div>
 
       {/* Focus App Panel */}

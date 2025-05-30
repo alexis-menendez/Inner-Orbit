@@ -20,9 +20,10 @@ interface MoodEntry {
 
 interface WeeklyMoodReviewProps {
   onMoodSubmit?: () => void;
+  horizontal?: boolean; 
 }
 
-const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => {
+const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horizontal }) => {
   const { user } = useAuth();
   const userId = user?.id;
   const [selectedNote, setSelectedNote] = useState<string | null>(null);
@@ -74,7 +75,7 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className={styles.weeklyReviewContainer}>
+    <div className={`${styles.weeklyReviewContainer} ${horizontal ? styles.weeklyReviewHorizontal : ''}`}>
       {dateStrings.map((dateStr) => {
         const entries = moodMap[dateStr] || [];
         const dateObj = new Date(dateStr);

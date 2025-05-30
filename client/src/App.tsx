@@ -71,7 +71,7 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/develop-constellations" 
+          <Route path="/dev/constellations" 
           element={
           <DevelopConstellations />} />
         </Route>

@@ -160,6 +160,25 @@
   width: 100%;
 }
 
+.weeklyReviewRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.weeklyReviewHorizontal {
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  gap: 0.75rem;
+}
+
+
 @media (min-width: 1024px) {
   .weeklySquidRow {
     flex-direction: row;
