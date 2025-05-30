@@ -107,21 +107,21 @@ If you have any questions, feel free to contact the team:
 - **GitHub**: [alexis-menendez](https://github.com/alexis-menendez)
 - **Email**: [alexis.menendez@austincc.edu](https://alex-menendez.onrender.com/contact)
 
-#### Frontend Lead: [**Constance RobinE**](https://zomblic.onrender.com/)  
+#### Frontend Lead: [**Constance RobinE**](https://zomblic.netlify.app/) – Full stack Developer
 
 - **Website**: [Portfolio](https://zomblic.netlify.app/)
 - **LinkedIn**: [in/Constance](www.linkedin.com/in/constance-robin/)
 - **GitHub**: [zomblic](https://github.com/zomblic)
 - **Email**: [zomblic@hotmail.com](https://zomblic.netlify.app/contact)
 
-#### Backend Lead: [**BACKEND-LEAD-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
+#### Backend Lead: [**Blake Brittain**](https://blakenb-portfolio.netlify.app/) – Full stack Developer
 
-- **Website**: [Portfolio](https://BACKEND-LEAD-NAME.onrender.com/)
-- **LinkedIn**: [in/BACKEND-LEAD-NAME](https://www.linkedin.com/in/BACKEND-LEAD-NAME/)
-- **GitHub**: [BACKEND-LEAD-USERNAME](https://github.com/alexis-menendez)
-- **Email**: [BACKEND-LEAD-NAME@email.com](https://BACKEND-LEAD-NAME.onrender.com/contact)
+- **Website**: [Blake's portfolio](https://blakenb-portfolio.netlify.app/)
+- **LinkedIn**: [in/Blake Brittain](https://www.linkedin.com/in/blake-n-brittain/)
+- **GitHub**: [Blake Brittin](https://github.com/Blakenb)
+- **Email**: [Blakenb87@gmail.com](Blakenb87@gmail.com)
 
-#### Backend Developer: [**BACKEND-DEVELOPER-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) – BLAH, BLAH, BLAH  
+#### Backend Developer: [**BACKEND-DEVELOPER-NAME**](https://BACKEND-DEVELOPER-NAME.netlify.app/) – BLAH, BLAH, BLAH  
 
 - **Website**: [Portfolio](https://BACKEND-DEVELOPER-NAME.onrender.com/)
 - **LinkedIn**: [in/BACKEND-DEVELOPER-NAME](https://www.linkedin.com/in/BACKEND-DEVELOPER-NAME/)
