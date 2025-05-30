@@ -1,8 +1,10 @@
+// File: client/src/components/tracker/CreateMood.tsx
+
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_MOOD_ENTRY } from '../../graphql/mutations';
 import { moodList } from '../../models/Mood';
-
+import MoodComboBox from './MoodComboBox'; 
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 
@@ -19,18 +21,9 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
 
   const [addMoodEntry] = useMutation(ADD_MOOD_ENTRY);
 
-  // White to black gradient in 10 steps
   const intensityColors = [
-    '#ffffff', // 1 - white
-    '#e2e2e2',
-    '#c6c6c6',
-    '#aaaaaa',
-    '#8d8d8d',
-    '#717171',
-    '#555555',
-    '#383838',
-    '#1c1c1c',
-    '#000000'  // 10 - black
+    '#ffffff', '#e2e2e2', '#c6c6c6', '#aaaaaa', '#8d8d8d',
+    '#717171', '#555555', '#383838', '#1c1c1c', '#000000'
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,27 +32,13 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
     const today = new Date();
     const moodItem = moodList.find((m) => m.id === mood);
     const moodColor = moodItem?.color || '#ccc';
-
-    // Fallback note logic: ensure it's not empty
     const finalNote = note.trim() || 'No notes created for this entry';
 
-    const payload = {
-      userId,
-      date: today.toISOString(),
-      mood,
-      intensity,
-      note: finalNote,
-      moodColor,
-    };
-
+    const payload = { userId, date: today.toISOString(), mood, intensity, note: finalNote, moodColor };
     console.log('[TRACKER] Creating mood entry:', payload);
 
     try {
-      await addMoodEntry({
-        variables: {
-          input: payload,
-        },
-      });
+      await addMoodEntry({ variables: { input: payload } });
       onSave();
     } catch (error) {
       console.error('[TRACKER] Failed to create mood entry:', error);
@@ -74,17 +53,12 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
       <h2 className={formStyles.formTitle}>Create Mood Entry</h2>
 
       <label className={formStyles.whiteText}>Mood</label>
-      <select
+      <MoodComboBox
         value={mood}
-        onChange={(e) => setMood(e.target.value)}
-        className={formStyles.input}
+        onChange={setMood}
+        moodList={moodList}
         required
-      >
-        <option value="" disabled>Select a mood</option>
-        {moodList.map((m) => (
-          <option key={m.id} value={m.id}>{m.label}</option>
-        ))}
-      </select>
+      />
 
       <label className={formStyles.whiteText}>Intensity: {intensity}</label>
       <input
@@ -94,10 +68,7 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
         value={intensity}
         onChange={(e) => setIntensity(+e.target.value)}
         className={formStyles.input}
-        style={{
-          accentColor: thumbColor,
-          backgroundColor: backgroundColor
-        }}
+        style={{ accentColor: thumbColor, backgroundColor }}
       />
 
       <label className={formStyles.whiteText}>Note</label>
@@ -110,16 +81,8 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
       />
 
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-        <button type="submit" className={`${buttonStyles.button} ${buttonStyles.primary}`}>
-          Save
-        </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          className={`${buttonStyles.button} ${buttonStyles.secondary}`}
-        >
-          Cancel
-        </button>
+        <button type="submit" className={`${buttonStyles.button} ${buttonStyles.primary}`}>Save</button>
+        <button type="button" onClick={onCancel} className={`${buttonStyles.button} ${buttonStyles.secondary}`}>Cancel</button>
       </div>
     </form>
   );
