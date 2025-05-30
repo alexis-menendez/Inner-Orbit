@@ -1,5 +1,3 @@
-// File: client/src/components/tracker/MoodModal.tsx
-
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_MOOD_ENTRY, UPDATE_MOOD_ENTRY, DELETE_MOOD_ENTRY } from '../../graphql/mutations';
@@ -64,13 +62,14 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
     }
 
     const moodColor = moodItem?.color || '#ccc';
+    const finalNote = note.trim() || 'No notes created for this entry';
 
     try {
       if (editingEntry?._id) {
         await updateMoodEntry({
           variables: {
             id: editingEntry._id,
-            input: { mood, intensity, note, moodColor },
+            input: { mood, intensity, note: finalNote, moodColor },
           },
         });
       } else {
@@ -81,7 +80,7 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
               date: date.toISOString(),
               mood,
               intensity,
-              note,
+              note: finalNote,
               moodColor,
             },
           },
@@ -147,9 +146,7 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
                   >
                     {capitalize(entry.mood)}
                   </p>
-                  <p className={trackerStyles.modalIntensityText}>
-                    Intensity {entry.intensity}
-                  </p>
+                  <p className={trackerStyles.modalIntensityText}>Intensity {entry.intensity}</p>
                   {entry.note && (
                     <p className={trackerStyles.modalNoteText}>
                       {entry.note}
@@ -235,4 +232,3 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
 };
 
 export default MoodModal;
-

@@ -40,17 +40,24 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
     const moodItem = moodList.find((m) => m.id === mood);
     const moodColor = moodItem?.color || '#ccc';
 
+    // Fallback note logic: ensure it's not empty
+    const finalNote = note.trim() || 'No notes created for this entry';
+
+    const payload = {
+      userId,
+      date: today.toISOString(),
+      mood,
+      intensity,
+      note: finalNote,
+      moodColor,
+    };
+
+    console.log('[TRACKER] Creating mood entry:', payload);
+
     try {
       await addMoodEntry({
         variables: {
-          input: {
-            userId,
-            date: today.toISOString(),
-            mood,
-            intensity,
-            note,
-            moodColor,
-          },
+          input: payload,
         },
       });
       onSave();
@@ -59,7 +66,6 @@ const CreateMood: React.FC<CreateMoodProps> = ({ userId, onSave, onCancel }) => 
     }
   };
 
-  // Compute thumb and background track colors
   const thumbColor = intensityColors[intensity - 1];
   const backgroundColor = intensityColors[10 - intensity];
 

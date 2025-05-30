@@ -85,16 +85,18 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
         return (
           <div
             key={dateStr}
-            className={styles.weeklyMoodCell}
+            className={`${styles.weeklyMoodCell} ${entries.length === 0 ? styles.emptyMoodCell : styles.filledMoodCell}`}
             style={{
               background: entries.length > 0 ? getMoodGradient(entries) : '#1e293b',
               opacity: entries.length > 0 ? 1 : 0.4,
               cursor: entries.some(e => e.note) ? 'pointer' : 'default',
             }}
-            onClick={() => {
-              const noted = entries.find(e => e.note);
-              if (noted?.note) setSelectedNote(noted.note);
-            }}
+onClick={() => {
+  if (entries.length > 0) {
+    const noted = entries.find(e => typeof e.note === 'string');
+    setSelectedNote(noted?.note ?? '');
+  }
+}}
           >
             <div className={styles.weeklyMoodDay}>{day}</div>
             <div className={styles.weeklyMoodDate}>{shortDate}</div>
@@ -126,8 +128,12 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
             <div className={formStyles.weeklyNoteWrapper}>
               <div className={formStyles.formContainer}>
                 <div className={formStyles.weeklyNoteModal}>
-                  <h2 className={formStyles.weeklyNoteTitle}>Mood Note</h2>
-                  <p className={formStyles.weeklyNoteText}>{selectedNote}</p>
+                  <h2 className={formStyles.weeklyNoteTitle}>Notes</h2>
+<p className={formStyles.weeklyNoteText}>
+  {selectedNote?.trim()
+    ? selectedNote
+    : <em>No notes for this entry</em>}
+</p>
                   <button
                     className={`${buttonStyles.button} ${buttonStyles.secondary}`}
                     onClick={() => setSelectedNote(null)}
