@@ -3,9 +3,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import StarBackground from '../common/StarBackground';
-import ShootingStar from '../common/ShootingStar';
 import NavBar from '../nav/NavBar';
-import Footer from '../nav/Footer';
 
 const JournalLayout: React.FC = () => {
   return (
@@ -17,8 +15,11 @@ const JournalLayout: React.FC = () => {
         <StarBackground />
 
         <div className="relative z-10 flex flex-col items-center min-h-screen">
+          {/* Leave NavBar untouched to use full width */}
           <NavBar />
-          <main className="w-full">
+
+          {/* Only pad the main content */}
+          <main className="w-full pt-12 pl-6 md:pl-12 lg:pl-20 xl:pl-32 2xl:pl-40">
             <Outlet />
           </main>
         </div>

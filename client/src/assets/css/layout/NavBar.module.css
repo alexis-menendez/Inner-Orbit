@@ -60,6 +60,7 @@
   text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
   display: flex;
   gap: 0.25rem;
+  margin-left: 1rem;
 }
 
 .inner {

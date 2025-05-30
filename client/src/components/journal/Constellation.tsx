@@ -54,7 +54,7 @@ const Constellation: React.FC = () => {
       <StarBackground starCount={80} />
 
       <div className="flex flex-col items-center w-full min-h-[calc(100vh-6rem)] px-4 pb-10">
-        <div className="w-full flex justify-start mb-4">
+        <div className={buttonStyles.createButtonWrapper}>
           <button
             onClick={() => navigate(-1)}
             className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}

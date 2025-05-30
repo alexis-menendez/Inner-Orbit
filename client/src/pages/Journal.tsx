@@ -97,14 +97,16 @@ const Journal: React.FC = () => {
     <div className={styles.sky}>
       <StarBackground starCount={60} />
 
-      {!showForm && (
-        <button
-          onClick={() => setShowForm(true)}
-          className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
-        >
-          + Create Journal Entry
-        </button>
-      )}
+{!showForm && (
+  <div className={buttonStyles.createButtonWrapper}>
+    <button
+      onClick={() => setShowForm(true)}
+      className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
+    >
+      + Create Journal Entry
+    </button>
+  </div>
+)}
 
       {/* Wrap form in centered overlay */}
       {showForm && (
