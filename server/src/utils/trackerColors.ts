@@ -5,7 +5,6 @@ export const getMoodColor = (mood: string): string => {
     // 1. Connection / Love
     affectionate: 'rgba(236, 64, 122, 0.85)',
     connected: 'rgba(231, 84, 128, 0.85)',
-    horny: 'rgba(136, 14, 79, 0.85)',
     intimate: 'rgba(194, 24, 91, 0.85)',
     loved: 'rgba(212, 61, 110, 0.85)',
     tender: 'rgba(173, 20, 87, 0.85)',
