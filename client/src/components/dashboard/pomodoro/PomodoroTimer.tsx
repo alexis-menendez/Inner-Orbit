@@ -118,6 +118,18 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
           15 Min Task
         </button>
         <button
+          onClick={() => switchMode('30 Min Task', 30 * 60)}
+          className={`${buttonStyles.modeButton} ${modeLabel === '30 Min Task' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          30 Min Task
+        </button>
+        <button
+          onClick={() => switchMode('1 Hour Task', 60 * 60)}
+          className={`${buttonStyles.modeButton} ${modeLabel === '1 Hour Task' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          1 Hour Task
+        </button>
+        <button
           onClick={() => switchMode('5 Min Break', BREAK_5_MIN)}
           className={`${buttonStyles.modeButton} ${modeLabel === '5 Min Break' ? buttonStyles.modeButtonActive : ''}`}
         >
@@ -128,6 +140,12 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
           className={`${buttonStyles.modeButton} ${modeLabel === '15 Min Break' ? buttonStyles.modeButtonActive : ''}`}
         >
           15 Min Break
+        </button>
+        <button
+          onClick={() => switchMode('30 Min Break', 30 * 60)}
+          className={`${buttonStyles.modeButton} ${modeLabel === '30 Min Break' ? buttonStyles.modeButtonActive : ''}`}
+        >
+          30 Min Break
         </button>
       </div>
 

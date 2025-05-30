@@ -118,7 +118,7 @@
 
 /*  === Pomdoro Timer Button Styles ===  */
 /* Apply to all PomodoroTimer button styles */
-.buttonGroup button,
+.buttonGroup button, .buttonGroup,
 .action,
 .add,
 .delete,
@@ -133,9 +133,14 @@
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem;
+  row-gap: .5rem; 
 }
 
-.buttonGroup button:hover,
+.buttonGroup button:hover, .buttonGroup:hover,
 .action:hover,
 .add:hover,
 .delete:hover,
@@ -143,6 +148,10 @@
 .modeButton:hover {
   color: #fff;
   transform: scale(1.1);
+}
+
+.buttonGroup {
+  background-color: transparent;
 }
 
 .buttonGroup button {
