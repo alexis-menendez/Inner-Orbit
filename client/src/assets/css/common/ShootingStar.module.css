@@ -54,9 +54,9 @@
   height: 2px;
   box-shadow: 0 0 6px white;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 2s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 2.5s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 3s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 3.75s forwards;
 }
 
 /* Default Star #2 */
@@ -65,9 +65,9 @@
   height: 2px;
   box-shadow: 0 0 6px white;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 3s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 3.5s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 4.5s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 5.25s forwards;
 }
 
 /* Extra Small Star #1 */
@@ -76,9 +76,9 @@
   height: 1px;
   box-shadow: 0 0 6px white;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 2.2s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 2.7s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 3.3s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 4.05s forwards;
 }
 
 /* Extra Small Star #2 */
@@ -87,9 +87,9 @@
   height: 1px;
   box-shadow: 0 0 6px white;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 3.2s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 3.7s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 4.8s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 5.55s forwards;
 }
 
 /* Small Star */
@@ -97,9 +97,9 @@
   width: 2px;
   height: 2px;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 2.4s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 2.9s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 3.6s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 4.35s forwards;
 }
 
 /* Small Star #2 */
@@ -107,9 +107,9 @@
   width: 2px;
   height: 2px;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 3.4s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 3.9s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 5.1s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 5.85s forwards;
 }
 
 /* Medium Star */
@@ -117,9 +117,9 @@
   width: 3px;
   height: 3px;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 2.6s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 3.1s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 3.9s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 4.65s forwards;
 }
 
 /* Large Star */
@@ -127,9 +127,9 @@
   width: 4px;
   height: 4px;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 3.6s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 4.1s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 5.4s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 6.15s forwards;
 }
 
 /* Extra Large Star */
@@ -137,9 +137,9 @@
   width: 6px;
   height: 6px;
   animation:
-    fadeIn 0.5s ease-in forwards,
-    shootingStar 2.8s linear 0.5s forwards,
-    fadeOut 0.3s ease-out 3.3s forwards;
+    fadeIn 0.75s ease-in forwards,
+    shootingStar 4.2s linear 0.75s forwards,
+    fadeOut 0.45s ease-out 4.95s forwards;
 }
 
 /* TRAIL EFFECTS */
