@@ -94,23 +94,23 @@ const Tracker: React.FC = () => {
       ) : loading ? (
         <p className={styles.statusMessage}>Loading...</p>
       ) : entries.length === 0 ? (
-        <>
-          <p className={`${styles.statusMessage} text-white`}>No Entries Created</p>
-          {showCreate ? (
-            <CreateMood
-              userId={user.id}
-              onSave={handleSaveCreate}
-              onCancel={handleCancelCreate}
-            />
-          ) : (
-            <button
-              onClick={handleCreate}
-              className={`${buttonStyles.button} ${buttonStyles.primary}`}
-            >
-              Create
-            </button>
-          )}
-        </>
+<div className={styles.emptyStateContainer}>
+  <p className={`${styles.statusMessage} text-white`}>No Entries Created</p>
+  {showCreate ? (
+    <CreateMood
+      userId={user.id}
+      onSave={handleSaveCreate}
+      onCancel={handleCancelCreate}
+    />
+  ) : (
+    <button
+      onClick={handleCreate}
+      className={`${buttonStyles.button} ${buttonStyles.primary}`}
+    >
+      Create
+    </button>
+  )}
+</div>
       ) : (
         <>
           {/* Move calendar navigation outside the wrapper */}
