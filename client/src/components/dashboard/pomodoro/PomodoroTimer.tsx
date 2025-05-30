@@ -31,6 +31,8 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  const endSound = new Audio('/assets/audio/timer-end.mp3');
+
   const formatTime = (secs: number) =>
     `${Math.floor(secs / 60).toString().padStart(2, '0')}:${(secs % 60)
       .toString()
@@ -69,6 +71,10 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
         if (prev === 1) {
           clearInterval(intervalRef.current!);
           intervalRef.current = null;
+
+          endSound.play().catch((e) => {
+            console.warn('Failed to play end sound:', e);
+          });
 
           if (modeLabel.toLowerCase().includes("task")) {
             onPomodoroEnd?.();
