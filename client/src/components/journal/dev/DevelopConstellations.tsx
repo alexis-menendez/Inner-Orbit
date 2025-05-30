@@ -2,13 +2,16 @@
 
 import React, { useState } from 'react';
 import { CONSTELLATIONS, StarPoint, Constellation } from '../ConstellationLogic';
+import ShootingStar from '../../common/ShootingStar';
 import styles from '../../../assets/css/journal/Stars.module.css';
 
 const DevelopConstellations: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div style={{ background: 'black', minHeight: '100vh', padding: '2rem', color: 'white' }}>
+    <div style={{ position: 'relative', background: 'black', minHeight: '100vh', padding: '2rem', color: 'white', overflow: 'hidden' }}>
+  <ShootingStar frequency={2500} maxStars={4} />
+
       <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Constellation Develop View</h1>
 
       {CONSTELLATIONS.map((constellation: Constellation, index: number) => {

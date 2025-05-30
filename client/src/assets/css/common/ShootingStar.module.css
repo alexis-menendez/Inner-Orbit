@@ -1,0 +1,45 @@
+/* file:  client/src/assets/css/common/ShootingStar.module.css */
+
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-800px) translateY(300px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.shootingStar {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px white;
+  animation: shootingStar 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+.shootingStarLarge {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px white;
+  animation: shootingStar 2s ease-out forwards;
+  pointer-events: none;
+}
+
+.shootingStarExtraLarge {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 14px white;
+  animation: shootingStar 2.4s ease-out forwards;
+  pointer-events: none;
+}
