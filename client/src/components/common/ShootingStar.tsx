@@ -128,7 +128,7 @@ const ShootingStar: React.FC<ShootingStarProps> = ({
           setter((prev) => [...prev.slice(-(maxStars - count + 1)), ...newStars]);
         }
 
-        const nextDelay = frequency * (0.5 + Math.random());
+        const nextDelay = frequency * (1.5 + Math.random() * 1.5);
         setTimeout(loop, nextDelay);
       };
 
