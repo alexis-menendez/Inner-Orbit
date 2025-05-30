@@ -21,7 +21,6 @@ const JournalLayout: React.FC = () => {
           <main className="w-full">
             <Outlet />
           </main>
-          <Footer />
         </div>
       </div>
     </>

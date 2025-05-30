@@ -166,6 +166,9 @@ const Journal: React.FC = () => {
                   r={star.size ?? 1}
                   className={styles.star}
                   filter="url(#whiteGlow)"
+                  style={{ 
+                    pointerEvents: 'all', 
+                    animationDelay: `${Math.random() * 2.5}s` }}
                 />
               ))}
             </svg>

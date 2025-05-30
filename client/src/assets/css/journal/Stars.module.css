@@ -22,11 +22,9 @@
 }
 
 .star-hover {
-  fill: #3b82f6;
-  stroke: #3b82f6;
-  filter: drop-shadow(0 0 12px #3b82f6)
-          drop-shadow(0 0 18px #3b82f6)
-          drop-shadow(0 0 24px #3b82f6);
+  fill: rgb(59, 130, 246);
+  stroke: rgb(59, 130, 246);
+  animation: none !important;
 }
 
 .star-soft {
@@ -73,6 +71,12 @@
 .star {
   fill: white;
   opacity: 0.9;
+  animation: twinkleOpacity 2.5s infinite ease-in-out;
+}
+
+@keyframes twinkleOpacity {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.3; }
 }
 
 .gridContainer {
@@ -111,10 +115,10 @@
 
 .label {
   position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
+  top: 10%;
+  left: 10%;
   color: white;
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   background-color: transparent;
   padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;

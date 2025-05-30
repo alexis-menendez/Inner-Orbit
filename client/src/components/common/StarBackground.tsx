@@ -63,7 +63,7 @@ const StarBackground: React.FC<{ starCount?: number }> = ({ starCount = 100 }) =
         setPaused(true);
         clearAllStars();
         if (!isCancelled) {
-          setTimeout(runAnimationCycle, 2 * 60 * 1000);
+          setTimeout(runAnimationCycle, 5 * 60 * 1000);
         }
       }, 60 * 1000);
     };
