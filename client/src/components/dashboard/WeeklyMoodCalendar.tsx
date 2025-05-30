@@ -2,9 +2,11 @@
 
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
+import { useAuth } from '../../context/authContext';
 import { GET_MOOD_ENTRIES } from '../../graphql/queries';
 import styles from '../../assets/css/dashboard/Dashboard.module.css';
-import { useAuth } from '../../context/authContext';
+import formStyles from '../../assets/css/common/Form.module.css';
+import buttonStyles from '../../assets/css/common/Button.module.css';
 
 interface MoodEntry {
   _id: string;
@@ -118,20 +120,24 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
         );
       })}
 
-      {selectedNote && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-white text-black p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-semibold mb-4">Mood Note</h2>
-            <p className="mb-4 whitespace-pre-wrap">{selectedNote}</p>
-            <button
-              className="px-4 py-2 bg-indigo-700 text-white rounded hover:bg-indigo-800"
-              onClick={() => setSelectedNote(null)}
-            >
-              Close
-            </button>
+        {selectedNote && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+            <div className={formStyles.weeklyNoteWrapper}>
+              <div className={formStyles.formContainer}>
+                <div className={formStyles.weeklyNoteModal}>
+                  <h2 className={formStyles.weeklyNoteTitle}>Mood Note</h2>
+                  <p className={formStyles.weeklyNoteText}>{selectedNote}</p>
+                  <button
+                    className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+                    onClick={() => setSelectedNote(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };
