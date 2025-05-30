@@ -94,7 +94,7 @@ There are currently no automated tests for this project
 ## Acknowledgements
 
 1. (ANY OUTSIDE AID) **(DO NOT FORGET TO UPDATE THIS!)**  
-2. (ANY INSPIRATIONS OR RESOURCES) **(DO NOT FORGET TO UPDATE THIS!)**  
+2. Squid Sqrite by [Penzilla](https://penzilla.itch.io/)
 
 ## Contact
 

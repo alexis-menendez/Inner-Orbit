@@ -3,17 +3,17 @@
 import React from 'react';
 import styles from '../../../assets/css/dashboard/MoodBubble.module.css';
 
-const moodDisplayMap: Record<string, { emoji: string; quote: string }> = {
-  happy: { emoji: '😄', quote: 'Feeling bright like a nebula today!' },
-  sad: { emoji: '😢', quote: 'Even stars dim sometimes.' },
-  tired: { emoji: '😴', quote: 'Recharge mode... drifting through space.' },
-  focused: { emoji: '🧠', quote: 'Locked onto the mission... calculating!' },
-  playful: { emoji: '✨', quote: 'Boop! Just a little space wiggle!' },
-  angry: { emoji: '😠', quote: 'Inking mad right now. Give me a sec.' },
-  idle: { emoji: '🐙', quote: 'Just floating through the void~' },
-  anxious: { emoji: '😰', quote: 'Wiggling with worry bubbles…' },
-  inspired: { emoji: '🌟', quote: 'A brilliant idea just hatched!' },
-  lonely: { emoji: '💧', quote: 'Echoes in the void feel loud…' },
+const moodDisplayMap: Record<string, { quote: string }> = {
+  happy: {quote: 'Feeling bright like a nebula today!' },
+  sad: {quote: 'Even stars dim sometimes.' },
+  tired: { quote: 'Recharge mode... drifting through space.' },
+  focused: { quote: 'Locked onto the mission... calculating!' },
+  playful: { quote: 'Boop! Just a little space wiggle!' },
+  angry: { quote: 'Inking mad right now. Give me a sec.' },
+  idle: { quote: 'Just floating through the void~' },
+  anxious: { quote: 'Wiggling with worry bubbles…' },
+  inspired: { quote: 'A brilliant idea just hatched!' },
+  lonely: { quote: 'Echoes in the void feel loud…' },
 };
 
 interface MoodBubbleProps {
@@ -26,8 +26,7 @@ const MoodBubble: React.FC<MoodBubbleProps> = ({ mood }) => {
 
   return (
     <div className={styles.bubbleContainer}>
-      <div className={styles.emoji}>{display.emoji}</div>
-      <div className={styles.quote}>{display.quote}</div>
+           <div className={styles.quote}>{display.quote}</div>
     </div>
   );
 };
