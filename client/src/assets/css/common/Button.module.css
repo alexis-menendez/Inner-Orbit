@@ -153,6 +153,10 @@
   background-color: #400a6b;
 }
 
+.actionActive {
+  background-color: #3abbbd !important;
+}
+
 .add {
   background-color: #400a6b;
 }
@@ -173,7 +177,7 @@
 }
 
 .modeButtonActive {
-  background-color: #3abbbd;
+  background-color: #3abbbd !important;
 }
 
 /*  === Tracker Button Styles ===  */
