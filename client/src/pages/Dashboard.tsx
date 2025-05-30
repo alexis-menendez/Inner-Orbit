@@ -34,7 +34,6 @@ const Dashboard: React.FC = () => {
           <h2>Task Timer</h2>
         </div>
         <FocusTaskList onTaskAdd={() => {
-          // Optional: You can handle something here later
         }} />
       </div>
 
@@ -43,13 +42,10 @@ const Dashboard: React.FC = () => {
         <div className="w-full sm:w-1/2">
           <PomodoroTimer
             onPomodoroStart={() => {
-              // Optional: Handle dashboard-specific logic here
             }}
             onPomodoroEnd={() => {
-              // Optional: Handle dashboard-specific logic here
             }}
             onBreakStart={() => {
-              // Optional: Handle dashboard-specific logic here
             }}
           />
         </div>

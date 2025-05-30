@@ -17,8 +17,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
   onBreakStart
 }) => {
   const { getSelectedTask } = useTaskStore();
-const task: Task | null = getSelectedTask(); //
-
+  const task: Task | null = getSelectedTask();
 
   const WORK_DURATION = 25 * 60;
   const BREAK_DURATION = 5 * 60;
@@ -37,6 +36,7 @@ const task: Task | null = getSelectedTask(); //
       .padStart(2, '0')}`;
 
   const switchMode = (label: string, duration: number) => {
+    console.log(`Switching mode to: ${label}, duration: ${duration}s`);
     pauseTimer();
     setSecondsLeft(duration);
     setInitialTime(duration);
@@ -55,7 +55,16 @@ const task: Task | null = getSelectedTask(); //
   };
 
   const startTimer = () => {
-    if (intervalRef.current) return;
+    console.log("Start button clicked");
+
+    // ✅ Always clear stale interval
+    if (intervalRef.current) {
+      console.log("Clearing stale interval");
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    console.log("Timer started");
 
     if (modeLabel.toLowerCase().includes("work")) {
       onPomodoroStart?.();
@@ -63,6 +72,8 @@ const task: Task | null = getSelectedTask(); //
 
     intervalRef.current = setInterval(() => {
       setSecondsLeft((prev) => {
+        console.log(`Tick: ${prev} seconds left`);
+
         if (prev === 1) {
           clearInterval(intervalRef.current!);
           intervalRef.current = null;
@@ -81,12 +92,14 @@ const task: Task | null = getSelectedTask(); //
   };
 
   const pauseTimer = () => {
+    console.log("Timer paused");
     clearInterval(intervalRef.current!);
     intervalRef.current = null;
     setIsRunning(false);
   };
 
   const resetTimer = () => {
+    console.log("Timer reset");
     pauseTimer();
     setSecondsLeft(initialTime);
   };
@@ -97,11 +110,15 @@ const task: Task | null = getSelectedTask(); //
     };
   }, []);
 
-  const progress = ((initialTime - secondsLeft) / initialTime) * 100;
+  // ✅ NEW: log mode changes
+  useEffect(() => {
+    console.log("modeLabel changed:", modeLabel);
+  }, [modeLabel]);
 
-  return (
-    <div className={styles.timerContainer}>
+  const progress = initialTime > 0 ? ((initialTime - secondsLeft) / initialTime) * 100 : 0;
 
+return (
+  <div className={styles.timerContainer}>
       <div className={buttonStyles.buttonGroup}>
         <button
           onClick={() => switchMode('Work Time', WORK_DURATION)}
@@ -152,6 +169,21 @@ const task: Task | null = getSelectedTask(); //
         <button className={buttonStyles.action} onClick={resetTimer}>
           Reset
         </button>
+
+<button
+  onClick={() => console.log("Test button clicked")}
+  style={{
+    padding: "0.5rem 1rem",
+    backgroundColor: "#333",
+    color: "#fff",
+    zIndex: 9999,
+    position: 'relative',
+    pointerEvents: 'auto'
+  }}
+>
+  Test Button
+</button>
+
       </div>
     </div>
   );
