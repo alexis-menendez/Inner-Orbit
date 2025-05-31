@@ -40,10 +40,17 @@ const NavBar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-<button className={styles.navLinkItem} onClick={logout} type="button">
-  Logout
-</button>
-
+          <NavLink
+            to="/library"
+            className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
+          >
+            Library
+          </NavLink>
+        </li>
+        <li>
+          <button className={styles.navLinkItem} onClick={logout} type="button">
+            Logout
+          </button>
         </li>
       </ul>
     </nav>
