@@ -1,26 +1,48 @@
 // File: client/src/components/dashboard/weekly/MoodNotes.tsx
 
 import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
 import styles from '../../../assets/css/tracker/Tracker.module.css';
 import buttonStyles from '../../../assets/css/common/Button.module.css';
 import formStyles from '../../../assets/css/common/Form.module.css';
 
+export const UPDATE_MOOD_NOTE = gql`
+  mutation UpdateMoodNote($_id: ID!, $note: String!) {
+    updateMoodNote(_id: $_id, note: $note) {
+      _id
+      note
+    }
+  }
+`;
+
 interface MoodNotesProps {
+  _id: string;
   date: string;
   note: string;
   onNoteChange: (note: string) => void;
   onClose: () => void;
-  onSave: () => void;
+  onSave: (newNote: string) => void; 
 }
 
 const MoodNotes: React.FC<MoodNotesProps> = ({
+  _id,
   date,
   note,
   onNoteChange,
   onClose,
-  onSave,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [updateMoodNote] = useMutation(UPDATE_MOOD_NOTE);
+
+  const handleSave = async () => {
+    try {
+      await updateMoodNote({ variables: { _id, note } });
+    } catch (err) {
+      console.error('Failed to update mood note:', err);
+    }
+    setIsEditing(false);
+    onClose();
+  };
 
   return (
     <div className={styles.moodNotesModal}>
@@ -57,30 +79,35 @@ const MoodNotes: React.FC<MoodNotesProps> = ({
           </>
         ) : (
           <>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-            <label htmlFor="moodNote" style={{ marginBottom: '0.5rem' }}></label>
-            <textarea
-              id="moodNote"
-              value={note}
-              onChange={(e) => onNoteChange(e.target.value)}
-              className={formStyles.input}
-              rows={6}
-              placeholder="Write about your mood..."
+            <div
               style={{
-                resize: 'none',
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                marginBottom: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                 width: '100%',
-                maxWidth: '100%',
               }}
-            />
-          </div>
+            >
+              <label htmlFor="moodNote" style={{ marginBottom: '0.5rem' }}></label>
+              <textarea
+                id="moodNote"
+                value={note}
+                onChange={(e) => onNoteChange(e.target.value)}
+                className={formStyles.input}
+                rows={6}
+                placeholder="Write about your mood..."
+                style={{
+                  resize: 'none',
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                  width: '100%',
+                  maxWidth: '100%',
+                }}
+              />
+            </div>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
               <button
-                onClick={() => {
-                  setIsEditing(false);
-                  onSave();
-                }}
+                onClick={handleSave}
                 className={`${buttonStyles.button} ${buttonStyles.primary}`}
               >
                 Save

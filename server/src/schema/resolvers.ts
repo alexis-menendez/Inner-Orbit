@@ -93,6 +93,7 @@ const resolvers: IResolvers = {
       return results;
     },
 
+
 // JOURNAL
 
     // Fetch all journal entries for a specific user
@@ -426,6 +427,26 @@ updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { use
     };
   }
 },
+
+// Update only the note field of a mood entry
+updateMoodNote: async (_: any, { _id, note }: { _id: string; note: string }, { user }) => {
+  if (!user) throw new Error("Not authenticated");
+
+  try {
+    const entry = await MoodEntry.findById(_id);
+    if (!entry) throw new Error("Mood entry not found.");
+    if (entry.userId.toString() !== user._id.toString()) throw new Error("Unauthorized.");
+
+    entry.note = note;
+    await entry.save();
+
+    return entry;
+  } catch (err) {
+    console.error("Error updating mood note:", err);
+    throw new Error("Failed to update mood note.");
+  }
+},
+
 
 // Delete a mood entry
 deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {

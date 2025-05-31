@@ -1,7 +1,8 @@
 // File: client/src/components/dashboard/weekly/WeeklyMoodCalendar.tsx
 
 import React, { useMemo, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_MOOD_NOTE } from '../../../graphql/mutations';
 import { useAuth } from '../../../context/authContext';
 import { GET_MOOD_ENTRIES } from '../../../graphql/queries';
 import MoodNotes from './MoodNotes';
@@ -30,6 +31,9 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
   const userId = user?.id;
   const [selectedNote, setSelectedNote] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const [updateMoodNote] = useMutation(UPDATE_MOOD_NOTE);
 
   const today = new Date();
   const startOfWeek = new Date(today);
@@ -97,9 +101,10 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
             onClick={() => {
               if (entries.length > 0) {
                 const noted = entries.find(e => typeof e.note === 'string');
-                if (noted?.note) {
-                  setSelectedNote(noted.note);
+                if (noted) {
+                  setSelectedNote(noted.note || '');
                   setSelectedDate(dateStr);
+                  setSelectedId(noted._id);
                 }
               }
             }}
@@ -129,18 +134,27 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
         );
       })}
 
-      {selectedDate && (
+      {selectedDate && selectedId && (
         <MoodNotes
+          _id={selectedId} 
           date={selectedDate}
           note={selectedNote}
           onNoteChange={(newNote: string) => setSelectedNote(newNote)}
           onClose={() => {
             setSelectedDate(null);
             setSelectedNote('');
+            setSelectedId(null);
           }}
-          onSave={() => {
+          onSave={async (newNote: string) => {
+            if (!selectedId) return;
+            try {
+              await updateMoodNote({ variables: { _id: selectedId, note: newNote } });
+            } catch (err) {
+              console.error('Error updating note:', err);
+            }
             setSelectedDate(null);
             setSelectedNote('');
+            setSelectedId(null);
           }}
         />
       )}
