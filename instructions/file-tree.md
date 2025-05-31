@@ -151,7 +151,7 @@ InnerOrbit/
 │   │   │   ├── Library.tsx         
 │   │   │   ├── NotFound.tsx        (not yet created) 
 │   │   │   ├── Tracker.tsx         
-│   │   │   └── UserProfile.tsx     (not yet created)       
+│   │   │   └── UserProfile.tsx      
 │   │   │
 │   │   ├── utils/
 │   │   │   ├── API.ts 

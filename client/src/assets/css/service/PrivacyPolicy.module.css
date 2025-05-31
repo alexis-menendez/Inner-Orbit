@@ -2,7 +2,7 @@
 
 .privacySection {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 100;
   color: white;
 
@@ -86,7 +86,7 @@
 
 .paragraph {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 100;
   color: white;
   line-height: 1.6;

@@ -19,6 +19,8 @@ import Privacy from './components/home/Privacy';
 import Dashboard from './pages/Dashboard';
 import Tracker from './pages/Tracker';
 import Library from './pages/Library';
+import UserProfile from './pages/UserProfile';
+
 
 // Components
 import SquidDev from './components/dashboard/pet/dev/SquidDev';
@@ -29,7 +31,6 @@ import Constellation from './components/journal/Constellation';
 import ViewJournal from './components/journal/ViewJournal'; 
 
 // TODO pages (not yet created):                 
-// import UserProfile from './pages/UserProfile';          --->  not yet created
 // import NotFound from './pages/NotFound';                --->  not yet created
 
 const App: React.FC = () => {
@@ -76,6 +77,14 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <SquidDev />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
               </ProtectedRoute>
             }
           />
