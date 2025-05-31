@@ -40,9 +40,10 @@ const NavBar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <button className={styles.navLinkItem} onClick={logout}>
-            Logout
-          </button>
+<button className={styles.navLinkItem} onClick={logout} type="button">
+  Logout
+</button>
+
         </li>
       </ul>
     </nav>
