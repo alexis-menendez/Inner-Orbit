@@ -1,7 +1,6 @@
-// File: client/src/components/dashboard/pomodoro/PomodoroTimer.tsx
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Task, useTaskStore } from '../../../hooks/useTaskStore';
+import TimerSettings from './TimerSettings';
 import styles from '../../../assets/css/dashboard/PomodoroTimer.module.css';
 import buttonStyles from '../../../assets/css/common/Button.module.css';
 
@@ -29,9 +28,12 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
   const [modeLabel, setModeLabel] = useState('5 Min Task');
   const [initialTime, setInitialTime] = useState(TASK_5_MIN);
 
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [showSettings, setShowSettings] = useState(false);
+  const [soundSrc, setSoundSrc] = useState('/assets/audio/timer-end.mp3');
+  const [volume, setVolume] = useState(1);
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
-  const endSound = new Audio('/assets/audio/timer-end.mp3');
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const formatTime = (secs: number) =>
     `${Math.floor(secs / 60).toString().padStart(2, '0')}:${(secs % 60)
@@ -72,9 +74,13 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
           clearInterval(intervalRef.current!);
           intervalRef.current = null;
 
-          endSound.play().catch((e) => {
-            console.warn('Failed to play end sound:', e);
-          });
+          if (soundEnabled) {
+            const endSound = new Audio(soundSrc);
+            endSound.volume = volume;
+            endSound.play().catch((e) => {
+              console.warn('Failed to play end sound:', e);
+            });
+          }
 
           if (modeLabel.toLowerCase().includes("task")) {
             onPomodoroEnd?.();
@@ -173,6 +179,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
           </text>
         </svg>
       </div>
+
       <div className={buttonStyles.buttonGroup}>
         <button
           className={`${buttonStyles.action} ${isRunning ? buttonStyles.actionActive : ''}`}
@@ -189,7 +196,22 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({
         <button className={buttonStyles.action} onClick={resetTimer}>
           Reset
         </button>
+        <button className={buttonStyles.action} onClick={() => setShowSettings(true)}>
+          Settings
+        </button>
       </div>
+
+      {showSettings && (
+        <TimerSettings
+          currentVolume={volume}
+          soundEnabled={soundEnabled}
+          currentSound={soundSrc}
+          onClose={() => setShowSettings(false)}
+          onVolumeChange={setVolume}
+          onToggleSound={setSoundEnabled}
+          onSoundChange={setSoundSrc}
+        />
+      )}
     </div>
   );
 };

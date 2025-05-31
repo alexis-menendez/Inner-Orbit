@@ -1,12 +1,14 @@
-// File: client/src/components/dashboard/WeeklyMoodCalendar.tsx
+// File: client/src/components/dashboard/weekly/WeeklyMoodCalendar.tsx
 
 import React, { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { useAuth } from '../../context/authContext';
-import { GET_MOOD_ENTRIES } from '../../graphql/queries';
-import styles from '../../assets/css/dashboard/Dashboard.module.css';
-import formStyles from '../../assets/css/common/Form.module.css';
-import buttonStyles from '../../assets/css/common/Button.module.css';
+import { useAuth } from '../../../context/authContext';
+import { GET_MOOD_ENTRIES } from '../../../graphql/queries';
+import MoodNotes from './MoodNotes';
+import trackerStyles from '../../../assets/css/tracker/Tracker.module.css';
+import dashboardStyles from '../../../assets/css/dashboard/Dashboard.module.css';
+import formStyles from '../../../assets/css/common/Form.module.css';
+import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 interface MoodEntry {
   _id: string;
@@ -26,7 +28,8 @@ interface WeeklyMoodReviewProps {
 const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horizontal }) => {
   const { user } = useAuth();
   const userId = user?.id;
-  const [selectedNote, setSelectedNote] = useState<string | null>(null);
+  const [selectedNote, setSelectedNote] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   const today = new Date();
   const startOfWeek = new Date(today);
@@ -75,7 +78,7 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className={`${styles.weeklyReviewContainer} ${horizontal ? styles.weeklyReviewHorizontal : ''}`}>
+    <div className={`${dashboardStyles.weeklyReviewContainer} ${horizontal ? dashboardStyles.weeklyReviewHorizontal : ''}`}>
       {dateStrings.map((dateStr) => {
         const entries = moodMap[dateStr] || [];
         const dateObj = new Date(dateStr);
@@ -85,22 +88,25 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horiz
         return (
           <div
             key={dateStr}
-            className={`${styles.weeklyMoodCell} ${entries.length === 0 ? styles.emptyMoodCell : styles.filledMoodCell}`}
+            className={`${dashboardStyles.weeklyMoodCell} ${entries.length === 0 ? dashboardStyles.emptyMoodCell : dashboardStyles.filledMoodCell}`}
             style={{
               background: entries.length > 0 ? getMoodGradient(entries) : '#1e293b',
               opacity: entries.length > 0 ? 1 : 0.4,
               cursor: entries.some(e => e.note) ? 'pointer' : 'default',
             }}
-onClick={() => {
-  if (entries.length > 0) {
-    const noted = entries.find(e => typeof e.note === 'string');
-    setSelectedNote(noted?.note ?? '');
-  }
-}}
+            onClick={() => {
+              if (entries.length > 0) {
+                const noted = entries.find(e => typeof e.note === 'string');
+                if (noted?.note) {
+                  setSelectedNote(noted.note);
+                  setSelectedDate(dateStr);
+                }
+              }
+            }}
           >
-            <div className={styles.weeklyMoodDay}>{day}</div>
-            <div className={styles.weeklyMoodDate}>{shortDate}</div>
-            <div className={styles.weeklyMoodList}>
+            <div className={dashboardStyles.weeklyMoodDay}>{day}</div>
+            <div className={dashboardStyles.weeklyMoodDate}>{shortDate}</div>
+            <div className={dashboardStyles.weeklyMoodList}>
               {entries.length > 0 ? (
                 entries.map((e, i) => <div key={i}>{e.mood}</div>)
               ) : (
@@ -108,7 +114,7 @@ onClick={() => {
               )}
             </div>
             {entries.length > 0 && (
-              <div className={styles.weeklyMoodBar}>
+              <div className={dashboardStyles.weeklyMoodBar}>
                 <div
                   style={{
                     width: `${(entries.reduce((sum, e) => sum + e.intensity, 0) / entries.length / 10) * 100}%`,
@@ -123,28 +129,21 @@ onClick={() => {
         );
       })}
 
-        {selectedNote && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-            <div className={formStyles.weeklyNoteWrapper}>
-              <div className={formStyles.formContainer}>
-                <div className={formStyles.weeklyNoteModal}>
-                  <h2 className={formStyles.weeklyNoteTitle}>Notes</h2>
-<p className={formStyles.weeklyNoteText}>
-  {selectedNote?.trim()
-    ? selectedNote
-    : <em>No notes for this entry</em>}
-</p>
-                  <button
-                    className={`${buttonStyles.button} ${buttonStyles.secondary}`}
-                    onClick={() => setSelectedNote(null)}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+      {selectedDate && (
+        <MoodNotes
+          date={selectedDate}
+          note={selectedNote}
+          onNoteChange={(newNote: string) => setSelectedNote(newNote)}
+          onClose={() => {
+            setSelectedDate(null);
+            setSelectedNote('');
+          }}
+          onSave={() => {
+            setSelectedDate(null);
+            setSelectedNote('');
+          }}
+        />
+      )}
     </div>
   );
 };

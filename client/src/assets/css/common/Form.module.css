@@ -177,7 +177,7 @@ input[type="date"]::-moz-calendar-picker-indicator {
   justify-content: center;
   backdrop-filter: blur(12px);         
   -webkit-backdrop-filter: blur(12px);  
-  background: rgba(0, 0, 0, 0.3); /* translucent black box */
+  background: rgba(0, 0, 0, 0.3); 
   padding: 1.5rem;
   border-radius: 1rem;
   width: 100%;

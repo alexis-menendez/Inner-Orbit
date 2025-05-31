@@ -1,7 +1,7 @@
 // file: client/src/components/dashboard/pet/dev/SquidDev.tsx
 
 import React, { useEffect, useState } from "react";
-import WeeklyMoodReview from "../../WeeklyMoodCalendar";
+import WeeklyMoodReview from "../../weekly/WeeklyMoodCalendar";
 import PomodoroTimer from "../../pomodoro/PomodoroTimer";
 import FocusTaskList from "../../pomodoro/FocusTaskList";
 import SquidPet from "../SquidPet";

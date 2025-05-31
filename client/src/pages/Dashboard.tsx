@@ -1,7 +1,7 @@
 // File: client/src/pages/Dashboard.tsx
 
 import React, { useState } from "react";
-import WeeklyMoodReview from "../components/dashboard/WeeklyMoodCalendar";
+import WeeklyMoodReview from "../components/dashboard/weekly/WeeklyMoodCalendar";
 import PomodoroTimer from "../components/dashboard/pomodoro/PomodoroTimer";
 import FocusTaskList from "../components/dashboard/pomodoro/FocusTaskList";
 import pageStyles from "../assets/css/dashboard/Dashboard.module.css";
