@@ -1,5 +1,3 @@
-// File: src/components/nav/NavBar.tsx
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
@@ -45,6 +43,8 @@ const NavBar: React.FC = () => {
             className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
           >
             Library
+          </NavLink>
+        </li>
         <li>
           <NavLink
             to="/account"
