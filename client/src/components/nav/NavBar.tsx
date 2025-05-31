@@ -39,11 +39,19 @@ const NavBar: React.FC = () => {
             Tracker
           </NavLink>
         </li>
-        <li>
-<button className={styles.navLinkItem} onClick={logout} type="button">
-  Logout
-</button>
 
+        <li>
+          <NavLink
+            to="/account"
+            className={({ isActive }) => isActive ? `${styles.navLinkItem} ${styles.active}` : styles.navLinkItem}
+          >
+            Account
+          </NavLink>
+        </li>
+        <li>
+          <button className={styles.navLinkItem} onClick={logout} type="button">
+            Logout
+          </button>
         </li>
       </ul>
     </nav>

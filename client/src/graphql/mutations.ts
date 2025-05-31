@@ -158,3 +158,28 @@ export const UPDATE_MOOD_NOTE = gql`
     }
   }
 `;
+
+// === USER PROFILE ===
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $id: ID!
+    $username: String
+    $email: String
+    $password: String
+    $newPassword: String
+  ) {
+    updateUser(
+      id: $id
+      username: $username
+      email: $email
+      password: $password
+      newPassword: $newPassword
+    ) {
+      _id
+      username
+      email
+    }
+  }
+`;
+

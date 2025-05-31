@@ -64,7 +64,7 @@
   color: #1e1e2f;
   padding: 0.75rem 1.25rem;
   border-radius: 1rem;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-style: italic;
   max-width: 300px;
   text-align: center;
@@ -152,12 +152,12 @@
 }
 
 .weeklyMoodDay {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
   font-weight: 600;
 }
 
 .weeklyMoodDate {
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 1vw, 1rem);
   margin-bottom: 0.25rem;
 }
 
@@ -165,7 +165,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.95vw, 1rem);
   font-weight: 500;
   gap: 0.25rem;
 }

@@ -248,6 +248,52 @@ const resolvers: IResolvers = {
       }
     },
 
+        // Update user profile (username, email, and/or password)
+        updateUser: async (
+          _: any,
+          {
+            id,
+            username,
+            email,
+            password,
+            newPassword,
+          }: {
+            id: string;
+            username?: string;
+            email?: string;
+            password?: string;
+            newPassword?: string;
+          }
+        ) => {
+      const user = await User.findById(id);
+      if (!user) throw new Error("User not found");
+
+      // If attempting to change password, validate current password
+      if (newPassword) {
+        if (!password) {
+          throw new Error("Current password is required to change password.");
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          throw new Error("Current password is incorrect.");
+        }
+
+        user.password = await bcrypt.hash(newPassword, 10);
+      }
+
+      if (username) user.username = username;
+      if (email) user.email = email;
+
+      await user.save();
+
+      return {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      };
+    },
+
 // JOURNAL
 
     // Create a new journal entry

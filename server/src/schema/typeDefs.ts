@@ -164,6 +164,15 @@ const typeDefs = gql`
       deleteJournalEntry(id: ID!): Boolean
     }
 
+    extend type Mutation {
+      updateUser(id: ID!
+        username: String
+        email: String
+        password: String
+        newPassword: String
+      ): User!
+    }
+
   `;
 
 export default typeDefs;
