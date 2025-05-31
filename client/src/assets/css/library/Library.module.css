@@ -1,0 +1,42 @@
+/* file: client/assets/css/library/Library.module.css */
+
+.libraryPage {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.libraryTitle {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.videoPlayer {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 0.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.comingSoon {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.sectionDivider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, #a855f7, #6366f1, #06b6d4);
+  opacity: 0.3;
+  margin: 3rem 0;
+}
