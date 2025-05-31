@@ -21,7 +21,6 @@ export const moodList: Mood[] = [
   // 1. Connection / Love – Shades of Magenta (Reddish Violet)
   { id: 'affectionate', label: 'Affectionate', color: 'rgba(236, 64, 122, 0.85)' },
   { id: 'connected', label: 'Connected', color: 'rgba(231, 84, 128, 0.85)' },
-  { id: 'horny', label: 'Horny', color: 'rgba(136, 14, 79, 0.85)' },
   { id: 'intimate', label: 'Intimate', color: 'rgba(194, 24, 91, 0.85)' },
   { id: 'loved', label: 'Loved', color: 'rgba(212, 61, 110, 0.85)' },
   { id: 'tender', label: 'Tender', color: 'rgba(173, 20, 87, 0.85)' },

@@ -154,6 +154,7 @@ const typeDefs = gql`
       addMoodEntry(input: CreateMoodInput!): CreateMoodPayload!
       updateMoodEntry(id: ID!, input: UpdateMoodInput!): UpdateMoodPayload!
       deleteMoodEntry(id: ID!): Boolean
+      updateMoodNote(_id: ID!, note: String!): MoodEntry
     }
 
     extend type Mutation {

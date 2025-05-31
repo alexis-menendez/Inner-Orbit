@@ -54,7 +54,7 @@ const Constellation: React.FC = () => {
       <StarBackground starCount={80} />
 
       <div className="flex flex-col items-center w-full min-h-[calc(100vh-6rem)] px-4 pb-10">
-        <div className="w-full flex justify-start mb-4">
+        <div className={buttonStyles.createButtonWrapper}>
           <button
             onClick={() => navigate(-1)}
             className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
@@ -62,15 +62,37 @@ const Constellation: React.FC = () => {
             ← Back to Galaxy
           </button>
         </div>
-        <h2 style={{ color: 'white', textAlign: 'center', marginBottom: '1rem' }}>
-          {constellation.name}
-        </h2>
+<h2 style={{ color: 'white', textAlign: 'center', marginBottom: '1rem' }}>
+  {entriesInConstellation.length === constellation.stars.length ? constellation.name : '???'}
+</h2>
 
         <svg
           className={styles.constellationSVG}
           viewBox={`0 0 100 ${viewBoxHeight}`}
           preserveAspectRatio="xMidYMid meet"
         >
+          <defs>
+            <filter id="blueGlow" x="-75%" y="-75%" width="300%" height="300%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur" />
+              <feFlood flood-color="#3b82f6" flood-opacity="1" result="color" />
+              <feComposite in="color" in2="blur" operator="in" result="glow" />
+              <feMerge>
+                <feMergeNode in="glow" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+
+            <filter id="whiteGlow" x="-75%" y="-75%" width="300%" height="300%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+              <feFlood flood-color="white" flood-opacity="0.8" result="color" />
+              <feComposite in="color" in2="blur" operator="in" result="glow" />
+              <feMerge>
+                <feMergeNode in="glow" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
           {/* Render only valid connections between existing entries */}
           {constellation.connections.map(([start, end], idx) => {
             if (
@@ -98,8 +120,6 @@ const Constellation: React.FC = () => {
           {/* Render stars with entries */}
           {entriesInConstellation.map((entry: { title: string }, i: number) => {
             const star = constellation.stars[i];
-            const entryIndex = baseEntryIndex + i;
-
             return (
               <g key={`star-group-${i}`}>
                 <circle
@@ -107,38 +127,50 @@ const Constellation: React.FC = () => {
                   cy={star.y}
                   r={star.size ?? 1}
                   className={`${styles.star} ${hoveredIndex === i ? styles['star-hover'] : ''}`}
+                  filter={hoveredIndex === i ? 'url(#blueGlow)' : 'url(#whiteGlow)'}
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => navigate(`/journal/entry/${index}-${i}`)}
-                  style={{ pointerEvents: 'all' }}
+                  style={{
+                    pointerEvents: 'all',
+                    animationDelay: `${Math.random() * 2.5}s`,
+                  }}
                 />
-                {hoveredIndex === i && (
-                  <foreignObject
-                    x={Math.min(star.x + 1, 85)}
-                    y={Math.max(star.y - 5, 0)}
-                    width={40}
-                    height={80}
-                    style={{ overflow: 'visible', pointerEvents: 'none' }}
-                  >
-                    <div
-                      style={{
-                        fontSize: '1.5px',
-                        color: 'white',
-                        background: 'rgba(60, 20, 80, 0.9)',
-                        padding: '1px 2px',
-                        borderRadius: '0.5vw',
-                        wordWrap: 'break-word',
-                        maxWidth: '50%',
-                        lineHeight: '1.2',
-                      }}
-                    >
-                      {entry.title}
-                    </div>
-                  </foreignObject>
-                )}
               </g>
             );
           })}
+
+          {/* Render tooltip LAST so it appears on top */}
+          {hoveredIndex !== null && (() => {
+            const star = constellation.stars[hoveredIndex];
+            const entry = entriesInConstellation[hoveredIndex];
+            return (
+              <foreignObject
+                x={Math.min(star.x + 1, 85)}
+                y={Math.max(star.y - 5, 0)}
+                width={40}
+                height={80}
+                style={{ overflow: 'visible', pointerEvents: 'none' }}
+              >
+                <div
+                  style={{
+                    fontSize: '4px',
+                    color: 'white',
+                    background: 'rgba(60, 20, 80, 0.9)',
+                    padding: '1px 2px',
+                    borderRadius: '0.5vw',
+                    wordWrap: 'break-word',
+                    maxWidth: '50%',
+                    lineHeight: '1.2',
+                    zIndex: 10,
+                    position: 'relative',
+                  }}
+                >
+                  {entry.title}
+                </div>
+              </foreignObject>
+            );
+          })()}
         </svg>
       </div>
     </div>

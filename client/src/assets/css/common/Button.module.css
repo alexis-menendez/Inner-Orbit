@@ -55,7 +55,7 @@
 }
 
 .primary:hover {
-  background-color: #e7dffd; 
+  background-color: #b98dff; 
   color: #000000;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .secondary:hover {
-  background-color: #1a0d2e;
+  background-color: #351c5b;
   color: rgb(255, 255, 255);
 }
 
@@ -118,7 +118,7 @@
 
 /*  === Pomdoro Timer Button Styles ===  */
 /* Apply to all PomodoroTimer button styles */
-.buttonGroup button,
+.buttonGroup button, .buttonGroup,
 .action,
 .add,
 .delete,
@@ -133,9 +133,14 @@
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem;
+  row-gap: .5rem; 
 }
 
-.buttonGroup button:hover,
+.buttonGroup button:hover, .buttonGroup:hover,
 .action:hover,
 .add:hover,
 .delete:hover,
@@ -145,12 +150,20 @@
   transform: scale(1.1);
 }
 
+.buttonGroup {
+  background-color: transparent;
+}
+
 .buttonGroup button {
   background-color: #400a6b;
 }
 
 .action {
   background-color: #400a6b;
+}
+
+.actionActive {
+  background-color: #3abbbd !important;
 }
 
 .add {
@@ -173,7 +186,7 @@
 }
 
 .modeButtonActive {
-  background-color: #3abbbd;
+  background-color: #3abbbd !important;
 }
 
 /*  === Tracker Button Styles ===  */
@@ -236,4 +249,11 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 400;
   color: pink;
+}
+
+/*  === Journal Button Styles ===  */
+.createButtonWrapper {
+  display: flex;
+  justify-content: center !important;
+  margin-top: 3rem !important; 
 }

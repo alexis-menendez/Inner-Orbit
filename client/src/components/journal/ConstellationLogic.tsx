@@ -15,31 +15,30 @@ export interface Constellation {
 
 export const CONSTELLATIONS: Constellation[] = [
   {
-    name: "The Key",
-    description: "A winding shaft ending in a toothed edge—an ancient key to memory.",
-    stars: [
-      { x: 15, y: 31, size: .5 },  
-      { x: 26, y: 30, size: 1 },  
-      { x: 43, y: 29, size: 1.25 },  
-      { x: 51, y: 31, size: .5 },  
-      { x: 51, y: 47, size: 1 },  
-      { x: 58, y: 32, size: 1.25 }, 
-      { x: 57.5, y: 45, size: .5 },  
-      { x: 62, y: 30, size: 1 },  
-      { x: 62.5, y: 53, size: 1.25 },  
- 
-    ],
-        connections: [
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [3, 5],
-        [5, 6],
-        [5, 7],
-        [7, 8]
-        ]
-  },
+  name: "The Key",
+  description: "A winding shaft ending in a toothed edge—an ancient key to memory.",
+  stars: [
+    { x: 15, y: 71, size: 0.5 },
+    { x: 26, y: 70, size: 1 },
+    { x: 43, y: 69, size: 1.25 },
+    { x: 51, y: 71, size: 0.5 },
+    { x: 51, y: 87, size: 1 },
+    { x: 58, y: 72, size: 1.25 },
+    { x: 57.5, y: 85, size: 0.5 },
+    { x: 62, y: 70, size: 1 },
+    { x: 62.5, y: 93, size: 1.25 },
+  ],
+  connections: [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [3, 5],
+    [5, 6],
+    [5, 7],
+    [7, 8],
+  ],
+},
   {
     name: "The Candle",
     description: "A glowing light suspended in the dark, carried across galaxies.",

@@ -36,7 +36,7 @@ const MoodEntrySchema: Schema = new Schema(
       type: String,
       enum: [
         // 1. Connection / Love
-        'affectionate', 'connected', 'horny', 'intimate', 'loved', 'tender', 'warm',
+        'affectionate', 'connected', 'intimate', 'loved', 'tender', 'warm',
         // 2. Happy / Energized
         'excited', 'grateful', 'happy', 'hopeful', 'overjoyed',
         // 3. Motivated / Empowered

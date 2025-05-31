@@ -149,3 +149,12 @@ export const DELETE_MOOD_ENTRY = gql`
     deleteMoodEntry(id: $id)
   }
 `;
+
+export const UPDATE_MOOD_NOTE = gql`
+  mutation UpdateMoodNote($_id: ID!, $note: String!) {
+    updateMoodNote(_id: $_id, note: $note) {
+      _id
+      note
+    }
+  }
+`;

@@ -168,3 +168,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="date"]::-moz-calendar-picker-indicator {
   filter: invert(1);
 }
+
+/* === Weekly Note Modal Styling === */
+.weeklyNoteModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);         
+  -webkit-backdrop-filter: blur(12px);  
+  background: rgba(0, 0, 0, 0.3); 
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.weeklyNoteTitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.weeklyNoteText {
+  color: #f0f0f0;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  text-align: left;
+  white-space: pre-wrap;
+  margin-bottom: 1.5rem;
+}
+
+.weeklyNoteWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

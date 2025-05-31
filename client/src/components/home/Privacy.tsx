@@ -6,6 +6,7 @@ import styles from '../../assets/css/service/PrivacyPolicy.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import logoStyles from '../../assets/css/common/Logo.module.css';
 import TransparentStars from '../common/TransparentStars';
+import ShootingStar from '../common/ShootingStar';
 
 const Privacy = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Privacy = () => {
   return (
     <section className={styles.privacySection}>
       <TransparentStars /> 
+      <ShootingStar /> 
       <div className={styles.privacyCard}>
         <div className={styles.background}>
           <div className={styles.container}>

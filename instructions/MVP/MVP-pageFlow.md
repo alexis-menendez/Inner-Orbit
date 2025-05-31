@@ -51,5 +51,6 @@
 │ * view that days entry   │                               │ * view that entry          │  
 │     │                    │                               │     │                      │  
 │     ▼                    │                               │     ▼                      │  
-│ * edit that days entry   │                               │ * edit that entry          │                                               
-└──────────────────────────┘                               └────────────────────────────┘                    
+│ * edit that days entry   │                               │ * edit that entry          │                          │                          │                               │                            │                     
+└──────────────────────────┘                               └────────────────────────────┘    
+
