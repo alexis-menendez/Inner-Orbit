@@ -46,15 +46,18 @@ const Constellation: React.FC = () => {
   );
 
   const activeStars = constellation.stars.slice(0, entriesInConstellation.length);
+  const minY = Math.min(...activeStars.map(star => star.y));
   const maxY = Math.max(...activeStars.map(star => star.y));
-  const viewBoxHeight = Math.ceil(maxY + 5);
+  const viewBoxTop = Math.max(0, minY - 20); // Extra top padding
+  const viewBoxHeight = Math.ceil(maxY - viewBoxTop + 10);
 
   return (
     <div className={styles.sky}>
       <StarBackground starCount={80} />
 
-      <div className="flex flex-col items-center w-full min-h-[calc(100vh-6rem)] px-4 pb-10">
-        <div className={buttonStyles.createButtonWrapper}>
+      {/* Title and Back Button */}
+      <div className="w-full flex flex-col items-center pt-10">
+        <div className={`${buttonStyles.createButtonWrapper} z-10`}>
           <button
             onClick={() => navigate(-1)}
             className={`${buttonStyles.button} ${buttonStyles.secondary} ${buttonStyles.spaced}`}
@@ -62,13 +65,16 @@ const Constellation: React.FC = () => {
             ← Back to Galaxy
           </button>
         </div>
-<h2 style={{ color: 'white', textAlign: 'center', marginBottom: '1rem' }}>
-  {entriesInConstellation.length === constellation.stars.length ? constellation.name : '???'}
-</h2>
+        <h2 style={{ color: 'white', textAlign: 'center', marginTop: '1rem', marginBottom: '1rem' }}>
+          {entriesInConstellation.length === constellation.stars.length ? constellation.name : '???'}
+        </h2>
+      </div>
 
+      {/* SVG Constellation */}
+      <div className="flex flex-col items-center w-full min-h-[calc(100vh-6rem)] px-4 pb-10 relative z-0">
         <svg
           className={styles.constellationSVG}
-          viewBox={`0 0 100 ${viewBoxHeight}`}
+          viewBox={`0 ${viewBoxTop} 100 ${viewBoxHeight}`}
           preserveAspectRatio="xMidYMid meet"
         >
           <defs>
@@ -93,7 +99,6 @@ const Constellation: React.FC = () => {
             </filter>
           </defs>
 
-          {/* Render only valid connections between existing entries */}
           {constellation.connections.map(([start, end], idx) => {
             if (
               start < entriesInConstellation.length &&
@@ -117,7 +122,6 @@ const Constellation: React.FC = () => {
             return null;
           })}
 
-          {/* Render stars with entries */}
           {entriesInConstellation.map((entry: { title: string }, i: number) => {
             const star = constellation.stars[i];
             return (
@@ -140,7 +144,6 @@ const Constellation: React.FC = () => {
             );
           })}
 
-          {/* Render tooltip LAST so it appears on top */}
           {hoveredIndex !== null && (() => {
             const star = constellation.stars[hoveredIndex];
             const entry = entriesInConstellation[hoveredIndex];
