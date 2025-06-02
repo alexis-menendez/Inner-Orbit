@@ -122,7 +122,7 @@ If you have any questions, feel free to contact the team:
 
 #### Backend Developer: [**BACKEND-DEVELOPER-NAME**](https://BACKEND-LEAD-NAME.onrender.com/) Fullstack Developer, specializing in backend database building, and rendering to production.
 
-- **Website**: [Portfolio](https://zesty-sable-15428c.netlify.app/)
+- **Website**: [Portfolio](https://blainebishopportfolio.netlify.app/)
 - **LinkedIn**: [Blaine Bishop](https://www.linkedin.com/in/blainebishop/)
 - **GitHub**: [Halluc1nations](https://github.com/Halluc1nations)
 - **Email**: [Blaine.Bishop@comcast.net]
