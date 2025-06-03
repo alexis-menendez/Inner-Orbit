@@ -1,4 +1,4 @@
-# InnerOrbit: *Mood Journal, Mood Tracker, & Reflective Social Space*
+# InnerOrbit
 
 ## **Description**
 
