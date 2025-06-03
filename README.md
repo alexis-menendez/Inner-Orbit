@@ -40,8 +40,6 @@
 
 ## Screenshots
 
-## Screenshots
-
 ### Authentication
 ![landing-page](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/home.png?raw=true) 
 ![login](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/login.png?raw=true) 
