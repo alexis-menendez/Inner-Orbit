@@ -119,7 +119,7 @@ If you have any questions, feel free to contact the team:
 #### Backend Lead: [**Blake Brittain**](https://blakenb-portfolio.netlify.app/) – Full stack Developer
 
 - **Website**: [Blake's portfolio](https://blakenb-portfolio.netlify.app/)
-- **LinkedIn**: [in/blake-n-brittain/](https://www.linkedin.com/in/blake-n-brittain/)
+- **LinkedIn**: [in/blake-n-brittain](https://www.linkedin.com/in/blake-n-brittain/)
 - **GitHub**: [Blake Brittin](https://github.com/Blakenb)
 - **Email**: [Blakenb87@gmail.com](Blakenb87@gmail.com)
 
