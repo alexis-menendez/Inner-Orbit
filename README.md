@@ -48,7 +48,7 @@
 ![register](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/register.png?raw=true) 
 
 ### User Settings
-![account](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/accounte.png?raw=true) 
+![account](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/account.png?raw=true) 
 ![terms](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/terms.png?raw=true) 
 ![privacy-policy](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/privacy.png?raw=true) 
 
