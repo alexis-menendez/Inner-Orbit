@@ -40,7 +40,33 @@
 
 ## Screenshots
 
-![projectscreenshot](LINK-GOES-HERE!)  **(DO NOT FORGET TO UPDATE THIS!)**  
+## Screenshots
+
+### Authentication
+![landing-page](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/home.png?raw=true) 
+![login](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/login.png?raw=true) 
+![register](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/register.png?raw=true) 
+
+### User Settings
+![account](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/accounte.png?raw=true) 
+![terms](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/terms.png?raw=true) 
+![privacy-policy](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/privacy.png?raw=true) 
+
+### Multimedia Library
+![library](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/library.png?raw=true) 
+
+### Dashboard
+![dashboard](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/dashboard.png?raw=true) 
+![timer](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/timer.png?raw=true) 
+![timer-settings](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/timer-settings.png?raw=true) 
+
+### Mood Tracker
+![mood-tracker](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/tracker.png?raw=true) 
+
+### Journal
+![journal-galaxy](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/journal-galaxy.png?raw=true) 
+![journal-constellation](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/journal-constellation.png?raw=true) 
+![journal-notebook](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/journal-notebook.png?raw=true) 
 
 
 ## Live Demo
