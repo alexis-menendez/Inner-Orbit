@@ -112,21 +112,21 @@ If you have any questions, feel free to contact the team:
 #### Frontend Lead: [**Constance RobinE**](https://zomblic.netlify.app/) – Full stack Developer
 
 - **Website**: [Portfolio](https://zomblic.netlify.app/)
-- **LinkedIn**: [in/Constance](www.linkedin.com/in/constance-robin/)
+- **LinkedIn**: [in/constance-robin](www.linkedin.com/in/constance-robin/)
 - **GitHub**: [zomblic](https://github.com/zomblic)
 - **Email**: [zomblic@hotmail.com](https://zomblic.netlify.app/contact)
 
 #### Backend Lead: [**Blake Brittain**](https://blakenb-portfolio.netlify.app/) – Full stack Developer
 
 - **Website**: [Blake's portfolio](https://blakenb-portfolio.netlify.app/)
-- **LinkedIn**: [in/Blake Brittain](https://www.linkedin.com/in/blake-n-brittain/)
+- **LinkedIn**: [in/blake-n-brittain/](https://www.linkedin.com/in/blake-n-brittain/)
 - **GitHub**: [Blake Brittin](https://github.com/Blakenb)
 - **Email**: [Blakenb87@gmail.com](Blakenb87@gmail.com)
 
 #### Backend Developer: [**Blaine Bishop**](https://blainebishopportfolio.netlify.app/) – Fullstack Developer, specializing in backend database building, and rendering to production 
 
 - **Website**: [Portfolio](https://blainebishopportfolio.netlify.app/)
-- **LinkedIn**: [in/Blaine Bishop](https://www.linkedin.com/in/blainebishop/)
+- **LinkedIn**: [in/blainebishop](https://www.linkedin.com/in/blainebishop/)
 - **GitHub**: [Halluci1nations](https://github.com/Halluc1nations)
 - **Email**: Blaine.Bishop@comcast.net
 
