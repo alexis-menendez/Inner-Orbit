@@ -27,8 +27,6 @@
         "dev:start:client": "cd client && npm run dev",
         "dev:install:build:start": "npm run install:all && npm run build:all && npm run dev:start:all",
         "dev:clean:install:build:start": "npm run clean:all && npm run dev:install:build:start",
-        "dev:install:build:seed:start": "npm run install:all && npm run build:all && npm run seed && npm run dev:start:all",
-        "dev:clean:install:build:seed:start": "npm run clean:all && npm run dev:install:build:seed:start",
         "paid:render-build": "npm run install:all",
         "paid:render-pre-start": "npm run build:all",
         "paid:render-start": "npm run start:all",
