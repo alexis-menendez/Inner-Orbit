@@ -120,7 +120,7 @@ If you have any questions, feel free to contact the team:
 
 - **Website**: [Blake's portfolio](https://blakenb-portfolio.netlify.app/)
 - **LinkedIn**: [in/blake-n-brittain](https://www.linkedin.com/in/blake-n-brittain/)
-- **GitHub**: [Blake Brittin](https://github.com/Blakenb)
+- **GitHub**: [Blakenb](https://github.com/Blakenb)
 - **Email**: [Blakenb87@gmail.com](Blakenb87@gmail.com)
 
 #### Backend Developer: [**Blaine Bishop**](https://blainebishopportfolio.netlify.app/) – Fullstack Developer, specializing in backend database building, and rendering to production 
