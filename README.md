@@ -2,9 +2,9 @@
 
 ## **Description**
 
-**InnerOrbit** is a full-stack, responsive, and interactive single-page application built using the MERN stack with GraphQL and JWT authentication. This application solves a real-world problem using real data and is designed with a smooth user experience and polished, professional UI in mind. 
+**InnerOrbit** is a full-stack wellness platform built with the MERN stack, GraphQL, and JWT authentication. It supports users in understanding and reflecting on their emotions through a set of visually rich, thoughtfully designed tools. With a mobile-first UI and consent-based privacy model, InnerOrbit balances personal introspection with optional social interaction in a calm, creative digital space.
 
-**Concept:** InnerOrbit is a social ritual app — a place where users occasionally share glimpses of their mood or thoughts into a public “galaxy” while still maintaining control, anonymity, and consent.
+**Concept:** is a reflective mental health app centered on visual rituals. Users map moods onto a tracker, write private journal entries visualized as constellations, and care for a virtual pet that responds to their emotional patterns. Optional sharing allows users to publish selected entries into a shared “galaxy,” offering glimpses into collective experience while preserving anonymity and consent.
 
 **App Overview**
 * Mood Tracker: Calendar-based mood logging with color coding and editable daily entries.
