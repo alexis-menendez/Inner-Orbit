@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_MOOD_ENTRY, UPDATE_MOOD_ENTRY, DELETE_MOOD_ENTRY } from '../../graphql/mutations';
 import { moodList } from '../../models/Mood';
 import { useAuth } from '../../context/authContext';
+import MoodComboBox from './MoodComboBox';
 import formStyles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 import trackerStyles from '../../assets/css/tracker/Tracker.module.css';
@@ -64,13 +65,14 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
     }
 
     const moodColor = moodItem?.color || '#ccc';
+    const finalNote = note.trim() || 'No notes created for this entry';
 
     try {
       if (editingEntry?._id) {
         await updateMoodEntry({
           variables: {
             id: editingEntry._id,
-            input: { mood, intensity, note, moodColor },
+            input: { mood, intensity, note: finalNote, moodColor },
           },
         });
       } else {
@@ -81,7 +83,7 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
               date: date.toISOString(),
               mood,
               intensity,
-              note,
+              note: finalNote,
               moodColor,
             },
           },
@@ -147,9 +149,7 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
                   >
                     {capitalize(entry.mood)}
                   </p>
-                  <p className={trackerStyles.modalIntensityText}>
-                    Intensity {entry.intensity}
-                  </p>
+                  <p className={trackerStyles.modalIntensityText}>Intensity {entry.intensity}</p>
                   {entry.note && (
                     <p className={trackerStyles.modalNoteText}>
                       {entry.note}
@@ -182,17 +182,12 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
       {(editingEntry || isAddingNew) && (
         <>
           <label>Mood</label>
-          <select
+          <MoodComboBox
             value={mood}
-            onChange={(e) => setMood(e.target.value)}
-            className={formStyles.input}
-          >
-            <option value="" disabled>Select a mood</option>
-            {moodList.map((m) => (
-              <option key={m.id} value={m.id}>{m.label}</option>
-            ))}
-          </select>
-
+            onChange={setMood}
+            moodList={moodList}
+            required
+          />
           <label>Intensity: {intensity}</label>
           <input
             type="range"
@@ -235,4 +230,3 @@ const MoodModal: React.FC<MoodModalProps> = ({ userId, date, entries, onClose, r
 };
 
 export default MoodModal;
-

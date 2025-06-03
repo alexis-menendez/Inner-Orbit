@@ -93,6 +93,7 @@ const resolvers: IResolvers = {
       return results;
     },
 
+
 // JOURNAL
 
     // Fetch all journal entries for a specific user
@@ -245,6 +246,52 @@ const resolvers: IResolvers = {
         console.error("[LOGIN] Error during login:", error);
         throw error;
       }
+    },
+
+        // Update user profile (username, email, and/or password)
+        updateUser: async (
+          _: any,
+          {
+            id,
+            username,
+            email,
+            password,
+            newPassword,
+          }: {
+            id: string;
+            username?: string;
+            email?: string;
+            password?: string;
+            newPassword?: string;
+          }
+        ) => {
+      const user = await User.findById(id);
+      if (!user) throw new Error("User not found");
+
+      // If attempting to change password, validate current password
+      if (newPassword) {
+        if (!password) {
+          throw new Error("Current password is required to change password.");
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          throw new Error("Current password is incorrect.");
+        }
+
+        user.password = await bcrypt.hash(newPassword, 10);
+      }
+
+      if (username) user.username = username;
+      if (email) user.email = email;
+
+      await user.save();
+
+      return {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      };
     },
 
 // JOURNAL
@@ -426,6 +473,26 @@ updateMoodEntry: async (_: any, { id, input }: { id: string; input: any }, { use
     };
   }
 },
+
+// Update only the note field of a mood entry
+updateMoodNote: async (_: any, { _id, note }: { _id: string; note: string }, { user }) => {
+  if (!user) throw new Error("Not authenticated");
+
+  try {
+    const entry = await MoodEntry.findById(_id);
+    if (!entry) throw new Error("Mood entry not found.");
+    if (entry.userId.toString() !== user._id.toString()) throw new Error("Unauthorized.");
+
+    entry.note = note;
+    await entry.save();
+
+    return entry;
+  } catch (err) {
+    console.error("Error updating mood note:", err);
+    throw new Error("Failed to update mood note.");
+  }
+},
+
 
 // Delete a mood entry
 deleteMoodEntry: async (_: any, { id }: { id: string }, { user }) => {

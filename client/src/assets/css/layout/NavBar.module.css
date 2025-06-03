@@ -60,6 +60,7 @@
   text-shadow: 0 0 5px #fff8e7, 0 0 10px #9e89ff;
   display: flex;
   gap: 0.25rem;
+  margin-left: 1rem;
 }
 
 .inner {
@@ -98,18 +99,32 @@
   font-weight: 300;
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   list-style: none;
-
   transition: color 0.3s ease;
   background: transparent;
   border: none;
-
   cursor: pointer;
-
   display: flex;
   gap: 2rem;
 }
 
 .navLinkItem:hover {
+  color: #fff8e7;
+  text-shadow: 0 0 6px #b98dff;
+}
+
+.navLinkItem[type="button"] {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  gap: 2rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #b98dff;
+  transition: color 0.3s ease;
+}
+
+.navLinkItem[type="button"]:hover {
   color: #fff8e7;
   text-shadow: 0 0 6px #b98dff;
 }

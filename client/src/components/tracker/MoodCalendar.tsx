@@ -14,10 +14,23 @@ type Props = {
   hideMoodText?: boolean;
 };
 
-const isDarkColor = (hex: string): boolean => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+const isDarkColor = (color: string): boolean => {
+  let r, g, b;
+
+  if (color.startsWith('#')) {
+    r = parseInt(color.slice(1, 3), 16);
+    g = parseInt(color.slice(3, 5), 16);
+    b = parseInt(color.slice(5, 7), 16);
+  } else if (color.startsWith('rgb')) {
+    const rgbValues = color.match(/\d+/g);
+    if (!rgbValues || rgbValues.length < 3) return false;
+    r = parseInt(rgbValues[0], 10);
+    g = parseInt(rgbValues[1], 10);
+    b = parseInt(rgbValues[2], 10);
+  } else {
+    return false;
+  }
+
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
   return brightness < 150;
 };

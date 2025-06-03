@@ -71,7 +71,7 @@
 }
 
 .monthLabel {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: bold;
   color: white;
 }
@@ -204,6 +204,14 @@
   margin-bottom: 1rem;
 }
 
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
 /* === Mood Modal Text Styles === */
 .modalMoodText {
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
@@ -225,3 +233,41 @@
   color: white;
   margin-bottom: 0.75rem;
 }
+
+.moodNotesModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.moodNotesContent {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 90vw;
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  font-family: 'Barlow Condensed', sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.barlowText {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+

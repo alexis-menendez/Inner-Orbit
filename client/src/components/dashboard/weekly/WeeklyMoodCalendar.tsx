@@ -1,10 +1,15 @@
-// File: client/src/components/dashboard/WeeklyMoodCalendar.tsx
+// File: client/src/components/dashboard/weekly/WeeklyMoodCalendar.tsx
 
 import React, { useMemo, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_MOOD_ENTRIES } from '../../graphql/queries';
-import styles from '../../assets/css/dashboard/Dashboard.module.css';
-import { useAuth } from '../../context/authContext';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_MOOD_NOTE } from '../../../graphql/mutations';
+import { useAuth } from '../../../context/authContext';
+import { GET_MOOD_ENTRIES } from '../../../graphql/queries';
+import MoodNotes from './MoodNotes';
+import trackerStyles from '../../../assets/css/tracker/Tracker.module.css';
+import dashboardStyles from '../../../assets/css/dashboard/Dashboard.module.css';
+import formStyles from '../../../assets/css/common/Form.module.css';
+import buttonStyles from '../../../assets/css/common/Button.module.css';
 
 interface MoodEntry {
   _id: string;
@@ -18,12 +23,17 @@ interface MoodEntry {
 
 interface WeeklyMoodReviewProps {
   onMoodSubmit?: () => void;
+  horizontal?: boolean; 
 }
 
-const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => {
+const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit, horizontal }) => {
   const { user } = useAuth();
   const userId = user?.id;
-  const [selectedNote, setSelectedNote] = useState<string | null>(null);
+  const [selectedNote, setSelectedNote] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const [updateMoodNote] = useMutation(UPDATE_MOOD_NOTE);
 
   const today = new Date();
   const startOfWeek = new Date(today);
@@ -72,7 +82,7 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className={styles.weeklyReviewContainer}>
+    <div className={`${dashboardStyles.weeklyReviewContainer} ${horizontal ? dashboardStyles.weeklyReviewHorizontal : ''}`}>
       {dateStrings.map((dateStr) => {
         const entries = moodMap[dateStr] || [];
         const dateObj = new Date(dateStr);
@@ -82,20 +92,26 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
         return (
           <div
             key={dateStr}
-            className={styles.weeklyMoodCell}
+            className={`${dashboardStyles.weeklyMoodCell} ${entries.length === 0 ? dashboardStyles.emptyMoodCell : dashboardStyles.filledMoodCell}`}
             style={{
               background: entries.length > 0 ? getMoodGradient(entries) : '#1e293b',
               opacity: entries.length > 0 ? 1 : 0.4,
               cursor: entries.some(e => e.note) ? 'pointer' : 'default',
             }}
             onClick={() => {
-              const noted = entries.find(e => e.note);
-              if (noted?.note) setSelectedNote(noted.note);
+              if (entries.length > 0) {
+                const noted = entries.find(e => typeof e.note === 'string');
+                if (noted) {
+                  setSelectedNote(noted.note || '');
+                  setSelectedDate(dateStr);
+                  setSelectedId(noted._id);
+                }
+              }
             }}
           >
-            <div className={styles.weeklyMoodDay}>{day}</div>
-            <div className={styles.weeklyMoodDate}>{shortDate}</div>
-            <div className={styles.weeklyMoodList}>
+            <div className={dashboardStyles.weeklyMoodDay}>{day}</div>
+            <div className={dashboardStyles.weeklyMoodDate}>{shortDate}</div>
+            <div className={dashboardStyles.weeklyMoodList}>
               {entries.length > 0 ? (
                 entries.map((e, i) => <div key={i}>{e.mood}</div>)
               ) : (
@@ -103,7 +119,7 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
               )}
             </div>
             {entries.length > 0 && (
-              <div className={styles.weeklyMoodBar}>
+              <div className={dashboardStyles.weeklyMoodBar}>
                 <div
                   style={{
                     width: `${(entries.reduce((sum, e) => sum + e.intensity, 0) / entries.length / 10) * 100}%`,
@@ -118,19 +134,29 @@ const WeeklyMoodReview: React.FC<WeeklyMoodReviewProps> = ({ onMoodSubmit }) => 
         );
       })}
 
-      {selectedNote && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-white text-black p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-semibold mb-4">Mood Note</h2>
-            <p className="mb-4 whitespace-pre-wrap">{selectedNote}</p>
-            <button
-              className="px-4 py-2 bg-indigo-700 text-white rounded hover:bg-indigo-800"
-              onClick={() => setSelectedNote(null)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      {selectedDate && selectedId && (
+        <MoodNotes
+          _id={selectedId} 
+          date={selectedDate}
+          note={selectedNote}
+          onNoteChange={(newNote: string) => setSelectedNote(newNote)}
+          onClose={() => {
+            setSelectedDate(null);
+            setSelectedNote('');
+            setSelectedId(null);
+          }}
+          onSave={async (newNote: string) => {
+            if (!selectedId) return;
+            try {
+              await updateMoodNote({ variables: { _id: selectedId, note: newNote } });
+            } catch (err) {
+              console.error('Error updating note:', err);
+            }
+            setSelectedDate(null);
+            setSelectedNote('');
+            setSelectedId(null);
+          }}
+        />
       )}
     </div>
   );

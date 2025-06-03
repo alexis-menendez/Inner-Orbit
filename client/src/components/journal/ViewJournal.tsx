@@ -19,7 +19,6 @@ const ViewJournal: React.FC = () => {
   const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [titleInput, setTitleInput] = useState('');
-  const [moodInput, setMoodInput] = useState('neutral');
   const [contentInput, setContentInput] = useState('');
 
   const { data, loading, error } = useQuery(GET_JOURNAL_ENTRIES, {
@@ -51,7 +50,6 @@ const ViewJournal: React.FC = () => {
 
   const handleEditClick = () => {
     setTitleInput(entry.title);
-    setMoodInput: (entry.mood);
     setContentInput(entry.content);
     setShowForm(true);
   };
@@ -63,7 +61,6 @@ const ViewJournal: React.FC = () => {
           id: entry._id,
           input: {
             title: titleInput,
-            mood: moodInput,
             content: contentInput,
           },
         },
@@ -78,22 +75,25 @@ const ViewJournal: React.FC = () => {
     <div className={styles.sky}>
       <StarBackground starCount={40} />
 
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
-        <button
-          onClick={() => navigate(-1)}
-          className={`${buttonStyles.button} ${buttonStyles.secondary}`}
-        >
-          ← Back to Constellation
-        </button>
-
-        {!showForm && (
-          <button
-            onClick={handleEditClick}
-            className={`${buttonStyles.button} ${buttonStyles.primary}`}
-          >
-            Edit Journal Entry
-          </button>
-        )}
+      <div className={buttonStyles.createButtonWrapper}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {!showForm && (
+            <>
+              <button
+                onClick={() => navigate(-1)}
+                className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+              >
+                ← Back to Constellation
+              </button>
+              <button
+                onClick={handleEditClick}
+                className={`${buttonStyles.button} ${buttonStyles.primary}`}
+              >
+                Edit Journal Entry
+              </button>
+            </>
+          )}
+        </div>
       </div>
 
       {showForm ? (
@@ -113,21 +113,6 @@ const ViewJournal: React.FC = () => {
             className={formStyles.input}
             placeholder="Title"
           />
-
-          <select
-            className={styles.input}
-            value={moodInput}
-            onChange={(e) => setMoodInput(e.target.value)}
-            required
-          >
-            <option value="neutral">Neutral</option>
-            <option value="happy">Happy</option>
-            <option value="sad">Sad</option>
-            <option value="angry">Angry</option>
-            <option value="anxious">Anxious</option>
-            <option value="excited">Excited</option>
-            <option value="reflective">Reflective</option>
-          </select>
 
           <textarea
             value={contentInput}
@@ -156,9 +141,6 @@ const ViewJournal: React.FC = () => {
 
           <div className={notebookStyles.textContent}>
             <h2 className={notebookStyles.journalTitle}>{entry.title}</h2>
-            <h3 className={notebookStyles.journalMood}>
-              Mood: {entry.mood.charAt(0).toUpperCase() + entry.mood.slice(1)}
-            </h3>
             <p className={notebookStyles.journalDate}>
               {new Date(entry.createdAt).toLocaleString()}
             </p>

@@ -1,0 +1,49 @@
+/* File: client/src/assets/css/user/User.module.css */
+
+.userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  gap: 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+.profileBox {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.profileBox input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.formGroup {
+  margin-bottom: 1.75rem;
+  width: 100%;
+}
+
+.formGroup label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+  font-weight: 400;  
+  color: white;    
+  gap: 0.4rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+

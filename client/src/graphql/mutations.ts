@@ -149,3 +149,37 @@ export const DELETE_MOOD_ENTRY = gql`
     deleteMoodEntry(id: $id)
   }
 `;
+
+export const UPDATE_MOOD_NOTE = gql`
+  mutation UpdateMoodNote($_id: ID!, $note: String!) {
+    updateMoodNote(_id: $_id, note: $note) {
+      _id
+      note
+    }
+  }
+`;
+
+// === USER PROFILE ===
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $id: ID!
+    $username: String
+    $email: String
+    $password: String
+    $newPassword: String
+  ) {
+    updateUser(
+      id: $id
+      username: $username
+      email: $email
+      password: $password
+      newPassword: $newPassword
+    ) {
+      _id
+      username
+      email
+    }
+  }
+`;
+

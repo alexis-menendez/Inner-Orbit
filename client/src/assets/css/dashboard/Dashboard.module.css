@@ -64,7 +64,7 @@
   color: #1e1e2f;
   padding: 0.75rem 1.25rem;
   border-radius: 1rem;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-style: italic;
   max-width: 300px;
   text-align: center;
@@ -127,13 +127,37 @@
   transform: scale(1.02);
 }
 
+@media (max-width: 767px) {
+  .weeklyMoodCell {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.filledMoodCell {
+  padding: 0.5rem 1.25rem;
+}
+
+.emptyMoodCell {
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 767px) {
+  .filledMoodCell {
+    padding: 0.5rem 1rem;
+  }
+
+  .emptyMoodCell {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
 .weeklyMoodDay {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
   font-weight: 600;
 }
 
 .weeklyMoodDate {
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 1vw, 1rem);
   margin-bottom: 0.25rem;
 }
 
@@ -141,7 +165,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.95vw, 1rem);
   font-weight: 500;
   gap: 0.25rem;
 }
@@ -167,6 +191,47 @@
     justify-content: flex-start;
     column-gap: 0.5rem;
   }
+}
+
+.weeklyReviewRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  padding: 1rem 0;
+  gap: 0;
+}
+
+.weeklyReviewHorizontal {
+  flex-direction: column !important;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  gap: 0;
+}
+
+@media (min-width: 768px) {
+  .weeklyReviewHorizontal {
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow-x: auto;
+    gap: 0;
+  }
+}
+
+.weeklyReviewRow,
+.weeklyReviewContainer {
+  overflow-x: hidden; 
+}
+
+.weeklyReviewRow::-webkit-scrollbar {
+  display: none;
+}
+
+.weeklyReviewHorizontal::-webkit-scrollbar {
+  display: none;
 }
 
 .squidWrapper {

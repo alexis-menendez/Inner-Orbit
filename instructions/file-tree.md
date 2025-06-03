@@ -24,6 +24,7 @@ InnerOrbit/
 │   │   │       │   ├── Form.module.css   
 │   │   │       │   ├── Logo.module.css   
 │   │   │       │   ├── MainLayoutBackground.module.css   
+│   │   │       │   ├── ShootingStar.module.css   
 │   │   │       │   ├── TransparentStarsmodule.css   
 │   │   │       │   └── *Global reusable styles like button styles, loading spinners, modals, etc...*
 │   │   │       │  
@@ -54,6 +55,7 @@ InnerOrbit/
 │   │   ├── components/  
 │   │   │   ├── common/  
 │   │   │   │   ├── MainLayoutBackground.tsx  
+│   │   │   │   ├── ShootingStar.tsx  
 │   │   │   │   ├── StarBackground.tsx  
 │   │   │   │   ├── TransparentStars.tsx  
 │   │   │   │   └── *things like "ErrorMessage.tsx", "LoadingSpinner.tsx", "Button.tsx", etc...*
@@ -61,7 +63,8 @@ InnerOrbit/
 │   │   │   ├── dashboard/   
 │   │   │   │   ├── pomodoro/
 │   │   │   │   │   ├──  FocusTaskList.tsx
-│   │   │   │   │   └──  PomodoroTimer.tsx
+│   │   │   │   │   ├──  PomodoroTimer.tsx
+│   │   │   │   │   └──  TimerSettings.tsx
 │   │   │   │   │  
 │   │   │   │   ├── pet/
 │   │   │   │   │   ├──  dev/
@@ -70,7 +73,10 @@ InnerOrbit/
 │   │   │   │   │   ├──  SpriteAnimator.tsx
 │   │   │   │   │   └──  SquidPet.tsx
 │   │   │   │   │  
-│   │   │   │   ├──  WeeklyMoodCalendar.tsx   
+│   │   │   │   ├──  weekly/
+│   │   │   │   │   ├──  MoodNotes.tsx
+│   │   │   │   │   └──  WeeklyMoodCalendar.tsx
+│   │   │   │   │  
 │   │   │   │   └── *any components created specifically for the dashboard page...*
 │   │   │   │   
 │   │   │   ├── home/  
@@ -98,6 +104,10 @@ InnerOrbit/
 │   │   │   │   ├──  ProtectedRoute.tsx  
 │   │   │   │   └── *things like "PaggeWrapper.tsx", etc...* 
 │   │   │   │  
+│   │   │   ├── library/   
+│   │   │   │   ├──  CloudinaryWidget.tsx
+│   │   │   │   └── *any components created specifically for the library page...*
+│   │   │   │  
 │   │   │   ├── nav/  
 │   │   │   │   ├──  Footer.tsx 
 │   │   │   │   ├──  NavBar.tsx 
@@ -106,12 +116,9 @@ InnerOrbit/
 │   │   │   ├── tracker/  
 │   │   │   │   ├──  CreateMood.tsx 
 │   │   │   │   ├──  MoodCalendar.tsx  
+│   │   │   │   ├──  MoodComboBoxtsx  
 │   │   │   │   ├──  MoodModal.tsx  
 │   │   │   │   └── *any components created specifically for the tracker page...*
-│   │   │   │    
-│   │   │   ├── library/  
-│   │   │   │   ├──  (not yet created)   
-│   │   │   │   └── *any components created specifically for the library page...* 
 │   │   │   │     
 │   │   │   └── user/   
 │   │   │       ├──  (not yet created)  
@@ -132,24 +139,19 @@ InnerOrbit/
 │   │   ├── models/  
 │   │   │   ├── Auth.ts 
 │   │   │   ├── GraphQL.ts 
-│   │   │   ├── Group.ts           (not yet created)   
 │   │   │   ├── index.ts 
 │   │   │   ├── Journal.ts 
-│   │   │   ├── Mood.ts 
-│   │   │   ├── Post.ts            (not yet created)            
-│   │   │   ├── Library.ts         (not yet created)                                             
+│   │   │   ├── Mood.ts                                                     
 │   │   │   └── User.ts       
 │   │   │
 │   │   ├── pages/  
 │   │   │   ├── Dashboard.tsx 
 │   │   │   ├── Home.tsx  
-│   │   │   ├── Feed.tsx            (not yet created)
-│   │   │   ├── FriendGroup.tsx     (not yet created)  
 │   │   │   ├── Journal.tsx           
-│   │   │   ├── Library.tsx         (not yet created) 
+│   │   │   ├── Library.tsx         
 │   │   │   ├── NotFound.tsx        (not yet created) 
 │   │   │   ├── Tracker.tsx         
-│   │   │   └── UserProfile.tsx     (not yet created)       
+│   │   │   └── UserProfile.tsx      
 │   │   │
 │   │   ├── utils/
 │   │   │   ├── API.ts 
@@ -189,27 +191,22 @@ InnerOrbit/
 │   │   ├── controllers/  
 │   │   │   ├── index.ts
 │   │   │   ├── authController.ts 
-│   │   │   ├── groupController.ts       (not created yet)
 │   │   │   ├── journalController.ts 
-│   │   │   ├── libraryController.ts     (not created yet)
-│   │   │   ├── postController.ts        (not created yet) 
+│   │   │   ├── libraryController.ts     
 │   │   │   ├── trackerController.ts        
-│   │   │   ├── userController.ts                
-│   │   │   └── videoController.ts  
+│   │   │   └── userController.ts                
 │   │   │ 
 │   │   ├── middleware/   
-│   │   │   ├── auth.ts     
-│   │   │   └── multer.ts         
+│   │   │   └── auth.ts          
 │   │   │  
 │   │   ├── models/            
 │   │   │   ├── index.ts
-│   │   │   ├── Group.ts              (not created yet)
 │   │   │   ├── Journal.ts
-│   │   │   ├── Library.ts            (not created yet)
-│   │   │   ├── Post.ts               (not created yet) 
 │   │   │   ├── Tracker.ts 
-│   │   │   ├── User.ts                                    
-│   │   │   └── Video.ts           
+│   │   │   └── User.ts                                              
+│   │   |    
+│   │   ├── routes/            
+│   │   │   └── libraryRoutes.ts    
 │   │   |    
 │   │   ├── schemas/  
 │   │   │   ├── scalars/

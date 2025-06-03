@@ -5,7 +5,7 @@ import styles from '../../assets/css/common/Form.module.css';
 import buttonStyles from '../../assets/css/common/Button.module.css';
 
 interface CreateJournalProps {
-  onSave: (entry: { title: string; mood: string; content: string }) => void;
+  onSave: (entry: { title: string; content: string }) => void;
   onCancel: () => void;
 }
 
@@ -17,7 +17,7 @@ const CreateJournal: React.FC<CreateJournalProps> = ({ onSave, onCancel }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ title, content, mood });
+    onSave({ title, content });
     setTitle('');
     setMood('neutral');
     setContent('');
@@ -34,21 +34,6 @@ const CreateJournal: React.FC<CreateJournalProps> = ({ onSave, onCancel }) => {
         onChange={(e) => setTitle(e.target.value)}
         required
       />
-
-      <select
-        className={styles.input}
-        value={mood}
-        onChange={(e) => setMood(e.target.value)}
-        required
-      >
-        <option value="neutral">Neutral</option>
-        <option value="happy">Happy</option>
-        <option value="sad">Sad</option>
-        <option value="angry">Angry</option>
-        <option value="anxious">Anxious</option>
-        <option value="excited">Excited</option>
-        <option value="reflective">Reflective</option>
-      </select>
 
       <textarea
         className={styles.input}

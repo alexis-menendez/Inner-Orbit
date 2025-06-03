@@ -6,13 +6,15 @@ import styles from "../../assets/css/service/Terms.module.css";
 import buttonStyles from "../../assets/css/common/Button.module.css";
 import logoStyles from '../../assets/css/common/Logo.module.css';
 import TransparentStars from '../common/TransparentStars';
+import ShootingStar from '../common/ShootingStar';
 
 const Terms = () => {
   const navigate = useNavigate();
 
   return (
     <div className={styles.background}>
-      <TransparentStars />
+      <TransparentStars /> 
+      <ShootingStar /> 
       <div className={styles.container}>
         <h1 className={logoStyles.title}>
           <span className={logoStyles.titleInner}>inner</span>

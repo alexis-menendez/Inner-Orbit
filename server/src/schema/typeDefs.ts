@@ -154,6 +154,7 @@ const typeDefs = gql`
       addMoodEntry(input: CreateMoodInput!): CreateMoodPayload!
       updateMoodEntry(id: ID!, input: UpdateMoodInput!): UpdateMoodPayload!
       deleteMoodEntry(id: ID!): Boolean
+      updateMoodNote(_id: ID!, note: String!): MoodEntry
     }
 
     extend type Mutation {
@@ -161,6 +162,15 @@ const typeDefs = gql`
       updateJournal(input: UpdateJournalInput!): UpdateJournalPayload!
       updateJournalEntry(id: ID!, input: UpdateJournalInput!): CreateJournalPayload!
       deleteJournalEntry(id: ID!): Boolean
+    }
+
+    extend type Mutation {
+      updateUser(id: ID!
+        username: String
+        email: String
+        password: String
+        newPassword: String
+      ): User!
     }
 
   `;

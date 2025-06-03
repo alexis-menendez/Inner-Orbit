@@ -15,31 +15,30 @@ export interface Constellation {
 
 export const CONSTELLATIONS: Constellation[] = [
   {
-    name: "The Key",
-    description: "A winding shaft ending in a toothed edge—an ancient key to memory.",
-    stars: [
-      { x: 15, y: 31, size: .5 },  
-      { x: 26, y: 30, size: 1 },  
-      { x: 43, y: 29, size: 1.25 },  
-      { x: 51, y: 31, size: .5 },  
-      { x: 51, y: 47, size: 1 },  
-      { x: 58, y: 32, size: 1.25 }, 
-      { x: 57.5, y: 45, size: .5 },  
-      { x: 62, y: 30, size: 1 },  
-      { x: 62.5, y: 53, size: 1.25 },  
- 
-    ],
-        connections: [
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [3, 5],
-        [5, 6],
-        [5, 7],
-        [7, 8]
-        ]
-  },
+  name: "The Key",
+  description: "A winding shaft ending in a toothed edge—an ancient key to memory.",
+  stars: [
+    { x: 15, y: 71, size: 0.5 },
+    { x: 26, y: 70, size: 1 },
+    { x: 43, y: 69, size: 1.25 },
+    { x: 51, y: 71, size: 0.5 },
+    { x: 51, y: 87, size: 1 },
+    { x: 58, y: 72, size: 1.25 },
+    { x: 57.5, y: 85, size: 0.5 },
+    { x: 62, y: 70, size: 1 },
+    { x: 62.5, y: 93, size: 1.25 },
+  ],
+  connections: [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [3, 5],
+    [5, 6],
+    [5, 7],
+    [7, 8],
+  ],
+},
   {
     name: "The Candle",
     description: "A glowing light suspended in the dark, carried across galaxies.",
@@ -97,51 +96,51 @@ connections: [
   {
     name: "The Sun",
     description: "NEED TO WRITE DESCRIPTION.",
-    stars: [
-      //center
-      { x: 60.5, y: 40.5, size: .5 }, 
-      { x: 60.5, y: 40.5, size: .75 }, 
-      { x: 65, y: 46, size: 1 }, 
-      { x: 60.5, y: 50.5, size: 1.25 }, 
-      { x: 55, y: 45, size: .5 }, 
+stars: [
+  // center
+  { x: 50.5, y: 40.5, size: .5 }, 
+  { x: 50.5, y: 40.5, size: .75 }, 
+  { x: 55, y: 46, size: 1 }, 
+  { x: 50.5, y: 50.5, size: 1.25 }, 
+  { x: 45, y: 45, size: .5 }, 
 
-      // top point
-      { x: 50.5, y: 35.5, size: .75 }, 
-      { x: 30, y: 26, size: 1 },
-      { x: 50.5, y: 41.5, size: 1.25 }, 
-      { x: 55, y: 35, size: .5 },
-      { x: 60.5, y: 10.5, size: .75 },
-      { x: 65, y: 31, size: 1.1 }, 
-      { x: 65.5, y: 30.5, size: 1.20 }, 
+  // top point
+  { x: 40.5, y: 35.5, size: .75 }, 
+  { x: 20, y: 26, size: 1 },
+  { x: 40.5, y: 41.5, size: 1.25 }, 
+  { x: 45, y: 35, size: .5 },
+  { x: 50.5, y: 10.5, size: .75 },
+  { x: 55, y: 31, size: 1.1 }, 
+  { x: 55.5, y: 30.5, size: 1.20 }, 
 
-      // bottom point 
-      { x: 70, y: 56, size: .4 }, 
-      { x: 90.5, y: 65.5, size: .78 }, 
-      { x: 70, y: 51, size: .9 },
-      { x: 65.5, y: 56.5, size: 1.15 }, 
-      { x: 60, y: 80, size: .6 }, 
-      { x: 55.5, y: 60.5, size: .7 }, 
-      { x: 55, y: 61, size: 1.05 }, 
-      
-      // left point
-      { x: 70.5, y: 35.5, size: 1.23 }, 
-      { x: 80, y: 15, size: .63 },
-      { x: 65.5, y: 36.5, size: .77 },
-      { x: 70, y: 40, size: .95 },
-      { x: 95.5, y: 45.5, size: 1.24 }, 
-      { x: 75, y: 51, size: .55 }, 
-      { x: 75.5, y: 50.5, size: .73 }, 
+  // bottom point 
+  { x: 60, y: 56, size: .4 }, 
+  { x: 80.5, y: 65.5, size: .78 }, 
+  { x: 60, y: 51, size: .9 },
+  { x: 55.5, y: 56.5, size: 1.15 }, 
+  { x: 50, y: 80, size: .6 }, 
+  { x: 45.5, y: 60.5, size: .7 }, 
+  { x: 45, y: 61, size: 1.05 }, 
+  
+  // left point
+  { x: 60.5, y: 35.5, size: 1.23 }, 
+  { x: 70, y: 15, size: .63 },
+  { x: 55.5, y: 36.5, size: .77 },
+  { x: 60, y: 40, size: .95 },
+  { x: 85.5, y: 45.5, size: 1.24 }, 
+  { x: 65, y: 51, size: .55 }, 
+  { x: 65.5, y: 50.5, size: .73 }, 
 
-      // right ray
-      { x: 50, y: 56, size: .92 }, 
-      { x: 40.5, y: 75.5, size: 1.20  }, 
-      { x: 55, y: 56, size: .5 }, 
-      { x: 50.5, y: 51.5, size: .75 }, 
-      { x: 25, y: 45, size: 1 }, 
-      { x: 45.5, y: 40.5, size: 1.25 },
-      { x: 45, y: 41, size: .5 },
+  // right ray
+  { x: 40, y: 56, size: .92 }, 
+  { x: 30.5, y: 75.5, size: 1.20 }, 
+  { x: 45, y: 56, size: .5 }, 
+  { x: 40.5, y: 51.5, size: .75 }, 
+  { x: 15, y: 45, size: 1 }, 
+  { x: 35.5, y: 40.5, size: 1.25 },
+  { x: 35, y: 41, size: .5 },
+],
 
-    ],
 connections: [
   // center
   [1, 2], 
