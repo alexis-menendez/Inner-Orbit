@@ -1,4 +1,4 @@
-# InnerOrbit: *Mood Journal, Mood Tracker, & Reflective Social Space*
+# InnerOrbit
 
 ## **Description**
 
@@ -40,15 +40,13 @@
 
 ## Screenshots
 
-## Screenshots
-
 ### Authentication
 ![landing-page](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/home.png?raw=true) 
 ![login](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/login.png?raw=true) 
 ![register](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/register.png?raw=true) 
 
 ### User Settings
-![account](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/accounte.png?raw=true) 
+![account](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/account.png?raw=true) 
 ![terms](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/terms.png?raw=true) 
 ![privacy-policy](https://github.com/alexis-menendez/Inner-Orbit/blob/main/Assets/privacy.png?raw=true) 
 
@@ -114,21 +112,21 @@ If you have any questions, feel free to contact the team:
 #### Frontend Lead: [**Constance RobinE**](https://zomblic.netlify.app/) – Full stack Developer
 
 - **Website**: [Portfolio](https://zomblic.netlify.app/)
-- **LinkedIn**: [in/Constance](www.linkedin.com/in/constance-robin/)
+- **LinkedIn**: [in/constance-robin](www.linkedin.com/in/constance-robin/)
 - **GitHub**: [zomblic](https://github.com/zomblic)
 - **Email**: [zomblic@hotmail.com](https://zomblic.netlify.app/contact)
 
 #### Backend Lead: [**Blake Brittain**](https://blakenb-portfolio.netlify.app/) – Full stack Developer
 
 - **Website**: [Blake's portfolio](https://blakenb-portfolio.netlify.app/)
-- **LinkedIn**: [in/Blake Brittain](https://www.linkedin.com/in/blake-n-brittain/)
-- **GitHub**: [Blake Brittin](https://github.com/Blakenb)
+- **LinkedIn**: [in/blake-n-brittain](https://www.linkedin.com/in/blake-n-brittain/)
+- **GitHub**: [Blakenb](https://github.com/Blakenb)
 - **Email**: [Blakenb87@gmail.com](Blakenb87@gmail.com)
 
 #### Backend Developer: [**Blaine Bishop**](https://blainebishopportfolio.netlify.app/) – Fullstack Developer, specializing in backend database building, and rendering to production 
 
 - **Website**: [Portfolio](https://blainebishopportfolio.netlify.app/)
-- **LinkedIn**: [in/Blaine Bishop](https://www.linkedin.com/in/blainebishop/)
+- **LinkedIn**: [in/blainebishop](https://www.linkedin.com/in/blainebishop/)
 - **GitHub**: [Halluci1nations](https://github.com/Halluc1nations)
 - **Email**: Blaine.Bishop@comcast.net
 
